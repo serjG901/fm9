@@ -1,0 +1,30 @@
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+}
+
+label {
+  cursor: pointer;
+}
+
+input {
+  border-radius: var(--radius-border-button);
+  border: var(--border-button);
+  padding: var(--padding-button);
+  font-size: var(--size-font-button);
+  font-weight: var(--weight-font-button);
+  font-family: inherit;
+  background-color: var(--color-bg-button);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+input:hover {
+  border-color: var(--color-border-button);
+}
+input:focus,
+input:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}

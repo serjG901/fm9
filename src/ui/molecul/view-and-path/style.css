@@ -1,0 +1,13 @@
+.view-and-path {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  .show-content-border {
+    width: max-content;
+    height: max-content;
+    border: 1px solid green;
+    resize: both;
+    overflow: hidden;
+  }
+}

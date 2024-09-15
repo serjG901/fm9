@@ -1,0 +1,59 @@
+.collapse {
+  width: 100%;
+  background-color: var(--color-bg-menu);
+  border-radius: var(--radius-border-button);
+  background-image: radial-gradient(
+    circle farthest-corner at 50% 20%,
+    rgba(151, 41, 247, 1) 0%,
+    rgba(24, 22, 39, 1) 90%
+  );
+
+  summary {
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
+    border-radius: var(--radius-border-button);
+    border: var(--border-button);
+    padding: var(--padding-button);
+    font-size: var(--size-font-button);
+    font-weight: var(--weight-font-button);
+    font-family: inherit;
+    background-color: var(--color-bg-summary);
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+  summary:hover {
+    text-decoration: underline;
+  }
+  summary:focus,
+  summary:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+  }
+
+  div {
+    padding: var(--padding-menu);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gap-menu);
+  }
+}
+
+.collapse[open] summary {
+  text-decoration: underline;
+}
+
+.collapse:nth-child(1) {
+  width: 100%;
+}
+
+.collapse:nth-child(2) {
+  width: 90%;
+}
+
+.collapse:nth-child(3) {
+  width: 80%;
+}
+
+.collapse:nth-child(4) {
+  width: 70%;
+}

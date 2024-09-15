@@ -1,0 +1,20 @@
+.highlight-text {
+  background-color: var(--color-bg-self);
+  /*contrast color (white or black) for background*/
+  color: color(
+    from var(--color-bg-self) srgb calc(1 - round(calc(r + g + b) / 3, 1))
+      calc(1 - round(calc(r + g + b) / 3, 1))
+      calc(1 - round(calc(r + g + b) / 3, 1))
+  );
+}
+
+.highlight-text::after {
+  content: " ";
+  display: inline-block;
+  width: 1ch;
+}
+.highlight-text::before {
+  content: " ";
+  display: inline-block;
+  width: 1ch;
+}

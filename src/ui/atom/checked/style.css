@@ -1,0 +1,16 @@
+.checked {
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      color: var(--color-text-label);
+    }
+  }
+  label:has(input[data-checked="true"]) {
+    span {
+      color: var(--color-text-main);
+    }
+    background-color: var(--color-bg-label_checked);
+  }
+}

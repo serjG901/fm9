@@ -1,0 +1,21 @@
+.action-button {
+  height: min-content;
+  align-self: flex-end;
+  border-radius: var(--radius-border-button);
+  border: var(--border-button);
+  padding: var(--padding-button);
+  font-size: var(--size-font-button);
+  font-weight: var(--weight-font-button);
+  font-family: inherit;
+  background-color: var(--color-bg-button);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+.action-button:hover {
+  border-color: var(--color-border-button);
+}
+.action-button:focus,
+.action-button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
