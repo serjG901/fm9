@@ -11,7 +11,7 @@ interface ColorpickerComponent {
 export default function Colorpicker({
   id = "colorpicker",
   name = "colorpicker",
-  valueFromParent = "",
+  valueFromParent = "#000000",
   hoistValue = () => {},
 }: ColorpickerComponent) {
   const [state, setState] = useState(valueFromParent);

@@ -7,23 +7,13 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import AddTags from "../add-tags/AddTags";
+import { Payment } from "../../../interfaces";
 
 interface FormPaymentComponent {
   actionType?: string;
-  actionPayment?: (
-    datetime: string,
-    name: string,
-    amount: string,
-    currency: string,
-    id?: number
-  ) => void;
-  payment?: {
-    id: number;
-    datetime: string;
-    name: string;
-    amount: string;
-    currency: string;
-  };
+  actionPayment?: (payment: Payment) => void;
+  payment?: Payment;
+  deletePayment?: (payment: Payment) => void;
 }
 
 export default function FormPayment({
@@ -31,11 +21,16 @@ export default function FormPayment({
   actionPayment = () => {},
   payment = {
     id: 0,
-    datetime: "2024-09-09",
+    datetime: new Date(Date.now()).toLocaleDateString("ru-RU", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    }),
     name: "",
     amount: "",
     currency: "BYN",
   },
+  deletePayment = () => {},
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
@@ -43,13 +38,20 @@ export default function FormPayment({
   const [paymentCurrency, setPaymentCurrency] = useState(payment.currency);
 
   const handleActionPayment = () => {
-    actionPayment(
-      paymentDatetime,
-      paymentName,
-      paymentAmount,
-      paymentCurrency,
-      payment.id
-    );
+    actionPayment({
+      datetime: paymentDatetime,
+      name: paymentName,
+      amount: paymentAmount,
+      currency: paymentCurrency,
+      id: payment.id,
+    });
+  };
+
+  const handleDeletePayment = () => {
+    const agree = confirm("delete?");
+    if (agree) {
+      deletePayment(payment);
+    }
   };
 
   return (
@@ -83,6 +85,14 @@ export default function FormPayment({
       <ActionButton actionWithPayload={handleActionPayment}>
         {actionType}
       </ActionButton>
+      {actionType === "update" && (
+        <>
+          <br />
+          <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
+            delete
+          </ActionButton>
+        </>
+      )}
     </FlexColumnCenter>
   );
 }

@@ -18,11 +18,9 @@ export default function InputNumber({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const arr = e.target.value.split(".");
-    console.log(arr);
     const value =
       parseInt(arr[0]).toString() +
       (arr[1] !== undefined ? "." + arr[1].slice(0, 2) : "");
-    console.log(value);
     setState(value);
     hoistValue(value);
   };

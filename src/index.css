@@ -10,7 +10,8 @@
   --padding-button: 0.6rem 1.2rem;
   --border-button: 1px solid transparent;
 
-  --color-bg-menu: hsl(237, 34%, 27%);
+  /*--color-bg-menu: hsl(237, 34%, 27%);*/
+  --color-bg-menu: hsl(248, 39%, 39%);
   --color-bg-summary: hsla(0, 0%, 100%, 0);
 
   --color-text-label: hsl(0, 0%, 50%);

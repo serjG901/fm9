@@ -23,7 +23,7 @@ export default function AddTags({
 }) {
   const [tags, setTags] = useState<Tag[]>([]);
   const [value, setValue] = useState<string>("");
-  const [color, setColor] = useState<string>("");
+  const [color, setColor] = useState<string>("#000000");
 
   const handleSetValue = (value: string) => {
     setValue(value);

@@ -1,0 +1,18 @@
+.payment-card {
+  width: min-content;
+  height: min-content;
+  padding: var(--padding-card);
+  border-radius: var(--radius-border-card);
+  background-color: var(--color-bg-card);
+  > div {
+    gap: var(--gap-card);
+  }
+  .payment-card-name {
+  }
+  .payment-card-amount {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .payment-card-currency {
+  }
+}

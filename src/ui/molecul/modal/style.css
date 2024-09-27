@@ -1,9 +1,11 @@
 .modal {
   width: min-content;
   height: min-content;
-  padding: 4rem;
+  padding: 2rem 4rem;
   border-radius: 8px;
   border: 2px solid hsl(0 0 0);
+  box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
+  background-color: var(--color-bg-menu);
   .hide-modal {
     position: absolute;
     top: 0.5rem;

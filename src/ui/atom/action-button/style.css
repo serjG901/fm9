@@ -18,3 +18,7 @@
 .action-button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.action-button[data-alert="alert"] {
+  color: red;
+}
