@@ -23,7 +23,7 @@ export default function PaymentCard({
   return (
     <div className='payment-card' key={payment.id}>
       <FlexColumnCenter>
-      <div className='payment-card-date'>{payment.datetime}</div>
+      <div className='payment-card-datetime'>{payment.datetime}</div>
         <div className='payment-card-name'>{payment.name}</div>
         <div className='payment-card-amount'>{payment.amount}</div>
         <div className='payment-card-currency'>{payment.currency}</div>
