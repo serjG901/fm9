@@ -30,7 +30,7 @@
     outline: 4px auto -webkit-focus-ring-color;
   }
 
-  div {
+  > div {
     padding: var(--padding-menu);
     display: flex;
     flex-wrap: wrap;

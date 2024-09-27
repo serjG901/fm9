@@ -10,8 +10,8 @@ interface ActionButtonComponent {
 
 export default function ActionButton({
   actionWithPayload = () => {},
-  payload = "payload",
-  children,
+  payload = null,
+  children = 'children',
 }: ActionButtonComponent) {
   const handleClick = () => {
     actionWithPayload(payload);

@@ -17,8 +17,13 @@
 
   --gap-page: 1rem;
   --gap-menu: 0.5rem;
+  --gap-card: 1rem;
+
+  --radius-border-card: 8px;
+  --color-bg-card: hsl(265, 100%, 40%);
 
   --padding-menu: 0.5rem;
+  --padding-card: 1rem;
 
   --color-bg-label_checked: hsl(120, 50%, 40%);
 }

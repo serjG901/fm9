@@ -1,6 +1,6 @@
 import "./style.css";
 
-import MyButton from "../../atom/action-button/ActionButton";
+import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 
 interface MenuComponent {
@@ -20,11 +20,13 @@ export default function Menu({
     <Collapse collapseLevel={collapseLevel} title={title}>
       {options.map((opt) => {
         return (
-          <MyButton
+          <ActionButton
             key={opt}
             actionWithPayload={actionWithPayload}
             payload={opt}
-          />
+          >
+            {opt}
+          </ActionButton>
         );
       })}
     </Collapse>

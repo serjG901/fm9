@@ -1,0 +1,16 @@
+.add-tags {
+  .input-add-tags {
+    width: min-content;
+    margin: auto;
+    padding-bottom: 1rem;
+    > div {
+      gap: 1rem;
+    }
+  }
+  .tags-add-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+}

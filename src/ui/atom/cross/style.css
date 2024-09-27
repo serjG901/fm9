@@ -1,0 +1,23 @@
+.cross {
+  --parent-width: 1rem;
+  --parent-higth: 1rem;
+  width: var(--parent-width);
+  height: var(--parent-higth);
+  position: relative;
+  div {
+    --children-width: calc(var(--parent-width) / 5);
+    --children-height: var(--parent-higth);
+    position: absolute;
+    top: 0;
+    left: calc(50% - var(--children-width) / 2);
+    background-color: currentColor;
+    width: var(--children-width);
+    height: var(--children-height);
+  }
+  div:nth-child(odd) {
+    rotate: 45deg;
+  }
+  div:nth-child(even) {
+    rotate: -45deg;
+  }
+}

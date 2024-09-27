@@ -1,0 +1,18 @@
+.source-card {
+  width: min-content;
+  height: min-content;
+  padding: var(--padding-card);
+  border-radius: var(--radius-border-card);
+  background-color: var(--color-bg-card);
+  > div {
+    gap: var(--gap-card);
+  }
+  .source-card-name {
+  }
+  .source-card-amount {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .source-card-currency {
+  }
+}

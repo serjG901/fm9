@@ -1,6 +1,5 @@
 .action-button {
   height: min-content;
-  align-self: flex-end;
   border-radius: var(--radius-border-button);
   border: var(--border-button);
   padding: var(--padding-button);

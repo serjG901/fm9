@@ -1,0 +1,22 @@
+.modal {
+  width: min-content;
+  height: min-content;
+  padding: 4rem;
+  border-radius: 8px;
+  border: 2px solid hsl(0 0 0);
+  .hide-modal {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    button {
+      color: red;
+    }
+  }
+  .content-modal {
+    width: 100%;
+  }
+}
+
+.modal::backdrop {
+  background-color: hsla(0 0 0 / 0.9);
+}
