@@ -42,7 +42,7 @@ export default function PaymentCard({
         </div>
         <div>
           {payment.tags.map((t) => (
-            <HighlightText color={t.color} padding>
+            <HighlightText bgColor={t.color} padding>
               {t.value}
             </HighlightText>
           ))}

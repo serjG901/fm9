@@ -43,7 +43,7 @@ export default function Statistics({
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
                 .map((tag) => (
-                  <HighlightText color={tag.color} padding>
+                  <HighlightText bgColor={tag.color} padding>
                     {tag.value}
                   </HighlightText>
                 ))}

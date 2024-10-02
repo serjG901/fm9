@@ -7,6 +7,7 @@ interface ActionButtonComponent {
   payload?: any;
   children?: ReactNode;
   alert?: boolean;
+  bgColor?: string;
 }
 
 export default function ActionButton({
@@ -14,6 +15,7 @@ export default function ActionButton({
   payload = null,
   children = "children",
   alert = false,
+  bgColor = "",
 }: ActionButtonComponent) {
   const handleClick = () => {
     actionWithPayload(payload);
@@ -25,6 +27,7 @@ export default function ActionButton({
       className='action-button'
       onClick={handleClick}
       data-alert={alert ? "alert" : ""}
+      style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
     >
       {children || payload}
     </button>

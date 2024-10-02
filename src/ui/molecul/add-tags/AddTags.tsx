@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import HighlightText from "../../atom/highlight-text/HighlightText";
 import InputWithMemory from "../../atom/input-with-memory/InputWithMemory";
 import Colorpicker from "../../atom/colorpicker/Colorpicker";
 import ActionButton from "../../atom/action-button/ActionButton";
@@ -108,10 +107,9 @@ export default function AddTags({
                       key={tag.value + tag.color}
                       actionWithPayload={handleAddTag}
                       payload={{ value: tag.value, color: tag.color }}
+                      bgColor={tag.color}
                     >
-                      <HighlightText color={tag.color} padding>
-                        {tag.value}
-                      </HighlightText>
+                      {tag.value}
                     </ActionButton>
                   ))}
               />
@@ -126,10 +124,9 @@ export default function AddTags({
                 key={tag.value + tag.color}
                 actionWithPayload={handleDeleteTag}
                 payload={{ value: tag.value, color: tag.color }}
+                bgColor={tag.color}
               >
-                <HighlightText color={tag.color} padding>
-                  {tag.value}
-                </HighlightText>
+                {tag.value}
               </ActionButton>
             ))
           : null}

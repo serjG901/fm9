@@ -6,9 +6,15 @@
   font-size: var(--size-font-button);
   font-weight: var(--weight-font-button);
   font-family: inherit;
-  background-color: var(--color-bg-button);
+  background-color: var(--self-color-bg, var(--color-bg-button));
   cursor: pointer;
   transition: border-color 0.25s;
+  --self-color: color(
+    from var(--self-color-bg) srgb calc(1 - round(calc(r + g + b) / 3, 1))
+      calc(1 - round(calc(r + g + b) / 3, 1))
+      calc(1 - round(calc(r + g + b) / 3, 1))
+  );
+  color: var(--self-color, currentColor);
 }
 
 .action-button:hover {
