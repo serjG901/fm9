@@ -54,6 +54,7 @@ export default function InputWithMemory({
           id={id}
           name={name}
           type='text'
+          maxLength={32}
           value={state}
           onChange={handleChange}
           list={memory && memory.length ? `datalist-for-${id}` : undefined}

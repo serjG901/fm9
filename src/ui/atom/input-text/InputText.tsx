@@ -34,6 +34,7 @@ export default function InputText({
           id={id}
           name={name}
           type='text'
+          maxLength={32}
           value={state}
           onChange={handleChange}
         />

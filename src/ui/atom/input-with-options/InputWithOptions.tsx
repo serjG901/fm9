@@ -36,6 +36,7 @@ export default function InputWithOptions({
           id={id}
           name={name}
           type='text'
+          maxLength={32}
           value={state}
           onChange={handleChange}
           list={options && options.length ? `datalist-for-${id}` : undefined}

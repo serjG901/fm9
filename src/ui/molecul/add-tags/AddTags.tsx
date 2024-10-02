@@ -89,7 +89,12 @@ export default function AddTags({
               </ActionButton>
             </div>
 
-            {maybeTags.length ? (
+            {maybeTags.filter(
+              (tag) =>
+                !tags.find(
+                  (t) => t.value === tag.value && t.color === tag.color
+                )
+            ).length ? (
               <FlexWrap
                 childrenArray={maybeTags
                   .filter(
