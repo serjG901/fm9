@@ -6,13 +6,15 @@ import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
-import AddTags from "../add-tags/AddTags";
+//import AddTags from "../add-tags/AddTags";
 import { Payment } from "../../../interfaces";
 
 interface FormPaymentComponent {
   actionType?: string;
   actionPayment?: (payment: Payment) => void;
   payment?: Payment;
+  fromOptions?: string[];
+  forOptions?: string[];
   deletePayment?: (payment: Payment) => void;
 }
 
@@ -29,13 +31,19 @@ export default function FormPayment({
     name: "",
     amount: "",
     currency: "BYN",
+    from: "",
+    for: "",
   },
+  fromOptions = [],
+  forOptions = [],
   deletePayment = () => {},
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
   const [paymentAmount, setPaymentAmount] = useState(payment.amount);
   const [paymentCurrency, setPaymentCurrency] = useState(payment.currency);
+  const [paymentFrom, setPaymentFrom] = useState(payment.from);
+  const [paymentFor, setPaymentFor] = useState(payment.for);
 
   const handleActionPayment = () => {
     actionPayment({
@@ -43,6 +51,8 @@ export default function FormPayment({
       name: paymentName,
       amount: paymentAmount,
       currency: paymentCurrency,
+      from: paymentFrom,
+      for: paymentFor,
       id: payment.id,
     });
   };
@@ -53,7 +63,7 @@ export default function FormPayment({
       deletePayment(payment);
     }
   };
-
+  // <AddTags />
   return (
     <FlexColumnCenter>
       <Datepicker
@@ -68,7 +78,7 @@ export default function FormPayment({
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
       />
-      <AddTags />
+
       <InputNumber
         id='payment-amount'
         name='amount'
@@ -81,6 +91,20 @@ export default function FormPayment({
         options={["BYN", "USD", "EUR", "RUB"]}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
+      />
+      <InputWithOptions
+        id='payment-from'
+        name='from'
+        options={fromOptions}
+        valueFromParent={paymentFrom}
+        hoistValue={setPaymentFrom}
+      />
+      <InputWithOptions
+        id='payment-for'
+        name='for'
+        options={forOptions}
+        valueFromParent={paymentFor}
+        hoistValue={setPaymentFor}
       />
       <ActionButton actionWithPayload={handleActionPayment}>
         {actionType}

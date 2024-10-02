@@ -14,6 +14,8 @@ export interface SourcesStore {
   addSource: (newSource: NewSource) => void;
   updateSource: (source: Source) => void;
   deleteSource: (source: Source) => void;
+  getSourcesName: () => string[];
+  getSources: () => Source[];
 }
 
 interface NewPayment {
@@ -21,6 +23,8 @@ interface NewPayment {
   name: string;
   amount: string;
   currency: string;
+  from: string;
+  for: string;
 }
 
 export interface Payment extends NewPayment {
@@ -33,4 +37,14 @@ export interface PaymentsStore {
   addPayment: (newPayment: NewPayment) => void;
   updatePayment: (payment: Payment) => void;
   deletePayment: (payment: Payment) => void;
+  fromOptions: Set<string>;
+  getFromOptions: () => string[];
+  forOptions: Set<string>;
+  getForOptions: () => string[];
+}
+
+export interface PeriodStore {
+  start: string;
+  end: string;
+  setPeriod: (start: string, end: string) => void;
 }

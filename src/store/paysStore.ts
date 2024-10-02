@@ -4,35 +4,54 @@ import { PaymentsStore } from "../interfaces";
 
 export const usePaysStore = create<PaymentsStore>()(
   persist(
-    (set) => ({
-      id: 1,
-      payments: [],
-      addPayment: (newPayment) => {
-        set((state) => {
-          const payment = { ...newPayment, id: state.id };
-          return { payments: [...state.payments, payment], id: state.id + 1 };
-        });
-      },
+    (set, get) => {
+      return {
+        id: 1,
+        payments: [],
+        addPayment: (newPayment) => {
+          set((state) => {
+            const payment = { ...newPayment, id: state.id };
+            return {
+              payments: [...state.payments, payment],
+              id: state.id + 1,
+              fromOptions: new Set(Array.from(state.fromOptions)).add(payment.from),
+              forOptions: new Set(Array.from(state.forOptions)).add(payment.for),
+            };
+          });
+        },
+        updatePayment: (payment) => {
+          set((state) => {
+            const filtredPayments = state.payments.filter(
+              (p) => p.id !== payment.id
+            );
+            return {
+              payments: [...filtredPayments, payment],
+              fromOptions: new Set(Array.from(state.fromOptions)).add(payment.from),
+              forOptions: new Set(Array.from(state.forOptions)).add(payment.for),
+            };
+          });
+        },
+        deletePayment: (payment) => {
+          set((state) => {
+            const filtredPayments = state.payments.filter(
+              (p) => p.id !== payment.id
+            );
+            return { payments: filtredPayments };
+          });
+        },
+        fromOptions: new Set(),
+        getFromOptions: () => {
+          return Array.from(get().fromOptions);
+        },
+        forOptions: new Set(),
+        getForOptions: () => {
+          return Array.from(get().fromOptions);
+        },
+      };
+    },
 
-      updatePayment: (payment) => {
-        set((state) => {
-          const filtredPayments = state.payments.filter(
-            (p) => p.id !== payment.id
-          );
-          return { payments: [...filtredPayments, payment] };
-        });
-      },
-      deletePayment: (payment) => {
-        set((state) => {
-          const filtredPayments = state.payments.filter(
-            (p) => p.id !== payment.id
-          );
-          return { payments: filtredPayments };
-        });
-      },
-    }),
     {
-      name: "fm901-pays",
+      name: "fm9-pays",
     }
   )
 );

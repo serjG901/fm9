@@ -10,8 +10,8 @@ export default function FlexWrap({
 }: FlexWrapComponent) {
   return (
     <div className='flex-wrap'>
-      {childrenArray.map((children, index) => (
-        <div key={index}>{children}</div>
+      {childrenArray.map((children) => (
+        children
       ))}
     </div>
   );

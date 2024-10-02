@@ -4,7 +4,4 @@
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  > div {
-    width: min-content;
-  }
 }

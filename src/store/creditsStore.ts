@@ -4,7 +4,7 @@ import { SourcesStore } from "../interfaces";
 
 export const useCreditsStore = create<SourcesStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       id: 1,
       sources: [],
       addSource: (newSource) => {
@@ -30,9 +30,11 @@ export const useCreditsStore = create<SourcesStore>()(
           return { sources: filtredSources };
         });
       },
+      getSourcesName: () => get().sources.map((s) => s.name),
+      getSources: () => get().sources,
     }),
     {
-      name: "fm901-credits",
+      name: "fm9-credits",
     }
   )
 );

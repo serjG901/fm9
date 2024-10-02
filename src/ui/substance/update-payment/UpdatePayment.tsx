@@ -6,6 +6,8 @@ import { Payment } from "../../../interfaces";
 interface UpdatePaymentComponent {
   updatePayment?: (payment: Payment) => void;
   payment?: Payment;
+  fromOptions?: string[];
+  forOptions?: string[];
   deletePayment?: (payment: Payment) => void;
 }
 
@@ -17,7 +19,11 @@ export default function UpdatePayment({
     name: "",
     amount: "",
     currency: "BYN",
+    from: "",
+    for: "",
   },
+  fromOptions = [],
+  forOptions = [],
   deletePayment = () => {},
 }: UpdatePaymentComponent) {
   return (
@@ -27,6 +33,8 @@ export default function UpdatePayment({
         actionPayment={updatePayment}
         payment={payment}
         deletePayment={deletePayment}
+        fromOptions={fromOptions}
+        forOptions={forOptions}
       />
     </Modal>
   );

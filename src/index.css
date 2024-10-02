@@ -1,36 +1,41 @@
 :root {
-  --color-bg-main: hsl(0, 0%, 14%);
+  --color-bg-main: hsl(0, 0%, 20%);
   --color-text-main: hsla(0, 0%, 100%, 0.87);
 
   --color-bg-button: hsl(0, 0%, 10%);
-  --color-border-button: hsl(237, 100%, 70%);
+  --color-border-button: hsl(240, 100%, 70%);
   --radius-border-button: 8px;
   --weight-font-button: 500;
   --size-font-button: 1rem;
   --padding-button: 0.6rem 1.2rem;
   --border-button: 1px solid transparent;
 
-  /*--color-bg-menu: hsl(237, 34%, 27%);*/
-  --color-bg-menu: hsl(248, 39%, 39%);
   --color-bg-summary: hsla(0, 0%, 100%, 0);
 
   --color-text-label: hsl(0, 0%, 50%);
 
   --gap-page: 1rem;
-  --gap-menu: 0.5rem;
-  --gap-card: 1rem;
-
-  --radius-border-card: 8px;
-  --color-bg-card: hsl(248, 39%, 39%);
-
-  --padding-menu: 0.5rem;
-  --padding-card: 1rem;
 
   --color-bg-label_checked: hsl(120, 50%, 40%);
 
-  --color-amount: hsl(60, 100%, 50%);
-  --color-currency: hsl(0, 0%, 50%);
-  --color-datetime: hsl(0, 0%, 50%);
+  --padding-menu: 0.5rem;
+  --gap-menu: 0.5rem;
+  --color-bg-menu: hsl(250, 40%, 40%);
+
+  --gap-card: 1rem;
+  --padding-card: 1rem;
+  --radius-border-card: 8px;
+  --color-border-card: black;
+  --color-bg-card: var(--color-bg-menu);
+  --color-datetime-card: hsl(0, 0%, 50%);
+  --color-name-card: hsl(0, 100%, 100%);
+  --color-amount-card: hsl(60, 100%, 50%);
+  --color-currency-card: hsl(0, 0%, 50%);
+  --color-from-card: hsl(0, 0%, 50%);
+  --color-for-card: hsl(0, 0%, 50%);
+  --color-arrow-from-for-card: hsl(0, 0%, 50%);
+
+  --color-bg-break-line: hsl(0, 0%, 15%);
 }
 
 :root {

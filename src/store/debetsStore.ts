@@ -2,9 +2,9 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { SourcesStore } from "../interfaces";
 
-export const useSourcesStore = create<SourcesStore>()(
+export const useDebetsStore = create<SourcesStore>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       id: 1,
       sources: [],
       addSource: (newSource) => {
@@ -30,9 +30,11 @@ export const useSourcesStore = create<SourcesStore>()(
           return { sources: filtredSources };
         });
       },
+      getSourcesName: () => get().sources.map((s) => s.name),
+      getSources: () => get().sources,
     }),
     {
-      name: "fm901-sources",
+      name: "fm9-debets",
     }
   )
 );

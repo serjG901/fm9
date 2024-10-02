@@ -11,13 +11,14 @@
     gap: var(--gap-card);
   }
   .source-card-name {
+    color: var(--color-name-card);
   }
   .source-card-amount {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--color-amount);
+    color: var(--color-amount-card);
   }
   .source-card-currency {
-    color: var(--color-currency);
+    color: var(--color-currency-card);
   }
 }

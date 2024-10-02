@@ -14,13 +14,20 @@
     color: var(--color-datetime);
   }
   .payment-card-name {
+    color: var(--color-name-card);
   }
   .payment-card-amount {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--color-amount);
+    color: var(--color-amount-card);
   }
   .payment-card-currency {
-    color: var(--color-currency);
+    color: var(--color-currency-card);
+  }
+  .payment-card-from {
+    color: var(--color-from-card);
+  }
+  .payment-card-for {
+    color: var(--color-for-card);
   }
 }
