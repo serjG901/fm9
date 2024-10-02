@@ -1,0 +1,10 @@
+.search {
+  display: flex;
+  position: relative;
+  align-items: end;
+  .clear-search {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0.2rem;
+  }
+}

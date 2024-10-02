@@ -19,8 +19,9 @@ import {
 } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 import Statistics from "../../ui/molecul/statistics/Statistics";
-import InputText from "../../ui/atom/input-text/InputText";
-import { useState } from "react";
+import plus from "../../helpers/plus";
+import { useFiltersStore } from "../../store/filtersStore";
+import Filter from "../../ui/substance/filter/Filter";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -71,7 +72,14 @@ export default function Payments({
     state.setPeriod,
   ]);
 
-  const [search, setSearch] = useState("");
+  const [search, setSearch, filterTags, setFilterTags] = useFiltersStore(
+    (state) => [
+      state.search,
+      state.setSearch,
+      state.filterTags,
+      state.setFilterTags,
+    ]
+  );
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -89,9 +97,21 @@ export default function Payments({
         )
       : payments;
 
-  const filtredPayments = !search
+  const filtredPaymentsBySearch = !search
     ? filtredPaymentsByPeriod
     : filtredPaymentsByPeriod.filter((p: Payment) => p.name.includes(search));
+
+  const filtredPayments = !filterTags.length
+    ? filtredPaymentsBySearch
+    : filtredPaymentsBySearch.filter((p) =>
+        p.tags
+          .map((tag) =>
+            filterTags.find(
+              (ft) => ft.value + ft.color === tag.value + tag.color
+            )
+          )
+          .find((b) => b)
+      );
 
   const sortedPayments = filtredPayments.sort((p1: Payment, p2: Payment) =>
     p1.datetime > p2.datetime ? -1 : 1
@@ -136,7 +156,7 @@ export default function Payments({
               period={{ start: startPeriod, end: endPeriod }}
               setPeriod={setPeriod}
             />,
-            <Statistics payments={sortedPayments} />,
+            <Statistics payments={sortedPayments} search={search} />,
             <AddPayment
               addPayment={addPaymentWithS}
               fromOptions={fromOptions}
@@ -145,13 +165,22 @@ export default function Payments({
             />,
           ]}
         />
+
         <div>
-          <InputText
-            name='search'
-            valueFromParent={search}
-            hoistValue={setSearch}
+          <Filter
+            search={search}
+            setSearch={setSearch}
+            filterTags={filterTags}
+            setFilterTags={setFilterTags}
+            maybeTags={maybeTags}
           />
         </div>
+        <h2>
+          sum:{" "}
+          <span className='sum'>
+            {plus(...sortedPayments.map((s: Payment) => s.amount))}
+          </span>
+        </h2>
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (
@@ -162,6 +191,7 @@ export default function Payments({
                 fromOptions={fromOptions}
                 forOptions={forOptions}
                 maybeTags={maybeTags}
+                search={search}
               />
             );
             let breakLine = <BreakLine>{payment.datetime}</BreakLine>;

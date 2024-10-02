@@ -2,6 +2,7 @@ import plus from "../../../helpers/plus";
 import { Payment, Tag } from "../../../interfaces";
 import Collapse from "../../atom/collapse/Collapse";
 import HighlightText from "../../atom/highlight-text/HighlightText";
+import SearchedName from "../searched-name/SearchedName";
 import "./style.css";
 
 interface StatisticsComponent {
@@ -29,16 +30,7 @@ export default function Statistics({
       return (
         <div key={name}>
           <div>
-            {...name.split(search).map((part, i) =>
-              i === 0 ? (
-                <span key={part + search + Math.random()}>{part}</span>
-              ) : (
-                <span key={part + search + Math.random()}>
-                  <HighlightText>{search}</HighlightText>
-                  {part}
-                </span>
-              )
-            )}
+            <SearchedName name={name} search={search} />
             <div>
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])

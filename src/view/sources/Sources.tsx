@@ -42,7 +42,12 @@ export default function Sources({
             );
           })}
         ></FlexWrap>
-        <h2>{plus(...sources.map((s: Source) => s.amount))}</h2>
+        <h2>
+          balance:{" "}
+          <span className='sum'>
+            {plus(...sources.map((s: Source) => s.amount))}
+          </span>
+        </h2>
       </div>
     </Page>
   );

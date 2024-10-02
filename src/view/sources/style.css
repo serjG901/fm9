@@ -3,4 +3,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--gap-page);
+  .sum {
+    color: var(--color-amount-card);
+  }
 }

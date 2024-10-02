@@ -23,9 +23,13 @@ import FormPayment from "./molecul/form-payment/FormPayment";
 import FormSource from "./molecul/form-source/FormSource";
 import Menu from "./molecul/menu/Menu";
 import Modal from "./molecul/modal/Modal";
+import Search from "./molecul/search/Search";
+import SearchedName from "./molecul/searched-name/SearchedName";
+import Statistics from "./molecul/statistics/Statistics";
 //substances
 import AddPayment from "./substance/add-payment/AddPayment";
 import AddSource from "./substance/add-source/AddSource";
+import Filter from "./substance/filter/Filter";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 //things
@@ -56,8 +60,12 @@ const componentsArr = [
   <FormSource />,
   <Menu />,
   <Modal />,
+  <Search />,
+  <SearchedName />,
+  <Statistics />,
   <AddPayment />,
   <AddSource />,
+  <Filter />,
   <UpdatePayment />,
   <UpdateSource />,
   <PaymentCard />,
@@ -71,7 +79,7 @@ const components: { [key: string]: JSX.Element | JSX.Element[] } =
       a: JSX.Element | JSX.Element[]
     ) => {
       acc[Array.isArray(a) ? a[0].type.name + "Array" : a.type.name] = (
-        <ViewAndPath key={a.toString()+Math.random()}>{a}</ViewAndPath>
+        <ViewAndPath key={a.toString() + Math.random()}>{a}</ViewAndPath>
       );
       return acc;
     },

@@ -1,6 +1,5 @@
 .add-tags {
   .input-add-tags {
-    width: min-content;
     margin: auto;
     padding-bottom: 1rem;
     > div {

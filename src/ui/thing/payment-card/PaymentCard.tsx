@@ -2,6 +2,7 @@ import { Payment, Tag } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import HighlightText from "../../atom/highlight-text/HighlightText";
+import SearchedName from "../../molecul/searched-name/SearchedName";
 import UpdatePayment from "../../substance/update-payment/UpdatePayment";
 import "./style.css";
 
@@ -39,20 +40,7 @@ export default function PaymentCard({
         <div className='payment-card-datetime'>{payment.datetime}</div>
         <div>
           <div className='payment-card-name'>
-            {...payment.name.split(search).map((part, i) =>
-              i === 0 && part === "" ? (
-                <span key={part + search + Math.random()}>
-                  <HighlightText>{search}</HighlightText>
-                </span>
-              ) : i === 0 && part !== "" ? (
-                <span key={part + search + Math.random()}>{part}</span>
-              ) : (
-                <span key={part + search + Math.random()}>
-                  <HighlightText>{search}</HighlightText>
-                  {part}
-                </span>
-              )
-            )}
+            <SearchedName name={payment.name} search={search} />
           </div>
           <div className='payment-card-amount'>{payment.amount}</div>
           <div className='payment-card-currency'>{payment.currency}</div>

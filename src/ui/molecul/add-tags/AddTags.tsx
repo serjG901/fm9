@@ -12,12 +12,14 @@ interface AddTagsComponent {
   tagsFromParrent?: Tag[];
   maybeTags?: Tag[];
   hoistTags?: (tags: Tag[]) => void;
+  onlyMaybeTags?: boolean;
 }
 
 export default function AddTags({
   tagsFromParrent = [],
   maybeTags = [],
   hoistTags = () => {},
+  onlyMaybeTags = false,
 }: AddTagsComponent) {
   const [tags, setTags] = useState<Tag[]>(tagsFromParrent);
   const [value, setValue] = useState<string>("");
@@ -52,35 +54,45 @@ export default function AddTags({
   };
 
   useEffect(() => {
-    hoistTags(tags);
+    if (JSON.stringify(tags) !== JSON.stringify(tagsFromParrent))
+      hoistTags(tags);
   }, [tags]);
+
+  useEffect(() => {
+    if (JSON.stringify(tags) !== JSON.stringify(tagsFromParrent))
+      setTags(tagsFromParrent);
+  }, [tagsFromParrent]);
 
   return (
     <div className='add-tags'>
       <Collapse collapseLevel='tags' title='add tags'>
         <div className='input-add-tags'>
           <FlexColumnCenter>
-            <div>
-              <InputWithMemory
-                id='add-tag-value'
-                name='tag'
-                valueFromParent={value}
-                hoistValue={handleSetValue}
-              />
-            </div>
-            <div>
-              <Colorpicker
-                id='add-tag-color'
-                name='color'
-                valueFromParent={color}
-                hoistValue={handleSetColor}
-              />
-            </div>
-            <div>
-              <ActionButton actionWithPayload={handleSetTag}>
-                Add tag
-              </ActionButton>
-            </div>
+            {!onlyMaybeTags && (
+              <>
+                <div>
+                  <InputWithMemory
+                    id='add-tag-value'
+                    name='tag'
+                    valueFromParent={value}
+                    hoistValue={handleSetValue}
+                  />
+                </div>
+                <div>
+                  <Colorpicker
+                    id='add-tag-color'
+                    name='color'
+                    valueFromParent={color}
+                    hoistValue={handleSetColor}
+                  />
+                </div>
+                <div>
+                  <ActionButton actionWithPayload={handleSetTag}>
+                    Add tag
+                  </ActionButton>
+                </div>
+              </>
+            )}
 
             {maybeTags.filter(
               (tag) =>
