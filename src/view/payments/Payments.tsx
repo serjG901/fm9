@@ -108,16 +108,16 @@ export default function Payments({
         <h1>{paymentsType}</h1>
         <FlexWrap
           childrenArray={[
-            <AddPayment
-              addPayment={addPaymentWithS}
-              fromOptions={fromOptions}
-              forOptions={forOptions}
-            />,
             <FormDataRange
               period={{ start: startPeriod, end: endPeriod }}
               setPeriod={setPeriod}
             />,
             <Statistics payments={sortedPayments} />,
+            <AddPayment
+              addPayment={addPaymentWithS}
+              fromOptions={fromOptions}
+              forOptions={forOptions}
+            />,
           ]}
         />
         <FlexWrap

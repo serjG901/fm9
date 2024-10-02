@@ -17,10 +17,10 @@ export default function InputNumber({
   const [state, setState] = useState(valueFromParent);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
     const arr = e.target.value.split(".");
     const value =
-      parseInt(arr[0]).toString() +
-      (arr[1] !== undefined ? "." + arr[1].slice(0, 2) : "");
+      arr[0] + (arr[1] !== undefined ? "." + arr[1].slice(0, 2) : "");
     setState(value);
     hoistValue(value);
   };
@@ -38,6 +38,7 @@ export default function InputNumber({
           name={name}
           type='number'
           step={0.01}
+          min={0.01}
           value={state}
           onChange={handleChange}
         />
