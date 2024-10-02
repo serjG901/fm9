@@ -157,30 +157,28 @@ export default function Payments({
               setPeriod={setPeriod}
             />,
             <Statistics payments={sortedPayments} search={search} />,
-            <AddPayment
-              addPayment={addPaymentWithS}
-              fromOptions={fromOptions}
-              forOptions={forOptions}
+            <Filter
+              search={search}
+              setSearch={setSearch}
+              filterTags={filterTags}
+              setFilterTags={setFilterTags}
               maybeTags={maybeTags}
             />,
           ]}
         />
-
-        <div>
-          <Filter
-            search={search}
-            setSearch={setSearch}
-            filterTags={filterTags}
-            setFilterTags={setFilterTags}
-            maybeTags={maybeTags}
-          />
-        </div>
         <h2>
           sum:{" "}
           <span className='sum'>
             {plus(...sortedPayments.map((s: Payment) => s.amount))}
           </span>
         </h2>
+        <AddPayment
+          addPayment={addPaymentWithS}
+          fromOptions={fromOptions}
+          forOptions={forOptions}
+          maybeTags={maybeTags}
+        />
+
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (
