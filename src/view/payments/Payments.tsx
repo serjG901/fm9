@@ -12,6 +12,7 @@ import { usePeriodStore } from "../../store/periodStore";
 import BreakLine from "../../ui/atom/break-line/BreakLine";
 import { Payment, PaymentsStore, StorePersist, Write } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
+import Statistics from "../../ui/molecul/statistics/Statistics";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -114,6 +115,7 @@ export default function Payments({
           period={{ start: startPeriod, end: endPeriod }}
           setPeriod={setPeriod}
         />
+        <Statistics payments={payments} />
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (

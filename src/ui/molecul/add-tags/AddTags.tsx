@@ -85,7 +85,9 @@ export default function AddTags({
                 actionWithPayload={handleDeleteTag}
                 payload={{ value: tag.value, color: tag.color }}
               >
-                <HighlightText color={tag.color}>{tag.value}</HighlightText>
+                <HighlightText color={tag.color} padding>
+                  {tag.value}
+                </HighlightText>
               </ActionButton>
             ))
           : null}

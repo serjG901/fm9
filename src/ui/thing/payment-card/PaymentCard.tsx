@@ -40,7 +40,9 @@ export default function PaymentCard({
         </div>
         <div>
           {payment.tags.map((t) => (
-            <HighlightText color={t.color}>{t.value}</HighlightText>
+            <HighlightText color={t.color} padding>
+              {t.value}
+            </HighlightText>
           ))}
         </div>
         {payment.from && payment.for && (

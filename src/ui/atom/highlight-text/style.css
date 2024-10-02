@@ -9,12 +9,12 @@
   );
 }
 
-.highlight-text::after {
+.highlight-text[data-padding="padding"]::after {
   content: " ";
   display: inline-block;
   width: 1ch;
 }
-.highlight-text::before {
+.highlight-text[data-padding="padding"]::before {
   content: " ";
   display: inline-block;
   width: 1ch;

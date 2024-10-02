@@ -1,0 +1,36 @@
+.statistics {
+  margin: auto;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 0.5rem;
+}
+
+.statistics > div {
+  display: contents;
+}
+
+.statistics > div:first-child {
+  color: var(--color-balance-description);
+  div:nth-child(2) {
+    text-align: center;
+  }
+}
+
+.statistics > div:last-child {
+  color: var(--color-balance-description);
+  div:nth-child(2) {
+    color: var(--color-text);
+  }
+  div:nth-child(3) {
+    color: var(--color-text);
+  }
+}
+
+.statistics > div > div {
+  padding: 0.5rem;
+}
+
+.statistics > div > div {
+  background-color: hsla(0, 0%, 100%, 0.1);
+}
