@@ -10,9 +10,17 @@ import { addPaymentWithSource } from "../../helpers/addPaymentWithSource";
 import FormDataRange from "../../ui/molecul/form-data-range/FormDataRange";
 import { usePeriodStore } from "../../store/periodStore";
 import BreakLine from "../../ui/atom/break-line/BreakLine";
-import { Payment, PaymentsStore, StorePersist, Write } from "../../interfaces";
+import {
+  Payment,
+  PaymentsStore,
+  StorePersist,
+  Tag,
+  Write,
+} from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 import Statistics from "../../ui/molecul/statistics/Statistics";
+import InputText from "../../ui/atom/input-text/InputText";
+import { useState } from "react";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -63,6 +71,8 @@ export default function Payments({
     state.setPeriod,
   ]);
 
+  const [search, setSearch] = useState("");
+
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
   );
@@ -72,12 +82,16 @@ export default function Payments({
 
   let date = "";
 
-  const filtredPayments =
+  const filtredPaymentsByPeriod =
     startPeriod && endPeriod
       ? payments.filter(
           (p: Payment) => p.datetime >= startPeriod && p.datetime <= endPeriod
         )
       : payments;
+
+  const filtredPayments = !search
+    ? filtredPaymentsByPeriod
+    : filtredPaymentsByPeriod.filter((p: Payment) => p.name.includes(search));
 
   const sortedPayments = filtredPayments.sort((p1: Payment, p2: Payment) =>
     p1.datetime > p2.datetime ? -1 : 1
@@ -102,7 +116,15 @@ export default function Payments({
     getCredits
   );
 
-  const maybeTags = payments.map((p) => p.tags).flat();
+  const maybeTags = payments
+    .flatMap((p) => p.tags)
+    .reduce(
+      (acc: Tag[], tag) =>
+        acc.find((t) => t.value + t.color === tag.value + tag.color)
+          ? acc
+          : [...acc, tag],
+      []
+    );
 
   return (
     <Page>
@@ -123,6 +145,13 @@ export default function Payments({
             />,
           ]}
         />
+        <div>
+          <InputText
+            name='search'
+            valueFromParent={search}
+            hoistValue={setSearch}
+          />
+        </div>
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (

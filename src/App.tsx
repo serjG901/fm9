@@ -8,14 +8,14 @@ import Buys from "./pages/buys/Buys";
 import Pays from "./pages/pays/Pays";
 
 function App() {
-  const [page, setPage] = useState<string>("ui");
+  const [page, setPage] = useState<string>("buys");
 
   const pages: { [key: string]: ReactNode } = {
-    ui: <Ui />,
     buys: <Buys />,
     pays: <Pays />,
     debets: <Debets />,
     credits: <Credits />,
+    ui: <Ui />,
   };
 
   const handleActionMenu = (payload: string) => {

@@ -45,7 +45,7 @@ export default function minus(...args: string[]) {
     : integer + "." + fractionalString;
   return result;
 }
-
+/*
 function minus2(...args: string[]) {
   return args.reduce((acc, a) => acc - +a, 0) + 2 * +args[0];
 }
@@ -73,3 +73,4 @@ console.log(minus2("0.05", "0.03", "0.09", "0.04"));
 
 console.log(minus("0.05", "0.03", "0.99", "0.99"));
 console.log(minus2("0.05", "0.03", "0.99", "0.99"));
+*/

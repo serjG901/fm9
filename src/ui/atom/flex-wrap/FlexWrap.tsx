@@ -8,11 +8,5 @@ interface FlexWrapComponent {
 export default function FlexWrap({
   childrenArray = ["children1", "children2"],
 }: FlexWrapComponent) {
-  return (
-    <div className='flex-wrap'>
-      {childrenArray.map((children) => (
-        children
-      ))}
-    </div>
-  );
+  return <div className='flex-wrap'>{...childrenArray}</div>;
 }

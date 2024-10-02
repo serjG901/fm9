@@ -8,6 +8,7 @@ import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import AddTags from "../add-tags/AddTags";
 import { Payment, Tag } from "../../../interfaces";
+import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
 interface FormPaymentComponent {
   actionType?: string;
@@ -24,11 +25,7 @@ export default function FormPayment({
   actionPayment = () => {},
   payment = {
     id: 0,
-    datetime: new Date(Date.now()).toLocaleDateString("ru-RU", {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-    }),
+    datetime: getDefaultDatetime(),
     name: "",
     amount: "",
     currency: "BYN",
@@ -68,7 +65,7 @@ export default function FormPayment({
       deletePayment(payment);
     }
   };
-  // <AddTags />
+
   return (
     <FlexColumnCenter>
       <Datepicker

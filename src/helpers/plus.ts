@@ -26,7 +26,7 @@ export default function plus(...args: string[]) {
 
   return result;
 }
-
+/*
 function plus2(...args: string[]) {
   return args.reduce((acc, a) => acc + +a, 0);
 }
@@ -51,3 +51,7 @@ console.log(plus2("0.05", "0.03", "0.99", "0.99"));
 
 console.log(plus("0.99", "0.03", "0.99", "0.99"));
 console.log(plus2("0.99", "0.03", "0.99", "0.99"));
+
+console.log(plus("0.99", "-0.03", "-0.99", "-0.99"));
+console.log(plus2("0.99", "-0.03", "-0.99", "-0.99"));
+*/

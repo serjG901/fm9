@@ -62,8 +62,8 @@ export default function Search({
   );
 
   return (
-    <div className='add-tags'>
-      <Collapse collapseLevel='tags' title='add tags'>
+    <div>
+      <Collapse collapseLevel='menu' title='search'>
         <div className='input-add-tags'>
           <FlexColumnCenter>
             <div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style.css";
+import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
 interface DatepickerComponent {
   id?: string;
@@ -11,7 +12,7 @@ interface DatepickerComponent {
 export default function Datepicker({
   id = "daterpicker",
   name = "daterpicker",
-  valueFromParent = "",
+  valueFromParent = getDefaultDatetime(),
   hoistValue = () => {},
 }: DatepickerComponent) {
   const [state, setState] = useState(valueFromParent);

@@ -56,7 +56,6 @@ const componentsArr = [
   <FormSource />,
   <Menu />,
   <Modal />,
-  [<Menu />, <Menu />],
   <AddPayment />,
   <AddSource />,
   <UpdatePayment />,
@@ -72,12 +71,12 @@ const components: { [key: string]: JSX.Element | JSX.Element[] } =
       a: JSX.Element | JSX.Element[]
     ) => {
       acc[Array.isArray(a) ? a[0].type.name + "Array" : a.type.name] = (
-        <ViewAndPath>{a}</ViewAndPath>
+        <ViewAndPath key={a.toString()+Math.random()}>{a}</ViewAndPath>
       );
       return acc;
     },
     {}
   );
-console.dir(components);
+//console.dir(components);
 
 export default components;

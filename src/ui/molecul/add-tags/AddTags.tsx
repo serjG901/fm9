@@ -55,12 +55,6 @@ export default function AddTags({
     hoistTags(tags);
   }, [tags]);
 
-  console.log(
-    maybeTags.filter(
-      (tag) => !tags.find((t) => t.value === tag.value && t.color === tag.color)
-    )
-  );
-
   return (
     <div className='add-tags'>
       <Collapse collapseLevel='tags' title='add tags'>

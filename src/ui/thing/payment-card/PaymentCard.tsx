@@ -11,7 +11,8 @@ interface PaymentCardComponent {
   forOptions?: string[];
   updatePayment?: (payment: Payment) => void;
   deletePayment?: (payment: Payment) => void;
-  maybeTags: Tag[];
+  maybeTags?: Tag[];
+  search?: string;
 }
 
 export default function PaymentCard({
@@ -30,19 +31,35 @@ export default function PaymentCard({
   updatePayment = () => {},
   deletePayment = () => {},
   maybeTags = [],
+  search = "",
 }: PaymentCardComponent) {
   return (
     <div className='payment-card' key={payment.id}>
       <FlexColumnCenter>
         <div className='payment-card-datetime'>{payment.datetime}</div>
         <div>
-          <div className='payment-card-name'>{payment.name}</div>
+          <div className='payment-card-name'>
+            {...payment.name.split(search).map((part, i) =>
+              i === 0 && part === "" ? (
+                <span key={part + search + Math.random()}>
+                  <HighlightText>{search}</HighlightText>
+                </span>
+              ) : i === 0 && part !== "" ? (
+                <span key={part + search + Math.random()}>{part}</span>
+              ) : (
+                <span key={part + search + Math.random()}>
+                  <HighlightText>{search}</HighlightText>
+                  {part}
+                </span>
+              )
+            )}
+          </div>
           <div className='payment-card-amount'>{payment.amount}</div>
           <div className='payment-card-currency'>{payment.currency}</div>
         </div>
         <div>
           {payment.tags.map((t) => (
-            <HighlightText bgColor={t.color} padding>
+            <HighlightText key={t.value + t.color} bgColor={t.color} padding>
               {t.value}
             </HighlightText>
           ))}

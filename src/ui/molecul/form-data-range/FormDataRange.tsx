@@ -40,11 +40,17 @@ export default function FormDataRange({
       <Collapse collapseLevel='menu' title='period'>
         <FlexColumnCenter>
           <Datepicker
+            key='start'
             name='start'
             valueFromParent={start}
             hoistValue={setStart}
           />
-          <Datepicker name='end' valueFromParent={end} hoistValue={setEnd} />
+          <Datepicker
+            key='end'
+            name='end'
+            valueFromParent={end}
+            hoistValue={setEnd}
+          />
         </FlexColumnCenter>
       </Collapse>
       {start && end && (

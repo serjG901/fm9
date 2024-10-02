@@ -15,7 +15,7 @@ export default function HighlightText({
   return (
     <span
       className='highlight-text'
-      style={{ ["--color-bg-self"]: bgColor } as React.CSSProperties}
+      style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
       data-padding={padding ? "padding" : ""}
     >
       {children}

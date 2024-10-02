@@ -29,21 +29,25 @@ export default function Statistics({
       return (
         <div key={name}>
           <div>
-            {name.split(search).map((part, i) =>
+            {...name.split(search).map((part, i) =>
               i === 0 ? (
-                part
+                <span key={part + search + Math.random()}>{part}</span>
               ) : (
-                <>
+                <span key={part + search + Math.random()}>
                   <HighlightText>{search}</HighlightText>
                   {part}
-                </>
+                </span>
               )
             )}
             <div>
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
                 .map((tag) => (
-                  <HighlightText bgColor={tag.color} padding>
+                  <HighlightText
+                    key={tag.value + tag.color}
+                    bgColor={tag.color}
+                    padding
+                  >
                     {tag.value}
                   </HighlightText>
                 ))}

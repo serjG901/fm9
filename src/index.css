@@ -2,6 +2,8 @@
   --color-bg-main: hsl(0, 0%, 20%);
   --color-text-main: hsla(0, 0%, 100%, 0.87);
 
+  --color-description: hsl(0, 0%, 60%);
+
   --color-bg-button: hsl(0, 0%, 10%);
   --color-border-button: hsl(240, 100%, 70%);
   --radius-border-button: 8px;
