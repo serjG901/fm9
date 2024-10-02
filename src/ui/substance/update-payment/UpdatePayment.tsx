@@ -21,6 +21,7 @@ export default function UpdatePayment({
     currency: "BYN",
     from: "",
     for: "",
+    tags: [],
   },
   fromOptions = [],
   forOptions = [],
