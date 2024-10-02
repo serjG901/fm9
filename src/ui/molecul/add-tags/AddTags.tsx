@@ -8,7 +8,7 @@ import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Tag } from "../../../interfaces";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
 
-interface AddTags {
+interface AddTagsComponent {
   tagsFromParrent?: Tag[];
   maybeTags?: Tag[];
   hoistTags?: (tags: Tag[]) => void;
@@ -18,7 +18,7 @@ export default function AddTags({
   tagsFromParrent = [],
   maybeTags = [],
   hoistTags = () => {},
-}: AddTags) {
+}: AddTagsComponent) {
   const [tags, setTags] = useState<Tag[]>(tagsFromParrent);
   const [value, setValue] = useState<string>("");
   const [color, setColor] = useState<string>("#000000");
