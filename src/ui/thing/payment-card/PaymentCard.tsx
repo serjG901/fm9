@@ -1,4 +1,4 @@
-import { Payment } from "../../../interfaces";
+import { Payment, Tag } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import HighlightText from "../../atom/highlight-text/HighlightText";
@@ -11,6 +11,7 @@ interface PaymentCardComponent {
   forOptions?: string[];
   updatePayment?: (payment: Payment) => void;
   deletePayment?: (payment: Payment) => void;
+  maybeTags: Tag[];
 }
 
 export default function PaymentCard({
@@ -28,6 +29,7 @@ export default function PaymentCard({
   forOptions = [],
   updatePayment = () => {},
   deletePayment = () => {},
+  maybeTags = [],
 }: PaymentCardComponent) {
   return (
     <div className='payment-card' key={payment.id}>
@@ -58,6 +60,7 @@ export default function PaymentCard({
           forOptions={forOptions}
           updatePayment={updatePayment}
           deletePayment={deletePayment}
+          maybeTags={maybeTags}
         />
       </FlexColumnCenter>
     </div>

@@ -16,6 +16,7 @@ interface FormPaymentComponent {
   fromOptions?: string[];
   forOptions?: string[];
   deletePayment?: (payment: Payment) => void;
+  maybeTags?: Tag[];
 }
 
 export default function FormPayment({
@@ -38,6 +39,7 @@ export default function FormPayment({
   fromOptions = [],
   forOptions = [],
   deletePayment = () => {},
+  maybeTags = [],
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
@@ -81,7 +83,11 @@ export default function FormPayment({
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
       />
-      <AddTags tagsFromParrent={paymentTags} hoistTags={setPaymentTags} />
+      <AddTags
+        tagsFromParrent={paymentTags}
+        hoistTags={setPaymentTags}
+        maybeTags={maybeTags}
+      />
       <InputNumber
         id='payment-amount'
         name='amount'

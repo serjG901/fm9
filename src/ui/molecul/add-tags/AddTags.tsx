@@ -7,14 +7,17 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Tag } from "../../../interfaces";
+import FlexWrap from "../../atom/flex-wrap/FlexWrap";
 
 interface AddTags {
   tagsFromParrent?: Tag[];
+  maybeTags?: Tag[];
   hoistTags?: (tags: Tag[]) => void;
 }
 
 export default function AddTags({
   tagsFromParrent = [],
+  maybeTags = [],
   hoistTags = () => {},
 }: AddTags) {
   const [tags, setTags] = useState<Tag[]>(tagsFromParrent);
@@ -45,9 +48,19 @@ export default function AddTags({
     }
   };
 
+  const handleAddTag = (tag: Tag) => {
+    setTags((state) => [...state, tag]);
+  };
+
   useEffect(() => {
     hoistTags(tags);
   }, [tags]);
+
+  console.log(
+    maybeTags.filter(
+      (tag) => !tags.find((t) => t.value === tag.value && t.color === tag.color)
+    )
+  );
 
   return (
     <div className='add-tags'>
@@ -75,6 +88,29 @@ export default function AddTags({
                 Add tag
               </ActionButton>
             </div>
+
+            {maybeTags.length ? (
+              <FlexWrap
+                childrenArray={maybeTags
+                  .filter(
+                    (tag) =>
+                      !tags.find(
+                        (t) => t.value === tag.value && t.color === tag.color
+                      )
+                  )
+                  .map((tag) => (
+                    <ActionButton
+                      key={tag.value + tag.color}
+                      actionWithPayload={handleAddTag}
+                      payload={{ value: tag.value, color: tag.color }}
+                    >
+                      <HighlightText color={tag.color} padding>
+                        {tag.value}
+                      </HighlightText>
+                    </ActionButton>
+                  ))}
+              />
+            ) : null}
           </FlexColumnCenter>
         </div>
       </Collapse>
@@ -82,6 +118,7 @@ export default function AddTags({
         {tags.length
           ? tags.map((tag) => (
               <ActionButton
+                key={tag.value + tag.color}
                 actionWithPayload={handleDeleteTag}
                 payload={{ value: tag.value, color: tag.color }}
               >

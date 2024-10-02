@@ -102,6 +102,8 @@ export default function Payments({
     getCredits
   );
 
+  const maybeTags = payments.map((p) => p.tags).flat();
+
   return (
     <Page>
       <div className='payments-view'>
@@ -117,6 +119,7 @@ export default function Payments({
               addPayment={addPaymentWithS}
               fromOptions={fromOptions}
               forOptions={forOptions}
+              maybeTags={maybeTags}
             />,
           ]}
         />
@@ -129,6 +132,7 @@ export default function Payments({
                 deletePayment={deletePayment}
                 fromOptions={fromOptions}
                 forOptions={forOptions}
+                maybeTags={maybeTags}
               />
             );
             let breakLine = <BreakLine>{payment.datetime}</BreakLine>;

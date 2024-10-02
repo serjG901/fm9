@@ -1,18 +1,20 @@
 import "./style.css";
 import Collapse from "../../atom/collapse/Collapse";
 import FormPayment from "../../molecul/form-payment/FormPayment";
-import { Payment } from "../../../interfaces";
+import { Payment, Tag } from "../../../interfaces";
 
 interface AddPaymentComponent {
   addPayment?: (payment: Payment) => void;
   fromOptions?: string[];
   forOptions?: string[];
+  maybeTags?: Tag[];
 }
 
 export default function AddPayment({
   addPayment = () => {},
   fromOptions = [],
   forOptions = [],
+  maybeTags = [],
 }: AddPaymentComponent) {
   return (
     <div>
@@ -22,6 +24,7 @@ export default function AddPayment({
           actionPayment={addPayment}
           fromOptions={fromOptions}
           forOptions={forOptions}
+          maybeTags={maybeTags}
         />
       </Collapse>
     </div>
