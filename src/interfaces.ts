@@ -1,3 +1,5 @@
+import { PersistOptions } from "zustand/middleware";
+
 export interface NewSource {
   name: string;
   amount: string;
@@ -25,6 +27,7 @@ interface NewPayment {
   currency: string;
   from: string;
   for: string;
+  tags: Tag[];
 }
 
 export interface Payment extends NewPayment {
@@ -48,3 +51,24 @@ export interface PeriodStore {
   end: string;
   setPeriod: (start: string, end: string) => void;
 }
+
+export interface Tag {
+  value: string;
+  color: string;
+}
+
+//zustand
+
+export type Write<T, U> = Omit<T, keyof U> & U;
+export type PersistListener<S> = (state: S) => void;
+export type StorePersist<S, Ps> = {
+  persist: {
+    setOptions: (options: Partial<PersistOptions<S, Ps>>) => void;
+    clearStorage: () => void;
+    rehydrate: () => Promise<void> | void;
+    hasHydrated: () => boolean;
+    onHydrate: (fn: PersistListener<S>) => () => void;
+    onFinishHydration: (fn: PersistListener<S>) => () => void;
+    getOptions: () => Partial<PersistOptions<S, Ps>>;
+  };
+};

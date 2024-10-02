@@ -1,6 +1,7 @@
 import { Payment } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
+import HighlightText from "../../atom/highlight-text/HighlightText";
 import UpdatePayment from "../../substance/update-payment/UpdatePayment";
 import "./style.css";
 
@@ -21,6 +22,7 @@ export default function PaymentCard({
     currency: "BYN",
     from: "",
     for: "",
+    tags: [],
   },
   fromOptions = [],
   forOptions = [],
@@ -36,12 +38,18 @@ export default function PaymentCard({
           <div className='payment-card-amount'>{payment.amount}</div>
           <div className='payment-card-currency'>{payment.currency}</div>
         </div>
-
         <div>
-          <div className='payment-card-from'>{payment.from}</div>
-          <ArrowFromFor />
-          <div className='payment-card-for'>{payment.for}</div>
+          {payment.tags.map((t) => (
+            <HighlightText color={t.color}>{t.value}</HighlightText>
+          ))}
         </div>
+        {payment.from && payment.for && (
+          <div>
+            <div className='payment-card-from'>{payment.from}</div>
+            <ArrowFromFor />
+            <div className='payment-card-for'>{payment.for}</div>
+          </div>
+        )}
         <UpdatePayment
           payment={payment}
           fromOptions={fromOptions}

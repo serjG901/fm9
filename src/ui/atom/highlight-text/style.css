@@ -1,4 +1,5 @@
 .highlight-text {
+  white-space: nowrap;
   background-color: var(--color-bg-self);
   /*contrast color (white or black) for background*/
   color: color(

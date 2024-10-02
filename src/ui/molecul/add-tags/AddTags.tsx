@@ -6,22 +6,18 @@ import Colorpicker from "../../atom/colorpicker/Colorpicker";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-
-interface Tag {
-  value: string;
-  color: string;
-}
+import { Tag } from "../../../interfaces";
 
 interface AddTags {
+  tagsFromParrent?: Tag[];
   hoistTags?: (tags: Tag[]) => void;
 }
 
 export default function AddTags({
-  hoistTags = (tags: Tag[] = [{ value: "tag1", color: "hsl(0 0 0)" }]) => {
-    return tags;
-  },
-}) {
-  const [tags, setTags] = useState<Tag[]>([]);
+  tagsFromParrent = [],
+  hoistTags = () => {},
+}: AddTags) {
+  const [tags, setTags] = useState<Tag[]>(tagsFromParrent);
   const [value, setValue] = useState<string>("");
   const [color, setColor] = useState<string>("#000000");
 

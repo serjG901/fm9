@@ -6,8 +6,8 @@ import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
-//import AddTags from "../add-tags/AddTags";
-import { Payment } from "../../../interfaces";
+import AddTags from "../add-tags/AddTags";
+import { Payment, Tag } from "../../../interfaces";
 
 interface FormPaymentComponent {
   actionType?: string;
@@ -33,6 +33,7 @@ export default function FormPayment({
     currency: "BYN",
     from: "",
     for: "",
+    tags: [],
   },
   fromOptions = [],
   forOptions = [],
@@ -44,6 +45,7 @@ export default function FormPayment({
   const [paymentCurrency, setPaymentCurrency] = useState(payment.currency);
   const [paymentFrom, setPaymentFrom] = useState(payment.from);
   const [paymentFor, setPaymentFor] = useState(payment.for);
+  const [paymentTags, setPaymentTags] = useState<Tag[]>(payment.tags);
 
   const handleActionPayment = () => {
     actionPayment({
@@ -53,6 +55,7 @@ export default function FormPayment({
       currency: paymentCurrency,
       from: paymentFrom,
       for: paymentFor,
+      tags: paymentTags,
       id: payment.id,
     });
   };
@@ -78,7 +81,7 @@ export default function FormPayment({
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
       />
-
+      <AddTags tagsFromParrent={paymentTags} hoistTags={setPaymentTags} />
       <InputNumber
         id='payment-amount'
         name='amount'

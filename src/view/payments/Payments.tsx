@@ -10,7 +10,7 @@ import { addPaymentWithSource } from "../../helpers/addPaymentWithSource";
 import FormDataRange from "../../ui/molecul/form-data-range/FormDataRange";
 import { usePeriodStore } from "../../store/periodStore";
 import BreakLine from "../../ui/atom/break-line/BreakLine";
-import { Payment, PaymentsStore } from "../../interfaces";
+import { Payment, PaymentsStore, StorePersist, Write } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 
 interface PaymentsComponent {

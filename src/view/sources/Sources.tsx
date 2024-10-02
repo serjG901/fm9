@@ -4,7 +4,7 @@ import AddSource from "../../ui/substance/add-source/AddSource";
 import SourceCard from "../../ui/thing/source-card/SourceCard";
 import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import plus from "../../helpers/plus";
-import { Source, SourcesStore } from "../../interfaces";
+import { Source, SourcesStore, StorePersist, Write } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 
 interface SourcesComponent {
