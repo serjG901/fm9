@@ -15,13 +15,15 @@ export default function AddPayment({
   forOptions = [],
 }: AddPaymentComponent) {
   return (
-    <Collapse collapseLevel='menu' title='add'>
-      <FormPayment
-        actionType='add'
-        actionPayment={addPayment}
-        fromOptions={fromOptions}
-        forOptions={forOptions}
-      />
-    </Collapse>
+    <div>
+      <Collapse collapseLevel='menu' title='add'>
+        <FormPayment
+          actionType='add'
+          actionPayment={addPayment}
+          fromOptions={fromOptions}
+          forOptions={forOptions}
+        />
+      </Collapse>
+    </div>
   );
 }

@@ -11,8 +11,10 @@ export default function AddSource({
   addSource = () => {},
 }: AddSourceComponent) {
   return (
-    <Collapse collapseLevel='menu' title='add'>
-      <FormSource actionType='add' actionSource={addSource} />
-    </Collapse>
+    <div>
+      <Collapse collapseLevel='menu' title='add'>
+        <FormSource actionType='add' actionSource={addSource} />
+      </Collapse>
+    </div>
   );
 }

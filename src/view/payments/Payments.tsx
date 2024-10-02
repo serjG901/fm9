@@ -106,16 +106,20 @@ export default function Payments({
     <Page>
       <div className='payments-view'>
         <h1>{paymentsType}</h1>
-        <AddPayment
-          addPayment={addPaymentWithS}
-          fromOptions={fromOptions}
-          forOptions={forOptions}
+        <FlexWrap
+          childrenArray={[
+            <AddPayment
+              addPayment={addPaymentWithS}
+              fromOptions={fromOptions}
+              forOptions={forOptions}
+            />,
+            <FormDataRange
+              period={{ start: startPeriod, end: endPeriod }}
+              setPeriod={setPeriod}
+            />,
+            <Statistics payments={sortedPayments} />,
+          ]}
         />
-        <FormDataRange
-          period={{ start: startPeriod, end: endPeriod }}
-          setPeriod={setPeriod}
-        />
-        <Statistics payments={payments} />
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (

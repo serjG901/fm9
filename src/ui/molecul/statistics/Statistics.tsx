@@ -59,20 +59,22 @@ export default function Statistics({
       );
     });
   return (
-    <Collapse title='statistics' collapseLevel='menu'>
-      <div className='statistics'>
-        <div>
-          <div>name</div>
-          <div>amounts</div>
-          <div>sum</div>
+    <div>
+      <Collapse title='statistics' collapseLevel='menu'>
+        <div className='statistics'>
+          <div>
+            <div>name</div>
+            <div>amounts</div>
+            <div>sum</div>
+          </div>
+          {statItems}
+          <div>
+            <div>all</div>
+            <div>{payments.length}</div>
+            <div>{plus(...payments.map((p) => p.amount))}</div>
+          </div>
         </div>
-        {statItems}
-        <div>
-          <div>all</div>
-          <div>{payments.length}</div>
-          <div>{plus(...payments.map((p) => p.amount))}</div>
-        </div>
-      </div>
-    </Collapse>
+      </Collapse>
+    </div>
   );
 }
