@@ -7,6 +7,7 @@ import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import { Source, Transaction } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import multy from "../../../helpers/multy";
 
 interface FormTransactionComponent {
   actionType?: string;
@@ -96,11 +97,12 @@ export default function FormPayment({
           name='exchange-rate'
           valueFromParent={transactionExchangeRate}
           hoistValue={setTransactionExchangeRate}
+          numberAfterZero={6}
         />
         <div>
           {transactionAmount}{" "}
           {fromOptions.find((op) => op.name === transactionFrom)?.currency} ={" "}
-          {+transactionExchangeRate * +transactionAmount}{" "}
+          {multy(transactionExchangeRate, transactionAmount)}{" "}
           {forOptions.find((op) => op.name === transactionFor)?.currency}
         </div>
       </div>
