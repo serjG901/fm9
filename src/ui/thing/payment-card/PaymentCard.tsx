@@ -37,7 +37,11 @@ export default function PaymentCard({
   return (
     <div className='payment-card' key={payment.id}>
       <FlexColumnCenter>
-        <div className='payment-card-datetime'>{payment.datetime}</div>
+        <div className='payment-card-datetime'>
+          {payment.datetime.split("T").map((d) => (
+            <div key={d}>{d}</div>
+          ))}
+        </div>
         <div>
           <div className='payment-card-name'>
             <SearchedName name={payment.name} search={search} />

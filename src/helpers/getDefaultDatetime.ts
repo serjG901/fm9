@@ -4,8 +4,10 @@ export default function getDefaultDatetime() {
       year: "numeric",
       month: "numeric",
       day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
     })
-    .split(".")
-    .reverse()
-    .join("-");
+    .split(", ")
+    .map((t, i) => (i == 0 ? t.split(".").reverse().join("-") : t))
+    .join("T");
 }

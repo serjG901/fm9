@@ -34,7 +34,7 @@ export default function Datepicker({
         <input
           id={id}
           name={name}
-          type='date'
+          type='datetime-local'
           value={state}
           onChange={handleChange}
         />
