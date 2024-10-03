@@ -55,9 +55,6 @@ export default function FormDataRange({
       </Collapse>
       {start && end && (
         <div>
-          <div>
-            {start} === {end}
-          </div>
           <ActionButton actionWithPayload={handleResetPeriod} alert>
             reset period
           </ActionButton>
@@ -66,3 +63,16 @@ export default function FormDataRange({
     </div>
   );
 }
+/*<div>
+            <div>
+              {start.split("T").map((d) => (
+                <div key={d}>{d}</div>
+              ))}
+            </div>
+            <div>===</div>
+            <div>
+              {end.split("T").map((d) => (
+                <div key={d}>{d}</div>
+              ))}
+            </div>
+          </div>*/

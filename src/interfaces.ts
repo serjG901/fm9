@@ -57,6 +57,26 @@ export interface Tag {
   color: string;
 }
 
+export interface NewTransaction {
+  datetime: string;
+  amount: string;
+  from: string;
+  for: string;
+  exchangeRate: string;
+}
+
+export interface Transaction extends NewTransaction {
+  id: number;
+}
+
+export interface TransactionsStore {
+  id: number;
+  transactions: Transaction[];
+  addTransaction: (newTransaction: NewTransaction) => void;
+  updateTransaction: (transaction: Transaction) => void;
+  deleteTransaction: (transaction: Transaction) => void;
+}
+
 //zustand
 
 export type Write<T, U> = Omit<T, keyof U> & U;

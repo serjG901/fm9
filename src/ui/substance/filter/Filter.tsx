@@ -1,7 +1,6 @@
 import { Tag } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
-import Cross from "../../atom/cross/Cross";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import AddTags from "../../molecul/add-tags/AddTags";
 import Search from "../../molecul/search/Search";
@@ -44,7 +43,7 @@ export default function Filter({
       </Collapse>
       {search !== "" || filterTags.length !== 0 ? (
         <ActionButton actionWithPayload={resetFilter} alert>
-          <Cross />
+          reset filter
         </ActionButton>
       ) : null}
     </div>

@@ -6,6 +6,7 @@ import Debets from "./pages/debets/Debets";
 import Credits from "./pages/credits/Credits";
 import Buys from "./pages/buys/Buys";
 import Pays from "./pages/pays/Pays";
+import Transactions from "./pages/transactions/Transactions";
 
 function App() {
   const [page, setPage] = useState<string>("buys");
@@ -13,6 +14,7 @@ function App() {
   const pages: { [key: string]: ReactNode } = {
     buys: <Buys />,
     pays: <Pays />,
+    transactions: <Transactions />,
     debets: <Debets />,
     credits: <Credits />,
     ui: <Ui />,

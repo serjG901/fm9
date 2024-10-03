@@ -156,7 +156,6 @@ export default function Payments({
               period={{ start: startPeriod, end: endPeriod }}
               setPeriod={setPeriod}
             />,
-            <Statistics payments={sortedPayments} search={search} />,
             <Filter
               search={search}
               setSearch={setSearch}
@@ -164,6 +163,7 @@ export default function Payments({
               setFilterTags={setFilterTags}
               maybeTags={maybeTags}
             />,
+            <Statistics payments={sortedPayments} search={search} />,
           ]}
         />
         <h2>

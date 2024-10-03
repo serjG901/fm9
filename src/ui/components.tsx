@@ -21,6 +21,7 @@ import AddTags from "./molecul/add-tags/AddTags";
 import FormDataRange from "./molecul/form-data-range/FormDataRange";
 import FormPayment from "./molecul/form-payment/FormPayment";
 import FormSource from "./molecul/form-source/FormSource";
+import FormTransaction from "./molecul/form-transaction/FormTransaction";
 import Menu from "./molecul/menu/Menu";
 import Modal from "./molecul/modal/Modal";
 import Search from "./molecul/search/Search";
@@ -29,12 +30,15 @@ import Statistics from "./molecul/statistics/Statistics";
 //substances
 import AddPayment from "./substance/add-payment/AddPayment";
 import AddSource from "./substance/add-source/AddSource";
+import AddTransaction from "./substance/add-transaction/AddTransaction";
 import Filter from "./substance/filter/Filter";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
+import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";
 //things
 import PaymentCard from "./thing/payment-card/PaymentCard";
 import SourceCard from "./thing/source-card/SourceCard";
+import TransactionCard from "./thing/transaction-card/TrancactionCard";
 
 const componentsArr = [
   <ActionButton />,
@@ -58,6 +62,7 @@ const componentsArr = [
   <FormDataRange />,
   <FormPayment />,
   <FormSource />,
+  <FormTransaction />,
   <Menu />,
   <Modal />,
   <Search />,
@@ -65,11 +70,14 @@ const componentsArr = [
   <Statistics />,
   <AddPayment />,
   <AddSource />,
+  <AddTransaction />,
   <Filter />,
   <UpdatePayment />,
   <UpdateSource />,
+  <UpdateTransaction />,
   <PaymentCard />,
   <SourceCard />,
+  <TransactionCard />,
 ];
 
 const components: { [key: string]: JSX.Element | JSX.Element[] } =

@@ -20,7 +20,7 @@ export default function PaymentCard({
   payment = {
     id: 0,
     datetime: "2024-09-24",
-    name: "source",
+    name: "payment",
     amount: "0",
     currency: "BYN",
     from: "",
