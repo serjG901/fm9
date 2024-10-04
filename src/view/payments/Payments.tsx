@@ -146,6 +146,12 @@ export default function Payments({
       []
     );
 
+  const byCurrency = Object.groupBy(payments, (a) => a.currency);
+  const amountsByCurrency = Object.keys(byCurrency).map((c) => [
+    c,
+    byCurrency![c]!.map((p) => p.amount),
+  ]);
+
   return (
     <Page>
       <div className='payments-view'>
@@ -166,12 +172,13 @@ export default function Payments({
             <Statistics payments={sortedPayments} search={search} />,
           ]}
         />
-        <h2>
-          sum:{" "}
-          <span className='sum'>
-            {plus(...sortedPayments.map((s: Payment) => s.amount))}
-          </span>
-        </h2>
+
+        {amountsByCurrency.map((pair) => (
+          <div>
+            {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
+          </div>
+        ))}
+
         <AddPayment
           addPayment={addPaymentWithS}
           fromOptions={fromOptions}
@@ -192,15 +199,17 @@ export default function Payments({
                 search={search}
               />
             );
-            let breakLine = <BreakLine>{payment.datetime.split('T')[0]}</BreakLine>;
+            let breakLine = (
+              <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>
+            );
             if (date === "") {
-              date = payment.datetime.split('T')[0];
+              date = payment.datetime.split("T")[0];
             } else {
-              if (date === payment.datetime.split('T')[0]) {
+              if (date === payment.datetime.split("T")[0]) {
                 breakLine = <></>;
               }
             }
-            date = payment.datetime.split('T')[0];
+            date = payment.datetime.split("T")[0];
             return (
               <>
                 {breakLine}

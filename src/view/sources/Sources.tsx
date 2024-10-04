@@ -26,16 +26,23 @@ export default function Sources({
       state.deleteSource,
     ]
   );
+
+  const byCurrency = Object.groupBy(sources, (a) => a.currency);
+  const amountsByCurrency = Object.keys(byCurrency).map((c) => [
+    c,
+    byCurrency![c]!.map((p) => p.amount),
+  ]);
   return (
     <Page>
       <div className='sources-view'>
         <h1>{sourcesType}</h1>
-        <h2>
-          balance:{" "}
-          <span className='sum'>
-            {plus(...sources.map((s: Source) => s.amount))}
-          </span>
-        </h2>
+
+        {amountsByCurrency.map((pair) => (
+          <div>
+            {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
+          </div>
+        ))}
+        
         <AddSource addSource={addSource} />
         <FlexWrap
           childrenArray={sources
