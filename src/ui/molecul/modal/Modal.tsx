@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import "./style.css";
 import ActionButton from "../../atom/action-button/ActionButton";
-import Cross from "../../atom/cross/Cross";
+/*import Cross from "../../atom/cross/Cross";*/
 
 interface ModalComponent {
   id?: string;
@@ -31,9 +31,7 @@ export default function Modal({
       <ActionButton actionWithPayload={showModal}>{description}</ActionButton>
       <div className='modal' popover='auto' id={id}>
         <div className='hide-modal'>
-          <ActionButton actionWithPayload={hideModal}>
-            <Cross />
-          </ActionButton>
+          <ActionButton actionWithPayload={hideModal}>close</ActionButton>
         </div>
         <div className='modal-content'>{children}</div>
       </div>
