@@ -57,7 +57,7 @@ export default function PaymentCard({
           ))}
         </div>
         {payment.from && payment.for && (
-          <div>
+          <div className='payment-card-from-for'>
             <div className='payment-card-from'>{payment.from}</div>
             <ArrowFromFor />
             <div className='payment-card-for'>{payment.for}</div>

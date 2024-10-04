@@ -6,7 +6,7 @@
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border-card);
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-  opacity: 0.8;
+  opacity: 1;
   > div {
     gap: var(--gap-card);
   }
@@ -23,6 +23,11 @@
   }
   .payment-card-currency {
     color: var(--color-currency-card);
+  }
+  .payment-card-from-for {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
   }
   .payment-card-from {
     color: var(--color-from-card);
