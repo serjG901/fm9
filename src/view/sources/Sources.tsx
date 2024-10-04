@@ -39,7 +39,7 @@ export default function Sources({
         <AddSource addSource={addSource} />
         <FlexWrap
           childrenArray={sources
-            .sort((a, b) => (a.amount < b.amount ? 1 : -1))
+            .sort((a, b) => (+a.amount < +b.amount ? 1 : -1))
             .map((source: Source) => {
               return (
                 <SourceCard
