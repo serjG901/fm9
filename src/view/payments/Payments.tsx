@@ -192,15 +192,15 @@ export default function Payments({
                 search={search}
               />
             );
-            let breakLine = <BreakLine>{payment.datetime}</BreakLine>;
+            let breakLine = <BreakLine>{payment.datetime.split('T')[0]}</BreakLine>;
             if (date === "") {
-              date = payment.datetime;
+              date = payment.datetime.split('T')[0];
             } else {
-              if (date === payment.datetime) {
+              if (date === payment.datetime.split('T')[0]) {
                 breakLine = <></>;
               }
             }
-            date = payment.datetime;
+            date = payment.datetime.split('T')[0];
             return (
               <>
                 {breakLine}
