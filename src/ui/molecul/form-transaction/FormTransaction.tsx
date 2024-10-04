@@ -1,5 +1,5 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
@@ -45,6 +45,8 @@ export default function FormTransaction({
     transaction.exchangeRate
   );
 
+  const [rateDirection, setRateDirection] = useState("right");
+
   const handleActionTransaction = () => {
     actionTransaction({
       datetime: transactionDatetime,
@@ -62,6 +64,16 @@ export default function FormTransaction({
       deleteTransaction(transaction);
     }
   };
+
+  const handleChangeRateDirection = () => {
+    setRateDirection(rateDirection === "right" ? "left" : "right");
+  };
+
+  useEffect(() => {
+    setTransactionExchangeRate(
+      (1 / +transactionExchangeRate).toString().slice(0, 4)
+    );
+  }, [rateDirection]);
 
   return (
     <FlexColumnCenter>
@@ -99,11 +111,19 @@ export default function FormTransaction({
           hoistValue={setTransactionExchangeRate}
           numberAfterZero={6}
         />
+
         <div>
-          {transactionAmount}{" "}
-          {fromOptions.find((op) => op.name === transactionFrom)?.currency} ={" "}
-          {multy(transactionExchangeRate, transactionAmount)}{" "}
-          {forOptions.find((op) => op.name === transactionFor)?.currency}
+          <div>
+            {transactionAmount}{" "}
+            {fromOptions.find((op) => op.name === transactionFrom)?.currency}
+          </div>
+          <ActionButton actionWithPayload={handleChangeRateDirection}>
+            ↺
+          </ActionButton>
+          <div>
+            {multy(transactionExchangeRate.toString(), transactionAmount)}{" "}
+            {forOptions.find((op) => op.name === transactionFor)?.currency}
+          </div>
         </div>
       </div>
 

@@ -18,7 +18,7 @@ export const addPaymentWithSource =
       const newAmountSource = minus(findedFromSources.amount, payment.amount);
       const newSource: Source = {
         ...findedFromSources,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateSource(newSource);
     }
@@ -26,7 +26,7 @@ export const addPaymentWithSource =
       const newAmountSource = plus(findedFromCredits.amount, payment.amount);
       const newSource: Source = {
         ...findedFromCredits,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateCredit(newSource);
     }
@@ -39,7 +39,7 @@ export const addPaymentWithSource =
       const newAmountSource = plus(findedForSources.amount, payment.amount);
       const newSource: Source = {
         ...findedForSources,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateSource(newSource);
     }
@@ -47,7 +47,7 @@ export const addPaymentWithSource =
       const newAmountSource = minus(findedForCredits.amount, payment.amount);
       const newSource: Source = {
         ...findedForCredits,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateCredit(newSource);
     }

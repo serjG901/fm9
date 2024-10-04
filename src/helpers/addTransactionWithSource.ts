@@ -1,5 +1,6 @@
 import { Transaction, Source } from "../interfaces";
 import minus from "./minus";
+import multy from "./multy";
 import plus from "./plus";
 
 export const addTransactionWithSource =
@@ -21,7 +22,7 @@ export const addTransactionWithSource =
       );
       const newSource: Source = {
         ...findedFromSources,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateSource(newSource);
     }
@@ -32,7 +33,7 @@ export const addTransactionWithSource =
       );
       const newSource: Source = {
         ...findedFromCredits,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateCredit(newSource);
     }
@@ -42,21 +43,24 @@ export const addTransactionWithSource =
     const findedForSources = sources.find((s) => s.name === transaction.for);
     const findedForCredits = credits.find((s) => s.name === transaction.for);
     if (findedForSources) {
-      const newAmountSource = plus(findedForSources.amount, transaction.amount);
+      const newAmountSource = plus(
+        findedForSources.amount,
+        multy(transaction.amount, transaction.exchangeRate)
+      );
       const newSource: Source = {
         ...findedForSources,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateSource(newSource);
     }
     if (findedForCredits) {
       const newAmountSource = minus(
         findedForCredits.amount,
-        transaction.amount
+        multy(transaction.amount, transaction.exchangeRate)
       );
       const newSource: Source = {
         ...findedForCredits,
-        amount: newAmountSource + "",
+        amount: newAmountSource,
       };
       updateCredit(newSource);
     }

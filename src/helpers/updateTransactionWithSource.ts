@@ -1,5 +1,6 @@
 import { Transaction, Source } from "../interfaces";
 import minus from "./minus";
+import multy from "./multy";
 import plus from "./plus";
 
 export const updateTransactionWithSource =
@@ -33,7 +34,7 @@ export const updateTransactionWithSource =
         console.log(newAmountSource);
         const newSource: Source = {
           ...oldFindedFromSources,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateSource(newSource);
       }
@@ -44,7 +45,7 @@ export const updateTransactionWithSource =
         );
         const newSource: Source = {
           ...oldFindedFromCredits,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateCredit(newSource);
       }
@@ -60,22 +61,22 @@ export const updateTransactionWithSource =
       if (oldFindedForSources) {
         const newAmountSource = minus(
           oldFindedForSources.amount,
-          oldTransaction.amount
+          multy(oldTransaction.amount, oldTransaction.exchangeRate)
         );
         const newSource: Source = {
           ...oldFindedForSources,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateSource(newSource);
       }
       if (oldFindedForCredits) {
         const newAmountSource = plus(
           oldFindedForCredits.amount,
-          oldTransaction.amount
+          multy(oldTransaction.amount, oldTransaction.exchangeRate)
         );
         const newSource: Source = {
           ...oldFindedForCredits,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateCredit(newSource);
       }
@@ -95,7 +96,7 @@ export const updateTransactionWithSource =
         );
         const newSource: Source = {
           ...findedFromSources,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateSource(newSource);
       }
@@ -106,7 +107,7 @@ export const updateTransactionWithSource =
         );
         const newSource: Source = {
           ...findedFromCredits,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateCredit(newSource);
       }
@@ -122,22 +123,22 @@ export const updateTransactionWithSource =
       if (findedForSources) {
         const newAmountSource = plus(
           findedForSources.amount,
-          transaction.amount
+          multy(transaction.amount, transaction.exchangeRate)
         );
         const newSource: Source = {
           ...findedForSources,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateSource(newSource);
       }
       if (findedForCredits) {
         const newAmountSource = minus(
           findedForCredits.amount,
-          transaction.amount
+          multy(transaction.amount, transaction.exchangeRate)
         );
         const newSource: Source = {
           ...findedForCredits,
-          amount: newAmountSource + "",
+          amount: newAmountSource,
         };
         updateCredit(newSource);
       }
