@@ -92,7 +92,7 @@ export interface BasesStore {
   updateBase: (base: Base) => void;
   deleteBase: (base: Base) => void;
   currentBase: Base | null;
-  setCurrentBase: (base: Base) => void;
+  setCurrentBase: (base: Base | null) => void;
 }
 
 //zustand
