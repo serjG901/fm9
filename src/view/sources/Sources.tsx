@@ -38,15 +38,17 @@ export default function Sources({
         </h2>
         <AddSource addSource={addSource} />
         <FlexWrap
-          childrenArray={sources.map((source: Source) => {
-            return (
-              <SourceCard
-                source={source}
-                updateSource={updateSource}
-                deleteSource={deleteSource}
-              />
-            );
-          })}
+          childrenArray={sources
+            .sort((a, b) => (a.amount < b.amount ? 1 : -1))
+            .map((source: Source) => {
+              return (
+                <SourceCard
+                  source={source}
+                  updateSource={updateSource}
+                  deleteSource={deleteSource}
+                />
+              );
+            })}
         ></FlexWrap>
       </div>
     </Page>
