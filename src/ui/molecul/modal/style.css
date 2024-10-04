@@ -1,8 +1,11 @@
 .modal {
-  position: absolute;
+  position: fixed;
+  overflow-y: scroll;
+  scrollbar-width: none;
   margin-block: 1rem;
   width: min-content;
   height: min-content;
+  max-height: 90dvh;
   padding: 2rem 4rem;
   border-radius: 8px;
   border: 2px solid hsl(0 0 0);
@@ -16,7 +19,7 @@
       color: red;
     }
   }
-  .content-modal {
+  .modal-content {
     width: 100%;
   }
 }

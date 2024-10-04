@@ -35,7 +35,7 @@ export default function Modal({
             <Cross />
           </ActionButton>
         </div>
-        <div className='content-modal'>{children}</div>
+        <div className='modal-content'>{children}</div>
       </div>
     </div>
   );
