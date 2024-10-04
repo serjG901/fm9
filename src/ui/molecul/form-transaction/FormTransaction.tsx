@@ -18,7 +18,7 @@ interface FormTransactionComponent {
   deleteTransaction?: (transaction: Transaction) => void;
 }
 
-export default function FormPayment({
+export default function FormTransaction({
   actionType = "action",
   actionTransaction = () => {},
   transaction = {
