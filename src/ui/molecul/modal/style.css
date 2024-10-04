@@ -20,7 +20,7 @@
     }
   }
   .modal-content {
-    width: 100%;
+    width: min-content;
   }
 }
 
