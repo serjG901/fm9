@@ -37,7 +37,7 @@
   --color-currency-card: hsl(0, 0%, 50%);
   --color-from-card: hsl(0, 0%, 50%);
   --color-for-card: hsl(0, 0%, 50%);
-  --color-arrow-from-for-card: hsl(0, 0%, 50%);
+  --color-arrow-from-for-card: hsl(0, 0%, 100%);
 
   --color-bg-break-line: hsl(0, 0%, 15%);
 }
