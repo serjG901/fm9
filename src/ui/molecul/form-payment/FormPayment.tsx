@@ -80,11 +80,6 @@ export default function FormPayment({
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
       />
-      <AddTags
-        tagsFromParrent={paymentTags}
-        hoistTags={setPaymentTags}
-        maybeTags={maybeTags}
-      />
       <InputNumber
         id='payment-amount'
         name='amount'
@@ -111,6 +106,11 @@ export default function FormPayment({
         options={forOptions}
         valueFromParent={paymentFor}
         hoistValue={setPaymentFor}
+      />
+      <AddTags
+        tagsFromParrent={paymentTags}
+        hoistTags={setPaymentTags}
+        maybeTags={maybeTags}
       />
       <ActionButton actionWithPayload={handleActionPayment}>
         {actionType}

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Tag } from "../interfaces";
+import { name as appName } from "../../package.json";
 
 interface FiltersStore {
   search: string;
@@ -22,7 +23,7 @@ export const useFiltersStore = create<FiltersStore>()(
       };
     },
     {
-      name: "fm9-filters",
+      name: `${appName}-filters`,
     }
   )
 );

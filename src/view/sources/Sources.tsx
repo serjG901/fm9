@@ -30,6 +30,12 @@ export default function Sources({
     <Page>
       <div className='sources-view'>
         <h1>{sourcesType}</h1>
+        <h2>
+          balance:{" "}
+          <span className='sum'>
+            {plus(...sources.map((s: Source) => s.amount))}
+          </span>
+        </h2>
         <AddSource addSource={addSource} />
         <FlexWrap
           childrenArray={sources.map((source: Source) => {
@@ -42,12 +48,6 @@ export default function Sources({
             );
           })}
         ></FlexWrap>
-        <h2>
-          balance:{" "}
-          <span className='sum'>
-            {plus(...sources.map((s: Source) => s.amount))}
-          </span>
-        </h2>
       </div>
     </Page>
   );

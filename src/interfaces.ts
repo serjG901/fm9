@@ -77,6 +77,24 @@ export interface TransactionsStore {
   deleteTransaction: (transaction: Transaction) => void;
 }
 
+export interface NewBase {
+  name: string;
+}
+
+export interface Base extends NewBase {
+  id: number;
+}
+
+export interface BasesStore {
+  id: number;
+  bases: Base[];
+  addBase: (newBase: NewBase) => void;
+  updateBase: (base: Base) => void;
+  deleteBase: (base: Base) => void;
+  currentBase: Base | null;
+  setCurrentBase: (base: Base) => void;
+}
+
 //zustand
 
 export type Write<T, U> = Omit<T, keyof U> & U;

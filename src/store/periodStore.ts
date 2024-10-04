@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { PeriodStore } from "../interfaces";
+import { name as appName } from "../../package.json";
 
 export const usePeriodStore = create<PeriodStore>()(
   persist(
@@ -12,7 +13,7 @@ export const usePeriodStore = create<PeriodStore>()(
       },
     }),
     {
-      name: "fm9-period",
+      name: `${appName}-period`,
     }
   )
 );

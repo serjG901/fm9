@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { TransactionsStore } from "../interfaces";
+import { name as appName } from "../../package.json";
 
 export const useTransactionsStore = create<TransactionsStore>()(
   persist(
@@ -39,7 +40,7 @@ export const useTransactionsStore = create<TransactionsStore>()(
     },
 
     {
-      name: "fm9-transactions",
+      name: `${appName}-transactions`,
     }
   )
 );
