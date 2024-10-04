@@ -24,6 +24,11 @@
   .transaction-card-currency {
     color: var(--color-currency-card);
   }
+  .transaction-card-from-for {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .transaction-card-from {
     color: var(--color-from-card);
   }

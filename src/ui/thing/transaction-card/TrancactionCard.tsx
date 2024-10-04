@@ -35,7 +35,7 @@ export default function TransactionCard({
           ))}
         </div>
         <div className='transaction-card-amount'>{transaction.amount}</div>
-        <div>
+        <div className='transaction-card-from-for'>
           <div className='transaction-card-from'>{transaction.from}</div>
           <ArrowFromFor />
           <div className='transaction-card-for'>{transaction.for}</div>
