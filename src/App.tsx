@@ -8,6 +8,7 @@ import Credits from "./pages/credits/Credits";
 //import Pays from "./pages/pays/Pays";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
+import FileWork from "./view/fileWork/fileWork";
 //import Transactions from "./pages/transactions/Transactions";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
     debets: <Debets />,
     credits: <Credits />,
     ui: <Ui />,
+    db: <FileWork />,
   };
 
   const handleActionMenu = (payload: string) => {
