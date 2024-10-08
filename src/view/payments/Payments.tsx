@@ -153,7 +153,9 @@ export default function Payments({
     byCurrency![c]!.map((p) => p.amount),
   ]);
 
-  const maybeName = Array.from(new Set(payments.map((p) => p.name)));
+  const maybeName = Array.from(new Set(payments.map((p) => p.name))).sort(
+    (a, b) => (a > b ? 1 : -1)
+  );
 
   return (
     <Page>
