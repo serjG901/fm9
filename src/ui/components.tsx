@@ -14,6 +14,7 @@ import InputNumber from "./atom/input-number/InputNumber";
 import InputText from "./atom/input-text/InputText";
 import InputWithMemory from "./atom/input-with-memory/InputWithMemory";
 import InputWithOptions from "./atom/input-with-options/InputWithOptions";
+import LoadingDots from "./atom/loading-dots/LoadingDots";
 import Page from "./atom/page/Page";
 import ViewAndPath from "./atom/view-and-path/ViewAndPath";
 //moleculs
@@ -56,6 +57,7 @@ const componentsArr = [
   <InputText />,
   <InputWithMemory />,
   <InputWithOptions />,
+  <LoadingDots />,
   <Page />,
   <ViewAndPath />,
   <AddTags />,

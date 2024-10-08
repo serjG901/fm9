@@ -22,7 +22,6 @@ import Statistics from "../../ui/molecul/statistics/Statistics";
 import plus from "../../helpers/plus";
 import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";
-import { useEffect, useState } from "react";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -35,8 +34,6 @@ export default function Payments({
   paymentsType,
   usePaymentsStore,
 }: PaymentsComponent) {
-  const [isLoading, setIsLoading] = useState(false);
-
   const [
     payments,
     addPayment,
@@ -160,11 +157,7 @@ export default function Payments({
     (a, b) => (a > b ? 1 : -1)
   );
 
-  useEffect(() => setIsLoading(false), []);
-
-  return isLoading ? (
-    <div className='loading'>{paymentsType} is loading</div>
-  ) : (
+  return (
     <Page>
       <div className='payments-view'>
         <h1>{paymentsType}</h1>

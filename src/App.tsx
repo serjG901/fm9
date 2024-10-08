@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, Suspense, useState } from "react";
 import "./App.css";
 import Menu from "./ui/molecul/menu/Menu";
 import Ui from "./pages/ui/Ui";
@@ -6,14 +6,23 @@ import Debets from "./pages/debets/Debets";
 import Credits from "./pages/credits/Credits";
 import Buys from "./pages/buys/Buys";
 import Pays from "./pages/pays/Pays";
+import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 //import Transactions from "./pages/transactions/Transactions";
 
 function App() {
   const [page, setPage] = useState<string>("buys");
 
   const pages: { [key: string]: ReactNode } = {
-    buys: <Buys />,
-    pays: <Pays />,
+    buys: (
+      <Suspense fallback={<LoadingDots>Buys loading</LoadingDots>}>
+        <Buys />
+      </Suspense>
+    ),
+    pays: (
+      <Suspense fallback={<LoadingDots>Pays loading</LoadingDots>}>
+        <Pays />
+      </Suspense>
+    ),
     //transactions: <Transactions />,
     debets: <Debets />,
     credits: <Credits />,
