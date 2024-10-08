@@ -4,6 +4,7 @@ import FormPayment from "../../molecul/form-payment/FormPayment";
 import { Payment, Tag } from "../../../interfaces";
 
 interface AddPaymentComponent {
+  maybeName?: string[];
   addPayment?: (payment: Payment) => void;
   fromOptions?: string[];
   forOptions?: string[];
@@ -11,6 +12,7 @@ interface AddPaymentComponent {
 }
 
 export default function AddPayment({
+  maybeName = [],
   addPayment = () => {},
   fromOptions = [],
   forOptions = [],
@@ -20,6 +22,7 @@ export default function AddPayment({
     <div>
       <Collapse collapseLevel='menu' title='add'>
         <FormPayment
+          maybeName={maybeName}
           actionType='add'
           actionPayment={addPayment}
           fromOptions={fromOptions}

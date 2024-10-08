@@ -13,14 +13,15 @@ export const createPaymentStore = (name: string) =>
           addPayment: (newPayment) => {
             set((state) => {
               const payment = { ...newPayment, id: state.id };
+              console.log(payment.from);
               return {
                 payments: [...state.payments, payment],
                 id: state.id + 1,
-                fromOptions: new Set(Array.from(state.fromOptions)).add(
-                  payment.from
+                fromOptions: Array.from(
+                  new Set(state.fromOptions).add(payment.from)
                 ),
-                forOptions: new Set(Array.from(state.forOptions)).add(
-                  payment.for
+                forOptions: Array.from(
+                  new Set(state.forOptions).add(payment.from)
                 ),
               };
             });
@@ -32,11 +33,11 @@ export const createPaymentStore = (name: string) =>
               );
               return {
                 payments: [...filtredPayments, payment],
-                fromOptions: new Set(Array.from(state.fromOptions)).add(
-                  payment.from
+                fromOptions: Array.from(
+                  new Set(state.fromOptions).add(payment.from)
                 ),
-                forOptions: new Set(Array.from(state.forOptions)).add(
-                  payment.for
+                forOptions: Array.from(
+                  new Set(state.forOptions).add(payment.from)
                 ),
               };
             });
@@ -49,13 +50,16 @@ export const createPaymentStore = (name: string) =>
               return { payments: filtredPayments };
             });
           },
-          fromOptions: new Set(),
+          fromOptions: [],
           getFromOptions: () => {
-            return Array.from(get().fromOptions);
+            return get().fromOptions;
           },
-          forOptions: new Set(),
+          updateFromFor: () => {
+            set({fromOptions:[], forOptions:[]});
+          },
+          forOptions: [],
           getForOptions: () => {
-            return Array.from(get().fromOptions);
+            return get().forOptions;
           },
         };
       },

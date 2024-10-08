@@ -5,6 +5,7 @@ import { Payment, Tag } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
 interface UpdatePaymentComponent {
+  maybeName?: string[];
   updatePayment?: (payment: Payment) => void;
   payment?: Payment;
   fromOptions?: string[];
@@ -14,6 +15,7 @@ interface UpdatePaymentComponent {
 }
 
 export default function UpdatePayment({
+  maybeName = [],
   updatePayment = () => {},
   payment = {
     id: 0,
@@ -33,6 +35,7 @@ export default function UpdatePayment({
   return (
     <Modal id={`update-payment-${payment.id}`} description='update'>
       <FormPayment
+        maybeName={maybeName}
         actionType='update'
         actionPayment={updatePayment}
         payment={payment}

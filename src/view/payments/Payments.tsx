@@ -144,13 +144,16 @@ export default function Payments({
           ? acc
           : [...acc, tag],
       []
-    );
+    )
+    .sort((a, b) => (a.value > b.value ? 1 : -1));
 
   const byCurrency = Object.groupBy(payments, (a) => a.currency);
   const amountsByCurrency = Object.keys(byCurrency).map((c) => [
     c,
     byCurrency![c]!.map((p) => p.amount),
   ]);
+
+  const maybeName = Array.from(new Set(payments.map((p) => p.name)));
 
   return (
     <Page>
@@ -180,6 +183,7 @@ export default function Payments({
         ))}
 
         <AddPayment
+          maybeName={maybeName}
           addPayment={addPaymentWithS}
           fromOptions={fromOptions}
           forOptions={forOptions}
@@ -190,6 +194,7 @@ export default function Payments({
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (
               <PaymentCard
+                maybeName={maybeName}
                 payment={payment}
                 updatePayment={updatePaymentWithS}
                 deletePayment={deletePayment}

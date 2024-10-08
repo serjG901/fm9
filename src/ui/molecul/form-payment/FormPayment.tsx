@@ -1,6 +1,5 @@
 import "./style.css";
 import { useState } from "react";
-import InputText from "../../atom/input-text/InputText";
 import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
@@ -11,6 +10,7 @@ import { Payment, Tag } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
 interface FormPaymentComponent {
+  maybeName?: string[];
   actionType?: string;
   actionPayment?: (payment: Payment) => void;
   payment?: Payment;
@@ -21,6 +21,7 @@ interface FormPaymentComponent {
 }
 
 export default function FormPayment({
+  maybeName = [],
   actionType = "action",
   actionPayment = () => {},
   payment = {
@@ -74,11 +75,12 @@ export default function FormPayment({
         valueFromParent={paymentDatetime}
         hoistValue={setPaymentDatetime}
       />
-      <InputText
+      <InputWithOptions
         id='payment-name'
         name='name'
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
+        options={maybeName}
       />
       <InputNumber
         id='payment-amount'

@@ -6,15 +6,21 @@ import Debets from "./pages/debets/Debets";
 import Credits from "./pages/credits/Credits";
 import Buys from "./pages/buys/Buys";
 import Pays from "./pages/pays/Pays";
-import Transactions from "./pages/transactions/Transactions";
+import { useBuysStore } from "./store/buysStore";
+import { usePaysStore } from "./store/paysStore";
+import ActionButton from "./ui/atom/action-button/ActionButton";
+//import Transactions from "./pages/transactions/Transactions";
 
 function App() {
-  const [page, setPage] = useState<string>("buys");
+ // const [page, setPage] = useState<string>("buys");
 
+  const [updateFromForB] = useBuysStore(state => [state.updateFromFor]);
+  const [updateFromForP] = usePaysStore(state => [state.updateFromFor]);
+/*
   const pages: { [key: string]: ReactNode } = {
     buys: <Buys />,
     pays: <Pays />,
-    transactions: <Transactions />,
+    //transactions: <Transactions />,
     debets: <Debets />,
     credits: <Credits />,
     ui: <Ui />,
@@ -22,17 +28,21 @@ function App() {
 
   const handleActionMenu = (payload: string) => {
     setPage(payload);
-  };
-
-  return (
-    <>
-      <Menu
+  };*/
+  const update = () => {
+    updateFromForB();
+    updateFromForP();
+  }
+/*  <Menu
         collapseLevel='menu'
         title='pages'
         options={Object.keys(pages)}
         actionWithPayload={handleActionMenu}
       />
-      {pages[page] || null}
+      {pages[page] || null }*/
+  return (
+    <><ActionButton actionWithPayload={update}>update</ActionButton>
+    
     </>
   );
 }

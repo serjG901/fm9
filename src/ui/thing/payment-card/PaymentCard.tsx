@@ -7,6 +7,7 @@ import UpdatePayment from "../../substance/update-payment/UpdatePayment";
 import "./style.css";
 
 interface PaymentCardComponent {
+  maybeName?: string[];
   payment?: Payment;
   fromOptions?: string[];
   forOptions?: string[];
@@ -17,6 +18,7 @@ interface PaymentCardComponent {
 }
 
 export default function PaymentCard({
+  maybeName = [],
   payment = {
     id: 0,
     datetime: "2024-09-24",
@@ -64,6 +66,7 @@ export default function PaymentCard({
           </div>
         )}
         <UpdatePayment
+          maybeName={maybeName}
           payment={payment}
           fromOptions={fromOptions}
           forOptions={forOptions}

@@ -34,6 +34,13 @@ export default function Statistics({
             <div>
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
+                .reduce(
+                  (acc: Tag[], tag) =>
+                    acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
+                      ? acc
+                      : [...acc, tag],
+                  []
+                )
                 .map((tag) => (
                   <HighlightText
                     key={tag.value + tag.color}
