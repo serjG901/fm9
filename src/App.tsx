@@ -9,10 +9,10 @@ import Credits from "./pages/credits/Credits";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 //import Transactions from "./pages/transactions/Transactions";
-const Buys = React.lazy(() => import("./pages/buys/Buys"));
-const Pays = React.lazy(() => import("./pages/pays/Pays"));
 
 function App() {
+  const Buys = React.lazy(() => import("./pages/buys/Buys"));
+  const Pays = React.lazy(() => import("./pages/pays/Pays"));
   const [page, setPage] = useState<string>("buys");
 
   const pages: { [key: string]: ReactNode } = {
