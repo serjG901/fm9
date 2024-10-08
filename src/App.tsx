@@ -17,12 +17,12 @@ function App() {
 
   const pages: { [key: string]: ReactNode } = {
     buys: (
-      <Suspense fallback={<LoadingDots>Buys loading</LoadingDots>}>
+      <Suspense fallback={<LoadingDots>Buys</LoadingDots>}>
         <Buys />
       </Suspense>
     ),
     pays: (
-      <Suspense fallback={<LoadingDots>Pays loading</LoadingDots>}>
+      <Suspense fallback={<LoadingDots>Pays</LoadingDots>}>
         <Pays />
       </Suspense>
     ),
