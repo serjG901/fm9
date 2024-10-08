@@ -1,11 +1,11 @@
-import { ReactNode, useState } from "react";
+//import { ReactNode, useState } from "react";
 import "./App.css";
-import Menu from "./ui/molecul/menu/Menu";
+/*import Menu from "./ui/molecul/menu/Menu";
 import Ui from "./pages/ui/Ui";
 import Debets from "./pages/debets/Debets";
 import Credits from "./pages/credits/Credits";
 import Buys from "./pages/buys/Buys";
-import Pays from "./pages/pays/Pays";
+import Pays from "./pages/pays/Pays";*/
 import { useBuysStore } from "./store/buysStore";
 import { usePaysStore } from "./store/paysStore";
 import ActionButton from "./ui/atom/action-button/ActionButton";
