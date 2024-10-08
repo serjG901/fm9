@@ -5,11 +5,12 @@ import Ui from "./pages/ui/Ui";
 import Debets from "./pages/debets/Debets";
 import Credits from "./pages/credits/Credits";
 //import Buys from "./pages/buys/Buys";
-import Pays from "./pages/pays/Pays";
+//import Pays from "./pages/pays/Pays";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 //import Transactions from "./pages/transactions/Transactions";
 const Buys = React.lazy(() => import("./pages/buys/Buys"));
+const Pays = React.lazy(() => import("./pages/pays/Pays"));
 
 function App() {
   const [page, setPage] = useState<string>("buys");
