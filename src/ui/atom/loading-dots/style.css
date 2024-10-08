@@ -1,27 +1,10 @@
 .loading-dots {
   position: relative;
-  color: initial;
-  animation: loading-colors 1s infinite;
 }
 .loading-dots::after {
   content: "";
   position: absolute;
   animation: loading-dots 1s infinite;
-}
-
-@keyframes loading-colors {
-  0% {
-    color: initial;
-  }
-  33% {
-    color: red;
-  }
-  66% {
-    color: green;
-  }
-  100% {
-    color: blue;
-  }
 }
 
 @keyframes loading-dots {
