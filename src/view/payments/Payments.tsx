@@ -163,7 +163,7 @@ export default function Payments({
   useEffect(() => setIsLoading(false), []);
 
   return isLoading ? (
-    <div className='loading'>Loading</div>
+    <div className='loading'>{paymentsType} is loading</div>
   ) : (
     <Page>
       <div className='payments-view'>
