@@ -28,3 +28,27 @@ input:focus,
 input:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
+
+.loading {
+  position: relative;
+}
+.loading::after {
+  content: "";
+  position: absolute;
+  animation: loading-dots 1s infinite;
+}
+
+@keyframes loading-dots {
+  0% {
+    content: "";
+  }
+  33% {
+    content: ".";
+  }
+  66% {
+    content: "..";
+  }
+  100% {
+    content: "...";
+  }
+}
