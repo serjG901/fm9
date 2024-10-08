@@ -7,10 +7,16 @@ import Page from "../../ui/atom/page/Page";
 import "./style.css";
 
 export default function FileWork() {
-  const stateBuys = useBuysStore((state) => state);
-  const statePays = usePaysStore((state) => state);
-  const stateDebets = useDebetsStore((state) => state);
-  const stateCredits = useCreditsStore((state) => state);
+  const [stateBuys, setStateBuys] = useBuysStore((state) => [state, state.setState]);
+  const [statePays, setStatePays] = usePaysStore((state) => [state, state.setState]);
+  const [stateDebets, setStateDebets] = useDebetsStore((state) => [
+    state,
+    state.setState,
+  ]);
+  const [stateCredits, setStateCredits] = useCreditsStore((state) => [
+    state,
+    state.setState,
+  ]);
 
   const fm9DB = {
     ["fm9-buys"]: stateBuys,
@@ -31,11 +37,14 @@ export default function FileWork() {
   // @ts-ignore
   const handleDownloadFile = async (e) => {
     const file = e.target.files[0];
-    const contents = await file.json();
-
+    const contents = await file.text();
     const fm9DB = JSON.parse(contents);
+    console.log(fm9DB);
     Object.keys(fm9DB).forEach((key: string) => {
-      window.localStorage.setItem(key, fm9DB[key]);
+      if (key === "fm9-buys") setStateBuys(fm9DB[key]);
+      if (key === "fm9-pays") setStatePays(fm9DB[key]);
+      if (key === "fm9-debets") setStateDebets(fm9DB[key]);
+      if (key === "fm9-credits") setStateCredits(fm9DB[key]);
     });
   };
 

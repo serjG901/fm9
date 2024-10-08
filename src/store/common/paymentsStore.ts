@@ -8,6 +8,9 @@ export const createPaymentStore = (name: string) =>
     persist(
       (set, get) => {
         return {
+          setState: (state) => {
+            set(state);
+          },
           id: 1,
           payments: [],
           addPayment: (newPayment) => {
@@ -55,7 +58,7 @@ export const createPaymentStore = (name: string) =>
             return get().fromOptions;
           },
           updateFromFor: () => {
-            set({fromOptions:[], forOptions:[]});
+            set({ fromOptions: [], forOptions: [] });
           },
           forOptions: [],
           getForOptions: () => {

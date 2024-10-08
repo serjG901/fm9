@@ -11,6 +11,7 @@ export interface Source extends NewSource {
 }
 
 export interface SourcesStore {
+  setState: (state: SourcesStore) => void;
   id: number;
   sources: Source[];
   addSource: (newSource: NewSource) => void;
@@ -35,6 +36,7 @@ export interface Payment extends NewPayment {
 }
 
 export interface PaymentsStore {
+  setState: (state: PaymentsStore) => void;
   id: number;
   payments: Payment[];
   addPayment: (newPayment: NewPayment) => void;
