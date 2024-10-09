@@ -1,7 +1,7 @@
 import "./style.css";
 import Page from "../../ui/atom/page/Page";
 import AddPayment from "../../ui/substance/add-payment/AddPayment";
-import PaymentCard from "../../ui/thing/payment-card/PaymentCard";
+import LoadingPaymentCard from "../../ui/thing/payment-card/LoadingPaymentCard";
 import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import { useDebetsStore } from "../../store/debetsStore";
 import { useCreditsStore } from "../../store/creditsStore";
@@ -22,6 +22,8 @@ import Statistics from "../../ui/molecul/statistics/Statistics";
 import plus from "../../helpers/plus";
 import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";
+import { Suspense } from "react";
+import React from "react";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -34,6 +36,9 @@ export default function Payments({
   paymentsType,
   usePaymentsStore,
 }: PaymentsComponent) {
+  const PaymentCard = React.lazy(
+    () => import("../../ui/thing/payment-card/PaymentCard")
+  );
   const [
     payments,
     addPayment,
@@ -195,16 +200,18 @@ export default function Payments({
         <FlexWrap
           childrenArray={sortedPayments.map((payment: Payment) => {
             const card = (
-              <PaymentCard
-                maybeName={maybeName}
-                payment={payment}
-                updatePayment={updatePaymentWithS}
-                deletePayment={deletePayment}
-                fromOptions={fromOptions}
-                forOptions={forOptions}
-                maybeTags={maybeTags}
-                search={search}
-              />
+              <Suspense fallback={<LoadingPaymentCard />}>
+                <PaymentCard
+                  maybeName={maybeName}
+                  payment={payment}
+                  updatePayment={updatePaymentWithS}
+                  deletePayment={deletePayment}
+                  fromOptions={fromOptions}
+                  forOptions={forOptions}
+                  maybeTags={maybeTags}
+                  search={search}
+                />
+              </Suspense>
             );
             let breakLine = (
               <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>
