@@ -61,12 +61,12 @@ export default function FileWork() {
     <Page>
       <h1>File work</h1>
       <div>
-        <ActionButton actionWithPayload={saveAsLegacy}>save db</ActionButton>
+        <ActionButton actionWithPayload={saveAsLegacy}>download db</ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
       <div>
         <label htmlFor='oldOpenFile'>
-          download db
+          upload db
           <input
             name='oldOpenFile'
             type='file'
