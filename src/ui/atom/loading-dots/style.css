@@ -4,7 +4,7 @@
 .loading-dots::after {
   content: "";
   position: absolute;
-  animation: loading-dots 1s infinite;
+  animation: loading-dots 0.3s infinite;
 }
 
 @keyframes loading-dots {
