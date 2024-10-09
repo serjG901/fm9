@@ -157,6 +157,36 @@ export default function Payments({
     (a, b) => (a > b ? 1 : -1)
   );
 
+  const cards = sortedPayments.map((payment: Payment) => {
+    const card = (
+      <PaymentCard
+        maybeName={maybeName}
+        payment={payment}
+        updatePayment={updatePaymentWithS}
+        deletePayment={deletePayment}
+        fromOptions={fromOptions}
+        forOptions={forOptions}
+        maybeTags={maybeTags}
+        search={search}
+      />
+    );
+    let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
+    if (date === "") {
+      date = payment.datetime.split("T")[0];
+    } else {
+      if (date === payment.datetime.split("T")[0]) {
+        breakLine = <></>;
+      }
+    }
+    date = payment.datetime.split("T")[0];
+    return (
+      <>
+        {breakLine}
+        {card}
+      </>
+    );
+  });
+
   return (
     <Page>
       <div className='payments-view'>
@@ -192,39 +222,7 @@ export default function Payments({
           maybeTags={maybeTags}
         />
 
-        <FlexWrap
-          childrenArray={sortedPayments.map((payment: Payment) => {
-            const card = (
-              <PaymentCard
-                maybeName={maybeName}
-                payment={payment}
-                updatePayment={updatePaymentWithS}
-                deletePayment={deletePayment}
-                fromOptions={fromOptions}
-                forOptions={forOptions}
-                maybeTags={maybeTags}
-                search={search}
-              />
-            );
-            let breakLine = (
-              <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>
-            );
-            if (date === "") {
-              date = payment.datetime.split("T")[0];
-            } else {
-              if (date === payment.datetime.split("T")[0]) {
-                breakLine = <></>;
-              }
-            }
-            date = payment.datetime.split("T")[0];
-            return (
-              <>
-                {breakLine}
-                {card}
-              </>
-            );
-          })}
-        ></FlexWrap>
+        <FlexWrap childrenArray={cards}></FlexWrap>
       </div>
     </Page>
   );
