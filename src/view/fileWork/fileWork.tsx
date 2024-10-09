@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import { useBuysStore } from "../../store/buysStore";
 import { useCreditsStore } from "../../store/creditsStore";
 import { useDebetsStore } from "../../store/debetsStore";
@@ -7,8 +8,14 @@ import Page from "../../ui/atom/page/Page";
 import "./style.css";
 
 export default function FileWork() {
-  const [stateBuys, setStateBuys] = useBuysStore((state) => [state, state.setState]);
-  const [statePays, setStatePays] = usePaysStore((state) => [state, state.setState]);
+  const [stateBuys, setStateBuys] = useBuysStore((state) => [
+    state,
+    state.setState,
+  ]);
+  const [statePays, setStatePays] = usePaysStore((state) => [
+    state,
+    state.setState,
+  ]);
   const [stateDebets, setStateDebets] = useDebetsStore((state) => [
     state,
     state.setState,
@@ -26,17 +33,19 @@ export default function FileWork() {
   };
 
   function saveAsLegacy() {
-    const aDownloadFile = document.getElementById("aDownloadFile");
+    const aDownloadFile: HTMLAnchorElement = document.getElementById(
+      "aDownloadFile"
+    ) as HTMLAnchorElement;
     const opts = { type: "application/json" };
     const file = new File([JSON.stringify(fm9DB, null, 4)], "", opts);
-    // @ts-ignore
+
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute("download", `fm9${Date.now()}.json`);
     aDownloadFile!.click();
   }
-  // @ts-ignore
-  const handleDownloadFile = async (e) => {
-    const file = e.target.files[0];
+
+  const handleDownloadFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files![0];
     const contents = await file.text();
     const fm9DB = JSON.parse(contents);
     console.log(fm9DB);
