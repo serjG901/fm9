@@ -37,6 +37,7 @@ import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";
 //things
+import LoadingPaymentCard from "./thing/payment-card/LoadingPaymentCard";
 import PaymentCard from "./thing/payment-card/PaymentCard";
 import SourceCard from "./thing/source-card/SourceCard";
 import TransactionCard from "./thing/transaction-card/TrancactionCard";
@@ -77,6 +78,7 @@ const componentsArr = [
   <UpdatePayment />,
   <UpdateSource />,
   <UpdateTransaction />,
+  <LoadingPaymentCard />,
   <PaymentCard />,
   <SourceCard />,
   <TransactionCard />,
