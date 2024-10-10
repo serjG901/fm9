@@ -29,7 +29,7 @@ export default function Modal({
   //<ActionButton actionWithPayload={showModal}>{description}</ActionButton>
   return (
     <div>
-      <div className='modal' popover='manual' id={id}>
+      <div className='modal' popover='manual' id={id} onClick={(e) => e.stopPropagation()}>
         <div className='hide-modal'>
           <ActionButton actionWithPayload={hideModal}>close</ActionButton>
         </div>
