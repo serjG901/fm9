@@ -76,6 +76,7 @@ export default function LoadDb() {
             name='oldOpenFile'
             type='file'
             title='file'
+            accept='.json'
             onChange={handleDownloadFile}
           />
         </label>
