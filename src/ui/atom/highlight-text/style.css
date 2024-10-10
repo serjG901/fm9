@@ -5,8 +5,8 @@
       100deg,
       transparent 1%,
       var(--self-color-bg) 2.5%,
-      color(from var(--self-color-bg) srgb r g b / 0.7) 5.7%,
-      color(from var(--self-color-bg) srgb r g b / 0.2) 93%,
+      color(from var(--self-color-bg) srgb r g b / 0.8) 5.7%,
+      color(from var(--self-color-bg) srgb r g b / 0.3) 93%,
       color(from var(--self-color-bg) srgb r g b / 0.7) 95%,
       transparent 98%
     ),
