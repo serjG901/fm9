@@ -6,7 +6,7 @@
 .loading-dots div:last-child {
   align-self: center;
   div {
-    background-color: var(--color-text-main);
+    background-color: currentColor;
     width: 4px;
     height: 4px;
     border-radius: 2px;
