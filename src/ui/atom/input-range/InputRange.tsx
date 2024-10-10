@@ -1,28 +1,29 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
-interface InputNumberComponent {
+interface InputRangeComponent {
   id?: string;
   name?: string;
   valueFromParent?: string;
   hoistValue?: (value: string) => void;
-  numberAfterZero?: number;
+  min?: number;
+  max?: number;
+  step?: number;
 }
 
-export default function InputNumber({
-  id = "input-number",
-  name = "input-number",
+export default function InputRange({
+  id = "input-range",
+  name = "input-range",
   valueFromParent = "",
   hoistValue = () => {},
-  numberAfterZero = 2,
-}: InputNumberComponent) {
+  min = 0,
+  max = 100,
+  step = 1,
+}: InputRangeComponent) {
   const [state, setState] = useState(valueFromParent);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const arr = e.target.value.split(".");
-    const value =
-      arr[0] +
-      (arr[1] !== undefined ? "." + arr[1].slice(0, numberAfterZero) : "");
+    const value = e.target.value;
     setState(value);
     hoistValue(value);
   };
@@ -32,15 +33,16 @@ export default function InputNumber({
   }, [valueFromParent]);
 
   return (
-    <div className='input-number'>
+    <div className='input-range'>
       <label htmlFor={id}>
         <span>{name}</span>
         <input
           id={id}
           name={name}
-          type='number'
-          step={0.01}
-          min={1 / 10 ** -numberAfterZero}
+          type='range'
+          step={step}
+          min={min}
+          max={max}
           value={state}
           onChange={handleChange}
         />

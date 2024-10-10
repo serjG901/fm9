@@ -1,28 +1,23 @@
 import Page from "../../ui/atom/page/Page";
 import { useSettingsStore } from "../../store/settingsStore";
+import InputRange from "../../ui/atom/input-range/InputRange";
+import LoadDb from "../../ui/thing/load-db/LoadDb";
 
 export default function Settings() {
   const [hue, setHue] = useSettingsStore((state) => [state.hue, state.setHue]);
 
-  const handleChangeHue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHue(e.target.value);
-  };
-
   return (
     <Page>
-      <label htmlFor='change-hue'>
-        <div>change main color</div>
-        <div>
-          <input
-            id='change-hue'
-            min={0}
-            max={360}
-            type='range'
-            value={hue}
-            onChange={handleChangeHue}
-          />
-        </div>
-      </label>
+      <h1>Settings</h1>
+      <InputRange
+        id='change-hue'
+        name='change main color'
+        min={0}
+        max={360}
+        valueFromParent={hue}
+        hoistValue={setHue}
+      />
+      <LoadDb />
     </Page>
   );
 }

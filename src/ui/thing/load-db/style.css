@@ -1,3 +1,10 @@
+.load-db {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-m);
+}
+
 .load-db-upload-status {
   width: 100%;
   color: lime;
@@ -15,6 +22,17 @@
     transition: opacity 1s ease-in-out 1s;
     @starting-style {
       opacity: 0;
+    }
+  }
+}
+
+.input-file {
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      color: var(--color-text-label);
     }
   }
 }

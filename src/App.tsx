@@ -8,7 +8,6 @@ import Credits from "./pages/credits/Credits";
 //import Pays from "./pages/pays/Pays";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
-import SelfLoadDb from "./pages/self-load-db/SelfLoadDb";
 import SettingsApp from "./pages/settings-app/SettingsApp";
 import { useSettingsStore } from "./store/settingsStore";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
@@ -46,7 +45,6 @@ function App() {
     debets: <Debets />,
     credits: <Credits />,
     ui: <Ui />,
-    db: <SelfLoadDb />,
     settings: <SettingsApp />,
   };
 

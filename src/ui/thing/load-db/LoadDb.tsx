@@ -1,10 +1,9 @@
 import { ChangeEvent, useState } from "react";
-import { useBuysStore } from "../../store/buysStore";
-import { useCreditsStore } from "../../store/creditsStore";
-import { useDebetsStore } from "../../store/debetsStore";
-import { usePaysStore } from "../../store/paysStore";
-import ActionButton from "../../ui/atom/action-button/ActionButton";
-import Page from "../../ui/atom/page/Page";
+import { useBuysStore } from "../../../store/buysStore";
+import { useCreditsStore } from "../../../store/creditsStore";
+import { useDebetsStore } from "../../../store/debetsStore";
+import { usePaysStore } from "../../../store/paysStore";
+import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
 
 export default function LoadDb() {
@@ -61,17 +60,17 @@ export default function LoadDb() {
   };
 
   return (
-    <Page>
-      <h1>File work</h1>
+    <div className='load-db'>
+      <h2>Load DB</h2>
       <div>
         <ActionButton actionWithPayload={saveAsLegacy}>
           download db
         </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
-      <div>
+      <div className="input-file">
         <label htmlFor='oldOpenFile'>
-          upload db
+          <span>upload db</span>
           <input
             name='oldOpenFile'
             type='file'
@@ -87,6 +86,6 @@ export default function LoadDb() {
           <div>DB uploaded</div>
         </div>
       ) : null}
-    </Page>
+    </div>
   );
 }
