@@ -63,6 +63,9 @@ export default function FormPayment({
 
   useEffect(() => {
     if (inActionStatus === 2) {
+      setInActionStatus(3);
+    }
+    if (inActionStatus === 3) {
       actionPayment({
         datetime: paymentDatetime,
         name: paymentName,
@@ -73,7 +76,7 @@ export default function FormPayment({
         tags: paymentTags,
         id: payment.id,
       });
-      setInActionStatus(3);
+      setInActionStatus(4);
     }
   }, [inActionStatus]);
 
@@ -135,7 +138,7 @@ export default function FormPayment({
 
       {inActionStatus === 2 ? (
         <LoadingDots>in action</LoadingDots>
-      ) : inActionStatus === 3 ? (
+      ) : inActionStatus === 4 ? (
         <div>{actionType} done</div>
       ) : null}
       {actionType === "update" && (
