@@ -2,7 +2,7 @@ import "./style.css";
 import { useTransactionsStore } from "../../store/transactionsStore";
 import Transactions from "../../view/transactions/Transactions";
 
-export default function Pays() {
+export default function SelfTransactions() {
   return (
     <Transactions
       transactionsType='Self transactions'

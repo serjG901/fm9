@@ -1,5 +1,5 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
@@ -8,6 +8,7 @@ import Datepicker from "../../atom/datepicker/Datepicker";
 import AddTags from "../add-tags/AddTags";
 import { Payment, Tag } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
 interface FormPaymentComponent {
   maybeName?: string[];
@@ -47,17 +48,10 @@ export default function FormPayment({
   const [paymentFor, setPaymentFor] = useState(payment.for);
   const [paymentTags, setPaymentTags] = useState<Tag[]>(payment.tags);
 
+  const [inActionStatus, setInActionStatus] = useState(1);
+
   const handleActionPayment = () => {
-    actionPayment({
-      datetime: paymentDatetime,
-      name: paymentName,
-      amount: paymentAmount,
-      currency: paymentCurrency,
-      from: paymentFrom,
-      for: paymentFor,
-      tags: paymentTags,
-      id: payment.id,
-    });
+    setInActionStatus(2);
   };
 
   const handleDeletePayment = () => {
@@ -66,6 +60,26 @@ export default function FormPayment({
       deletePayment(payment);
     }
   };
+
+  useEffect(() => {
+    if (inActionStatus) {
+      actionPayment({
+        datetime: paymentDatetime,
+        name: paymentName,
+        amount: paymentAmount,
+        currency: paymentCurrency,
+        from: paymentFrom,
+        for: paymentFor,
+        tags: paymentTags,
+        id: payment.id,
+      });
+      setInActionStatus(3);
+    }
+  }, [inActionStatus]);
+
+  useEffect(() => {
+    setInActionStatus(1);
+  }, []);
 
   return (
     <FlexColumnCenter>
@@ -114,9 +128,16 @@ export default function FormPayment({
         hoistTags={setPaymentTags}
         maybeTags={maybeTags}
       />
+
       <ActionButton actionWithPayload={handleActionPayment}>
         {actionType}
       </ActionButton>
+
+      {inActionStatus === 2 ? (
+        <LoadingDots>in action</LoadingDots>
+      ) : inActionStatus === 3 ? (
+        <div>{actionType} done</div>
+      ) : null}
       {actionType === "update" && (
         <>
           <br />

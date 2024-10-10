@@ -8,8 +8,8 @@ import Credits from "./pages/credits/Credits";
 //import Pays from "./pages/pays/Pays";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
-import FileWork from "./view/fileWork/fileWork";
-//import Transactions from "./pages/transactions/Transactions";
+import SelfLoadDb from "./pages/self-load-db/SelfLoadDb";
+//import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 
 function App() {
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
@@ -18,20 +18,32 @@ function App() {
 
   const pages: { [key: string]: ReactNode } = {
     buys: (
-      <Suspense fallback={<LoadingDots>Buys</LoadingDots>}>
+      <Suspense
+        fallback={
+          <LoadingDots>
+            <h1>Buys</h1>
+          </LoadingDots>
+        }
+      >
         <Buys />
       </Suspense>
     ),
     pays: (
-      <Suspense fallback={<LoadingDots>Pays</LoadingDots>}>
+      <Suspense
+        fallback={
+          <LoadingDots>
+            <h1>Pays</h1>
+          </LoadingDots>
+        }
+      >
         <Pays />
       </Suspense>
     ),
-    //transactions: <Transactions />,
+    //transactions: <SelfTransactions />,
     debets: <Debets />,
     credits: <Credits />,
     ui: <Ui />,
-    db: <FileWork />,
+    db: <SelfLoadDb />,
   };
 
   const handleActionMenu = (payload: string) => {

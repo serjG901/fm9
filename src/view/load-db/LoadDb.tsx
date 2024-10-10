@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import { useBuysStore } from "../../store/buysStore";
 import { useCreditsStore } from "../../store/creditsStore";
 import { useDebetsStore } from "../../store/debetsStore";
@@ -7,7 +7,7 @@ import ActionButton from "../../ui/atom/action-button/ActionButton";
 import Page from "../../ui/atom/page/Page";
 import "./style.css";
 
-export default function FileWork() {
+export default function LoadDb() {
   const [stateBuys, setStateBuys] = useBuysStore((state) => [
     state,
     state.setState,
@@ -24,6 +24,8 @@ export default function FileWork() {
     state,
     state.setState,
   ]);
+
+  const [uploadStatus, setUploadStatus] = useState(false);
 
   const fm9DB = {
     ["fm9-buys"]: stateBuys,
@@ -55,13 +57,16 @@ export default function FileWork() {
       if (key === "fm9-debets") setStateDebets(fm9DB[key]);
       if (key === "fm9-credits") setStateCredits(fm9DB[key]);
     });
+    setUploadStatus(true);
   };
 
   return (
     <Page>
       <h1>File work</h1>
       <div>
-        <ActionButton actionWithPayload={saveAsLegacy}>download db</ActionButton>
+        <ActionButton actionWithPayload={saveAsLegacy}>
+          download db
+        </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
       <div>
@@ -75,6 +80,7 @@ export default function FileWork() {
           />
         </label>
       </div>
+      {uploadStatus ? <div>DB is uploaded</div> : null}
     </Page>
   );
 }
