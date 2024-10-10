@@ -9,11 +9,13 @@ import Credits from "./pages/credits/Credits";
 import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 import SelfLoadDb from "./pages/self-load-db/SelfLoadDb";
+import SettingsApp from "./pages/settings-app/SettingsApp";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 
 function App() {
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
   const Pays = React.lazy(() => import("./pages/pays/Pays"));
+  const [hue, setHue] = useState(240);
   const [page, setPage] = useState<string>("buys");
 
   const pages: { [key: string]: ReactNode } = {
@@ -44,6 +46,7 @@ function App() {
     credits: <Credits />,
     ui: <Ui />,
     db: <SelfLoadDb />,
+    settings: <SettingsApp hueFromParrent={hue} hoistHue={setHue} />,
   };
 
   const handleActionMenu = (payload: string) => {
@@ -51,7 +54,7 @@ function App() {
   };
 
   return (
-    <>
+    <div className='app' style={{ "--hue": hue } as React.CSSProperties}>
       <Menu
         collapseLevel='menu'
         title='pages'
@@ -59,7 +62,7 @@ function App() {
         actionWithPayload={handleActionMenu}
       />
       {pages[page] || null}
-    </>
+    </div>
   );
 }
 

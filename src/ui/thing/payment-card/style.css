@@ -2,7 +2,7 @@
   width: min-content;
   height: min-content;
   padding: var(--padding-card);
-  border-radius: var(--radius-border-card);
+  border-radius: var(--border-radius-card);
   background-color: var(--color-bg-card);
   border: 1px solid var(--color-border-card);
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
@@ -11,18 +11,18 @@
     gap: var(--gap-card);
   }
   .payment-card-datetime {
-    color: var(--color-datetime);
+    color: var(--color-card-datetime);
   }
   .payment-card-name {
-    color: var(--color-name-card);
+    color: var(--color-card-name);
   }
   .payment-card-amount {
     font-size: 2rem;
     font-weight: bold;
-    color: var(--color-amount-card);
+    color: var(--color-card-amount);
   }
   .payment-card-currency {
-    color: var(--color-currency-card);
+    color: var(--color-card-currency);
   }
   .payment-card-from-for {
     display: grid;
@@ -30,69 +30,9 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
   .payment-card-from {
-    color: var(--color-from-card);
+    color: var(--color-card-from-for);
   }
   .payment-card-for {
-    color: var(--color-for-card);
-  }
-}
-
-.loading-payment-card {
-  position: relative;
-  width: min-content;
-  height: min-content;
-  padding: var(--padding-card);
-  border-radius: var(--radius-border-card);
-  background-color: var(--color-bg-card);
-  border: 1px solid var(--color-border-card);
-  box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-  opacity: 1;
-  > div {
-    gap: var(--gap-card);
-  }
-  .loading {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    border-radius: var(--radius-border-card);
-    animation: animation-loading-payment-card var(--loading-behavior);
-    background: var(--loading-gradient);
-    opacity: 0.4;
-  }
-  .payment-card-datetime {
-    color: var(--color-datetime);
-  }
-  .payment-card-name {
-    color: var(--color-name-card);
-  }
-  .payment-card-amount {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--color-amount-card);
-  }
-  .payment-card-currency {
-    color: var(--color-currency-card);
-  }
-  .payment-card-from-for {
-    display: grid;
-    align-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  .payment-card-from {
-    color: var(--color-from-card);
-  }
-  .payment-card-for {
-    color: var(--color-for-card);
-  }
-}
-
-@keyframes animation-loading-payment-card {
-  from {
-    background-position-y: -500px;
-  }
-  to {
-    background-position-y: 500px;
+    color: var(--color-card-from-for);
   }
 }

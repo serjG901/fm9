@@ -11,6 +11,6 @@
     span {
       color: var(--color-text-main);
     }
-    background-color: var(--color-bg-label_checked);
+    background-color: var(--color-bg-label-checked);
   }
 }

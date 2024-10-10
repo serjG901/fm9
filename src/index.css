@@ -1,56 +1,44 @@
 :root {
+  /*colors*/
+
+  --color-white: hsl(0, 0%, 100%);
+  --color-black: hsl(0, 0%, 0%);
+  --color-gray: hsl(0, 0%, 50%);
+  --color-transporent: hsla(0, 0%, 100%, 0);
+  --color-alert: hsl(0, 100%, 50%);
+  --color-attention: hsl(60, 100%, 50%);
+  --color-confirm: hsl(120, 100%, 50%);
+  --color-text-main: hsl(0, 0%, 90%);
   --color-bg-main: hsl(0, 0%, 20%);
-  --color-text-main: hsla(0, 0%, 100%, 0.87);
 
-  --color-description: hsl(0, 0%, 60%);
+  --border-radius-action-element: 8px;
+  --border-radius-card: 24px;
 
-  --color-datetime: hsl(0, 0%, 60%);
+  --font-weight-action-element: 500;
+  --font-size-action-element: 1rem;
+  --padding-action-element: 0.6rem 1.2rem;
+  --border-action-element: 1px solid var(--color-transporent);
 
-  --color-bg-button: hsl(0, 0%, 10%);
-  --color-border-button: hsl(240, 100%, 70%);
-  --radius-border-button: 8px;
-  --weight-font-button: 500;
-  --size-font-button: 1rem;
-  --padding-button: 0.6rem 1.2rem;
-  --border-button: 1px solid transparent;
+  --gap-s: 0.5rem;
+  --gap-m: 1rem;
+  --gap-l: 1.5rem;
 
-  --color-bg-summary: hsla(0, 0%, 100%, 0);
+  --padding-s: 0.5rem;
+  --padding-m: 1rem;
+  --padding-l: 1.5rem;
 
-  --color-text-label: hsl(0, 0%, 50%);
+  --gap-page: var(--gap-m);
 
-  --gap-page: 1rem;
+  --padding-menu: var(--padding-s);
+  --gap-menu: var(--gap-s);
 
-  --color-bg-label_checked: hsl(120, 50%, 40%);
+  --gap-card: var(--gap-m);
+  --padding-card: var(--padding-m);
 
-  --padding-menu: 0.5rem;
-  --gap-menu: 0.5rem;
-  --color-bg-menu: hsl(250, 40%, 40%);
-
-  --gap-card: 1rem;
-  --padding-card: 1rem;
-  --radius-border-card: 8px;
-  --color-border-card: black;
-  --color-bg-card: var(--color-bg-menu);
-  --color-datetime-card: hsl(0, 0%, 50%);
-  --color-name-card: hsl(0, 100%, 100%);
-  --color-amount-card: hsl(60, 100%, 50%);
-  --color-currency-card: hsl(0, 0%, 50%);
-  --color-from-card: hsl(0, 0%, 50%);
-  --color-for-card: hsl(0, 0%, 50%);
-  --color-arrow-from-for-card: hsl(0, 0%, 100%);
-
-  --color-bg-break-line: hsl(0, 0%, 15%);
-
-  --color-gray-600: #7b7c88;
-  --color-gray-500: #acadb9;
-  --color-gray-300: #d5d6dc;
-  --color-gray-200: #eaebed;
-  --color-gray-100: #f5f5f6;
-  --color-white: #ffffff;
   --loading-gradient: linear-gradient(
     0deg,
     var(--color-white) 0%,
-    var(--color-gray-600) 50%,
+    var(--color-neutral) 50%,
     var(--color-white) 100%
   );
   --loading-time: 3s;

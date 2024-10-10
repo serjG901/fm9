@@ -1,30 +1,31 @@
 .action-button {
   height: min-content;
-  border-radius: var(--radius-border-button);
-  border: var(--border-button);
-  padding: var(--padding-button);
-  font-size: var(--size-font-button);
-  font-weight: var(--weight-font-button);
+  border-radius: var(--border-radius-action-element);
+  border: var(--border-action-element);
+  padding: var(--padding-action-element);
+  font-size: var(--font-size-action-element);
+  font-weight: var(--font-weight-action-element);
   font-family: inherit;
   background-color: var(--self-color-bg, var(--color-bg-button));
   cursor: pointer;
   transition: border-color 0.25s;
   --self-color: color(
-    from var(--self-color-bg) srgb calc(1 - round(calc(r + g + b) / 3, 1))
-      calc(1 - round(calc(r + g + b) / 3, 1))
-      calc(1 - round(calc(r + g + b) / 3, 1))
+    from var(--self-color-bg) srgb
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
   );
   color: var(--self-color, currentColor);
 }
 
 .action-button:hover {
-  border-color: var(--color-border-button);
+  border-color: var(--color-border-action-element-accent);
 }
 .action-button:focus,
 .action-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 1px solid var(--color-border-action-element-accent);
 }
 
 .action-button[data-alert="alert"] {
-  color: red;
+  color: var(--color-alert);
 }

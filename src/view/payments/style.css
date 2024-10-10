@@ -4,6 +4,6 @@
   align-items: center;
   gap: var(--gap-page);
   .sum {
-    color: var(--color-amount-card);
+    color: var(--color-card-amount);
   }
 }

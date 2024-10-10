@@ -1,10 +1,10 @@
 .collapse {
   width: 100%;
   background-color: var(--color-bg-menu);
-  border-radius: var(--radius-border-button);
+  border-radius: var(--border-radius-action-element);
   border: 1px solid black;
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
- /* background-image: radial-gradient(
+  /* background-image: radial-gradient(
     circle farthest-corner at 50% 20%,
     rgba(151, 41, 247, 1) 0%,
     rgba(24, 22, 39, 1) 90%
@@ -14,13 +14,12 @@
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
-    border-radius: var(--radius-border-button);
-    border: var(--border-button);
-    padding: var(--padding-button);
-    font-size: var(--size-font-button);
-    font-weight: var(--weight-font-button);
+    border-radius: var(--border-radius-action-element);
+    border: var(--border-action-element);
+    padding: var(--padding-action-element);
+    font-size: var(--font-size-action-element);
+    font-weight: var(--font-weight-action-element);
     font-family: inherit;
-    background-color: var(--color-bg-summary);
     cursor: pointer;
     transition: border-color 0.25s;
   }
@@ -29,7 +28,7 @@
   }
   summary:focus,
   summary:focus-visible {
-    outline: 4px auto -webkit-focus-ring-color;
+    outline: 1px solid var(--color-border-action-element-accent);
   }
 
   > div {
@@ -42,6 +41,9 @@
 
 .collapse[open] summary {
   text-decoration: underline;
+}
+.collapse:not([open]) summary:hover {
+  text-decoration: none;
 }
 /*
 .collapse:nth-child(1) {
