@@ -35,7 +35,10 @@ export const createSourcesStore = (name: string) =>
             return { sources: filtredSources };
           });
         },
-        getSourcesName: () => get().sources.map((s) => s.name),
+        getSourcesName: () =>
+          get()
+            .sources.sort((a, b) => +b.amount - +a.amount)
+            .map((s) => s.name),
         getSources: () => get().sources,
       }),
       {

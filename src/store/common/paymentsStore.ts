@@ -20,12 +20,6 @@ export const createPaymentStore = (name: string) =>
               return {
                 payments: [...state.payments, payment],
                 id: state.id + 1,
-                fromOptions: Array.from(
-                  new Set(state.fromOptions).add(payment.from)
-                ),
-                forOptions: Array.from(
-                  new Set(state.forOptions).add(payment.from)
-                ),
               };
             });
           },
@@ -36,12 +30,6 @@ export const createPaymentStore = (name: string) =>
               );
               return {
                 payments: [...filtredPayments, payment],
-                fromOptions: Array.from(
-                  new Set(state.fromOptions).add(payment.from)
-                ),
-                forOptions: Array.from(
-                  new Set(state.forOptions).add(payment.from)
-                ),
               };
             });
           },
@@ -53,16 +41,11 @@ export const createPaymentStore = (name: string) =>
               return { payments: filtredPayments };
             });
           },
-          fromOptions: [],
           getFromOptions: () => {
-            return get().fromOptions;
+            return get().payments.map((p) => p.from);
           },
-          updateFromFor: () => {
-            set({ fromOptions: [], forOptions: [] });
-          },
-          forOptions: [],
           getForOptions: () => {
-            return get().forOptions;
+            return get().payments.map((p) => p.for);
           },
         };
       },

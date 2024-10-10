@@ -42,11 +42,8 @@ export interface PaymentsStore {
   addPayment: (newPayment: NewPayment) => void;
   updatePayment: (payment: Payment) => void;
   deletePayment: (payment: Payment) => void;
-  fromOptions: string[];
   getFromOptions: () => string[];
-  forOptions: string[];
   getForOptions: () => string[];
-  updateFromFor: () => void;
 }
 
 export interface PeriodStore {
