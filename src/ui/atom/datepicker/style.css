@@ -6,5 +6,9 @@
     span {
       color: var(--color-text-label);
     }
+    input {
+      width: 100%;
+      max-width: 20ch;
+    }
   }
 }

@@ -1,16 +1,6 @@
 .modal {
-  position: fixed;
-  overflow-y: scroll;
-  scrollbar-width: none;
-  margin-block: 1rem;
-  width: min-content;
-  height: min-content;
-  max-height: 90dvh;
-  padding: 2rem 2rem;
-  border-radius: 8px;
-  border: 2px solid hsl(0 0 0);
-  box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-  background-color: var(--color-bg-menu);
+  width: 100vw;
+  height: 100vh;
   cursor: auto;
   .hide-modal {
     position: fixed;
@@ -22,14 +12,17 @@
     }
   }
   .modal-content {
-    width: min-content;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    width: max-content;
+    max-width: 80%;
+    margin-block: 1rem;
+    margin-inline: auto;
+    max-height: 90dvh;
+    padding: 2rem;
+    border-radius: 8px;
+    border: 2px solid hsl(0 0 0);
+    box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
+    background-color: var(--color-bg-menu);
   }
-}
-
-.modal::backdrop {
-  background-color: hsla(0 0 0 / 0.9);
-}
-
-.modal[open] {
-  z-index: 100;
 }

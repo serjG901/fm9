@@ -21,8 +21,7 @@ export default function Modal({
     modalId?.showPopover();
   };*/
 
-  const hideModal = (_, e) => {
-    e.stopPropagation();
+  const hideModal = () => {
     const modalId = document.getElementById(id);
     modalId?.hidePopover();
   };

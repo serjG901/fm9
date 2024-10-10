@@ -18,6 +18,7 @@ export default function ActionButton({
   bgColor = "",
 }: ActionButtonComponent) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     actionWithPayload(payload, e);
   };
 

@@ -33,7 +33,9 @@ export default function UpdatePayment({
   maybeTags = [],
 }: UpdatePaymentComponent) {
   return (
-    <Modal id={`update-payment-${payment.id}`}>
+    <Modal
+      id={`update-payment-${payment.id}`}
+    >
       <FormPayment
         maybeName={maybeName}
         actionType='update'

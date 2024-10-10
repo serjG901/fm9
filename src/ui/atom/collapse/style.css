@@ -37,6 +37,10 @@
     flex-wrap: wrap;
     gap: var(--gap-menu);
   }
+
+  .collapse-content {
+    padding: 2rem;
+  }
 }
 
 .collapse[open] summary {

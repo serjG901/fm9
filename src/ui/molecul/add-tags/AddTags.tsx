@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import InputWithMemory from "../../atom/input-with-memory/InputWithMemory";
 import Colorpicker from "../../atom/colorpicker/Colorpicker";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Tag } from "../../../interfaces";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
+import InputText from "../../atom/input-text/InputText";
 
 interface AddTagsComponent {
   tagsFromParrent?: Tag[];
@@ -71,7 +71,7 @@ export default function AddTags({
             {!onlyMaybeTags && (
               <>
                 <div>
-                  <InputWithMemory
+                  <InputText
                     id='add-tag-value'
                     name='tag'
                     valueFromParent={value}

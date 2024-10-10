@@ -19,7 +19,7 @@ export default function AddPayment({
   maybeTags = [],
 }: AddPaymentComponent) {
   return (
-    <div>
+    <div className='add-payment'>
       <Collapse collapseLevel='menu' title='add'>
         <FormPayment
           maybeName={maybeName}

@@ -143,11 +143,14 @@ export default function FormPayment({
         valueFromParent={paymentFor}
         hoistValue={setPaymentFor}
       />
-      <AddTags
-        tagsFromParrent={paymentTags}
-        hoistTags={setPaymentTags}
-        maybeTags={maybeTags}
-      />
+      <div>
+        <AddTags
+          tagsFromParrent={paymentTags}
+          hoistTags={setPaymentTags}
+          maybeTags={maybeTags}
+        />
+      </div>
+
       {isActionStatus === 2 || isActionStatus === 3 ? (
         <ActionButton>
           <LoadingDots>

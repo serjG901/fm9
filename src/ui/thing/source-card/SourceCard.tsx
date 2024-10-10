@@ -14,8 +14,7 @@ export default function SourceCard({
   updateSource = () => {},
   deleteSource = () => {},
 }: SourceCardComponent) {
-  const showModal = (e:React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
+  const showModal = () => {
     const modalId = document.getElementById(`update-source-${source.id}`);
     modalId?.showPopover();
   };

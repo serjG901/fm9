@@ -42,7 +42,7 @@ export default function Sources({
             {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
           </div>
         ))}
-        
+
         <AddSource addSource={addSource} />
         <FlexWrap
           childrenArray={sources

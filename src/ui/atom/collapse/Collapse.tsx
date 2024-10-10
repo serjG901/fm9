@@ -15,7 +15,7 @@ export default function Collapse({
   return (
     <details className='collapse' name={collapseLevel}>
       <summary>{title}</summary>
-      <div>{children}</div>
+      <div className='collapse-content'>{children}</div>
     </details>
   );
 }
