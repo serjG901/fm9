@@ -1,21 +1,48 @@
 .highlight-text {
   white-space: nowrap;
-  background-color: var(--self-color-bg);
+  /*background-color: var(--self-color-bg);*/
+  background: linear-gradient(
+      100deg,
+      transparent 1%,
+      var(--self-color-bg) 2.5%,
+      color(from var(--self-color-bg) srgb r g b / 0.7) 5.7%,
+      color(from var(--self-color-bg) srgb r g b / 0.2) 93%,
+      color(from var(--self-color-bg) srgb r g b / 0.7) 95%,
+      transparent 98%
+    ),
+    linear-gradient(
+      182deg,
+      transparent,
+      color(from var(--self-color-bg) srgb r g b / 0.3) 8%,
+      transparent 15%
+    ); /*
+  background-image: linear-gradient(
+    75deg,
+    transparent 0%,
+    transparent 5%,
+    color(from var(--self-color-bg) srgb r g b / 0.8) 15%,
+    var(--self-color-bg) 25%,
+    var(--self-color-bg) 70%,
+    color(from var(--self-color-bg) srgb r g b / 0.5) 85%,
+    transparent 95%,
+    transparent 100%
+  );*/
   /*contrast color (white or black) for background*/
   color: color(
-    from var(--self-color-bg) srgb calc(1 - round(calc(r + g + b) / 3, 1))
-      calc(1 - round(calc(r + g + b) / 3, 1))
-      calc(1 - round(calc(r + g + b) / 3, 1))
+    from var(--self-color-bg) srgb
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
   );
-}
-
-.highlight-text[data-padding="padding"]::after {
-  content: " ";
-  display: inline-block;
-  width: 1ch;
 }
 .highlight-text[data-padding="padding"]::before {
   content: " ";
   display: inline-block;
-  width: 1ch;
+  width: 2ch;
+  /*content: counter(count, decimal);*/
+}
+.highlight-text[data-padding="padding"]::after {
+  content: " ";
+  display: inline-block;
+  width: 3ch;
 }

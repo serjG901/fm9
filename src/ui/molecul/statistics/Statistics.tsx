@@ -31,6 +31,7 @@ export default function Statistics({
         <div key={name}>
           <div>
             <SearchedName name={name} search={search} />
+
             <div>
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])

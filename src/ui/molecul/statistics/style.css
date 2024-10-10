@@ -33,4 +33,11 @@
 
 .statistics > div > div {
   background-color: hsla(0, 0%, 100%, 0.1);
+  counter-reset: count 0;
+  div {
+    span {
+      counter-increment: count 1;
+      --counter: counter(count, decimal);
+    }
+  }
 }
