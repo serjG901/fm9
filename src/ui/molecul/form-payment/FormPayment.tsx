@@ -68,16 +68,18 @@ export default function FormPayment({
       setIsActionStatus(3);
     }
     if (isActionStatus === 3) {
-      actionPayment({
-        datetime: paymentDatetime,
-        name: paymentName,
-        amount: paymentAmount,
-        currency: paymentCurrency,
-        from: paymentFrom,
-        for: paymentFor,
-        tags: paymentTags,
-        id: payment.id,
-      });
+      if (paymentName) {
+        actionPayment({
+          datetime: paymentDatetime,
+          name: paymentName,
+          amount: paymentAmount,
+          currency: paymentCurrency,
+          from: paymentFrom,
+          for: paymentFor,
+          tags: paymentTags,
+          id: payment.id,
+        });
+      }
       setIsActionStatus(4);
     }
     if (isActionStatus === 4) {
