@@ -62,7 +62,7 @@ export default function FormPayment({
   };
 
   useEffect(() => {
-    if (inActionStatus) {
+    if (inActionStatus === 2) {
       actionPayment({
         datetime: paymentDatetime,
         name: paymentName,
