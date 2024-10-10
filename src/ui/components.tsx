@@ -11,6 +11,7 @@ import FlexColumnCenter from "./atom/flex-column-center/FlexColumnCenter";
 import FlexWrap from "./atom/flex-wrap/FlexWrap";
 import HighlightText from "./atom/highlight-text/HighlightText";
 import InputNumber from "./atom/input-number/InputNumber";
+import InputRange from "./atom/input-range/InputRange";
 import InputText from "./atom/input-text/InputText";
 import InputWithMemory from "./atom/input-with-memory/InputWithMemory";
 import InputWithOptions from "./atom/input-with-options/InputWithOptions";
@@ -36,6 +37,7 @@ import Filter from "./substance/filter/Filter";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";
+import LoadDb from "./thing/load-db/LoadDb";
 //things
 import PaymentCard from "./thing/payment-card/PaymentCard";
 import SourceCard from "./thing/source-card/SourceCard";
@@ -54,6 +56,7 @@ const componentsArr = [
   <FlexWrap />,
   <HighlightText />,
   <InputNumber />,
+  <InputRange />,
   <InputText />,
   <InputWithMemory />,
   <InputWithOptions />,
@@ -77,6 +80,7 @@ const componentsArr = [
   <UpdatePayment />,
   <UpdateSource />,
   <UpdateTransaction />,
+  <LoadDb />,
   <PaymentCard />,
   <SourceCard />,
   <TransactionCard />,

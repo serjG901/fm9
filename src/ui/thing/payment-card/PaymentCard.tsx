@@ -36,7 +36,8 @@ export default function PaymentCard({
   maybeTags = [],
   search = "",
 }: PaymentCardComponent) {
-  const showModal = () => {
+  const showModal = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
     const modalId = document.getElementById(`update-payment-${payment.id}`);
     modalId?.showPopover();
   };
