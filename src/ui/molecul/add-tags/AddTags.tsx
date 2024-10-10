@@ -65,7 +65,7 @@ export default function AddTags({
 
   return (
     <div className='add-tags'>
-      <Collapse collapseLevel='tags' title='add tags'>
+      <Collapse collapseLevel='tags' title='tags'>
         <div className='input-add-tags'>
           <FlexColumnCenter>
             {!onlyMaybeTags && (
