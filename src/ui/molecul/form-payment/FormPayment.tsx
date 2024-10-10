@@ -159,10 +159,10 @@ export default function FormPayment({
       {actionType === "update" && (
         <>
           <br />
+          {isDeleteStatus === 2 ? <LoadingDots>is deleted</LoadingDots> : null}
           <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
             delete
           </ActionButton>
-          {isDeleteStatus === 2 ? <LoadingDots>is deleted</LoadingDots> : null}
         </>
       )}
     </FlexColumnCenter>
