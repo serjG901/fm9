@@ -95,6 +95,11 @@ export interface BasesStore {
   setCurrentBase: (base: Base | null) => void;
 }
 
+export interface SettingsStore {
+  hue: string;
+  setHue: (hue: string) => void;
+}
+
 //zustand
 
 export type Write<T, U> = Omit<T, keyof U> & U;

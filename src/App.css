@@ -8,7 +8,7 @@
 
 .app {
   --hue: 250;
-  --color-main: hsl(var(--hue), 40%, 40%);
+  --color-main: hsl(var(--hue), 40%, 20%);
   --color-main-light-accent: hsl(var(--hue), 100%, 70%);
   --color-main-dark-accent: hsl(var(--hue), 60%, 10%);
   --color-neutral: var(--color-gray);

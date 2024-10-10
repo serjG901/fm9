@@ -42,9 +42,10 @@
 .collapse[open] summary {
   text-decoration: underline;
 }
-.collapse:not([open]) summary:hover {
+.collapse:not([open]) summary {
   text-decoration: none;
 }
+
 /*
 .collapse:nth-child(1) {
   width: 100%;

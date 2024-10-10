@@ -38,11 +38,11 @@
 .highlight-text[data-padding="padding"]::before {
   content: " ";
   display: inline-block;
-  width: 2ch;
+  width: 1ch;
   /*content: counter(count, decimal);*/
 }
 .highlight-text[data-padding="padding"]::after {
   content: " ";
   display: inline-block;
-  width: 3ch;
+  width: 2ch;
 }

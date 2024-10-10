@@ -36,8 +36,13 @@ export default function PaymentCard({
   maybeTags = [],
   search = "",
 }: PaymentCardComponent) {
+  const showModal = () => {
+    const modalId = document.getElementById(`update-payment-${payment.id}`);
+    modalId?.showPopover();
+  };
+
   return (
-    <div className='payment-card' key={payment.id}>
+    <div className='payment-card' key={payment.id} onClick={showModal}>
       <FlexColumnCenter>
         <div className='payment-card-datetime'>
           {payment.datetime.split("T").map((d) => (

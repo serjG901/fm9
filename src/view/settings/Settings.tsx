@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react";
 import Page from "../../ui/atom/page/Page";
+import { useSettingsStore } from "../../store/settingsStore";
 
-interface SettingsComponent {
-  hueFromParrent: number;
-  hoistHue: (hue: number) => void;
-}
-
-export default function Settings({
-  hueFromParrent,
-  hoistHue,
-}: SettingsComponent) {
-  const [hue, setHue] = useState(hueFromParrent);
+export default function Settings() {
+  const [hue, setHue] = useSettingsStore((state) => [state.hue, state.setHue]);
 
   const handleChangeHue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHue(+e.target.value);
+    setHue(e.target.value);
   };
-
-  useEffect(() => {
-    if (hue !== hueFromParrent) hoistHue(hue);
-  }, [hue]);
-
-  useEffect(() => {
-    if (hue !== hueFromParrent) setHue(hueFromParrent);
-  }, [hueFromParrent]);
 
   return (
     <Page>

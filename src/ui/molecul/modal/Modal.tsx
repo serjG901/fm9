@@ -7,28 +7,28 @@ import ActionButton from "../../atom/action-button/ActionButton";
 
 interface ModalComponent {
   id?: string;
-  description?: string;
+  //description?: string;
   children?: ReactNode;
 }
 
 export default function Modal({
   id = "modal",
-  description = "open",
+  //description = "open",
   children = "children",
 }: ModalComponent) {
-  const showModal = () => {
+  /* const showModal = () => {
     const modalId = document.getElementById(id);
     modalId?.showPopover();
-  };
+  };*/
 
-  const hideModal = () => {
+  const hideModal = (_, e) => {
+    e.stopPropagation();
     const modalId = document.getElementById(id);
     modalId?.hidePopover();
   };
-
+  //<ActionButton actionWithPayload={showModal}>{description}</ActionButton>
   return (
     <div>
-      <ActionButton actionWithPayload={showModal}>{description}</ActionButton>
       <div className='modal' popover='auto' id={id}>
         <div className='hide-modal'>
           <ActionButton actionWithPayload={hideModal}>close</ActionButton>

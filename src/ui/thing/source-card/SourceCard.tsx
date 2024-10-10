@@ -14,8 +14,12 @@ export default function SourceCard({
   updateSource = () => {},
   deleteSource = () => {},
 }: SourceCardComponent) {
+  const showModal = () => {
+    const modalId = document.getElementById(`update-source-${source.id}`);
+    modalId?.showPopover();
+  };
   return (
-    <div className='source-card' key={source.id}>
+    <div className='source-card' key={source.id} onClick={showModal}>
       <FlexColumnCenter>
         <div className='source-card-name'>{source.name}</div>
         <div className='source-card-amount'>{source.amount}</div>

@@ -15,7 +15,7 @@ export default function UpdateSource({
   deleteSource = () => {},
 }: UpdateSourceComponent) {
   return (
-    <Modal id={`update-source-${source.id}`} description='update'>
+    <Modal id={`update-source-${source.id}`}>
       <FormSource
         actionType='update'
         actionSource={updateSource}

@@ -3,7 +3,7 @@ import "./style.css";
 import { ReactNode } from "react";
 
 interface ActionButtonComponent {
-  actionWithPayload?: (payload?: any) => void;
+  actionWithPayload?: (payload?: any, e?: any) => void;
   payload?: any;
   children?: ReactNode;
   alert?: boolean;
@@ -17,8 +17,8 @@ export default function ActionButton({
   alert = false,
   bgColor = "",
 }: ActionButtonComponent) {
-  const handleClick = () => {
-    actionWithPayload(payload);
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    actionWithPayload(payload, e);
   };
 
   return (

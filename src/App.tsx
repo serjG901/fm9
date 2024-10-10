@@ -10,13 +10,14 @@ import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 import SelfLoadDb from "./pages/self-load-db/SelfLoadDb";
 import SettingsApp from "./pages/settings-app/SettingsApp";
+import { useSettingsStore } from "./store/settingsStore";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 
 function App() {
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
   const Pays = React.lazy(() => import("./pages/pays/Pays"));
-  const [hue, setHue] = useState(240);
   const [page, setPage] = useState<string>("buys");
+  const [hue] = useSettingsStore((state) => [state.hue]);
 
   const pages: { [key: string]: ReactNode } = {
     buys: (
@@ -46,7 +47,7 @@ function App() {
     credits: <Credits />,
     ui: <Ui />,
     db: <SelfLoadDb />,
-    settings: <SettingsApp hueFromParrent={hue} hoistHue={setHue} />,
+    settings: <SettingsApp />,
   };
 
   const handleActionMenu = (payload: string) => {
