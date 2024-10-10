@@ -63,6 +63,7 @@ export default function FormPayment({
   };
 
   useEffect(() => {
+    let timer = 0;
     if (isActionStatus === 2) {
       setIsActionStatus(3);
     }
@@ -78,8 +79,13 @@ export default function FormPayment({
         id: payment.id,
       });
       setIsActionStatus(4);
-      setTimeout(() => setIsActionStatus(1), 2000);
     }
+    if (isActionStatus === 4) {
+      timer = setTimeout(() => setIsActionStatus(1), 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
   }, [isActionStatus]);
 
   useEffect(() => {
@@ -143,7 +149,7 @@ export default function FormPayment({
         {actionType}
       </ActionButton>
 
-      {isActionStatus === 2 ? (
+      {isActionStatus === 2 || isActionStatus === 3 ? (
         <LoadingDots>is {actionType}ed</LoadingDots>
       ) : isActionStatus === 4 ? (
         <div>{actionType} done</div>

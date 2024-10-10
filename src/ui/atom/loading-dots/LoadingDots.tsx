@@ -7,5 +7,14 @@ interface LoadingDotsComponent {
 export default function LoadingDots({
   children = "children",
 }: LoadingDotsComponent) {
-  return <div className='loading-dots'>{children}</div>;
+  return (
+    <div className='loading-dots'>
+      {children}
+      <div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  );
 }
