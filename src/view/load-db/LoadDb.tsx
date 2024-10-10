@@ -81,7 +81,12 @@ export default function LoadDb() {
           />
         </label>
       </div>
-      {uploadStatus ? <div>DB is uploaded</div> : null}
+      {uploadStatus ? (
+        <div className='load-db-upload-status'>
+          <hr color='lime' />
+          <div>DB uploaded</div>
+        </div>
+      ) : null}
     </Page>
   );
 }

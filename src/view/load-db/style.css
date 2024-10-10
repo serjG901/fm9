@@ -1,31 +1,20 @@
-.fileWork details {
-    max-height: 80vh;
-    overflow: auto;
-    position: relative;
-    min-width: 90vw;
-}
-.fileWork .grid {
-    display: grid;
-    grid: auto / 1fr 1fr 1fr 1fr;
-    gap: 4px;
-    background-color: var(--bg-color-table);
-}
+.load-db-upload-status {
+  width: 100%;
+  color: lime;
 
-.fileWork .grid div {
-    padding: 4px;
-    display: flex;
-    justify-content: center;
-}
+  hr {
+    width: 100%;
+    transition: width 1s ease-in-out;
+    @starting-style {
+      width: 0%;
+    }
+  }
 
-.fileWork .grid div:nth-child(4n + 1) {
-    background-color: var(--bg-color-table-column-odd);
-}
-.fileWork .grid div:nth-child(4n + 2) {
-    background-color: var(--bg-color-table-column-odd);
-}
-.fileWork .grid div:nth-child(4n + 3) {
-    background-color: var(--bg-color-table-column-even);
-}
-.fileWork .grid div:nth-child(4n) {
-    background-color: var(--bg-color-table-column-even);
+  div {
+    opacity: 1;
+    transition: opacity 1s ease-in-out 1s;
+    @starting-style {
+      opacity: 0;
+    }
+  }
 }
