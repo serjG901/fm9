@@ -168,11 +168,11 @@ export default function FormPayment({
         <>
           <br />
           {isDeleteStatus === 2 ? (
-            <ActionButton>
+            <ActionButton alert>
               <LoadingDots>deleting</LoadingDots>
             </ActionButton>
           ) : (
-            <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
+            <ActionButton actionWithPayload={handleDeletePayment} alert>
               delete
             </ActionButton>
           )}
