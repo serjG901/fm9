@@ -95,6 +95,13 @@ export interface BasesStore {
   setCurrentBase: (base: Base | null) => void;
 }
 
+export interface FiltersStore {
+  search: string;
+  setSearch: (search: string) => void;
+  filterTags: Tag[];
+  setFilterTags: (filterTags: Tag[]) => void;
+}
+
 export interface SettingsStore {
   hue: string;
   setHue: (hue: string) => void;
