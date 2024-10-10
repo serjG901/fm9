@@ -52,7 +52,9 @@ export default function FormPayment({
   const [isDeleteStatus, setIsDeleteStatus] = useState(1);
 
   const handleActionPayment = () => {
-    setIsActionStatus(2);
+    if (paymentName) {
+      setIsActionStatus(2);
+    }
   };
 
   const handleDeletePayment = () => {
@@ -68,21 +70,21 @@ export default function FormPayment({
       setIsActionStatus(3);
     }
     if (isActionStatus === 3) {
-      if (paymentName) {
-        actionPayment({
-          datetime: paymentDatetime,
-          name: paymentName,
-          amount: paymentAmount,
-          currency: paymentCurrency,
-          from: paymentFrom,
-          for: paymentFor,
-          tags: paymentTags,
-          id: payment.id,
-        });
-      }
-      setIsActionStatus(4);
+      actionPayment({
+        datetime: paymentDatetime,
+        name: paymentName,
+        amount: paymentAmount,
+        currency: paymentCurrency,
+        from: paymentFrom,
+        for: paymentFor,
+        tags: paymentTags,
+        id: payment.id,
+      });
+
+      timer = setTimeout(() => setIsActionStatus(4), 300);
     }
     if (isActionStatus === 4) {
+      clearTimeout(timer);
       timer = setTimeout(() => setIsActionStatus(1), 2000);
     }
     return () => {
@@ -147,20 +149,33 @@ export default function FormPayment({
         maybeTags={maybeTags}
       />
       {isActionStatus === 2 || isActionStatus === 3 ? (
-        <LoadingDots>is {actionType}ed</LoadingDots>
+        <ActionButton>
+          <LoadingDots>
+            {actionType === "update" ? "updating" : "adding"}
+          </LoadingDots>
+        </ActionButton>
       ) : isActionStatus === 4 ? (
-        <div>{actionType} done</div>
-      ) : null}
-      <ActionButton actionWithPayload={handleActionPayment}>
-        {actionType}
-      </ActionButton>
+        <ActionButton>
+          <div>{actionType} done</div>
+        </ActionButton>
+      ) : (
+        <ActionButton actionWithPayload={handleActionPayment}>
+          {actionType}
+        </ActionButton>
+      )}
+
       {actionType === "update" && (
         <>
           <br />
-          {isDeleteStatus === 2 ? <LoadingDots>is deleted</LoadingDots> : null}
-          <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
-            delete
-          </ActionButton>
+          {isDeleteStatus === 2 ? (
+            <ActionButton>
+              <LoadingDots>deleting</LoadingDots>
+            </ActionButton>
+          ) : (
+            <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
+              delete
+            </ActionButton>
+          )}
         </>
       )}
     </FlexColumnCenter>
