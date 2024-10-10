@@ -28,7 +28,7 @@ export default function UpdateTransaction({
 }: UpdateTransactionComponent) {
   return (
     <div>
-      <Modal id={`update-payment-${transaction.id}`} description='update'>
+      <Modal id={`update-payment-${transaction.id}`}>
         <FormTransaction
           actionType='update'
           transaction={transaction}
