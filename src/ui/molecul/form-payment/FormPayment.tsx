@@ -146,16 +146,14 @@ export default function FormPayment({
         hoistTags={setPaymentTags}
         maybeTags={maybeTags}
       />
-
-      <ActionButton actionWithPayload={handleActionPayment}>
-        {actionType}
-      </ActionButton>
-
       {isActionStatus === 2 || isActionStatus === 3 ? (
         <LoadingDots>is {actionType}ed</LoadingDots>
       ) : isActionStatus === 4 ? (
         <div>{actionType} done</div>
       ) : null}
+      <ActionButton actionWithPayload={handleActionPayment}>
+        {actionType}
+      </ActionButton>
       {actionType === "update" && (
         <>
           <br />
