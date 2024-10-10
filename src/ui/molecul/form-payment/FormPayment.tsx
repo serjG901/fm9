@@ -48,24 +48,25 @@ export default function FormPayment({
   const [paymentFor, setPaymentFor] = useState(payment.for);
   const [paymentTags, setPaymentTags] = useState<Tag[]>(payment.tags);
 
-  const [inActionStatus, setInActionStatus] = useState(1);
+  const [isActionStatus, setIsActionStatus] = useState(1);
+  const [isDeleteStatus, setIsDeleteStatus] = useState(1);
 
   const handleActionPayment = () => {
-    setInActionStatus(2);
+    setIsActionStatus(2);
   };
 
   const handleDeletePayment = () => {
     const agree = confirm("delete?");
     if (agree) {
-      deletePayment(payment);
+      setIsDeleteStatus(2);
     }
   };
 
   useEffect(() => {
-    if (inActionStatus === 2) {
-      setInActionStatus(3);
+    if (isActionStatus === 2) {
+      setIsActionStatus(3);
     }
-    if (inActionStatus === 3) {
+    if (isActionStatus === 3) {
       actionPayment({
         datetime: paymentDatetime,
         name: paymentName,
@@ -76,13 +77,19 @@ export default function FormPayment({
         tags: paymentTags,
         id: payment.id,
       });
-      setInActionStatus(4);
+      setIsActionStatus(4);
+      setTimeout(() => setIsActionStatus(1), 2000);
     }
-  }, [inActionStatus]);
+  }, [isActionStatus]);
 
   useEffect(() => {
-    setInActionStatus(1);
-  }, []);
+    if (isDeleteStatus === 2) {
+      setIsDeleteStatus(3);
+    }
+    if (isDeleteStatus === 3) {
+      deletePayment(payment);
+    }
+  }, [isDeleteStatus]);
 
   return (
     <FlexColumnCenter>
@@ -136,9 +143,9 @@ export default function FormPayment({
         {actionType}
       </ActionButton>
 
-      {inActionStatus === 2 ? (
-        <LoadingDots>in action</LoadingDots>
-      ) : inActionStatus === 4 ? (
+      {isActionStatus === 2 ? (
+        <LoadingDots>is {actionType}ed</LoadingDots>
+      ) : isActionStatus === 4 ? (
         <div>{actionType} done</div>
       ) : null}
       {actionType === "update" && (
@@ -147,6 +154,7 @@ export default function FormPayment({
           <ActionButton actionWithPayload={handleDeletePayment} alert={true}>
             delete
           </ActionButton>
+          {isDeleteStatus === 2 ? <LoadingDots>is deleted</LoadingDots> : null}
         </>
       )}
     </FlexColumnCenter>
