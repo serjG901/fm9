@@ -12,15 +12,14 @@
     }
   }
   .modal-content {
+    position: fixed;
+    top: 1rem;
     overflow-y: scroll;
     scrollbar-width: none;
     width: max-content;
     max-width: 80%;
-    top: 1rem;
-    margin-block: 1rem;
     margin-inline: auto;
     max-height: 90dvh;
-    padding: 2rem;
     border-radius: 8px;
     border: 2px solid hsl(0 0 0);
     box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
