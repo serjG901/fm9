@@ -1,4 +1,5 @@
 .collapse {
+  height: min-content;
   background-color: var(--color-bg-menu);
   border-radius: var(--border-radius-action-element);
   border: 1px solid black;
