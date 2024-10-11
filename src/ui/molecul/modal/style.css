@@ -13,7 +13,8 @@
   }
   .modal-content {
     position: fixed;
-    top: 1rem;
+    margin: 2rem auto;
+    padding: 2rem;
     overflow-y: scroll;
     scrollbar-width: none;
     width: max-content;
