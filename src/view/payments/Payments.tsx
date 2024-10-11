@@ -22,6 +22,7 @@ import Statistics from "../../ui/molecul/statistics/Statistics";
 import plus from "../../helpers/plus";
 import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";
+import Paginate from "../../ui/substance/paginate/Paginate";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -41,6 +42,11 @@ export default function Payments({
     deletePayment,
     getFromOptions,
     getForOptions,
+    pageActive,
+    itemsPerPage,
+    setPageActive,
+    setPreviousPage,
+    setNextPage,
   ] = usePaymentsStore((state: PaymentsStore) => [
     state.payments,
     state.addPayment,
@@ -48,6 +54,11 @@ export default function Payments({
     state.deletePayment,
     state.getFromOptions,
     state.getForOptions,
+    state.pageActive,
+    state.itemsPerPage,
+    state.setPageActive,
+    state.setPreviousPage,
+    state.setNextPage,
   ]);
   const [getDebetsName, debets, updateDebet, getDebets] = useDebetsStore(
     (state) => [
@@ -157,7 +168,13 @@ export default function Payments({
     (a, b) => (a > b ? 1 : -1)
   );
 
-  const cards = sortedPayments.map((payment: Payment) => {
+  const pages = Math.ceil(sortedPayments.length / itemsPerPage);
+  const sortedPaymentsByPage = sortedPayments.slice(
+    (pageActive - 1) * itemsPerPage,
+    pageActive * itemsPerPage
+  );
+
+  const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <PaymentCard
         maybeName={maybeName}
@@ -224,6 +241,15 @@ export default function Payments({
 
         <FlexWrap childrenArray={cards}></FlexWrap>
       </div>
+      {pages > 1 ? (
+        <Paginate
+          pageActive={pageActive}
+          pages={pages}
+          setPageActive={setPageActive}
+          setPreviousPage={setPreviousPage}
+          setNextPage={(pages) => setNextPage(pages || 20)}
+        />
+      ) : null}
     </Page>
   );
 }

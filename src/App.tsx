@@ -10,7 +10,7 @@ import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 import SettingsApp from "./pages/settings-app/SettingsApp";
 import { useSettingsStore } from "./store/settingsStore";
-import ToTop from "./ui/molecul/to-top/ToTop";
+//import ToTop from "./ui/molecul/to-top/ToTop";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 
 function App() {
@@ -62,9 +62,9 @@ function App() {
         actionWithPayload={handleActionMenu}
       />
       {pages[page] || null}
-      <ToTop />
+      
     </div>
   );
 }
-
+//<ToTop />
 export default App;

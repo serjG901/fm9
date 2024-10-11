@@ -58,27 +58,3 @@ input:focus,
 input:focus-visible {
   outline: 1px solid var(--color-border-action-element-accent);
 }
-
-.loading {
-  position: relative;
-}
-.loading::after {
-  content: "";
-  position: absolute;
-  animation: loading-dots 1s infinite;
-}
-
-@keyframes loading-dots {
-  0% {
-    content: "";
-  }
-  33% {
-    content: ".";
-  }
-  66% {
-    content: "..";
-  }
-  100% {
-    content: "...";
-  }
-}

@@ -8,6 +8,7 @@ interface ActionButtonComponent {
   children?: ReactNode;
   alert?: boolean;
   bgColor?: string;
+  disabled?: boolean;
 }
 
 export default function ActionButton({
@@ -16,6 +17,7 @@ export default function ActionButton({
   children = "children",
   alert = false,
   bgColor = "",
+  disabled = false,
 }: ActionButtonComponent) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -29,6 +31,7 @@ export default function ActionButton({
       onClick={handleClick}
       data-alert={alert ? "alert" : ""}
       style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
+      disabled={disabled}
     >
       {children || payload}
     </button>

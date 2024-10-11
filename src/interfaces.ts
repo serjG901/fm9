@@ -44,6 +44,12 @@ export interface PaymentsStore {
   deletePayment: (payment: Payment) => void;
   getFromOptions: () => string[];
   getForOptions: () => string[];
+
+  pageActive: number;
+  itemsPerPage: number;
+  setPageActive: (page: number) => void;
+  setPreviousPage: () => void;
+  setNextPage: (total: number) => void;
 }
 
 export interface PeriodStore {

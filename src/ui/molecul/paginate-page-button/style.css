@@ -1,0 +1,9 @@
+.paginate-page-button {
+  display: contents;
+}
+.paginate-page-button_active {
+  color: var(--color-main-light-accent);
+}
+.paginate-page-button_disabled {
+  color: var(--color-neutral);
+}

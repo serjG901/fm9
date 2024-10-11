@@ -47,6 +47,26 @@ export const createPaymentStore = (name: string) =>
           getForOptions: () => {
             return get().payments.map((p) => p.for);
           },
+
+          //pagination
+
+          pageActive: 1,
+          itemsPerPage: 50,
+          setPageActive: (page: number) => {
+            set({ pageActive: page });
+          },
+          setPreviousPage: () => {
+            const page = get().pageActive;
+            if (page > 0) {
+              set({ pageActive: get().pageActive - 1 });
+            }
+          },
+          setNextPage: (totalPages) => {
+            const page = get().pageActive;
+            if (page < totalPages) {
+              set({ pageActive: get().pageActive + 1 });
+            }
+          },
         };
       },
 

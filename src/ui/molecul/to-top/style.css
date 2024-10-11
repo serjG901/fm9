@@ -7,19 +7,23 @@
   place-items: center;
   animation-name: show-to-top;
   animation-timeline: scroll(nearest);
-  animation-fill-mode: both;
-  animation-duration: 1s; /* Firefox requires this to apply the animation */
-  animation-timing-function: linear;
 }
 
 @keyframes show-to-top {
   0% {
     opacity: 0;
+    visibility: hidden;
   }
-  5% {
+  40% {
     opacity: 0;
+    visibility: hidden;
   }
-  6% {
+  60% {
     opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
   }
 }

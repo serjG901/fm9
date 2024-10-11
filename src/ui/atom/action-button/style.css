@@ -31,3 +31,10 @@
 .action-button[data-alert="alert"] {
   color: var(--color-alert);
 }
+
+.action-button:disabled {
+  cursor: auto;
+}
+.action-button:disabled:hover {
+  border-color: var(--color-transporent);
+}

@@ -1,0 +1,18 @@
+.paginate {
+  display: flex;
+  gap: var(--gap-s);
+  margin-bottom: 1rem;
+  margin-inline: auto;
+  justify-content: flex-end;
+}
+
+.rated-movies .paginate {
+  justify-content: center;
+}
+
+.paginate-dots {
+  display: flex;
+  place-content: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
