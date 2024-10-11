@@ -1,4 +1,5 @@
 .source-card {
+  -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   width: min-content;
   height: min-content;
