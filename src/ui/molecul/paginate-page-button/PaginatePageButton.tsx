@@ -1,6 +1,4 @@
 import ActionButton from "../../atom/action-button/ActionButton";
-import ArrowLeftIcon from "../../atom/arrow-left-icon/ArrowLeftIcon";
-import ArrowRightIcon from "../../atom/arrow-right-icon/ArrowRightIcon";
 import "./style.css";
 
 interface PaginatePageButtonComponent {
