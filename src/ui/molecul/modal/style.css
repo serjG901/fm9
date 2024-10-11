@@ -12,8 +12,7 @@
     }
   }
   .modal-content {
-    position: fixed;
-    margin: 2rem auto;
+    margin-block: 2rem;
     padding: 2rem;
     overflow-y: scroll;
     scrollbar-width: none;
