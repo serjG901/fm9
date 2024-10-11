@@ -21,7 +21,7 @@
     width: max-content;
     max-width: calc(90% - 4rem);
     scrollbar-width: none;
-    margin-top: 2rem;
+    margin-block: 2rem;
     padding: 2rem;
     margin-inline: auto;
     border-radius: 8px;
