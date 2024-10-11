@@ -1,7 +1,7 @@
 .statistics {
   text-align: left;
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 4fr 5fr 1fr;
   gap: 0.5rem;
   color: var(--color-bg-main);
 }
