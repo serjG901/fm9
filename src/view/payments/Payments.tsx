@@ -205,6 +205,14 @@ export default function Payments({
     );
   });
 
+  const handleSetSearch = (search: string) => {
+    setSearch(search);
+    setPageActive(1);
+  };
+  const handleSetFilterTags = (filterTags: Tag[]) => {
+    setFilterTags(filterTags);
+    setPageActive(1);
+  };
   return (
     <Page>
       <div className='payments-view'>
@@ -217,9 +225,9 @@ export default function Payments({
             />,
             <Filter
               search={search}
-              setSearch={setSearch}
+              setSearch={handleSetSearch}
               filterTags={filterTags}
-              setFilterTags={setFilterTags}
+              setFilterTags={handleSetFilterTags}
               maybeTags={maybeTags}
             />,
             <Statistics payments={sortedPayments} search={search} />,
@@ -242,15 +250,15 @@ export default function Payments({
 
         <FlexWrap childrenArray={cards}></FlexWrap>
       </div>
-      {pages > 1 ? (
-        <Paginate
-          pageActive={pageActive}
-          pages={pages}
-          setPageActive={setPageActive}
-          setPreviousPage={setPreviousPage}
-          setNextPage={(pages) => setNextPage(pages || 20)}
-        />
-      ) : null}
+
+      <Paginate
+        pageActive={pageActive}
+        pages={pages}
+        setPageActive={setPageActive}
+        setPreviousPage={setPreviousPage}
+        setNextPage={(pages) => setNextPage(pages || 20)}
+      />
+
       <ToTop />
     </Page>
   );
