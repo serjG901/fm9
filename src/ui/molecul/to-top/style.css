@@ -7,6 +7,7 @@
   place-items: center;
   animation-name: show-to-top;
   animation-timeline: scroll(nearest);
+  transform: rotateZ(90deg);
 }
 
 @keyframes show-to-top {

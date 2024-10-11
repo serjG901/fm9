@@ -35,9 +35,9 @@ export default function PaginatePageButton({
         {!direction ? (
           pageNumber
         ) : direction === "left" ? (
-          <span>&#11207;</span>
+          <span>{"<"}</span>
         ) : (
-          <span>&#11208;</span>
+          <span>{">"}</span>
         )}
       </ActionButton>
     </div>
