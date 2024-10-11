@@ -1,25 +1,25 @@
 .to-top {
-  position: fixed;
+  position: sticky;
   bottom: 1rem;
   left: 1rem;
   width: 50px;
   height: 50px;
   place-items: center;
   animation-name: show-to-top;
-  animation-timeline: scroll(block nearest);
+  animation-timeline: scroll(nearest);
+  animation-fill-mode: both;
+  animation-duration: 1s; /* Firefox requires this to apply the animation */
+  animation-timing-function: linear;
 }
 
 @keyframes show-to-top {
   0% {
     opacity: 0;
-    pointer-events: none;
   }
-  1% {
+  5% {
     opacity: 0;
-    pointer-events: all;
   }
-  2% {
+  6% {
     opacity: 1;
-    pointer-events: all;
   }
 }

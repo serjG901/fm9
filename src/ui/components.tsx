@@ -29,6 +29,7 @@ import Modal from "./molecul/modal/Modal";
 import Search from "./molecul/search/Search";
 import SearchedName from "./molecul/searched-name/SearchedName";
 import Statistics from "./molecul/statistics/Statistics";
+import ToTop from "./molecul/to-top/ToTop";
 //substances
 import AddPayment from "./substance/add-payment/AddPayment";
 import AddSource from "./substance/add-source/AddSource";
@@ -73,6 +74,7 @@ const componentsArr = [
   <Search />,
   <SearchedName />,
   <Statistics />,
+  <ToTop />,
   <AddPayment />,
   <AddSource />,
   <AddTransaction />,
