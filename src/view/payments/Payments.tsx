@@ -23,6 +23,7 @@ import plus from "../../helpers/plus";
 import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";
 import Paginate from "../../ui/substance/paginate/Paginate";
+import ToTop from "../../ui/molecul/to-top/ToTop";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -250,6 +251,7 @@ export default function Payments({
           setNextPage={(pages) => setNextPage(pages || 20)}
         />
       ) : null}
+      <ToTop />
     </Page>
   );
 }
