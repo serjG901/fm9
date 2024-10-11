@@ -1,5 +1,4 @@
 .statistics {
-  margin: auto;
   text-align: left;
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
