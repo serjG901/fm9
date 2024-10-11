@@ -60,7 +60,7 @@
   -moz-osx-font-smoothing: grayscale;
 
   scroll-behavior: smooth;
-
+  scrollbar-width: none;
 }
 
 @media (prefers-color-scheme: light) {

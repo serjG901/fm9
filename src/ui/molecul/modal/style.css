@@ -18,6 +18,7 @@
   .modal-content {
     overflow-y: scroll;
     max-height: 90dvh;
+    width: max-content;
     max-width: calc(90% - 4rem);
     scrollbar-width: none;
     margin-top: 2rem;
