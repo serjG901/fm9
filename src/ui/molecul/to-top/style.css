@@ -2,12 +2,10 @@
   position: sticky;
   bottom: 1rem;
   left: 1rem;
-  width: 50px;
-  height: 50px;
+  width: min-content;
   place-items: center;
   animation-name: show-to-top;
   animation-timeline: scroll(nearest);
-  transform: rotateZ(90deg);
 }
 
 @keyframes show-to-top {
