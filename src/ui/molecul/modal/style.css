@@ -16,6 +16,7 @@
     scrollbar-width: none;
     width: max-content;
     max-width: 80%;
+    top: 1rem;
     margin-block: 1rem;
     margin-inline: auto;
     max-height: 90dvh;
