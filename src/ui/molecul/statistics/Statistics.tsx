@@ -63,7 +63,7 @@ export default function Statistics({
       );
     });
   return (
-    <div>
+
       <Collapse title='statistics' collapseLevel='menu'>
         <div className='statistics'>
           <div>
@@ -79,6 +79,6 @@ export default function Statistics({
           </div>
         </div>
       </Collapse>
-    </div>
+
   );
 }

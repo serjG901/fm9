@@ -98,6 +98,7 @@ export default function FormPayment({
     }
     if (isDeleteStatus === 3) {
       deletePayment(payment);
+      document.getElementById(`update-payment-${payment.id}`)?.hidePopover();
     }
   }, [isDeleteStatus]);
 

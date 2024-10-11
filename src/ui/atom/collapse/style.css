@@ -1,5 +1,4 @@
 .collapse {
-  width: 100%;
   background-color: var(--color-bg-menu);
   border-radius: var(--border-radius-action-element);
   border: 1px solid black;
@@ -39,8 +38,7 @@
   }
 
   .collapse-content {
-    padding: 2rem;
-    max-width: 100%;
+
   }
 }
 

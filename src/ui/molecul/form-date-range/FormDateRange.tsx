@@ -5,15 +5,15 @@ import Datepicker from "../../atom/datepicker/Datepicker";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import "./style.css";
 
-interface FormDataRangeComponent {
+interface FormDateRangeComponent {
   period?: { start: string; end: string };
   setPeriod?: (start: string, end: string) => void;
 }
 
-export default function FormDataRange({
+export default function FormDateRange({
   period = { start: "", end: "" },
   setPeriod = () => {},
-}: FormDataRangeComponent) {
+}: FormDateRangeComponent) {
   const [start, setStart] = useState(period.start);
   const [end, setEnd] = useState(period.end);
 
@@ -36,7 +36,7 @@ export default function FormDataRange({
   }, [period.end]);
 
   return (
-    <div>
+    <div className="form-date-range">
       <Collapse collapseLevel='menu' title='period'>
         <FlexColumnCenter>
           <Datepicker

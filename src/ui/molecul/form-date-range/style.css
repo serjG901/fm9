@@ -1,0 +1,5 @@
+.form-date-range {
+  div {
+    padding: var(--padding-s);
+  }
+}

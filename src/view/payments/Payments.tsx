@@ -7,7 +7,7 @@ import { useDebetsStore } from "../../store/debetsStore";
 import { useCreditsStore } from "../../store/creditsStore";
 import { updatePaymentWithSource } from "../../helpers/updatePaymentWithSources";
 import { addPaymentWithSource } from "../../helpers/addPaymentWithSource";
-import FormDataRange from "../../ui/molecul/form-data-range/FormDataRange";
+import FormDataRange from "../../ui/molecul/form-date-range/FormDateRange";
 import { usePeriodStore } from "../../store/periodStore";
 import BreakLine from "../../ui/atom/break-line/BreakLine";
 import {

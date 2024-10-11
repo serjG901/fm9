@@ -5,7 +5,7 @@ import TransactionCard from "../../ui/thing/transaction-card/TrancactionCard";
 import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import { useDebetsStore } from "../../store/debetsStore";
 import { useCreditsStore } from "../../store/creditsStore";
-import FormDataRange from "../../ui/molecul/form-data-range/FormDataRange";
+import FormDataRange from "../../ui/molecul/form-date-range/FormDateRange";
 import { usePeriodStore } from "../../store/periodStore";
 import BreakLine from "../../ui/atom/break-line/BreakLine";
 import { addTransactionWithSource } from "../../helpers/addTransactionWithSource";
