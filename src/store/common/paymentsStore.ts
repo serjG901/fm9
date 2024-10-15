@@ -50,8 +50,11 @@ export const createPaymentStore = (name: string) =>
 
           //pagination
 
+          itemsPerPage: '50',
+          setItemsPerPage: (pages: string) => {
+            set({ itemsPerPage: pages });
+          },
           pageActive: 1,
-          itemsPerPage: 50,
           setPageActive: (page: number) => {
             set({ pageActive: page });
           },

@@ -169,10 +169,10 @@ export default function Payments({
     (a, b) => (a > b ? 1 : -1)
   );
 
-  const pages = Math.ceil(sortedPayments.length / itemsPerPage);
+  const pages = Math.ceil(sortedPayments.length / +itemsPerPage);
   const sortedPaymentsByPage = sortedPayments.slice(
-    (pageActive - 1) * itemsPerPage,
-    pageActive * itemsPerPage
+    (pageActive - 1) * +itemsPerPage,
+    pageActive * +itemsPerPage
   );
 
   const cards = sortedPaymentsByPage.map((payment: Payment) => {

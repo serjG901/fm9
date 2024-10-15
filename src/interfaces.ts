@@ -45,8 +45,9 @@ export interface PaymentsStore {
   getFromOptions: () => string[];
   getForOptions: () => string[];
 
+  itemsPerPage: string;
+  setItemsPerPage: (pages: string) => void;
   pageActive: number;
-  itemsPerPage: number;
   setPageActive: (page: number) => void;
   setPreviousPage: () => void;
   setNextPage: (total: number) => void;
