@@ -11,6 +11,7 @@ export interface Source extends NewSource {
 }
 
 export interface SourcesStore {
+  getState: () => SourcesStore;
   setState: (state: SourcesStore) => void;
   id: number;
   sources: Source[];
@@ -36,6 +37,7 @@ export interface Payment extends NewPayment {
 }
 
 export interface PaymentsStore {
+  getState: () => PaymentsStore;
   setState: (state: PaymentsStore) => void;
   id: number;
   payments: Payment[];
@@ -86,7 +88,7 @@ export interface TransactionsStore {
 
 export interface NewBase {
   name: string;
-  db: { [x: string]: PaymentsStore | SourcesStore };
+  db: { [x: string]: PaymentsStore | SourcesStore | SettingsStore };
 }
 
 export interface Base extends NewBase {
@@ -96,6 +98,7 @@ export interface Base extends NewBase {
 export interface BasesStore {
   id: number;
   bases: Base[];
+  getBases: () => Base[];
   addBase: (newBaseName: string) => void;
   updateBase: (base: Base) => void;
   deleteBase: (base: Base) => void;
@@ -112,6 +115,8 @@ export interface FiltersStore {
 }
 
 export interface SettingsStore {
+  getState: () => SettingsStore;
+  setState: (state: SettingsStore) => void;
   hue: string;
   setHue: (hue: string) => void;
 }

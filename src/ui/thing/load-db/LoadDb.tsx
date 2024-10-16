@@ -7,22 +7,27 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
 import { useBasesStore } from "../../../store/basesStore";
 import { name as appName } from "../../../../package.json";
+import { useSettingsStore } from "../../../store/settingsStore";
 
 export default function LoadDb() {
-  const [stateBuys, setStateBuys] = useBuysStore((state) => [
-    state,
+  const [getStateBuys, setStateBuys] = useBuysStore((state) => [
+    state.getState,
     state.setState,
   ]);
-  const [statePays, setStatePays] = usePaysStore((state) => [
-    state,
+  const [getStatePays, setStatePays] = usePaysStore((state) => [
+    state.getState,
     state.setState,
   ]);
-  const [stateDebets, setStateDebets] = useDebetsStore((state) => [
-    state,
+  const [getStateDebets, setStateDebets] = useDebetsStore((state) => [
+    state.getState,
     state.setState,
   ]);
-  const [stateCredits, setStateCredits] = useCreditsStore((state) => [
-    state,
+  const [getStateCredits, setStateCredits] = useCreditsStore((state) => [
+    state.getState,
+    state.setState,
+  ]);
+  const [getStateSettings, setStateSettings] = useSettingsStore((state) => [
+    state.getState,
     state.setState,
   ]);
 
@@ -35,19 +40,20 @@ export default function LoadDb() {
     setClickCount(clickCount + 1);
   };
 
-  const fm9DB = {
-    [`${appName}-buys`]: stateBuys,
-    [`${appName}-pays`]: statePays,
-    [`${appName}-debets`]: stateDebets,
-    [`${appName}-credits`]: stateCredits,
-  };
+  const getExistDB = () => ({
+    [`${appName}-buys`]: getStateBuys(),
+    [`${appName}-pays`]: getStatePays(),
+    [`${appName}-debets`]: getStateDebets(),
+    [`${appName}-credits`]: getStateCredits(),
+    [`${appName}-settings`]: getStateSettings(),
+  });
 
   function saveAsLegacy() {
     const aDownloadFile: HTMLAnchorElement = document.getElementById(
       "aDownloadFile"
     ) as HTMLAnchorElement;
     const opts = { type: "application/json" };
-    const file = new File([JSON.stringify(fm9DB, null, 4)], "", opts);
+    const file = new File([JSON.stringify(getExistDB(), null, 4)], "", opts);
 
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute("download", `fm9${Date.now()}.json`);
@@ -58,12 +64,13 @@ export default function LoadDb() {
     handleClick();
     const file = e.target.files![0];
     const contents = await file.text();
-    const fm9DB = JSON.parse(contents);
-    Object.keys(fm9DB).forEach((key: string) => {
-      if (key === `${appName}-buys`) setStateBuys(fm9DB[key]);
-      if (key === `${appName}-pays`) setStatePays(fm9DB[key]);
-      if (key === `${appName}-debets`) setStateDebets(fm9DB[key]);
-      if (key === `${appName}-credits`) setStateCredits(fm9DB[key]);
+    const db = JSON.parse(contents);
+    Object.keys(db).forEach((key: string) => {
+      if (key === `${appName}-buys`) setStateBuys(db[key]);
+      if (key === `${appName}-pays`) setStatePays(db[key]);
+      if (key === `${appName}-debets`) setStateDebets(db[key]);
+      if (key === `${appName}-credits`) setStateCredits(db[key]);
+      if (key === `${appName}-settings`) setStateSettings(db[key]);
     });
     setUploadStatus(true);
   };
@@ -87,24 +94,26 @@ export default function LoadDb() {
         </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
-      <div className='input-file'>
-        <label htmlFor='oldOpenFile'>
-          <span>upload DB{currentBase && ` for ${currentBase.name}`}</span>
-          <input
-            name='oldOpenFile'
-            type='file'
-            title='file'
-            accept='.json'
-            onChange={handleDownloadFile}
-          />
-        </label>
-      </div>
+
       {uploadStatus ? (
         <div className='load-db-upload-status'>
           <hr color='lime' />
           <div>DB uploaded</div>
         </div>
-      ) : null}
+      ) : (
+        <div className='input-file'>
+          <label htmlFor='oldOpenFile'>
+            <span>upload DB{currentBase && ` for ${currentBase.name}`}</span>
+            <input
+              name='oldOpenFile'
+              type='file'
+              title='file'
+              accept='.json'
+              onChange={handleDownloadFile}
+            />
+          </label>
+        </div>
+      )}
     </div>
   );
 }

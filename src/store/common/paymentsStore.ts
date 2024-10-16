@@ -8,6 +8,7 @@ export const createPaymentStore = (name: string) =>
     persist(
       (set, get) => {
         return {
+          getState: () => get(),
           setState: (state) => {
             set(state);
           },
@@ -50,7 +51,7 @@ export const createPaymentStore = (name: string) =>
 
           //pagination
 
-          itemsPerPage: '50',
+          itemsPerPage: "50",
           setItemsPerPage: (pages: string) => {
             set({ itemsPerPage: pages });
           },

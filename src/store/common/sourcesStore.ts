@@ -7,6 +7,7 @@ export const createSourcesStore = (name: string) =>
   create<SourcesStore>()(
     persist(
       (set, get) => ({
+        getState: () => get(),
         setState: (state) => {
           set(state);
         },

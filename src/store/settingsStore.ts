@@ -5,9 +5,13 @@ import { name as appName } from "../../package.json";
 
 export const useSettingsStore = create<SettingsStore>()(
   persist(
-    (set) => {
+    (set, get) => {
       return {
-        hue: '240',
+        getState: () => get(),
+        setState: (state) => {
+          set(state);
+        },
+        hue: "240",
         setHue: (hue) => set({ hue }),
       };
     },

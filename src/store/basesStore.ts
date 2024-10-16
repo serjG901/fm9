@@ -1,6 +1,12 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { BasesStore } from "../interfaces";
+import {
+  Base,
+  BasesStore,
+  PaymentsStore,
+  SettingsStore,
+  SourcesStore,
+} from "../interfaces";
 import { name as appName } from "../../package.json";
 
 export const useBasesStore = create<BasesStore>()(
@@ -9,9 +15,40 @@ export const useBasesStore = create<BasesStore>()(
       return {
         id: 1,
         bases: [],
+        getBases: () => get().bases,
         addBase: (newBaseName) => {
           set((state) => {
-            const base = { name: newBaseName, id: state.id, db: null };
+            const base: Base = {
+              name: newBaseName,
+              id: state.id,
+              db: {
+                [`${appName}-buys`]: {
+                  id: 0,
+                  payments: [],
+                  pageActive: 1,
+                  itemsPerPage: "50",
+                },
+                [`${appName}-pays`]: {
+                  id: 0,
+                  payments: [],
+                  pageActive: 1,
+                  itemsPerPage: "50",
+                },
+                [`${appName}-debets`]: {
+                  id: 0,
+                  sources: [],
+                },
+                [`${appName}-credits`]: {
+                  id: 0,
+                  sources: [],
+                },
+                [`${appName}-settings`]: {
+                  hue: "240",
+                },
+              } as {
+                [x: string]: PaymentsStore | SourcesStore | SettingsStore;
+              },
+            };
             return {
               bases: [...state.bases, base],
               id: state.id + 1,

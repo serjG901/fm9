@@ -1,6 +1,9 @@
 import { name as appName } from "../../package.json";
-import { PaymentsStore, SourcesStore } from "../interfaces";
-export const defaultDB: { [x: string]: PaymentsStore | SourcesStore } = {
+import { PaymentsStore, SettingsStore, SourcesStore } from "../interfaces";
+//@ts-expect-error this is default
+export const defaultDB: {
+  [x: string]: PaymentsStore | SourcesStore | SettingsStore;
+} = {
   [`${appName}-buys`]: {
     id: 0,
     payments: [],
@@ -20,5 +23,8 @@ export const defaultDB: { [x: string]: PaymentsStore | SourcesStore } = {
   [`${appName}-credits`]: {
     id: 0,
     sources: [],
+  },
+  [`${appName}-settings`]: {
+    hue: '240',
   },
 };

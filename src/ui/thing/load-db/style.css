@@ -8,6 +8,7 @@
 .load-db-upload-status {
   width: 100%;
   color: lime;
+  height: calc(4.2rem + 2px);
   hr {
     width: 100%;
     transition: width 1s ease-in-out;
