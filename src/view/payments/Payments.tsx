@@ -259,7 +259,7 @@ export default function Payments({
         setNextPage={(pages) => setNextPage(pages || 20)}
       />
 
-      <ToTop />
+      {cards.length > +itemsPerPage / 2 ? <ToTop /> : null}
     </Page>
   );
 }
