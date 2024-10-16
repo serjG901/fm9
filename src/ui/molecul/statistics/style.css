@@ -11,14 +11,14 @@
 }
 
 .statistics > div:first-child {
-  color: var(--color-description);
+  color: var(--color-text-main);
   div:nth-child(2) {
     text-align: center;
   }
 }
 
 .statistics > div:last-child {
-  color: var(--color-description);
+  color: var(--color-neutral);
   div:nth-child(2) {
     color: var(--color-bg-main);
   }

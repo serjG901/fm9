@@ -1,5 +1,7 @@
+import { useState } from "react";
 import plus from "../../../helpers/plus";
 import { Payment, Tag } from "../../../interfaces";
+import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import HighlightText from "../../atom/highlight-text/HighlightText";
 import SearchedName from "../searched-name/SearchedName";
@@ -14,15 +16,35 @@ export default function Statistics({
   payments = [],
   search = "",
 }: StatisticsComponent) {
+  const [typeOfSort, setTypeOfSort] = useState("name");
+  const [directionOfSort, setDirectionOfSort] = useState(true);
   const statItems = Object.entries(Object.groupBy(payments, ({ name }) => name))
     .sort((nameA, nameB) => {
+      if (typeOfSort === "amounts") {
+        const amountsA = nameA[1]?.length || 0;
+        const amountsB = nameB[1]?.length || 0;
+        if (directionOfSort) return amountsA - amountsB;
+        return amountsB - amountsA;
+      }
+      if (typeOfSort === "sum") {
+        const amountsA =
+          nameA[1]
+            ?.map((p) => p.amount)
+            .reduce((acc, amount) => plus(acc, amount), "0") || 0;
+        const amountsB =
+          nameB[1]
+            ?.map((p) => p.amount)
+            .reduce((acc, amount) => plus(acc, amount), "0") || 0;
+        if (directionOfSort) return +amountsA - +amountsB;
+        return +amountsB - +amountsA;
+      }
       const a = (nameA[0] as string).toUpperCase();
       const b = (nameB[0] as string).toUpperCase();
       if (a < b) {
-        return -1;
+        return directionOfSort ? -1 : 1;
       }
       if (a > b) {
-        return 1;
+        return directionOfSort ? 1 : -1;
       }
       return 0;
     })
@@ -62,23 +84,53 @@ export default function Statistics({
         </div>
       );
     });
+
+  const handleClickSort = (type: string) => {
+    setTypeOfSort(type);
+    setDirectionOfSort(!directionOfSort);
+  };
   return (
-
-      <Collapse title='statistics' collapseLevel='menu'>
-        <div className='statistics'>
-          <div>
-            <div>name</div>
-            <div>amounts</div>
-            <div>sum</div>
-          </div>
-          {statItems}
-          <div>
-            <div>all</div>
-            <div>{payments.length}</div>
-            <div>{plus(...payments.map((p) => p.amount))}</div>
-          </div>
+    <Collapse title='statistics' collapseLevel='menu'>
+      <div className='statistics'>
+        <div>
+          <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
+            name
+            {typeOfSort !== "name" ? (
+              ""
+            ) : directionOfSort ? (
+              <span>&#8593;</span>
+            ) : (
+              <span>&#8595;</span>
+            )}
+          </ActionButton>
+          <ActionButton actionWithPayload={handleClickSort} payload={"amounts"}>
+            amounts
+            {typeOfSort !== "amounts" ? (
+              ""
+            ) : directionOfSort ? (
+              <span>&#8593;</span>
+            ) : (
+              <span>&#8595;</span>
+            )}
+          </ActionButton>
+          <ActionButton actionWithPayload={handleClickSort} payload={"sum"}>
+            sum
+            {typeOfSort !== "sum" ? (
+              ""
+            ) : directionOfSort ? (
+              <span>&#8593;</span>
+            ) : (
+              <span>&#8595;</span>
+            )}
+          </ActionButton>
         </div>
-      </Collapse>
-
+        {statItems}
+        <div>
+          <div>all</div>
+          <div>{payments.length}</div>
+          <div>{plus(...payments.map((p) => p.amount))}</div>
+        </div>
+      </div>
+    </Collapse>
   );
 }
