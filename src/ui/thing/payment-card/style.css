@@ -142,7 +142,9 @@
   }
   .payment-card-datetime {
     color: var(--color-card-datetime);
-    word-break: keep-all;
+    div {
+      word-break: keep-all;
+    }
   }
   .payment-card-name {
     /*color: var(--color-card-name);*/
