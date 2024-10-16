@@ -9,7 +9,7 @@
     rgba(151, 41, 247, 1) 0%,
     rgba(24, 22, 39, 1) 90%
   );*/
-
+  color: var(--color-text-main);
   summary {
     -webkit-user-select: none;
     user-select: none;
@@ -39,7 +39,6 @@
   }
 
   .collapse-content {
-
   }
 }
 

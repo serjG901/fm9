@@ -8,8 +8,10 @@
   --color-alert: hsl(0, 100%, 50%);
   --color-attention: hsl(60, 100%, 50%);
   --color-confirm: hsl(120, 100%, 50%);
+
   --color-text-main: hsl(0, 0%, 90%);
   --color-bg-main: hsl(0, 0%, 20%);
+  --light: 20%;
 
   --border-radius-action-element: 8px;
   --border-radius-card: 24px;
@@ -65,9 +67,11 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --color-bg-main: hsl(0, 0%, 100%);
-    --color-text-main: hsl(208, 37%, 20%);
-    --color-bg-button: hsl(0, 0%, 98%);
+    --color-text-main: hsl(0, 0%, 0%);
+    --color-bg-main: hsl(0, 0%, 90%);
+    --light: 80%;
+    --color-attention: hsl(0, 100%, 20%);
+    --color-confirm: hsl(120, 100%, 50%);
   }
 }
 

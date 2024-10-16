@@ -4,6 +4,7 @@
   align-items: center;
   gap: var(--gap-page);
   .sum {
+    font-weight: bold;
     color: var(--color-card-amount);
   }
 }
