@@ -9,8 +9,9 @@ import { useBasesStore } from "../../../store/basesStore";
 import { Base, PaymentsStore, SourcesStore } from "../../../interfaces";
 import InputText from "../../atom/input-text/InputText";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-import fm9DbDefault from "../../../store/defaultState.json";
+import { defaultDB } from "../../../store/defaultState";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
+import { name as appName } from "../../../../package.json";
 
 export default function LoadDb() {
   const [stateBuys, setStateBuys] = useBuysStore((state) => [
@@ -56,13 +57,14 @@ export default function LoadDb() {
   };
 
   const fm9DB = {
-    ["fm9-buys"]: stateBuys,
-    ["fm9-pays"]: statePays,
-    ["fm9-debets"]: stateDebets,
-    ["fm9-credits"]: stateCredits,
+    [`${appName}-buys`]: stateBuys,
+    [`${appName}-pays`]: statePays,
+    [`${appName}-debets`]: stateDebets,
+    [`${appName}-credits`]: stateCredits,
   };
 
   const handleChangeBase = (base: Base) => {
+    handleClick();
     updateBase({
       ...currentBase,
       name: currentBase?.name || "default",
@@ -71,40 +73,35 @@ export default function LoadDb() {
     });
     setCurrentBase(base);
     const currentDB = getCurrentBase()?.db || null;
-    console.log(currentDB);
     if (currentDB !== null) {
-      Object.keys(currentDB).forEach((key: string) => {
-        if (key === "fm9-buys") {
-          setStateBuys(currentDB[key]);
-          localStorage.setItem("fm9-buys", JSON.stringify(currentDB[key]));
+      Object.keys(currentDB).forEach((key) => {
+        if (key === `${appName}-buys`) {
+          setStateBuys(currentDB[key] as PaymentsStore);
         }
-        if (key === "fm9-pays") {
-          setStatePays(currentDB[key]);
-          localStorage.setItem("fm9-pays", JSON.stringify(currentDB[key]));
+        if (key === `${appName}-pays`) {
+          setStatePays(currentDB[key] as PaymentsStore);
         }
-        if (key === "fm9-debets") {
-          setStateDebets(currentDB[key]);
-          localStorage.setItem("fm9-debets", JSON.stringify(currentDB[key]));
+        if (key === `${appName}-debets`) {
+          setStateDebets(currentDB[key] as SourcesStore);
         }
-        if (key === "fm9-credits") {
-          setStateCredits(currentDB[key]);
-          localStorage.setItem("fm9-credits", JSON.stringify(currentDB[key]));
+        if (key === `${appName}-credits`) {
+          setStateCredits(currentDB[key] as SourcesStore);
         }
       });
     } else {
-      localStorage.removeItem("fm9-buys");
-      localStorage.removeItem("fm9-pays");
-      localStorage.removeItem("fm9-debets");
-      localStorage.removeItem("fm9-credits");
-      Object.keys(fm9DbDefault).forEach((key: string) => {
-        if (key === "fm9-buys")
-          setStateBuys(fm9DbDefault[key] as unknown as PaymentsStore);
-        if (key === "fm9-pays")
-          setStatePays(fm9DbDefault[key] as unknown as PaymentsStore);
-        if (key === "fm9-debets")
-          setStateDebets(fm9DbDefault[key] as unknown as SourcesStore);
-        if (key === "fm9-credits")
-          setStateCredits(fm9DbDefault[key] as unknown as SourcesStore);
+      localStorage.removeItem(`${appName}-buys`);
+      localStorage.removeItem(`${appName}-pays`);
+      localStorage.removeItem(`${appName}-debets`);
+      localStorage.removeItem(`${appName}-credits`);
+      Object.keys(defaultDB).forEach((key) => {
+        if (key === `${appName}-buys`)
+          setStateBuys(defaultDB[key] as PaymentsStore);
+        if (key === `${appName}-pays`)
+          setStatePays(defaultDB[key] as PaymentsStore);
+        if (key === `${appName}-debets`)
+          setStateDebets(defaultDB[key] as SourcesStore);
+        if (key === `${appName}-credits`)
+          setStateCredits(defaultDB[key] as SourcesStore);
       });
     }
     setUploadStatus(true);
@@ -158,19 +155,18 @@ export default function LoadDb() {
             ))}
         />
       ) : null}
-
-      <FlexColumnCenter>
-        <InputText valueFromParent={newBaseName} hoistValue={setNewBaseName} />
-        <ActionButton actionWithPayload={handleAddBase}>
-          add new base
-        </ActionButton>
-      </FlexColumnCenter>
       {uploadStatus ? (
         <div className='load-db-upload-status'>
           <hr color='lime' />
           <div>Base changed</div>
         </div>
       ) : null}
+      <FlexColumnCenter>
+        <InputText valueFromParent={newBaseName} hoistValue={setNewBaseName} />
+        <ActionButton actionWithPayload={handleAddBase}>
+          add new base
+        </ActionButton>
+      </FlexColumnCenter>
     </div>
   );
 }

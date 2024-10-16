@@ -6,6 +6,7 @@ import { usePaysStore } from "../../../store/paysStore";
 import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
 import { useBasesStore } from "../../../store/basesStore";
+import { name as appName } from "../../../../package.json";
 
 export default function LoadDb() {
   const [stateBuys, setStateBuys] = useBuysStore((state) => [
@@ -35,10 +36,10 @@ export default function LoadDb() {
   };
 
   const fm9DB = {
-    ["fm9-buys"]: stateBuys,
-    ["fm9-pays"]: statePays,
-    ["fm9-debets"]: stateDebets,
-    ["fm9-credits"]: stateCredits,
+    [`${appName}-buys`]: stateBuys,
+    [`${appName}-pays`]: statePays,
+    [`${appName}-debets`]: stateDebets,
+    [`${appName}-credits`]: stateCredits,
   };
 
   function saveAsLegacy() {
@@ -59,10 +60,10 @@ export default function LoadDb() {
     const contents = await file.text();
     const fm9DB = JSON.parse(contents);
     Object.keys(fm9DB).forEach((key: string) => {
-      if (key === "fm9-buys") setStateBuys(fm9DB[key]);
-      if (key === "fm9-pays") setStatePays(fm9DB[key]);
-      if (key === "fm9-debets") setStateDebets(fm9DB[key]);
-      if (key === "fm9-credits") setStateCredits(fm9DB[key]);
+      if (key === `${appName}-buys`) setStateBuys(fm9DB[key]);
+      if (key === `${appName}-pays`) setStatePays(fm9DB[key]);
+      if (key === `${appName}-debets`) setStateDebets(fm9DB[key]);
+      if (key === `${appName}-credits`) setStateCredits(fm9DB[key]);
     });
     setUploadStatus(true);
   };

@@ -86,12 +86,7 @@ export interface TransactionsStore {
 
 export interface NewBase {
   name: string;
-  db: {
-    "fm9-buys": PaymentsStore;
-    "fm9-pays": PaymentsStore;
-    "fm9-debets": SourcesStore;
-    "fm9-credits": SourcesStore;
-  } | null;
+  db: { [x: string]: PaymentsStore | SourcesStore };
 }
 
 export interface Base extends NewBase {
