@@ -46,7 +46,9 @@ export default function PaymentCard({
       <FlexColumnCenter>
         <div className='payment-card-datetime'>
           {payment.datetime.split("T").map((d) => (
-            <div key={d}>{d}</div>
+            <div key={d}>
+              <nobr>{d}</nobr>
+            </div>
           ))}
         </div>
         <div>
