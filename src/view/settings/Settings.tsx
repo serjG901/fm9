@@ -6,6 +6,7 @@ import { useBuysStore } from "../../store/buysStore";
 import { usePaysStore } from "../../store/paysStore";
 import HighlightText from "../../ui/atom/highlight-text/HighlightText";
 import hslToRgb from "../../helpers/hslToRgb";
+import ChangeBase from "../../ui/thing/changeBase/ChangeBase";
 
 export default function Settings() {
   const [hue, setHue] = useSettingsStore((state) => [state.hue, state.setHue]);
@@ -65,6 +66,7 @@ export default function Settings() {
       </div>
 
       <LoadDb />
+      <ChangeBase />
     </Page>
   );
 }

@@ -5,13 +5,13 @@ import { name as appName } from "../../package.json";
 
 export const useBasesStore = create<BasesStore>()(
   persist(
-    (set) => {
+    (set, get) => {
       return {
         id: 1,
         bases: [],
-        addBase: (newBase) => {
+        addBase: (newBaseName) => {
           set((state) => {
-            const base = { ...newBase, id: state.id };
+            const base = { name: newBaseName, id: state.id, db: null };
             return {
               bases: [...state.bases, base],
               id: state.id + 1,
@@ -34,6 +34,7 @@ export const useBasesStore = create<BasesStore>()(
         },
         currentBase: null,
         setCurrentBase: (base) => set({ currentBase: base }),
+        getCurrentBase: () => get().currentBase,
       };
     },
 

@@ -1,10 +1,11 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useBuysStore } from "../../../store/buysStore";
 import { useCreditsStore } from "../../../store/creditsStore";
 import { useDebetsStore } from "../../../store/debetsStore";
 import { usePaysStore } from "../../../store/paysStore";
 import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
+import { useBasesStore } from "../../../store/basesStore";
 
 export default function LoadDb() {
   const [stateBuys, setStateBuys] = useBuysStore((state) => [
@@ -24,7 +25,14 @@ export default function LoadDb() {
     state.setState,
   ]);
 
+  const [currentBase] = useBasesStore((state) => [state.currentBase]);
+
   const [uploadStatus, setUploadStatus] = useState(false);
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleClick = () => {
+    setClickCount(clickCount + 1);
+  };
 
   const fm9DB = {
     ["fm9-buys"]: stateBuys,
@@ -46,10 +54,10 @@ export default function LoadDb() {
   }
 
   const handleDownloadFile = async (e: ChangeEvent<HTMLInputElement>) => {
+    handleClick();
     const file = e.target.files![0];
     const contents = await file.text();
     const fm9DB = JSON.parse(contents);
-    console.log(fm9DB);
     Object.keys(fm9DB).forEach((key: string) => {
       if (key === "fm9-buys") setStateBuys(fm9DB[key]);
       if (key === "fm9-pays") setStatePays(fm9DB[key]);
@@ -59,18 +67,28 @@ export default function LoadDb() {
     setUploadStatus(true);
   };
 
+  useEffect(() => {
+    setUploadStatus(false);
+  }, [clickCount]);
+
+  useEffect(() => {
+    let timer = 0;
+    if (uploadStatus) timer = setTimeout(() => setUploadStatus(false), 5000);
+    return () => clearTimeout(timer);
+  }, [uploadStatus]);
+
   return (
     <div className='load-db'>
       <h2>Load DB</h2>
       <div>
         <ActionButton actionWithPayload={saveAsLegacy}>
-          download db
+          download DB{currentBase && ` from ${currentBase.name}`}
         </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
-      <div className="input-file">
+      <div className='input-file'>
         <label htmlFor='oldOpenFile'>
-          <span>upload db</span>
+          <span>upload DB{currentBase && ` for ${currentBase.name}`}</span>
           <input
             name='oldOpenFile'
             type='file'

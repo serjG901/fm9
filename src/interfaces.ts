@@ -86,6 +86,12 @@ export interface TransactionsStore {
 
 export interface NewBase {
   name: string;
+  db: {
+    "fm9-buys": PaymentsStore;
+    "fm9-pays": PaymentsStore;
+    "fm9-debets": SourcesStore;
+    "fm9-credits": SourcesStore;
+  } | null;
 }
 
 export interface Base extends NewBase {
@@ -95,11 +101,12 @@ export interface Base extends NewBase {
 export interface BasesStore {
   id: number;
   bases: Base[];
-  addBase: (newBase: NewBase) => void;
+  addBase: (newBaseName: string) => void;
   updateBase: (base: Base) => void;
   deleteBase: (base: Base) => void;
   currentBase: Base | null;
   setCurrentBase: (base: Base | null) => void;
+  getCurrentBase: () => Base | null;
 }
 
 export interface FiltersStore {

@@ -1,4 +1,4 @@
-.load-db {
+.change-base {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +8,7 @@
 .load-db-upload-status {
   width: 100%;
   color: lime;
+
   hr {
     width: 100%;
     transition: width 1s ease-in-out;
@@ -21,17 +22,6 @@
     transition: opacity 1s ease-in-out 1s;
     @starting-style {
       opacity: 0;
-    }
-  }
-}
-
-.input-file {
-  label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    span {
-      color: var(--color-text-label);
     }
   }
 }
