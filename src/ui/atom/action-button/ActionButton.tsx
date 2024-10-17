@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import "./style.css";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 
 interface ActionButtonComponent {
   actionWithPayload?: (payload?: any, e?: any) => void;
@@ -27,9 +27,15 @@ export default function ActionButton({
     e.stopPropagation();
     actionWithPayload(payload, e);
   };
-
+  useEffect(() => {
+    if (showBorder)
+      document
+        .getElementById(`action-button${handleClick.toString() + payload}`)
+        ?.focus();
+  }, [showBorder]);
   return (
     <button
+      id={`action-button${handleClick.toString() + payload}`}
       type='button'
       className='action-button'
       onClick={handleClick}
@@ -37,7 +43,7 @@ export default function ActionButton({
       style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
       disabled={disabled}
       onMouseDown={onDown}
-      data-show-border={showBorder ? "show" : "hide"}
+      data-show-border={showBorder ? "show" : ""}
     >
       {children || payload}
     </button>

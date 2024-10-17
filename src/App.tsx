@@ -57,7 +57,6 @@ function App() {
   const handleActionMenu = (payload: string) => {
     setPage(payload);
     window.history.pushState({ page: payload }, "", `/${appName}/${payload}`);
-   //document.getElementById('root')?.focus();
   };
 
   useEffect(() => {
