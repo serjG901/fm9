@@ -12,6 +12,7 @@ import SettingsApp from "./pages/settings-app/SettingsApp";
 import { useSettingsStore } from "./store/settingsStore";
 //import ToTop from "./ui/molecul/to-top/ToTop";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
+const API_IS_PROD = import.meta.env.VITE_API_IS_PROD
 
 function App() {
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
@@ -48,7 +49,7 @@ function App() {
     settings: <SettingsApp />,
   };
 
-  if (import.meta.env.API_IS_PROD === 0) pages = { ...pages, ui: <Ui /> };
+  if (API_IS_PROD === '0') pages = { ...pages, ui: <Ui /> };
 
   const handleActionMenu = (payload: string) => {
     setPage(payload);
