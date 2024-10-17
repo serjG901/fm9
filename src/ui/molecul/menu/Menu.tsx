@@ -4,6 +4,7 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 
 interface MenuComponent {
+  choisedOption?: string;
   collapseLevel?: string;
   title?: string;
   options?: string[];
@@ -11,6 +12,7 @@ interface MenuComponent {
 }
 
 export default function Menu({
+  choisedOption = "one",
   collapseLevel = "component",
   title = "menu",
   options = ["one", "two", "three"],
@@ -24,6 +26,7 @@ export default function Menu({
             key={opt}
             actionWithPayload={actionWithPayload}
             payload={opt}
+            showBorder={choisedOption === opt}
           >
             {opt}
           </ActionButton>

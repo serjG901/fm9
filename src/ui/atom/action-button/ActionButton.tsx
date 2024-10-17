@@ -10,6 +10,7 @@ interface ActionButtonComponent {
   bgColor?: string;
   disabled?: boolean;
   onDown?: () => void;
+  showBorder?: boolean;
 }
 
 export default function ActionButton({
@@ -20,6 +21,7 @@ export default function ActionButton({
   bgColor = "",
   disabled = false,
   onDown = () => {},
+  showBorder = false,
 }: ActionButtonComponent) {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -35,6 +37,7 @@ export default function ActionButton({
       style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
       disabled={disabled}
       onMouseDown={onDown}
+      data-show-border={showBorder ? "show" : "hide"}
     >
       {children || payload}
     </button>

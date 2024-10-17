@@ -1,4 +1,4 @@
-import { ReactNode, Suspense, useState } from "react";
+import { ReactNode, Suspense, useEffect, useState } from "react";
 import "./App.css";
 import Menu from "./ui/molecul/menu/Menu";
 import Ui from "./pages/ui/Ui";
@@ -12,12 +12,15 @@ import SettingsApp from "./pages/settings-app/SettingsApp";
 import { useSettingsStore } from "./store/settingsStore";
 //import ToTop from "./ui/molecul/to-top/ToTop";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
-const API_IS_PROD = import.meta.env.VITE_API_IS_PROD
+const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
+import { name as appName } from "../package.json";
 
 function App() {
+  const pageHref = (window.location.href.split("/").at(-1) as string) || "buys";
+
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
   const Pays = React.lazy(() => import("./pages/pays/Pays"));
-  const [page, setPage] = useState<string>("buys");
+  const [page, setPage] = useState<string>(pageHref);
   const [hue] = useSettingsStore((state) => [state.hue]);
 
   let pages: { [key: string]: ReactNode } = {
@@ -49,15 +52,35 @@ function App() {
     settings: <SettingsApp />,
   };
 
-  if (API_IS_PROD === '0') pages = { ...pages, ui: <Ui /> };
+  if (API_IS_PROD === "0") pages = { ...pages, ui: <Ui /> };
 
   const handleActionMenu = (payload: string) => {
     setPage(payload);
+    window.history.pushState({ page: payload }, "", `/${appName}/${payload}`);
+   //document.getElementById('root')?.focus();
   };
+
+  useEffect(() => {
+    const controller = new AbortController();
+    window.addEventListener(
+      "popstate",
+      (event) => {
+        console.log("State received: ", event.state);
+        setPage(event.state && event.state.page ? event.state?.page : "buys");
+      },
+      {
+        signal: controller.signal,
+      }
+    );
+    return () => {
+      controller.abort();
+    };
+  }, []);
 
   return (
     <div className='app' style={{ "--hue": hue } as React.CSSProperties}>
       <Menu
+        choisedOption={page}
         collapseLevel='menu'
         title='pages'
         options={Object.keys(pages)}

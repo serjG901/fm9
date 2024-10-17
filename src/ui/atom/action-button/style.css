@@ -38,3 +38,20 @@
 .action-button:disabled:hover {
   border-color: var(--color-transporent);
 }
+
+.action-button[data-show-border="show"] {
+  border-color: var(--color-border-action-element-accent);
+}
+/*
+div:has(.action-button[data-show-border="show"]) {
+  .action-button[data-show-border="hide"] {
+    outline: none;
+  }
+  .action-button[data-show-border="hide"]:focus {
+    outline: 1px solid var(--color-border-action-element-accent);
+  }
+  .action-button[data-show-border="show"] {
+    border-color: var(--color-border-action-element-accent);
+  }
+}
+*/
