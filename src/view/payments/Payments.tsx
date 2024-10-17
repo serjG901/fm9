@@ -175,7 +175,7 @@ export default function Payments({
     pageActive * +itemsPerPage
   );
 
-  const cards = sortedPaymentsByPage.map((payment: Payment, index) => {
+  const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <PaymentCard
         key={payment.id}
