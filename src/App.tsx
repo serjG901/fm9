@@ -19,7 +19,7 @@ function App() {
   const [page, setPage] = useState<string>("buys");
   const [hue] = useSettingsStore((state) => [state.hue]);
 
-  const pages: { [key: string]: ReactNode } = {
+  let pages: { [key: string]: ReactNode } = {
     buys: (
       <Suspense
         fallback={
@@ -45,9 +45,10 @@ function App() {
     //transactions: <SelfTransactions />,
     debets: <Debets />,
     credits: <Credits />,
-    ui: <Ui />,
     settings: <SettingsApp />,
   };
+
+  if (import.meta.env.API_IS_PROD === 0) pages = { ...pages, ui: <Ui /> };
 
   const handleActionMenu = (payload: string) => {
     setPage(payload);
@@ -62,7 +63,6 @@ function App() {
         actionWithPayload={handleActionMenu}
       />
       {pages[page] || null}
-      
     </div>
   );
 }
