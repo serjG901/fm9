@@ -42,9 +42,11 @@ export default function Filter({
         </FlexColumnCenter>
       </Collapse>
       {search !== "" || filterTags.length !== 0 ? (
-        <ActionButton actionWithPayload={resetFilter} alert>
-          reset filter
-        </ActionButton>
+        <div>
+          <ActionButton actionWithPayload={resetFilter} alert>
+            reset filter
+          </ActionButton>
+        </div>
       ) : null}
     </div>
   );

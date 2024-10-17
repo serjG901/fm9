@@ -1,5 +1,5 @@
 .form-date-range {
-  div {
+  > div:last-child {
     padding: var(--padding-s);
   }
 }
