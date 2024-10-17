@@ -38,7 +38,7 @@ export default function Sources({
         <h1>{sourcesType}</h1>
 
         {amountsByCurrency.map((pair) => (
-          <div>
+          <div key={pair[0].toString()}>
             {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
           </div>
         ))}
@@ -50,6 +50,7 @@ export default function Sources({
             .map((source: Source) => {
               return (
                 <SourceCard
+                  key={source.id}
                   source={source}
                   updateSource={updateSource}
                   deleteSource={deleteSource}

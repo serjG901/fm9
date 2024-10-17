@@ -175,9 +175,10 @@ export default function Payments({
     pageActive * +itemsPerPage
   );
 
-  const cards = sortedPaymentsByPage.map((payment: Payment) => {
+  const cards = sortedPaymentsByPage.map((payment: Payment, index) => {
     const card = (
       <PaymentCard
+        key={payment.id}
         maybeName={maybeName}
         payment={payment}
         updatePayment={updatePaymentWithS}
@@ -188,7 +189,11 @@ export default function Payments({
         search={search}
       />
     );
-    let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
+    let breakLine = (
+      <BreakLine key={payment.id + Math.random()}>
+        {payment.datetime.split("T")[0]}
+      </BreakLine>
+    );
     if (date === "") {
       date = payment.datetime.split("T")[0];
     } else {
@@ -220,22 +225,28 @@ export default function Payments({
         <FlexWrap
           childrenArray={[
             <FormDataRange
+              key={"FormDataRange"}
               period={{ start: startPeriod, end: endPeriod }}
               setPeriod={setPeriod}
             />,
             <Filter
+              key={"Filter"}
               search={search}
               setSearch={handleSetSearch}
               filterTags={filterTags}
               setFilterTags={handleSetFilterTags}
               maybeTags={maybeTags}
             />,
-            <Statistics payments={sortedPayments} search={search} />,
+            <Statistics
+              key={"Statistics"}
+              payments={sortedPayments}
+              search={search}
+            />,
           ]}
         />
 
         {amountsByCurrency.map((pair) => (
-          <div>
+          <div key={pair[0].toString()}>
             {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
           </div>
         ))}
