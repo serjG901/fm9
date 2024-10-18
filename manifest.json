@@ -22,21 +22,21 @@
   "start_url": "/fm9",
   "background_color": "#008080",
   "display": "standalone",
-  "scope": "/",
+  "scope": "/fm9",
   "theme_color": "#000000",
   "shortcuts": [
     {
       "name": "Add Buys?",
       "short_name": "Buys",
       "description": "add your buys",
-      "url": "/",
+      "url": "/fm9",
       "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
     },
     {
       "name": "How's the weather tomorrow?",
       "short_name": "Tomorrow",
       "description": "View weather information for tomorrow",
-      "url": "/",
+      "url": "/fm9",
       "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
     }
   ],
