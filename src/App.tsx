@@ -15,6 +15,8 @@ import { useSettingsStore } from "./store/settingsStore";
 const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
 
+if (window.location.href.split("/").at(-1) !== "") window.location.replace("/");
+
 function App() {
   const pageHref = (window.location.href.split("/").at(-1) as string) || "buys";
 
