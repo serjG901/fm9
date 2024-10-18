@@ -7,12 +7,14 @@ interface SourceCardComponent {
   source?: Source;
   updateSource?: (source: Source) => void;
   deleteSource?: (source: Source) => void;
+  sources?: Source[];
 }
 
 export default function SourceCard({
   source = { id: 0, name: "source", amount: "0", currency: "BYN" },
   updateSource = () => {},
   deleteSource = () => {},
+  sources = [],
 }: SourceCardComponent) {
   const showModal = () => {
     const modalId = document.getElementById(`update-source-${source.id}`);
@@ -28,6 +30,7 @@ export default function SourceCard({
           source={source}
           updateSource={updateSource}
           deleteSource={deleteSource}
+          sources={sources}
         />
       </FlexColumnCenter>
     </div>

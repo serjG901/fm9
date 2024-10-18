@@ -14,7 +14,10 @@ export const createSourcesStore = (name: string) =>
         id: 1,
         sources: [],
         addSource: (newSource) => {
-          if (get().sources.find((s) => s.name === newSource.name)) {
+          if (
+            !newSource.name ||
+            get().sources.find((s) => s.name === newSource.name)
+          ) {
             return;
           }
           set((state) => {

@@ -18,14 +18,14 @@ export default function Sources({
   sourcesType,
   useSourcesStore,
 }: SourcesComponent) {
-  const [sources, addSource, updateSource, deleteSource] = useSourcesStore(
-    (state: SourcesStore) => [
+  const [sources, addSource, updateSource, deleteSource, getSources] =
+    useSourcesStore((state: SourcesStore) => [
       state.sources,
       state.addSource,
       state.updateSource,
       state.deleteSource,
-    ]
-  );
+      state.getSources,
+    ]);
 
   const byCurrency = Object.groupBy(sources, (a) => a.currency);
   const amountsByCurrency = Object.keys(byCurrency).map((c) => [
@@ -43,7 +43,7 @@ export default function Sources({
           </div>
         ))}
 
-        <AddSource addSource={addSource} />
+        <AddSource addSource={addSource} sources={getSources()} />
         <FlexWrap
           childrenArray={sources
             .sort((a, b) => (+a.amount < +b.amount ? 1 : -1))
@@ -54,6 +54,7 @@ export default function Sources({
                   source={source}
                   updateSource={updateSource}
                   deleteSource={deleteSource}
+                  sources={getSources()}
                 />
               );
             })}
