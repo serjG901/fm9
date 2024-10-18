@@ -3,17 +3,17 @@
   "name": "FM9: intuitive self financial management",
   "icons": [
     {
-      "src": "/images/icons-vector.svg",
+      "src": "/fm9/images/icons-vector.svg",
       "type": "image/svg+xml",
       "sizes": "512x512"
     },
     {
-      "src": "/images/icons-192.png",
+      "src": "/fm9/images/icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/images/icons-512.png",
+      "src": "/fm9/images/icons-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
@@ -30,27 +30,27 @@
       "short_name": "Buys",
       "description": "add your buys",
       "url": "/fm9",
-      "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/fm9/images/icons-192.png", "sizes": "192x192" }]
     },
     {
       "name": "How's the weather tomorrow?",
       "short_name": "Tomorrow",
       "description": "View weather information for tomorrow",
       "url": "/fm9",
-      "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
+      "icons": [{ "src": "/fm9/images/icons-192.png", "sizes": "192x192" }]
     }
   ],
   "description": "Intuitive self financial management",
   "screenshots": [
     {
-      "src": "/images/screenshot1.png",
+      "src": "/fm9/images/screenshot1.png",
       "type": "image/png",
       "sizes": "540x720",
       "form_factor": "narrow"
     },
     {
-      "src": "/images/screenshot2.jpg",
-      "type": "image/jpg",
+      "src": "/fm9/images/screenshot2.png",
+      "type": "image/png",
       "sizes": "720x540",
       "form_factor": "wide"
     }
