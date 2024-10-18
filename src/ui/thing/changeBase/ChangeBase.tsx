@@ -52,6 +52,7 @@ export default function LoadDb() {
     currentBase,
     setCurrentBase,
     getCurrentBase,
+    deleteBase,
   ] = useBasesStore((state) => [
     state.bases,
     state.getBases,
@@ -60,6 +61,7 @@ export default function LoadDb() {
     state.currentBase,
     state.setCurrentBase,
     state.getCurrentBase,
+    state.deleteBase,
   ]);
 
   const [uploadStatus, setUploadStatus] = useState(false);
@@ -143,6 +145,44 @@ export default function LoadDb() {
     }
   };
 
+  const handleSetDefaultBase = () => {
+    const defaultBase = getBases().find((b) => b.name === "default");
+    if (defaultBase) {
+      setCurrentBase(defaultBase);
+      const currentDB = getCurrentBase()?.db || null;
+      if (currentDB !== null) {
+        Object.keys(currentDB).forEach((key) => {
+          if (key === `${appName}-buys`) {
+            setStateBuys(currentDB[key] as PaymentsStore);
+          }
+          if (key === `${appName}-pays`) {
+            setStatePays(currentDB[key] as PaymentsStore);
+          }
+          if (key === `${appName}-debets`) {
+            setStateDebets(currentDB[key] as SourcesStore);
+          }
+          if (key === `${appName}-credits`) {
+            setStateCredits(currentDB[key] as SourcesStore);
+          }
+          if (key === `${appName}-settings`)
+            setStateSettings(currentDB[key] as SettingsStore);
+        });
+      }
+
+      setUploadStatus(true);
+    }
+  };
+
+  const handleDeleteBase = () => {
+    if (currentBase && currentBase.name !== "default") {
+      const agree = confirm(`delete base ${currentBase.name}?`);
+      if (agree) {
+        deleteBase(currentBase);
+        handleSetDefaultBase();
+      }
+    }
+  };
+
   useEffect(() => {
     setUploadStatus(false);
   }, [clickCount]);
@@ -157,38 +197,47 @@ export default function LoadDb() {
     <div className='change-base'>
       <h2>Change Base</h2>
       {bases.length ? (
-        <div>
-          Current base:{" "}
-          <HighlightText
-            key={getCurrentBase()?.name}
-            bgColor={hslToRgb(+getStateSettings().hue, 100, 20) || ""}
-            padding
-          >
-            {getCurrentBase()?.name}
-          </HighlightText>
-        </div>
-      ) : null}
-
-      {bases.length ? (
         <FlexWrap
-          childrenArray={bases
-            .filter((b) => b.name !== getCurrentBase()?.name)
-            .sort((a, b) => (a.name > b.name ? 1 : -1))
-            .map((base) => (
-              <ActionButton
-                key={base.name}
-                actionWithPayload={handleChangeBase}
-                payload={base}
-                bgColor={hslToRgb(
-                  +(base?.db[`${appName}-settings`] as SettingsStore).hue,
-                  100,
-                  20
-                )}
-                onDown={handleDown}
-              >
-                {base.name}
+          childrenArray={[
+            <div>Current base:</div>,
+            <HighlightText
+              key={getCurrentBase()?.name}
+              bgColor={hslToRgb(+getStateSettings().hue, 100, 20) || ""}
+              padding
+            >
+              {getCurrentBase()?.name}
+            </HighlightText>,
+            currentBase && currentBase.name !== "default" ? (
+              <ActionButton actionWithPayload={handleDeleteBase}>
+                Delete
               </ActionButton>
-            ))}
+            ) : null,
+          ]}
+        />
+      ) : null}
+      {bases.length > 1 ? (
+        <FlexWrap
+          childrenArray={[
+            <div>Exist bases:</div>,
+            ...bases
+              .filter((b) => b.name !== getCurrentBase()?.name)
+              .sort((a, b) => (a.name > b.name ? 1 : -1))
+              .map((base) => (
+                <ActionButton
+                  key={base.name}
+                  actionWithPayload={handleChangeBase}
+                  payload={base}
+                  bgColor={hslToRgb(
+                    +(base?.db[`${appName}-settings`] as SettingsStore).hue,
+                    100,
+                    20
+                  )}
+                  onDown={handleDown}
+                >
+                  {base.name}
+                </ActionButton>
+              )),
+          ]}
         />
       ) : null}
       {uploadStatus ? (
@@ -202,6 +251,7 @@ export default function LoadDb() {
           name='name for new base'
           valueFromParent={newBaseName}
           hoistValue={setNewBaseName}
+          noValidValues={bases.map((b) => b.name)}
         />
         <ActionButton actionWithPayload={handleAddBase}>add base</ActionButton>
       </FlexColumnCenter>

@@ -17,6 +17,9 @@ export const useBasesStore = create<BasesStore>()(
         bases: [],
         getBases: () => get().bases,
         addBase: (newBaseName) => {
+          if (get().bases.find((b) => b.name === newBaseName)) {
+            return;
+          }
           set((state) => {
             const base: Base = {
               name: newBaseName,

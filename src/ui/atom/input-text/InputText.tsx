@@ -6,6 +6,7 @@ interface InputTextComponent {
   name?: string;
   valueFromParent?: string;
   hoistValue?: (value: string) => void;
+  noValidValues?: string[];
 }
 
 export default function InputText({
@@ -13,13 +14,21 @@ export default function InputText({
   name = "input-text",
   valueFromParent = "",
   hoistValue = () => {},
+  noValidValues = [],
 }: InputTextComponent) {
   const [state, setState] = useState(valueFromParent);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
     setState(value);
     hoistValue(value);
+
+    if (noValidValues.find((v) => v === value)) {
+      document.getElementById(id)?.classList.add("invalid");
+    } else {
+      document.getElementById(id)?.classList.remove("invalid");
+    }
   };
 
   useEffect(() => {
@@ -37,6 +46,7 @@ export default function InputText({
           maxLength={32}
           value={state}
           onChange={handleChange}
+          onFocus={handleChange}
         />
       </label>
     </div>

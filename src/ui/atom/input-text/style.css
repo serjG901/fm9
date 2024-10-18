@@ -10,5 +10,9 @@
       width: 100%;
       max-width: 20ch;
     }
+    .invalid {
+      border-color: var(--color-alert) !important;
+      outline-color: var(--color-alert) !important;
+    }
   }
 }

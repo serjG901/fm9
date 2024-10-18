@@ -12,6 +12,7 @@ interface FormSourceComponent {
   actionSource?: (source: Source) => void;
   source?: Source;
   deleteSource?: (source: Source) => void;
+  sources?: Source[];
 }
 
 export default function FormSource({
@@ -19,6 +20,7 @@ export default function FormSource({
   actionSource = () => {},
   source = { id: 0, name: "", amount: "", currency: "BYN" },
   deleteSource = () => {},
+  sources = [],
 }: FormSourceComponent) {
   const [sourceName, setSourceName] = useState(source.name);
   const [sourceAmount, setSourceAmount] = useState(source.amount);
@@ -47,6 +49,7 @@ export default function FormSource({
         name='name'
         valueFromParent={sourceName}
         hoistValue={setSourceName}
+        noValidValues={sources.map((s) => s.name)}
       />
       <InputNumber
         id='source-amount'

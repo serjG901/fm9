@@ -7,12 +7,14 @@ interface UpdateSourceComponent {
   updateSource?: (source: Source) => void;
   source?: Source;
   deleteSource?: (source: Source) => void;
+  sources?: Source[];
 }
 
 export default function UpdateSource({
   updateSource = () => {},
   source = { id: 0, name: "", amount: "", currency: "BYN" },
   deleteSource = () => {},
+  sources = [],
 }: UpdateSourceComponent) {
   return (
     <Modal id={`update-source-${source.id}`}>
@@ -21,6 +23,7 @@ export default function UpdateSource({
         actionSource={updateSource}
         source={source}
         deleteSource={deleteSource}
+        sources={sources}
       />
     </Modal>
   );

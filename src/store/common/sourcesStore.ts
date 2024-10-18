@@ -14,6 +14,9 @@ export const createSourcesStore = (name: string) =>
         id: 1,
         sources: [],
         addSource: (newSource) => {
+          if (get().sources.find((s) => s.name === newSource.name)) {
+            return;
+          }
           set((state) => {
             const source = { ...newSource, id: state.id };
             return { sources: [...state.sources, source], id: state.id + 1 };
