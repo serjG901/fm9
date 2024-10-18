@@ -28,9 +28,8 @@
   "id": "https://serjg901.github.io/fm9/",
   "start_url": "/fm9",
   "background_color": "#008080",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "/fm9",
-  "theme_color": "#000000",
   "description": "Intuitive self financial management",
   "screenshots": [
     {
