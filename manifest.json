@@ -59,7 +59,7 @@
     {
       "action": "/fm9/settings",
       "accept": {
-        "application/json": [".fm9"]
+        "application/fm9": [".fm9"]
       }
     }
   ]

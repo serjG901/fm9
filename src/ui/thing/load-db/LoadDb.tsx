@@ -52,7 +52,7 @@ export default function LoadDb() {
     const aDownloadFile: HTMLAnchorElement = document.getElementById(
       "aDownloadFile"
     ) as HTMLAnchorElement;
-    const opts = { type: "application/json" };
+    const opts = { type: "application/fm9" };
     const file = new File([JSON.stringify(getExistDB(), null, 4)], "", opts);
 
     aDownloadFile!.href = window.URL.createObjectURL(file);
@@ -111,7 +111,7 @@ export default function LoadDb() {
               name='oldOpenFile'
               type='file'
               title='file'
-              accept='.json'
+              accept='.fm9'
               onChange={handleDownloadFile}
             />
           </label>
