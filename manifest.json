@@ -31,22 +31,6 @@
   "display": "standalone",
   "scope": "/fm9",
   "theme_color": "#000000",
-  "shortcuts": [
-    {
-      "name": "Add Buys?",
-      "short_name": "Buys",
-      "description": "add your buys",
-      "url": "/fm9",
-      "icons": [{ "src": "/fm9/images/icons-192.png", "sizes": "192x192" }]
-    },
-    {
-      "name": "How's the weather tomorrow?",
-      "short_name": "Tomorrow",
-      "description": "View weather information for tomorrow",
-      "url": "/fm9",
-      "icons": [{ "src": "/fm9/images/icons-192.png", "sizes": "192x192" }]
-    }
-  ],
   "description": "Intuitive self financial management",
   "screenshots": [
     {
