@@ -35,6 +35,14 @@ export default function InputText({
     setState(valueFromParent);
   }, [valueFromParent]);
 
+  useEffect(() => {
+    if (noValidValues.find((v) => v === state)) {
+      document.getElementById(id)?.classList.add("invalid");
+    } else {
+      document.getElementById(id)?.classList.remove("invalid");
+    }
+  }, [noValidValues]);
+
   return (
     <div className='input-text'>
       <label htmlFor={id}>
