@@ -15,28 +15,14 @@
       "media": "(prefers-color-scheme: light)"
     },
     {
-      "src": "/fm9/images/icons-192-white.png",
+      "src": "/fm9/images/b-icons-192.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "media": "(prefers-color-scheme: dark)"
+      "sizes": "192x192"
     },
     {
-      "src": "/fm9/images/icons-192.png",
+      "src": "/fm9/images/b-icons-512.png",
       "type": "image/png",
-      "sizes": "192x192",
-      "media": "(prefers-color-scheme: light)"
-    },
-    {
-      "src": "/fm9/images/icons-512-white.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "media": "(prefers-color-scheme: dark)"
-    },
-    {
-      "src": "/fm9/images/icons-512.png",
-      "type": "image/png",
-      "sizes": "512x512",
-      "media": "(prefers-color-scheme: light)"
+      "sizes": "512x512"
     }
   ],
   "id": "https://serjg901.github.io/fm9/",
