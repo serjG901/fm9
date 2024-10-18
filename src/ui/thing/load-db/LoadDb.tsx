@@ -56,7 +56,10 @@ export default function LoadDb() {
     const file = new File([JSON.stringify(getExistDB(), null, 4)], "", opts);
 
     aDownloadFile!.href = window.URL.createObjectURL(file);
-    aDownloadFile!.setAttribute("download", `fm9${Date.now()}.json`);
+    aDownloadFile!.setAttribute(
+      "download",
+      `fm9-${currentBase?.name || "default"}-${Date.now()}.fm9`
+    );
     aDownloadFile!.click();
   }
 

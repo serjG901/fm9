@@ -54,5 +54,13 @@
       "sizes": "720x540",
       "form_factor": "wide"
     }
+  ],
+  "file_handlers": [
+    {
+      "action": "/fm9/settings",
+      "accept": {
+        "application/json": [".fm9"]
+      }
+    }
   ]
 }
