@@ -1,0 +1,58 @@
+{
+  "short_name": "FM9",
+  "name": "FM9: intuitive self financial management",
+  "icons": [
+    {
+      "src": "/images/icons-vector.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/images/icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "id": "https://serjg901.github.io/fm9/",
+  "start_url": "/fm9",
+  "background_color": "#008080",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000",
+  "shortcuts": [
+    {
+      "name": "Add Buys?",
+      "short_name": "Buys",
+      "description": "add your buys",
+      "url": "/",
+      "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "How's the weather tomorrow?",
+      "short_name": "Tomorrow",
+      "description": "View weather information for tomorrow",
+      "url": "/",
+      "icons": [{ "src": "/images/icons-192.png", "sizes": "192x192" }]
+    }
+  ],
+  "description": "Intuitive self financial management",
+  "screenshots": [
+    {
+      "src": "/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/images/screenshot2.jpg",
+      "type": "image/jpg",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    }
+  ]
+}
