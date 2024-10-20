@@ -22,7 +22,7 @@ export default function PaginatePageButton({
 }: PaginatePageButtonComponent) {
   const [isLoading, setIsLoading] = useState(1);
   const actionWithScroll = () => {
-   // setTimeout(() => window.scrollTo(0, 0), 300);
+    // setTimeout(() => window.scrollTo(0, 0), 300);
     action();
     setIsLoading(3);
   };
@@ -44,7 +44,11 @@ export default function PaginatePageButton({
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
         showBorder={pageActive === pageNumber}
         payload={
-          !dublicate ? pageNumber : !direction ? "dublicate" + pageNumber : direction
+          !dublicate
+            ? direction || pageNumber
+            : !direction
+            ? "dublicate" + pageNumber
+            : "dublicate" + direction
         }
       >
         {isLoading === 2 ? (
