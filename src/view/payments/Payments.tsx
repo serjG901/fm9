@@ -271,7 +271,7 @@ export default function Payments({
           forOptions={forOptions}
           maybeTags={maybeTags}
         />
-
+<br>
         <Paginate
           dublicate={true}
           pageActive={pageActive}
