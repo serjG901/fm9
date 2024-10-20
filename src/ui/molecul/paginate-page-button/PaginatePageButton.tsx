@@ -4,6 +4,7 @@ import "./style.css";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
 interface PaginatePageButtonComponent {
+  dublicate?: boolean;
   pageNumber?: string | number;
   action?: (totalPages?: number) => void;
   pageActive?: number | number;
@@ -12,6 +13,7 @@ interface PaginatePageButtonComponent {
 }
 
 export default function PaginatePageButton({
+  dublicate = false,
   pageNumber = "",
   action = () => {},
   pageActive = 1,
@@ -20,7 +22,7 @@ export default function PaginatePageButton({
 }: PaginatePageButtonComponent) {
   const [isLoading, setIsLoading] = useState(1);
   const actionWithScroll = () => {
-    setTimeout(() => window.scrollTo(0, 0), 300);
+   // setTimeout(() => window.scrollTo(0, 0), 300);
     action();
     setIsLoading(3);
   };
@@ -37,10 +39,13 @@ export default function PaginatePageButton({
       } ${disabled ? "paginate-page-button_disabled" : ""}`}
     >
       <ActionButton
-        onDown={handleChangePage}
+        onDown={disabled ? () => {} : handleChangePage}
         actionWithPayload={actionWithScroll}
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
         showBorder={pageActive === pageNumber}
+        payload={
+          !dublicate ? pageNumber : !direction ? "dublicate" + pageNumber : direction
+        }
       >
         {isLoading === 2 ? (
           <LoadingDots>

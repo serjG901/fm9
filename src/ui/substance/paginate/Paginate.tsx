@@ -4,6 +4,7 @@ import PaginatePageButton from "../../molecul/paginate-page-button/PaginatePageB
 import ActionButton from "../../atom/action-button/ActionButton";
 
 interface PaginateComponent {
+  dublicate?: boolean;
   pageActive?: number;
   pages?: number;
   setPageActive?: (value: number) => void;
@@ -12,6 +13,7 @@ interface PaginateComponent {
 }
 
 export default function Paginate({
+  dublicate = false,
   pageActive = 1,
   pages = 20,
   setPageActive = () => {},
@@ -38,6 +40,7 @@ export default function Paginate({
         if (typeof pageNumber == "number")
           return (
             <PaginatePageButton
+              dublicate={dublicate}
               key={pageNumber}
               pageNumber={pageNumber}
               action={() => setPageActive(pageNumber)}

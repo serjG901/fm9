@@ -260,6 +260,7 @@ export default function Payments({
         />
 
         <Paginate
+          dublicate={true}
           pageActive={pageActive}
           pages={pages}
           setPageActive={setPageActive}

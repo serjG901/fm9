@@ -42,8 +42,8 @@ export default function ActionButton({
       data-alert={alert ? "alert" : ""}
       style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
       disabled={disabled}
-      onMouseDown={disabled ? () => {} : onDown}
-      onTouchStart={disabled ? () => {} : onDown}
+      onMouseDown={onDown}
+      onTouchStart={onDown}
       data-show-border={showBorder ? "show" : ""}
     >
       {children || payload}
