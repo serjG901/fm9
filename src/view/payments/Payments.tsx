@@ -259,6 +259,14 @@ export default function Payments({
           maybeTags={maybeTags}
         />
 
+        <Paginate
+          pageActive={pageActive}
+          pages={pages}
+          setPageActive={setPageActive}
+          setPreviousPage={setPreviousPage}
+          setNextPage={() => setNextPage(pages || 20)}
+        />
+
         <FlexWrap childrenArray={cards}></FlexWrap>
       </div>
 

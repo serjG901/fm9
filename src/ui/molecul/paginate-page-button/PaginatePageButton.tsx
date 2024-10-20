@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
+import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
 interface PaginatePageButtonComponent {
   pageNumber?: string | number;
@@ -16,10 +18,16 @@ export default function PaginatePageButton({
   direction = "",
   disabled = false,
 }: PaginatePageButtonComponent) {
+  const [isLoading, setIsLoading] = useState(1);
   const actionWithScroll = () => {
     setTimeout(() => window.scrollTo(0, 0), 300);
     action();
+    setIsLoading(3);
   };
+  const handleChangePage = () => setIsLoading(2);
+  useEffect(() => {
+    if (isLoading === 3) setIsLoading(1);
+  }, [isLoading]);
   return (
     <div
       className={`paginate-page-button ${
@@ -29,10 +37,22 @@ export default function PaginatePageButton({
       } ${disabled ? "paginate-page-button_disabled" : ""}`}
     >
       <ActionButton
+        onDown={handleChangePage}
         actionWithPayload={actionWithScroll}
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
+        showBorder={pageActive === pageNumber}
       >
-        {!direction ? (
+        {isLoading === 2 ? (
+          <LoadingDots>
+            {!direction ? (
+              pageNumber
+            ) : direction === "left" ? (
+              <span>{"<"}</span>
+            ) : (
+              <span>{">"}</span>
+            )}
+          </LoadingDots>
+        ) : !direction ? (
           pageNumber
         ) : direction === "left" ? (
           <span>{"<"}</span>
