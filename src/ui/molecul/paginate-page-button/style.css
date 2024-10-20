@@ -5,5 +5,5 @@
   color: var(--color-main-light-accent);
 }
 .paginate-page-button_disabled {
-  color: var(--color-neutral);
+  filter: grayscale(1);
 }
