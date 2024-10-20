@@ -218,6 +218,12 @@ export default function Payments({
     setFilterTags(filterTags);
     setPageActive(1);
   };
+
+  const statisticsByCurrency = Object.groupBy(
+    sortedPayments,
+    ({ currency }) => currency
+  );
+
   return (
     <Page>
       <div className='payments-view'>
@@ -237,11 +243,18 @@ export default function Payments({
               setFilterTags={handleSetFilterTags}
               maybeTags={maybeTags}
             />,
-            <Statistics
-              key={"Statistics"}
-              payments={sortedPayments}
-              search={search}
-            />,
+            [
+              ...Object.keys(statisticsByCurrency).map((currency) => {
+                return (
+                  <Statistics
+                    key={currency}
+                    currency={currency}
+                    payments={statisticsByCurrency[currency]}
+                    search={search}
+                  />
+                );
+              }),
+            ],
           ]}
         />
 

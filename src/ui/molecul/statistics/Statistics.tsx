@@ -8,11 +8,13 @@ import SearchedName from "../searched-name/SearchedName";
 import "./style.css";
 
 interface StatisticsComponent {
+  currency?: string;
   payments?: Payment[];
   search?: string;
 }
 
 export default function Statistics({
+  currency,
   payments = [],
   search = "",
 }: StatisticsComponent) {
@@ -90,7 +92,7 @@ export default function Statistics({
     setDirectionOfSort(!directionOfSort);
   };
   return (
-    <Collapse title='statistics' collapseLevel='menu'>
+    <Collapse title={`${currency} stat`} collapseLevel='menu'>
       <div className='statistics'>
         <div>
           <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
