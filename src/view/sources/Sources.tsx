@@ -28,37 +28,42 @@ export default function Sources({
     ]);
 
   const byCurrency = Object.groupBy(sources, (a) => a.currency);
-  const amountsByCurrency = Object.keys(byCurrency).map((c) => [
-    c,
-    byCurrency![c]!.map((p) => p.amount),
-  ]);
+
   return (
     <Page>
       <div className='sources-view'>
         <h1>{sourcesType}</h1>
 
-        {amountsByCurrency.map((pair) => (
-          <div key={pair[0].toString()}>
-            {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
-          </div>
-        ))}
-
         <AddSource addSource={addSource} sources={getSources()} />
-        <FlexWrap
-          childrenArray={sources
-            .sort((a, b) => (+a.amount < +b.amount ? 1 : -1))
-            .map((source: Source) => {
+        {byCurrency
+          ? Object.keys(byCurrency).map((currency) => {
               return (
-                <SourceCard
-                  key={source.id}
-                  source={source}
-                  updateSource={updateSource}
-                  deleteSource={deleteSource}
-                  sources={getSources()}
-                />
+                <>
+                  <div key={currency}>
+                    {currency}:{" "}
+                    <span className='sum'>
+                      {plus(...byCurrency[currency]!.map((s) => s.amount))}
+                    </span>
+                  </div>
+                  <FlexWrap
+                    childrenArray={byCurrency[currency]!.sort((a, b) =>
+                      +a.amount < +b.amount ? 1 : -1
+                    ).map((source: Source) => {
+                      return (
+                        <SourceCard
+                          key={source.id}
+                          source={source}
+                          updateSource={updateSource}
+                          deleteSource={deleteSource}
+                          sources={getSources()}
+                        />
+                      );
+                    })}
+                  ></FlexWrap>
+                </>
               );
-            })}
-        ></FlexWrap>
+            })
+          : null}
       </div>
     </Page>
   );
