@@ -27,6 +27,7 @@
 }
 
 .input-file {
+  max-width: 80%;
   label {
     display: flex;
     flex-direction: column;
