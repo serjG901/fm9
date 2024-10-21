@@ -20,16 +20,29 @@ export default function PaginatePageButton({
   direction = "",
   disabled = false,
 }: PaginatePageButtonComponent) {
-  const [isLoading, setIsLoading] = useState(1);
+  const [isActionStatus, setIsActionStatus] = useState(1);
   const actionWithScroll = () => {
-    // setTimeout(() => window.scrollTo(0, 0), 300);
-    action();
-    setIsLoading(3);
+    setIsActionStatus(2);
   };
-  const handleChangePage = () => setIsLoading(2);
   useEffect(() => {
-    if (isLoading === 3) setIsLoading(1);
-  }, [isLoading]);
+    let timer = 0;
+    if (isActionStatus === 2) {
+      setIsActionStatus(3);
+    }
+    if (isActionStatus === 3) {
+      window.scrollTo(0, 0);
+      action();
+
+      timer = setTimeout(() => setIsActionStatus(4), 300);
+    }
+    if (isActionStatus === 4) {
+      clearTimeout(timer);
+      timer = setTimeout(() => setIsActionStatus(1), 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isActionStatus]);
   return (
     <div
       className={`paginate-page-button ${
@@ -39,7 +52,6 @@ export default function PaginatePageButton({
       } ${disabled ? "paginate-page-button_disabled" : ""}`}
     >
       <ActionButton
-        onDown={disabled ? () => {} : handleChangePage}
         actionWithPayload={actionWithScroll}
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
         showBorder={pageActive === pageNumber}
@@ -51,7 +63,7 @@ export default function PaginatePageButton({
             : "dublicate" + direction
         }
       >
-        {isLoading === 2 ? (
+        {isActionStatus === 2 || isActionStatus === 3 ? (
           <LoadingDots>
             {!direction ? (
               pageNumber

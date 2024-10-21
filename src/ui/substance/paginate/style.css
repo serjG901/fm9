@@ -1,7 +1,6 @@
 .paginate {
   display: flex;
   gap: var(--gap-s);
-  margin-bottom: 1rem;
   margin-inline: auto;
   justify-content: flex-end;
 }
