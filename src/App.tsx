@@ -13,8 +13,11 @@ import { useSettingsStore } from "./store/settingsStore";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
+import { useLanguageStore } from "./store/languageStore";
+import upperFirstLetter from "./helpers/upperFirstLetter";
 
-if (window.location.href.split("/").at(-1) !== "") window.location.replace(`/${appName}/`);
+if (window.location.href.split("/").at(-1) !== "")
+  window.location.replace(`/${appName}/`);
 
 function App() {
   const pageHref = (window.location.href.split("/").at(-1) as string) || "buys";
@@ -23,13 +26,16 @@ function App() {
   const Pays = React.lazy(() => import("./pages/pays/Pays"));
   const [page, setPage] = useState<string>(pageHref);
   const [hue] = useSettingsStore((state) => [state.hue]);
+  const [textes] = useLanguageStore((state) => [state.textes()]);
 
   let pages: { [key: string]: ReactNode } = {
     buys: (
       <Suspense
         fallback={
           <LoadingDots>
-            <h1>Buys</h1>
+            <h1>
+              {textes["buys"] ? upperFirstLetter(textes["buys"]) : "Buys"}
+            </h1>
           </LoadingDots>
         }
       >
@@ -40,7 +46,9 @@ function App() {
       <Suspense
         fallback={
           <LoadingDots>
-            <h1>Pays</h1>
+            <h1>
+              {textes["pays"] ? upperFirstLetter(textes["pays"]) : "Pays"}
+            </h1>
           </LoadingDots>
         }
       >
@@ -65,7 +73,6 @@ function App() {
     window.addEventListener(
       "popstate",
       (event) => {
-        console.log("State received: ", event.state);
         setPage(event.state && event.state.page ? event.state?.page : "buys");
       },
       {
@@ -82,9 +89,10 @@ function App() {
       <Menu
         choisedOption={page}
         collapseLevel='menu'
-        title='pages'
+        title={textes["pages"] || "pages"}
         options={Object.keys(pages)}
         actionWithPayload={handleActionMenu}
+        textes={textes}
       />
       {pages[page] || null}
     </div>

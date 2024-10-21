@@ -9,6 +9,7 @@ interface MenuComponent {
   title?: string;
   options?: string[];
   actionWithPayload?: (payload: string) => void;
+  textes?: { [key: string]: string };
 }
 
 export default function Menu({
@@ -17,6 +18,7 @@ export default function Menu({
   title = "menu",
   options = ["one", "two", "three"],
   actionWithPayload = () => {},
+  textes = {},
 }: MenuComponent) {
   return (
     <Collapse collapseLevel={collapseLevel} title={title}>
@@ -28,7 +30,7 @@ export default function Menu({
             payload={opt}
             showBorder={choisedOption === opt}
           >
-            {opt}
+            {textes[opt] || opt}
           </ActionButton>
         );
       })}

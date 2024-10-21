@@ -126,6 +126,13 @@ export interface SettingsStore {
   deleteCurrency: (currency: string) => void;
 }
 
+export interface LanguageStore {
+  currentLanguage: string;
+  languages: string[];
+  setCurrentLanguage: (lang: string) => void;
+  textes: () => { [key: string]: string };
+}
+
 //zustand
 
 export type Write<T, U> = Omit<T, keyof U> & U;

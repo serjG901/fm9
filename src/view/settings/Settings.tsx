@@ -10,6 +10,8 @@ import hslToRgb from "../../helpers/hslToRgb";
 import ChangeBase from "../../ui/thing/changeBase/ChangeBase";
 import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
 import Currencies from "../../ui/thing/currencies/Currencies";
+import Languages from "../../ui/thing/languages/Languages";
+import { useLanguageStore } from "../../store/languageStore";
 
 export default function Settings() {
   const [
@@ -37,6 +39,13 @@ export default function Settings() {
     state.itemsPerPage,
     state.setItemsPerPage,
   ]);
+  const [currentLanguage, languages, setCurrentLanguage] = useLanguageStore(
+    (state) => [
+      state.currentLanguage,
+      state.languages,
+      state.setCurrentLanguage,
+    ]
+  );
 
   return (
     <Page>
@@ -59,6 +68,15 @@ export default function Settings() {
               max={360}
               valueFromParent={hue}
               hoistValue={setHue}
+            />
+          </div>
+          <hr />
+          <div>
+            <h2>Languages</h2>
+            <Languages
+              currentLanguage={currentLanguage}
+              languages={languages}
+              setCurrentLanguage={setCurrentLanguage}
             />
           </div>
           <hr />
