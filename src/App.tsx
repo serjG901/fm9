@@ -10,7 +10,6 @@ import LoadingDots from "./ui/atom/loading-dots/LoadingDots";
 import React from "react";
 import SettingsApp from "./pages/settings-app/SettingsApp";
 import { useSettingsStore } from "./store/settingsStore";
-//import ToTop from "./ui/molecul/to-top/ToTop";
 //import SelfTransactions from "./pages/self-transactions/SelfTransactions";
 const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
@@ -91,5 +90,4 @@ function App() {
     </div>
   );
 }
-//<ToTop />
 export default App;

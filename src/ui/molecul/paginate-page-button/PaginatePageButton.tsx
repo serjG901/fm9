@@ -46,15 +46,14 @@ export default function PaginatePageButton({
   return (
     <div
       className={`paginate-page-button ${
-        pageActive && pageActive === pageNumber
-          ? "paginate-page-button_active"
+        disabled || (!!pageActive && pageActive === pageNumber)
+          ? "paginate-page-button_disabled"
           : ""
-      } ${disabled ? "paginate-page-button_disabled" : ""}`}
+      }`}
     >
       <ActionButton
         actionWithPayload={actionWithScroll}
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
-        showBorder={pageActive === pageNumber}
         payload={
           !dublicate
             ? direction || pageNumber

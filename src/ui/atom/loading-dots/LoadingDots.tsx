@@ -10,10 +10,16 @@ export default function LoadingDots({
   return (
     <div className='loading-dots'>
       {children}
-      <div>
-        <div></div>
-        <div></div>
-        <div></div>
+      <div className='dots'>
+        <div>
+          <div className='dot'></div>
+        </div>
+        <div>
+          <div className='dot'></div>
+        </div>
+        <div>
+          <div className='dot'></div>
+        </div>
       </div>
     </div>
   );

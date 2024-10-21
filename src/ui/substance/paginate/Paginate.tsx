@@ -1,7 +1,6 @@
 import "./style.css";
 import calculatePaginationRenderPage from "../../../helpers/calculatePaginationRenderPage";
 import PaginatePageButton from "../../molecul/paginate-page-button/PaginatePageButton";
-import ActionButton from "../../atom/action-button/ActionButton";
 
 interface PaginateComponent {
   dublicate?: boolean;
@@ -34,7 +33,7 @@ export default function Paginate({
         if (typeof pageNumber == "string")
           return (
             <div className='paginate-dots' key={pageNumber + index}>
-              <ActionButton disabled>..</ActionButton>
+              ..
             </div>
           );
         if (typeof pageNumber == "number")

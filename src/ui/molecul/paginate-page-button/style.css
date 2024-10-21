@@ -1,8 +1,7 @@
 .paginate-page-button {
-  display: contents;
 }
 .paginate-page-button_active {
-  color: var(--color-main-light-accent);
+  /*color: var(--color-main-light-accent);*/
 }
 .paginate-page-button_disabled {
   filter: grayscale(1);

@@ -1,34 +1,44 @@
 .loading-dots {
-  height: max-content;
-  flex-direction: column;
-  display: flex;
+  /* display: flex;
+  flex-direction: column;*/
+  position: relative;
+  --w-dot: 4px;
 }
-.loading-dots div:last-child {
-  align-self: center;
-  div {
-    background-color: currentColor;
-    width: 4px;
-    height: 4px;
-    border-radius: 2px;
+.dots {
+  left: 50%;
+  position: absolute;
+  max-width: 80px;
+  width: 2rem;
+  overflow: hidden;
+  height: 4px;
+  transform: translateX(-50%);
+  > div {
+    width: 100%;
     position: absolute;
-    transform: translateX(-50px);
+    .dot {
+      background-color: currentColor;
+      width: var(--w-dot);
+      aspect-ratio: 1/1;
+      border-radius: calc(var(--w-dot) / 2);
+    }
   }
-  div:nth-child(1) {
+
+  > div:nth-child(1) {
     animation: loading-dots-translate 1s ease-in-out 0s infinite;
   }
-  div:nth-child(2) {
+  > div:nth-child(2) {
     animation: loading-dots-translate 1s ease-in-out 0.1s infinite;
   }
-  div:nth-child(3) {
+  > div:nth-child(3) {
     animation: loading-dots-translate 1s ease-in-out 0.2s infinite;
   }
 }
 
 @keyframes loading-dots-translate {
   0% {
-    transform: translateX(-40px);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(40px);
+    transform: translateX(calc(100% - var(--w-dot)));
   }
 }

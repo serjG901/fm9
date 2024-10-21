@@ -1,6 +1,8 @@
 .paginate {
+  -webkit-user-select: none;
+  user-select: none;
   display: flex;
-  gap: var(--gap-s);
+  gap: calc(var(--gap-xs) / 2);
   margin-inline: auto;
   justify-content: flex-end;
 }
@@ -11,7 +13,5 @@
 
 .paginate-dots {
   display: flex;
-  place-content: center;
-  -webkit-user-select: none;
-  user-select: none;
+  align-items: self-end;
 }
