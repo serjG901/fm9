@@ -7,8 +7,9 @@
 .dots {
   left: 50%;
   position: absolute;
+  width: 200%;
   max-width: 80px;
-  width: 2rem;
+  min-width: 2rem;
   overflow: hidden;
   height: 4px;
   transform: translateX(-50%);
