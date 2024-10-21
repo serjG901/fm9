@@ -9,6 +9,8 @@ interface AddPaymentComponent {
   fromOptions?: string[];
   forOptions?: string[];
   maybeTags?: Tag[];
+  defaultCurrency?: string;
+  currencies?: string[];
 }
 
 export default function AddPayment({
@@ -17,6 +19,8 @@ export default function AddPayment({
   fromOptions = [],
   forOptions = [],
   maybeTags = [],
+  defaultCurrency = "",
+  currencies = [],
 }: AddPaymentComponent) {
   return (
     <div className='add-payment'>
@@ -28,6 +32,8 @@ export default function AddPayment({
           fromOptions={fromOptions}
           forOptions={forOptions}
           maybeTags={maybeTags}
+          defaultCurrency={defaultCurrency}
+          currencies={currencies}
         />
       </Collapse>
     </div>

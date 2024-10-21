@@ -19,6 +19,8 @@ interface FormPaymentComponent {
   forOptions?: string[];
   deletePayment?: (payment: Payment) => void;
   maybeTags?: Tag[];
+  defaultCurrency?: string;
+  currencies?: string[];
 }
 
 export default function FormPayment({
@@ -30,7 +32,7 @@ export default function FormPayment({
     datetime: getDefaultDatetime(),
     name: "",
     amount: "",
-    currency: "BYN",
+    currency: "",
     from: "",
     for: "",
     tags: [],
@@ -39,11 +41,15 @@ export default function FormPayment({
   forOptions = [],
   deletePayment = () => {},
   maybeTags = [],
+  defaultCurrency = "",
+  currencies = [],
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
   const [paymentAmount, setPaymentAmount] = useState(payment.amount);
-  const [paymentCurrency, setPaymentCurrency] = useState(payment.currency);
+  const [paymentCurrency, setPaymentCurrency] = useState(
+    payment.id === 0 ? defaultCurrency : payment.currency
+  );
   const [paymentFrom, setPaymentFrom] = useState(payment.from);
   const [paymentFor, setPaymentFor] = useState(payment.for);
   const [paymentTags, setPaymentTags] = useState<Tag[]>(payment.tags);
@@ -126,7 +132,7 @@ export default function FormPayment({
       <InputWithOptions
         id='payment-currency'
         name='currency'
-        options={["BYN", "USD", "EUR", "RUB"]}
+        options={currencies}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
       />

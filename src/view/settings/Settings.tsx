@@ -9,9 +9,26 @@ import HighlightText from "../../ui/atom/highlight-text/HighlightText";
 import hslToRgb from "../../helpers/hslToRgb";
 import ChangeBase from "../../ui/thing/changeBase/ChangeBase";
 import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
+import Currencies from "../../ui/thing/currencies/Currencies";
 
 export default function Settings() {
-  const [hue, setHue] = useSettingsStore((state) => [state.hue, state.setHue]);
+  const [
+    hue,
+    setHue,
+    defaultCurrency,
+    setDefaultCurrency,
+    currencies,
+    addCurrency,
+    deleteCurrency,
+  ] = useSettingsStore((state) => [
+    state.hue,
+    state.setHue,
+    state.defaultCurrency,
+    state.setDefaultCurrency,
+    state.currencies,
+    state.addCurrency,
+    state.deleteCurrency,
+  ]);
   const [itemsPerPageBuys, setItemsPerPageBuys] = useBuysStore((state) => [
     state.itemsPerPage,
     state.setItemsPerPage,
@@ -42,6 +59,17 @@ export default function Settings() {
               max={360}
               valueFromParent={hue}
               hoistValue={setHue}
+            />
+          </div>
+          <hr />
+          <div>
+            <h2>Currencies</h2>
+            <Currencies
+              defaultCurrency={defaultCurrency}
+              setDefaultCurrency={setDefaultCurrency}
+              currencies={currencies}
+              addCurrency={addCurrency}
+              deleteCurrency={deleteCurrency}
             />
           </div>
           <hr />

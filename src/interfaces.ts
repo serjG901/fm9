@@ -119,6 +119,11 @@ export interface SettingsStore {
   setState: (state: SettingsStore) => void;
   hue: string;
   setHue: (hue: string) => void;
+  defaultCurrency: string;
+  setDefaultCurrency: (defaultCurrency: string) => void;
+  currencies: string[];
+  addCurrency: (currency: string) => void;
+  deleteCurrency: (currency: string) => void;
 }
 
 //zustand

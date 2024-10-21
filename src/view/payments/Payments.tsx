@@ -24,6 +24,7 @@ import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";
 import Paginate from "../../ui/substance/paginate/Paginate";
 import ToTop from "../../ui/molecul/to-top/ToTop";
+import { useSettingsStore } from "../../store/settingsStore";
 
 interface PaymentsComponent {
   paymentsType: string;
@@ -92,6 +93,11 @@ export default function Payments({
       state.setFilterTags,
     ]
   );
+
+  const [defaultCurrency, currencies] = useSettingsStore((state) => [
+    state.defaultCurrency,
+    state.currencies,
+  ]);
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -187,6 +193,7 @@ export default function Payments({
         forOptions={forOptions}
         maybeTags={maybeTags}
         search={search}
+        currencies={currencies}
       />
     );
     let breakLine = (
@@ -270,6 +277,8 @@ export default function Payments({
           fromOptions={fromOptions}
           forOptions={forOptions}
           maybeTags={maybeTags}
+          defaultCurrency={defaultCurrency}
+          currencies={currencies}
         />
         <br />
         <Paginate

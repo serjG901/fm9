@@ -12,6 +12,7 @@ interface UpdatePaymentComponent {
   forOptions?: string[];
   deletePayment?: (payment: Payment) => void;
   maybeTags?: Tag[];
+  currencies?: string[];
 }
 
 export default function UpdatePayment({
@@ -31,11 +32,10 @@ export default function UpdatePayment({
   forOptions = [],
   deletePayment = () => {},
   maybeTags = [],
+  currencies = [],
 }: UpdatePaymentComponent) {
   return (
-    <Modal
-      id={`update-payment-${payment.id}`}
-    >
+    <Modal id={`update-payment-${payment.id}`}>
       <FormPayment
         maybeName={maybeName}
         actionType='update'
@@ -45,6 +45,7 @@ export default function UpdatePayment({
         fromOptions={fromOptions}
         forOptions={forOptions}
         maybeTags={maybeTags}
+        currencies={currencies}
       />
     </Modal>
   );

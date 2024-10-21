@@ -13,18 +13,24 @@ interface FormSourceComponent {
   source?: Source;
   deleteSource?: (source: Source) => void;
   sources?: Source[];
+  defaultCurrency?: string;
+  currencies?: string[];
 }
 
 export default function FormSource({
   actionType = "action",
   actionSource = () => {},
-  source = { id: 0, name: "", amount: "", currency: "BYN" },
+  source = { id: 0, name: "", amount: "", currency: "" },
   deleteSource = () => {},
   sources = [],
+  defaultCurrency = "",
+  currencies = [],
 }: FormSourceComponent) {
   const [sourceName, setSourceName] = useState(source.name);
   const [sourceAmount, setSourceAmount] = useState(source.amount);
-  const [sourceCurrency, setSourceCurrency] = useState(source.currency);
+  const [sourceCurrency, setSourceCurrency] = useState(
+    source.id === 0 ? defaultCurrency : source.currency
+  );
 
   const handleActionSource = () => {
     actionSource({
@@ -60,7 +66,7 @@ export default function FormSource({
       <InputWithOptions
         id='source-currency'
         name='currency'
-        options={["BYN", "USD", "EUR", "RUB"]}
+        options={currencies}
         valueFromParent={sourceCurrency}
         hoistValue={setSourceCurrency}
       />

@@ -6,6 +6,7 @@ import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import plus from "../../helpers/plus";
 import { Source, SourcesStore, StorePersist, Write } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
+import { useSettingsStore } from "../../store/settingsStore";
 
 interface SourcesComponent {
   sourcesType: string;
@@ -27,6 +28,11 @@ export default function Sources({
       state.getSources,
     ]);
 
+  const [defaultCurrency, currencies] = useSettingsStore((state) => [
+    state.defaultCurrency,
+    state.currencies,
+  ]);
+
   const byCurrency = Object.groupBy(sources, (a) => a.currency);
 
   return (
@@ -34,7 +40,12 @@ export default function Sources({
       <div className='sources-view'>
         <h1>{sourcesType}</h1>
 
-        <AddSource addSource={addSource} sources={getSources()} />
+        <AddSource
+          addSource={addSource}
+          sources={getSources()}
+          defaultCurrency={defaultCurrency}
+          currencies={currencies}
+        />
         {byCurrency
           ? Object.keys(byCurrency).map((currency) => {
               return (
@@ -56,6 +67,7 @@ export default function Sources({
                           updateSource={updateSource}
                           deleteSource={deleteSource}
                           sources={getSources()}
+                          currencies={currencies}
                         />
                       );
                     })}

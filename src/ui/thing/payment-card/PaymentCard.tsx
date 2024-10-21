@@ -15,6 +15,7 @@ interface PaymentCardComponent {
   deletePayment?: (payment: Payment) => void;
   maybeTags?: Tag[];
   search?: string;
+  currencies?: string[];
 }
 
 export default function PaymentCard({
@@ -35,6 +36,7 @@ export default function PaymentCard({
   deletePayment = () => {},
   maybeTags = [],
   search = "",
+  currencies = [],
 }: PaymentCardComponent) {
   const showModal = () => {
     const modalId = document.getElementById(`update-payment-${payment.id}`);
@@ -78,6 +80,7 @@ export default function PaymentCard({
           updatePayment={updatePayment}
           deletePayment={deletePayment}
           maybeTags={maybeTags}
+          currencies={currencies}
         />
       </FlexColumnCenter>
     </div>
