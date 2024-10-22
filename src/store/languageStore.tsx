@@ -127,7 +127,7 @@ const textes: { [key: string]: { [key: string]: string } } = {
     per: "на",
     payments: "плацяжы",
     set: "усталяваць",
-    pages: "страніцы",
+    pages: "старонкі",
     ui: "інтэрфейс",
     languages: "мовы",
     the_number_of_elements_per_payments_page:
