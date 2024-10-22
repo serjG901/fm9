@@ -11,7 +11,7 @@ export const useSettingsStore = create<SettingsStore>()(
         setState: (state) => {
           set(state);
         },
-        hue: "240",
+        hue: "190",
         setHue: (hue) => set({ hue }),
         defaultCurrency: "USD",
         setDefaultCurrency: (defaultCurrency) => set({ defaultCurrency }),
