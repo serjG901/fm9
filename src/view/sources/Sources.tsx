@@ -13,6 +13,7 @@ import {
 } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 import { useSettingsStore } from "../../store/settingsStore";
+import Contents from "../../ui/atom/contents/Contents";
 
 interface SourcesComponent extends TextesByLanguage {
   sourcesType: string;
@@ -57,8 +58,8 @@ export default function Sources({
         {byCurrency
           ? Object.keys(byCurrency).map((currency) => {
               return (
-                <>
-                  <div key={currency}>
+                <Contents key={currency}>
+                  <div>
                     {currency}:{" "}
                     <span className='sum'>
                       {plus(...byCurrency[currency]!.map((s) => s.amount))}
@@ -81,7 +82,7 @@ export default function Sources({
                       );
                     })}
                   ></FlexWrap>
-                </>
+                </Contents>
               );
             })
           : null}
