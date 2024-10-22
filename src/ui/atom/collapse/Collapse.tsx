@@ -12,15 +12,15 @@ export default function Collapse({
   title = "collapse",
   children = "children",
 }: CollapseComponent) {
-  const [state, setState] = useState(0);
+  const [state, setState] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleToggle = ({ target }: any) => {
+    setState(target.open);
+  };
   return (
-    <details
-      className='collapse'
-      name={collapseLevel}
-      onClick={() => setState((s) => s + 1)}
-    >
+    <details className='collapse' name={collapseLevel} onToggle={handleToggle}>
       <summary>{title}</summary>
-      {state % 2 ? <div className='collapse-content'>{children}</div> : null}
+      {state ? <div className='collapse-content'>{children}</div> : null}
     </details>
   );
 }

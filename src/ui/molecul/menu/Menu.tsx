@@ -3,6 +3,7 @@ import "./style.css";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import { TextesByLanguage } from "../../../interfaces";
+import FlexWrap from "../../atom/flex-wrap/FlexWrap";
 
 interface MenuComponent extends TextesByLanguage {
   choisedOption?: string;
@@ -22,18 +23,20 @@ export default function Menu({
 }: MenuComponent) {
   return (
     <Collapse collapseLevel={collapseLevel} title={title}>
-      {options.map((opt) => {
-        return (
-          <ActionButton
-            key={opt}
-            actionWithPayload={actionWithPayload}
-            payload={opt}
-            showBorder={choisedOption === opt}
-          >
-            {textes[opt] || opt}
-          </ActionButton>
-        );
-      })}
+      <FlexWrap
+        childrenArray={options.map((opt) => {
+          return (
+            <ActionButton
+              key={opt}
+              actionWithPayload={actionWithPayload}
+              payload={opt}
+              showBorder={choisedOption === opt}
+            >
+              {textes[opt] || opt}
+            </ActionButton>
+          );
+        })}
+      />
     </Collapse>
   );
 }
