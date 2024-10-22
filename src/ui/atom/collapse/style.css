@@ -39,7 +39,7 @@
 }
 
 .collapse {
-  height: auto;
+  height: min-content;
   transition: height 1s;
 }
 .collapse[open] {
