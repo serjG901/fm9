@@ -17,7 +17,7 @@
     }
   }
   .modal-content {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 90dvh;
     width: max-content;
     max-width: calc(90% - 4rem);

@@ -30,7 +30,7 @@ export default function UpdateTransaction({
 }: UpdateTransactionComponent) {
   return (
     <div>
-      <Modal id={`update-payment-${transaction.id}`} textes={textes}>
+      <Modal id={`update-transaction-${transaction.id}`} textes={textes}>
         <FormTransaction
           textes={textes}
           actionType='update'
@@ -45,7 +45,7 @@ export default function UpdateTransaction({
         <ActionButton
           actionWithPayload={() =>
             document
-              .getElementById(`update-payment-${transaction.id}`)
+              .getElementById(`update-transaction-${transaction.id}`)
               ?.showPopover()
           }
         >
