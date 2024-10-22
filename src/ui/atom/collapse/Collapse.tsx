@@ -1,4 +1,4 @@
-import {  ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import "./style.css";
 
 interface CollapseComponent {
@@ -14,8 +14,9 @@ export default function Collapse({
 }: CollapseComponent) {
   const [state, setState] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleToggle = ({ target }: any) => {
-    setState(target.open);
+  const handleToggle = (e: any) => {
+    e.stopPropogation();
+    setState(e.target.open);
   };
   return (
     <details className='collapse' name={collapseLevel} onToggle={handleToggle}>
