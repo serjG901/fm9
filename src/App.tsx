@@ -14,7 +14,6 @@ import { useSettingsStore } from "./store/settingsStore";
 const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
 import { useLanguageStore } from "./store/languageStore";
-import upperFirstLetter from "./helpers/upperFirstLetter";
 
 if (window.location.href.split("/").at(-1) !== "")
   window.location.replace(`/${appName}/`);
@@ -33,35 +32,31 @@ function App() {
       <Suspense
         fallback={
           <LoadingDots>
-            <h1>
-              {textes["buys"] ? upperFirstLetter(textes["buys"]) : "Buys"}
-            </h1>
+            <h1></h1>
           </LoadingDots>
         }
       >
-        <Buys />
+        <Buys textes={textes} />
       </Suspense>
     ),
     pays: (
       <Suspense
         fallback={
           <LoadingDots>
-            <h1>
-              {textes["pays"] ? upperFirstLetter(textes["pays"]) : "Pays"}
-            </h1>
+            <h1></h1>
           </LoadingDots>
         }
       >
-        <Pays />
+        <Pays textes={textes} />
       </Suspense>
     ),
     //transactions: <SelfTransactions />,
-    debets: <Debets />,
-    credits: <Credits />,
-    settings: <SettingsApp />,
+    debets: <Debets textes={textes} />,
+    credits: <Credits textes={textes} />,
+    settings: <SettingsApp textes={textes} />,
   };
 
-  if (API_IS_PROD === "0") pages = { ...pages, ui: <Ui /> };
+  if (API_IS_PROD === "0") pages = { ...pages, ui: <Ui textes={textes} /> };
 
   const handleActionMenu = (payload: string) => {
     setPage(payload);

@@ -1,5 +1,21 @@
 .settings-view {
+  opacity: 1;
+  transform: translate(0px, 0px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  @starting-style {
+    opacity: 0;
+    transform: translate(0px, 24px);
+  }
   hr {
     width: 100%;
+  }
+  div:has(h2) {
+    opacity: 1;
+    transform: translate(0px, 0px);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    @starting-style {
+      opacity: 0;
+      transform: translate(0px, 24px);
+    }
   }
 }

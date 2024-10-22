@@ -1,10 +1,11 @@
 import "./style.css";
 import Modal from "../../molecul/modal/Modal";
 import FormPayment from "../../molecul/form-payment/FormPayment";
-import { Payment, Tag } from "../../../interfaces";
+import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import ActionButton from "../../atom/action-button/ActionButton";
 
-interface UpdatePaymentComponent {
+interface UpdatePaymentComponent extends TextesByLanguage {
   maybeName?: string[];
   updatePayment?: (payment: Payment) => void;
   payment?: Payment;
@@ -16,6 +17,7 @@ interface UpdatePaymentComponent {
 }
 
 export default function UpdatePayment({
+  textes = {},
   maybeName = [],
   updatePayment = () => {},
   payment = {
@@ -35,18 +37,32 @@ export default function UpdatePayment({
   currencies = [],
 }: UpdatePaymentComponent) {
   return (
-    <Modal id={`update-payment-${payment.id}`}>
-      <FormPayment
-        maybeName={maybeName}
-        actionType='update'
-        actionPayment={updatePayment}
-        payment={payment}
-        deletePayment={deletePayment}
-        fromOptions={fromOptions}
-        forOptions={forOptions}
-        maybeTags={maybeTags}
-        currencies={currencies}
-      />
-    </Modal>
+    <>
+      <Modal id={`update-payment-${payment.id}`} textes={textes}>
+        <FormPayment
+          textes={textes}
+          maybeName={maybeName}
+          actionType='update'
+          actionPayment={updatePayment}
+          payment={payment}
+          deletePayment={deletePayment}
+          fromOptions={fromOptions}
+          forOptions={forOptions}
+          maybeTags={maybeTags}
+          currencies={currencies}
+        />
+      </Modal>
+      {payment.id === 0 ? (
+        <ActionButton
+          actionWithPayload={() =>
+            document
+              .getElementById(`update-payment-${payment.id}`)
+              ?.showPopover()
+          }
+        >
+          show modal
+        </ActionButton>
+      ) : null}
+    </>
   );
 }

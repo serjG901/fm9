@@ -2,14 +2,14 @@ import "./style.css";
 
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
+import { TextesByLanguage } from "../../../interfaces";
 
-interface MenuComponent {
+interface MenuComponent extends TextesByLanguage {
   choisedOption?: string;
   collapseLevel?: string;
   title?: string;
   options?: string[];
   actionWithPayload?: (payload: string) => void;
-  textes?: { [key: string]: string };
 }
 
 export default function Menu({

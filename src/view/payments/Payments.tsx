@@ -15,6 +15,7 @@ import {
   PaymentsStore,
   StorePersist,
   Tag,
+  TextesByLanguage,
   Write,
 } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
@@ -26,7 +27,7 @@ import Paginate from "../../ui/substance/paginate/Paginate";
 import ToTop from "../../ui/molecul/to-top/ToTop";
 import { useSettingsStore } from "../../store/settingsStore";
 
-interface PaymentsComponent {
+interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
   usePaymentsStore: UseBoundStore<
     Write<StoreApi<PaymentsStore>, StorePersist<PaymentsStore, PaymentsStore>>
@@ -34,6 +35,7 @@ interface PaymentsComponent {
 }
 
 export default function Payments({
+  textes = {},
   paymentsType,
   usePaymentsStore,
 }: PaymentsComponent) {
@@ -184,6 +186,7 @@ export default function Payments({
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <PaymentCard
+        textes={textes}
         key={payment.id}
         maybeName={maybeName}
         payment={payment}
@@ -238,11 +241,13 @@ export default function Payments({
         <FlexWrap
           childrenArray={[
             <FormDataRange
+              textes={textes}
               key={"FormDataRange"}
               period={{ start: startPeriod, end: endPeriod }}
               setPeriod={setPeriod}
             />,
             <Filter
+              textes={textes}
               key={"Filter"}
               search={search}
               setSearch={handleSetSearch}
@@ -254,6 +259,7 @@ export default function Payments({
               ...Object.keys(statisticsByCurrency).map((currency) => {
                 return (
                   <Statistics
+                    textes={textes}
                     key={currency}
                     currency={currency}
                     payments={statisticsByCurrency[currency]}
@@ -272,6 +278,7 @@ export default function Payments({
         ))}
 
         <AddPayment
+          textes={textes}
           maybeName={maybeName}
           addPayment={addPaymentWithS}
           fromOptions={fromOptions}

@@ -1,10 +1,11 @@
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
-import { Source, Transaction } from "../../../interfaces";
+import { Source, TextesByLanguage, Transaction } from "../../../interfaces";
+import ActionButton from "../../atom/action-button/ActionButton";
 import FormTransaction from "../../molecul/form-transaction/FormTransaction";
 import Modal from "../../molecul/modal/Modal";
 import "./style.css";
 
-interface UpdateTransactionComponent {
+interface UpdateTransactionComponent extends TextesByLanguage {
   transaction?: Transaction;
   fromOptions?: Source[];
   forOptions?: Source[];
@@ -13,6 +14,7 @@ interface UpdateTransactionComponent {
 }
 
 export default function UpdateTransaction({
+  textes = {},
   transaction = {
     id: 0,
     datetime: getDefaultDatetime(),
@@ -28,8 +30,9 @@ export default function UpdateTransaction({
 }: UpdateTransactionComponent) {
   return (
     <div>
-      <Modal id={`update-payment-${transaction.id}`}>
+      <Modal id={`update-payment-${transaction.id}`} textes={textes}>
         <FormTransaction
+          textes={textes}
           actionType='update'
           transaction={transaction}
           actionTransaction={updateTransaction}
@@ -38,6 +41,17 @@ export default function UpdateTransaction({
           forOptions={forOptions}
         />
       </Modal>
+      {transaction.id === 0 ? (
+        <ActionButton
+          actionWithPayload={() =>
+            document
+              .getElementById(`update-payment-${transaction.id}`)
+              ?.showPopover()
+          }
+        >
+          show modal
+        </ActionButton>
+      ) : null}
     </div>
   );
 }

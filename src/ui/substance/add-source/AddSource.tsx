@@ -1,9 +1,9 @@
 import "./style.css";
 import Collapse from "../../atom/collapse/Collapse";
 import FormSource from "../../molecul/form-source/FormSource";
-import { NewSource, Source } from "../../../interfaces";
+import { NewSource, Source, TextesByLanguage } from "../../../interfaces";
 
-interface AddSourceComponent {
+interface AddSourceComponent extends TextesByLanguage {
   addSource?: (newSource: NewSource) => void;
   sources?: Source[];
   defaultCurrency?: string;
@@ -11,6 +11,7 @@ interface AddSourceComponent {
 }
 
 export default function AddSource({
+  textes = {},
   addSource = () => {},
   sources = [],
   defaultCurrency = "",
@@ -18,8 +19,9 @@ export default function AddSource({
 }: AddSourceComponent) {
   return (
     <div>
-      <Collapse collapseLevel='menu' title='add'>
+      <Collapse collapseLevel='menu' title={textes["add"] || "add"}>
         <FormSource
+          textes={textes}
           actionType='add'
           actionSource={addSource}
           sources={sources}

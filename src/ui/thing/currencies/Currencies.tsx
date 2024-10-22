@@ -5,8 +5,10 @@ import "./style.css";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Grid from "../../atom/grid/Grid";
 import Contents from "../../atom/contents/Contents";
+import { TextesByLanguage } from "../../../interfaces";
+import Collapse from "../../atom/collapse/Collapse";
 
-interface CurrencyComponent {
+interface CurrencyComponent extends TextesByLanguage {
   defaultCurrency?: string;
   setDefaultCurrency?: (defaultCurrency: string) => void;
   currencies?: string[];
@@ -15,6 +17,7 @@ interface CurrencyComponent {
 }
 
 export default function Currencies({
+  textes = {},
   defaultCurrency = "BYN",
   setDefaultCurrency = () => {},
   currencies = ["BYN", "USD"],
@@ -28,7 +31,9 @@ export default function Currencies({
   };
 
   const handleDeleteCurrency = (c: string) => {
-    const agree = confirm(`delete currency ${c}?`);
+    const agree = confirm(
+      `${textes["delete_currency"] || "delete currency"} ${c}?`
+    );
     if (agree) {
       deleteCurrency(c);
     }
@@ -50,32 +55,41 @@ export default function Currencies({
                   onChange={() => setDefaultCurrency(c)}
                 />
               </label>
-              {c === defaultCurrency ? <span>default</span> : <span></span>}
+              {c === defaultCurrency ? (
+                <span>{textes["default"] || "default"}</span>
+              ) : (
+                <span></span>
+              )}
               {currencies.length > 1 ? (
                 <ActionButton
                   actionWithPayload={handleDeleteCurrency}
                   payload={c}
                   alert
                 >
-                  delete
+                  {textes["delete"] || "delete"}
                 </ActionButton>
               ) : null}
             </Contents>
           );
         })}
       </Grid>
-      <br />
-      <FlexColumnCenter>
-        <InputText
-          noValidValues={currencies}
-          name='new currency'
-          valueFromParent={local}
-          hoistValue={setLocal}
-        />
-        <ActionButton actionWithPayload={handleAddCurrency}>
-          add currency
-        </ActionButton>
-      </FlexColumnCenter>
+
+      <Collapse
+        title={textes["add_currency"] || "add currency"}
+        collapseLevel='settings'
+      >
+        <FlexColumnCenter>
+          <InputText
+            noValidValues={currencies}
+            name={textes["new_currency"] || "new currency"}
+            valueFromParent={local}
+            hoistValue={setLocal}
+          />
+          <ActionButton actionWithPayload={handleAddCurrency}>
+            {textes["add_currency"] || "add currency"}
+          </ActionButton>
+        </FlexColumnCenter>
+      </Collapse>
     </div>
   );
 }

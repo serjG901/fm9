@@ -3,8 +3,9 @@ import { useState } from "react";
 import Menu from "../../ui/molecul/menu/Menu";
 import Page from "../../ui/atom/page/Page";
 import components from "../../ui/components";
+import { TextesByLanguage } from "../../interfaces";
 
-export default function Ui() {
+export default function Ui({ textes = {} }: TextesByLanguage) {
   const [component, setComponent] = useState<string>("");
 
   const handleActionMenu = (payload: string) => {
@@ -17,7 +18,7 @@ export default function Ui() {
         <h1>UI</h1>
         <Menu
           collapseLevel='menu'
-          title='components'
+          title={textes["components"] || "components"}
           options={Object.keys(components)}
           actionWithPayload={handleActionMenu}
         />

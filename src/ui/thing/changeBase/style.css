@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   gap: var(--gap-m);
+  .description {
+    color: var(--color-text-label);
+  }
 }
 
 .load-db-upload-status {

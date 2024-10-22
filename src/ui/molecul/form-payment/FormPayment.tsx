@@ -6,11 +6,11 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import AddTags from "../add-tags/AddTags";
-import { Payment, Tag } from "../../../interfaces";
+import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
-interface FormPaymentComponent {
+interface FormPaymentComponent extends TextesByLanguage {
   maybeName?: string[];
   actionType?: string;
   actionPayment?: (payment: Payment) => void;
@@ -24,6 +24,7 @@ interface FormPaymentComponent {
 }
 
 export default function FormPayment({
+  textes = {},
   maybeName = [],
   actionType = "action",
   actionPayment = () => {},
@@ -64,7 +65,7 @@ export default function FormPayment({
   };
 
   const handleDeletePayment = () => {
-    const agree = confirm("delete?");
+    const agree = confirm(`${textes["delete"]}?`);
     if (agree) {
       setIsDeleteStatus(2);
     }
@@ -112,46 +113,47 @@ export default function FormPayment({
     <FlexColumnCenter>
       <Datepicker
         id='payment-datetime'
-        name='datetime'
+        name={textes["datetime"] || "datetime"}
         valueFromParent={paymentDatetime}
         hoistValue={setPaymentDatetime}
       />
       <InputWithOptions
         id='payment-name'
-        name='name'
+        name={textes["name"] || "name"}
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
         options={maybeName}
       />
       <InputNumber
         id='payment-amount'
-        name='amount'
+        name={textes["amount"] || "amount"}
         valueFromParent={paymentAmount}
         hoistValue={setPaymentAmount}
       />
       <InputWithOptions
         id='payment-currency'
-        name='currency'
+        name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
       />
       <InputWithOptions
         id='payment-from'
-        name='from'
+        name={textes["from"] || "from"}
         options={fromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
       />
       <InputWithOptions
         id='payment-for'
-        name='for'
+        name={textes["for"] || "for"}
         options={forOptions}
         valueFromParent={paymentFor}
         hoistValue={setPaymentFor}
       />
       <div>
         <AddTags
+          textes={textes}
           tagsFromParrent={paymentTags}
           hoistTags={setPaymentTags}
           maybeTags={maybeTags}
@@ -161,16 +163,18 @@ export default function FormPayment({
       {isActionStatus === 2 || isActionStatus === 3 ? (
         <ActionButton>
           <LoadingDots>
-            {actionType === "update" ? "updating" : "adding"}
+            {actionType === "update"
+              ? textes["updating"] || "updating"
+              : textes["adding"] || "adding"}
           </LoadingDots>
         </ActionButton>
       ) : isActionStatus === 4 ? (
         <ActionButton>
-          <div>{actionType} done</div>
+          <div>{textes["done"] || "done"}</div>
         </ActionButton>
       ) : (
         <ActionButton actionWithPayload={handleActionPayment}>
-          {actionType}
+          {textes[actionType] || actionType}
         </ActionButton>
       )}
 
@@ -179,11 +183,11 @@ export default function FormPayment({
           <br />
           {isDeleteStatus === 2 ? (
             <ActionButton alert>
-              <LoadingDots>deleting</LoadingDots>
+              <LoadingDots>{textes["deleting"] || "deleting"}</LoadingDots>
             </ActionButton>
           ) : (
             <ActionButton actionWithPayload={handleDeletePayment} alert>
-              delete
+              {textes["delete"] || "delete"}
             </ActionButton>
           )}
         </>

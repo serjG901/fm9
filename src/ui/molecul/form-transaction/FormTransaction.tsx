@@ -5,11 +5,11 @@ import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
-import { Source, Transaction } from "../../../interfaces";
+import { Source, TextesByLanguage, Transaction } from "../../../interfaces";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 import multy from "../../../helpers/multy";
 
-interface FormTransactionComponent {
+interface FormTransactionComponent extends TextesByLanguage {
   actionType?: string;
   actionTransaction?: (transaction: Transaction) => void;
   transaction?: Transaction;
@@ -19,6 +19,7 @@ interface FormTransactionComponent {
 }
 
 export default function FormTransaction({
+  textes = {},
   actionType = "action",
   actionTransaction = () => {},
   transaction = {
@@ -59,7 +60,7 @@ export default function FormTransaction({
   };
 
   const handleDeleteTransaction = () => {
-    const agree = confirm("delete?");
+    const agree = confirm(`${textes["delete"]}?`);
     if (agree) {
       deleteTransaction(transaction);
     }
@@ -79,26 +80,26 @@ export default function FormTransaction({
     <FlexColumnCenter>
       <Datepicker
         id='transaction-datetime'
-        name='datetime'
+        name={textes["datetime"] || "datetime"}
         valueFromParent={transactionDatetime}
         hoistValue={setTransactionDatetime}
       />
       <InputNumber
         id='transaction-amount'
-        name='amount'
+        name={textes["amount"] || "amount"}
         valueFromParent={transactionAmount}
         hoistValue={setTransactionAmount}
       />
       <InputWithOptions
         id='transaction-from'
-        name='from'
+        name={textes["from"] || "from"}
         options={fromOptions.map((op) => op.name)}
         valueFromParent={transactionFrom}
         hoistValue={setTransactionFrom}
       />
       <InputWithOptions
         id='transaction-for'
-        name='for'
+        name={textes["for"] || "for"}
         options={forOptions.map((op) => op.name)}
         valueFromParent={transactionFor}
         hoistValue={setTransactionFor}
@@ -106,7 +107,7 @@ export default function FormTransaction({
       <div>
         <InputNumber
           id='transaction-exchange-rate'
-          name='exchange-rate'
+          name={textes["exchange_rate"] || "exchange rate"}
           valueFromParent={transactionExchangeRate}
           hoistValue={setTransactionExchangeRate}
           numberAfterZero={6}
@@ -137,7 +138,7 @@ export default function FormTransaction({
             actionWithPayload={handleDeleteTransaction}
             alert={true}
           >
-            delete
+            {textes["delete"] || "delete"}
           </ActionButton>
         </>
       )}

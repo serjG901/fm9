@@ -133,6 +133,10 @@ export interface LanguageStore {
   textes: () => { [key: string]: string };
 }
 
+export interface TextesByLanguage {
+  textes?: { [key: string]: string };
+}
+
 //zustand
 
 export type Write<T, U> = Omit<T, keyof U> & U;

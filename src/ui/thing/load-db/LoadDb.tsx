@@ -8,8 +8,10 @@ import "./style.css";
 import { useBasesStore } from "../../../store/basesStore";
 import { name as appName } from "../../../../package.json";
 import { useSettingsStore } from "../../../store/settingsStore";
+import { TextesByLanguage } from "../../../interfaces";
+import upperFirstLetter from "../../../helpers/upperFirstLetter";
 
-export default function LoadDb() {
+export default function LoadDb({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
     state.getState,
     state.setState,
@@ -90,10 +92,10 @@ export default function LoadDb() {
 
   return (
     <div className='load-db'>
-      <h2>Load DB</h2>
       <div>
         <ActionButton actionWithPayload={saveAsLegacy}>
-          download DB{currentBase && ` from ${currentBase.name}`}
+          {textes["download_data"] || "download data"}{" "}
+          {currentBase && currentBase.name}
         </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
@@ -101,12 +103,19 @@ export default function LoadDb() {
       {uploadStatus ? (
         <div className='load-db-upload-status'>
           <hr color='lime' />
-          <div>DB uploaded</div>
+          <div>
+            {textes["data_uploaded"]
+              ? upperFirstLetter(textes["data_uploaded"])
+              : "Data uploaded"}
+          </div>
         </div>
       ) : (
         <div className='input-file'>
           <label htmlFor='oldOpenFile'>
-            <span>upload DB{currentBase && ` for ${currentBase.name}`}</span>
+            <span>
+              {textes["upload_data"] || "upload data"}
+              {currentBase && ` ${textes["for"] || "for"} ${currentBase.name}`}
+            </span>
             <input
               name='oldOpenFile'
               type='file'

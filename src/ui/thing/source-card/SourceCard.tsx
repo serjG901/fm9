@@ -1,9 +1,9 @@
-import { Source } from "../../../interfaces";
+import { Source, TextesByLanguage } from "../../../interfaces";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import UpdateSource from "../../substance/update-source/UpdateSource";
 import "./style.css";
 
-interface SourceCardComponent {
+interface SourceCardComponent extends TextesByLanguage {
   source?: Source;
   updateSource?: (source: Source) => void;
   deleteSource?: (source: Source) => void;
@@ -12,6 +12,7 @@ interface SourceCardComponent {
 }
 
 export default function SourceCard({
+  textes = {},
   source = { id: 0, name: "source", amount: "0", currency: "BYN" },
   updateSource = () => {},
   deleteSource = () => {},
@@ -29,6 +30,7 @@ export default function SourceCard({
         <div className='source-card-amount'>{source.amount}</div>
         <div className='source-card-currency'>{source.currency}</div>
         <UpdateSource
+          textes={textes}
           source={source}
           updateSource={updateSource}
           deleteSource={deleteSource}

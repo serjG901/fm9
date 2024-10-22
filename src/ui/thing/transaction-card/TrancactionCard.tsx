@@ -1,10 +1,10 @@
-import { Source, Transaction } from "../../../interfaces";
+import { Source, TextesByLanguage, Transaction } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import UpdateTransaction from "../../substance/update-transaction/UpdateTransaction";
 import "./style.css";
 
-interface TransactionCardComponent {
+interface TransactionCardComponent extends TextesByLanguage {
   transaction?: Transaction;
   fromOptions?: Source[];
   forOptions?: Source[];
@@ -13,6 +13,7 @@ interface TransactionCardComponent {
 }
 
 export default function TransactionCard({
+  textes = {},
   transaction = {
     id: 0,
     datetime: "2024-09-24",
@@ -41,7 +42,9 @@ export default function TransactionCard({
           <div className='transaction-card-for'>{transaction.for}</div>
         </div>
         <div className='transaction-card-exchange-rate'>
-          <span className='transaction-card-from'>rate:</span>{" "}
+          <span className='transaction-card-from'>
+            {textes["rate"] || "rate"}:
+          </span>{" "}
           {transaction.exchangeRate}
         </div>
         <UpdateTransaction

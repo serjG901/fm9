@@ -5,9 +5,9 @@ import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-import { Source } from "../../../interfaces";
+import { Source, TextesByLanguage } from "../../../interfaces";
 
-interface FormSourceComponent {
+interface FormSourceComponent extends TextesByLanguage {
   actionType?: string;
   actionSource?: (source: Source) => void;
   source?: Source;
@@ -18,6 +18,7 @@ interface FormSourceComponent {
 }
 
 export default function FormSource({
+  textes = {},
   actionType = "action",
   actionSource = () => {},
   source = { id: 0, name: "", amount: "", currency: "" },
@@ -42,7 +43,7 @@ export default function FormSource({
   };
 
   const handleDeleteSource = () => {
-    const agree = confirm("delete?");
+    const agree = confirm(`${textes["delete"]}?`);
     if (agree) {
       deleteSource(source);
     }
@@ -52,20 +53,20 @@ export default function FormSource({
     <FlexColumnCenter>
       <InputText
         id='source-name'
-        name='name'
+        name={textes["name"] || "name"}
         valueFromParent={sourceName}
         hoistValue={setSourceName}
         noValidValues={sources.map((s) => s.name)}
       />
       <InputNumber
         id='source-amount'
-        name='amount'
+        name={textes["amount"] || "amount"}
         valueFromParent={sourceAmount}
         hoistValue={setSourceAmount}
       />
       <InputWithOptions
         id='source-currency'
-        name='currency'
+        name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={sourceCurrency}
         hoistValue={setSourceCurrency}
@@ -77,7 +78,7 @@ export default function FormSource({
         <>
           <br />
           <ActionButton actionWithPayload={handleDeleteSource} alert={true}>
-            delete
+            {textes["delete"] || "delete"}
           </ActionButton>
         </>
       )}

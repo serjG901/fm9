@@ -12,8 +12,10 @@ import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter"
 import Currencies from "../../ui/thing/currencies/Currencies";
 import Languages from "../../ui/thing/languages/Languages";
 import { useLanguageStore } from "../../store/languageStore";
+import { TextesByLanguage } from "../../interfaces";
+import upperFirstLetter from "../../helpers/upperFirstLetter";
 
-export default function Settings() {
+export default function Settings({ textes = {} }: TextesByLanguage) {
   const [
     hue,
     setHue,
@@ -51,19 +53,25 @@ export default function Settings() {
     <Page>
       <div className='settings-view'>
         <FlexColumnCenter>
-          <h1>Settings</h1>
+          <h1>
+            {textes["settings"]
+              ? upperFirstLetter(textes["settings"])
+              : "Settings"}
+          </h1>
           <hr />
           <div>
-            <h2>Colors</h2>
+            <h2>
+              {textes["colors"] ? upperFirstLetter(textes["colors"]) : "Colors"}
+            </h2>
             <div>
-              main color:{" "}
+              {textes["main_color"] || "main color"}:{" "}
               <HighlightText bgColor={hslToRgb(+hue, 100, 20)} padding>
                 {hslToRgb(+hue, 100, 20)}
               </HighlightText>
             </div>
             <InputRange
               id='change-hue'
-              name='change main color'
+              name={textes["change_main_color"] || "change main color"}
               min={0}
               max={360}
               valueFromParent={hue}
@@ -72,8 +80,13 @@ export default function Settings() {
           </div>
           <hr />
           <div>
-            <h2>Languages</h2>
+            <h2>
+              {textes["languages"]
+                ? upperFirstLetter(textes["languages"])
+                : "Languages"}
+            </h2>
             <Languages
+              textes={textes}
               currentLanguage={currentLanguage}
               languages={languages}
               setCurrentLanguage={setCurrentLanguage}
@@ -81,8 +94,13 @@ export default function Settings() {
           </div>
           <hr />
           <div>
-            <h2>Currencies</h2>
+            <h2>
+              {textes["currencies"]
+                ? upperFirstLetter(textes["currencies"])
+                : "Currencies"}
+            </h2>
             <Currencies
+              textes={textes}
               defaultCurrency={defaultCurrency}
               setDefaultCurrency={setDefaultCurrency}
               currencies={currencies}
@@ -92,36 +110,70 @@ export default function Settings() {
           </div>
           <hr />
           <div>
-            <h2>Items per payments page</h2>
-            <div>
-              <div>items per Buys page: {itemsPerPageBuys}</div>
-              <InputRange
-                id='items-per-buys-page'
-                name='set items per Buys page'
-                min={10}
-                max={100}
-                step={10}
-                valueFromParent={itemsPerPageBuys}
-                hoistValue={setItemsPerPageBuys}
-              />
-            </div>
-            <div>
-              <div>items per Pays page: {itemsPerPagePays}</div>
-              <InputRange
-                id='items-per-pays-page'
-                name='set items per Pays page'
-                min={10}
-                max={100}
-                step={10}
-                valueFromParent={itemsPerPagePays}
-                hoistValue={setItemsPerPagePays}
-              />
-            </div>
+            <h2>
+              {textes["the_number_of_elements_per_payments_page"]
+                ? upperFirstLetter(
+                    textes["the_number_of_elements_per_payments_page"]
+                  )
+                : "The number of elements per payments page"}
+            </h2>
+            <FlexColumnCenter>
+              <div>
+                <div>
+                  {textes["buys"] ? upperFirstLetter(textes["buys"]) : "Buys"}:{" "}
+                  {itemsPerPageBuys}
+                </div>
+                <InputRange
+                  id='items-per-buys-page'
+                  name={
+                    textes["set_the_number_of_elements"] ||
+                    "set the number of elements"
+                  }
+                  min={10}
+                  max={100}
+                  step={10}
+                  valueFromParent={itemsPerPageBuys}
+                  hoistValue={setItemsPerPageBuys}
+                />
+              </div>
+              <div>
+                <div>
+                  {textes["pays"] ? upperFirstLetter(textes["pays"]) : "Pays"}:{" "}
+                  {itemsPerPagePays}
+                </div>
+                <InputRange
+                  id='items-per-pays-page'
+                  name={
+                    textes["set_the_number_of_elements"] ||
+                    "set the number of elements"
+                  }
+                  min={10}
+                  max={100}
+                  step={10}
+                  valueFromParent={itemsPerPagePays}
+                  hoistValue={setItemsPerPagePays}
+                />
+              </div>
+            </FlexColumnCenter>
           </div>
           <hr />
-          <ChangeBase />
+          <div>
+            <h2>
+              {textes["change_base"]
+                ? upperFirstLetter(textes["change_base"])
+                : "Change Base"}
+            </h2>
+            <ChangeBase textes={textes} />
+          </div>
           <hr />
-          <LoadDb />
+          <div>
+            <h2>
+              {textes["manage_data"]
+                ? upperFirstLetter(textes["manage_data"])
+                : "Manage data"}
+            </h2>
+            <LoadDb textes={textes} />
+          </div>
         </FlexColumnCenter>
       </div>
     </Page>

@@ -1,19 +1,20 @@
 import { useState } from "react";
 import plus from "../../../helpers/plus";
-import { Payment, Tag } from "../../../interfaces";
+import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import HighlightText from "../../atom/highlight-text/HighlightText";
 import SearchedName from "../searched-name/SearchedName";
 import "./style.css";
 
-interface StatisticsComponent {
+interface StatisticsComponent extends TextesByLanguage {
   currency?: string;
   payments?: Payment[];
   search?: string;
 }
 
 export default function Statistics({
+  textes = {},
   currency,
   payments = [],
   search = "",
@@ -55,7 +56,6 @@ export default function Statistics({
         <div key={name}>
           <div>
             <SearchedName name={name} search={search} />
-
             <div>
               {payments
                 ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
@@ -92,11 +92,14 @@ export default function Statistics({
     setDirectionOfSort(!directionOfSort);
   };
   return (
-    <Collapse title={`${currency} stat`} collapseLevel='menu'>
+    <Collapse
+      title={`${currency} ${textes["stat"] || "stat"}`}
+      collapseLevel='menu'
+    >
       <div className='statistics'>
         <div>
           <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
-            name
+            {textes["name"] || "name"}
             {typeOfSort !== "name" ? (
               ""
             ) : directionOfSort ? (
@@ -106,7 +109,7 @@ export default function Statistics({
             )}
           </ActionButton>
           <ActionButton actionWithPayload={handleClickSort} payload={"amounts"}>
-            amounts
+            {textes["amounts"] || "amounts"}
             {typeOfSort !== "amounts" ? (
               ""
             ) : directionOfSort ? (
@@ -116,7 +119,7 @@ export default function Statistics({
             )}
           </ActionButton>
           <ActionButton actionWithPayload={handleClickSort} payload={"sum"}>
-            sum
+            {textes["sum"] || "sum"}
             {typeOfSort !== "sum" ? (
               ""
             ) : directionOfSort ? (
@@ -128,7 +131,7 @@ export default function Statistics({
         </div>
         {statItems}
         <div>
-          <div>all</div>
+          <div>{textes["all"] || "all"}</div>
           <div>{payments.length}</div>
           <div>{plus(...payments.map((p) => p.amount))}</div>
         </div>

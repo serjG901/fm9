@@ -4,11 +4,17 @@ import AddSource from "../../ui/substance/add-source/AddSource";
 import SourceCard from "../../ui/thing/source-card/SourceCard";
 import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import plus from "../../helpers/plus";
-import { Source, SourcesStore, StorePersist, Write } from "../../interfaces";
+import {
+  Source,
+  SourcesStore,
+  StorePersist,
+  TextesByLanguage,
+  Write,
+} from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 import { useSettingsStore } from "../../store/settingsStore";
 
-interface SourcesComponent {
+interface SourcesComponent extends TextesByLanguage {
   sourcesType: string;
   useSourcesStore: UseBoundStore<
     Write<StoreApi<SourcesStore>, StorePersist<SourcesStore, SourcesStore>>
@@ -16,6 +22,7 @@ interface SourcesComponent {
 }
 
 export default function Sources({
+  textes = {},
   sourcesType,
   useSourcesStore,
 }: SourcesComponent) {
@@ -41,6 +48,7 @@ export default function Sources({
         <h1>{sourcesType}</h1>
 
         <AddSource
+          textes={textes}
           addSource={addSource}
           sources={getSources()}
           defaultCurrency={defaultCurrency}
@@ -62,6 +70,7 @@ export default function Sources({
                     ).map((source: Source) => {
                       return (
                         <SourceCard
+                          textes={textes}
                           key={source.id}
                           source={source}
                           updateSource={updateSource}

@@ -1,4 +1,4 @@
-import { Tag } from "../../../interfaces";
+import { Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
@@ -6,7 +6,7 @@ import AddTags from "../../molecul/add-tags/AddTags";
 import Search from "../../molecul/search/Search";
 import "./style.css";
 
-interface FilterComponent {
+interface FilterComponent extends TextesByLanguage {
   search?: string;
   setSearch?: (earch: string) => void;
   filterTags?: Tag[];
@@ -15,6 +15,7 @@ interface FilterComponent {
 }
 
 export default function Filter({
+  textes = {},
   search = "",
   setSearch = () => {},
   filterTags = [],
@@ -28,11 +29,12 @@ export default function Filter({
 
   return (
     <div className='filter'>
-      <Collapse title='filter' collapseLevel='menu'>
+      <Collapse title={textes["filter"] || "filter"} collapseLevel='menu'>
         <FlexColumnCenter>
           <Search search={search} setSearch={setSearch} />
           <div>
             <AddTags
+              textes={textes}
               tagsFromParrent={filterTags}
               hoistTags={setFilterTags}
               maybeTags={maybeTags}
@@ -44,7 +46,7 @@ export default function Filter({
       {search !== "" || filterTags.length !== 0 ? (
         <div>
           <ActionButton actionWithPayload={resetFilter} alert>
-            reset filter
+            {textes["reset_filter"] || "reset filter"}
           </ActionButton>
         </div>
       ) : null}

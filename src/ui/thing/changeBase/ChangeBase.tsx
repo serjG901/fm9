@@ -11,6 +11,7 @@ import {
   PaymentsStore,
   SettingsStore,
   SourcesStore,
+  TextesByLanguage,
 } from "../../../interfaces";
 import InputText from "../../atom/input-text/InputText";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
@@ -20,8 +21,10 @@ import { name as appName } from "../../../../package.json";
 import { useSettingsStore } from "../../../store/settingsStore";
 import hslToRgb from "../../../helpers/hslToRgb";
 import HighlightText from "../../atom/highlight-text/HighlightText";
+import upperFirstLetter from "../../../helpers/upperFirstLetter";
+import Collapse from "../../atom/collapse/Collapse";
 
-export default function LoadDb() {
+export default function ChangeBase({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
     state.getState,
     state.setState,
@@ -175,7 +178,13 @@ export default function LoadDb() {
 
   const handleDeleteBase = () => {
     if (currentBase && currentBase.name !== "default") {
-      const agree = confirm(`delete base ${currentBase.name}?`);
+      const agree = confirm(
+        `${
+          textes["delete_base"]
+            ? upperFirstLetter(textes["delete_base"])
+            : "Delete base"
+        } ${currentBase.name}?`
+      );
       if (agree) {
         deleteBase(currentBase);
         handleSetDefaultBase();
@@ -195,11 +204,15 @@ export default function LoadDb() {
 
   return (
     <div className='change-base'>
-      <h2>Change Base</h2>
       {bases.length ? (
         <FlexWrap
           childrenArray={[
-            <div>Current base:</div>,
+            <div className='description'>
+              {textes["current_base"]
+                ? upperFirstLetter(textes["current_base"])
+                : "Current base"}
+              :
+            </div>,
             <HighlightText
               key={getCurrentBase()?.name}
               bgColor={hslToRgb(+getStateSettings().hue, 100, 20) || ""}
@@ -209,7 +222,7 @@ export default function LoadDb() {
             </HighlightText>,
             currentBase && currentBase.name !== "default" ? (
               <ActionButton actionWithPayload={handleDeleteBase} alert>
-                Delete
+                {textes["delete"] || "delete"}
               </ActionButton>
             ) : null,
           ]}
@@ -218,7 +231,12 @@ export default function LoadDb() {
       {bases.length > 1 ? (
         <FlexWrap
           childrenArray={[
-            <div>Exist bases:</div>,
+            <div className='description'>
+              {textes["exist_bases"]
+                ? upperFirstLetter(textes["exist_bases"])
+                : "Exist bases"}
+              :
+            </div>,
             ...bases
               .filter((b) => b.name !== getCurrentBase()?.name)
               .sort((a, b) => (a.name > b.name ? 1 : -1))
@@ -243,19 +261,30 @@ export default function LoadDb() {
       {uploadStatus ? (
         <div className='load-db-upload-status'>
           <hr color='lime' />
-          <div>Base changed</div>
+          <div>
+            {textes["base_changed"]
+              ? upperFirstLetter(textes["base_changed"])
+              : "Base changed"}
+          </div>
         </div>
       ) : null}
-      <FlexColumnCenter>
-        <InputText
-          id={"name_for_new_base"}
-          name='name for new base'
-          valueFromParent={newBaseName}
-          hoistValue={setNewBaseName}
-          noValidValues={bases.map((b) => b.name)}
-        />
-        <ActionButton actionWithPayload={handleAddBase}>add base</ActionButton>
-      </FlexColumnCenter>
+      <Collapse
+        title={textes["add_base"] || "add base"}
+        collapseLevel='settings'
+      >
+        <FlexColumnCenter>
+          <InputText
+            id={"name_for_new_base"}
+            name={textes["name_for_new_base"] || "name for new base"}
+            valueFromParent={newBaseName}
+            hoistValue={setNewBaseName}
+            noValidValues={bases.map((b) => b.name)}
+          />
+          <ActionButton actionWithPayload={handleAddBase}>
+            {textes["add_base"] || "add base"}
+          </ActionButton>
+        </FlexColumnCenter>
+      </Collapse>
     </div>
   );
 }

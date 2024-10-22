@@ -1,9 +1,10 @@
 import "./style.css";
 import FormSource from "../../molecul/form-source/FormSource";
 import Modal from "../../molecul/modal/Modal";
-import { Source } from "../../../interfaces";
+import { Source, TextesByLanguage } from "../../../interfaces";
+import ActionButton from "../../atom/action-button/ActionButton";
 
-interface UpdateSourceComponent {
+interface UpdateSourceComponent extends TextesByLanguage {
   updateSource?: (source: Source) => void;
   source?: Source;
   deleteSource?: (source: Source) => void;
@@ -12,6 +13,7 @@ interface UpdateSourceComponent {
 }
 
 export default function UpdateSource({
+  textes = {},
   updateSource = () => {},
   source = { id: 0, name: "", amount: "", currency: "BYN" },
   deleteSource = () => {},
@@ -19,15 +21,29 @@ export default function UpdateSource({
   currencies = [],
 }: UpdateSourceComponent) {
   return (
-    <Modal id={`update-source-${source.id}`}>
-      <FormSource
-        actionType='update'
-        actionSource={updateSource}
-        source={source}
-        deleteSource={deleteSource}
-        sources={sources}
-        currencies={currencies}
-      />
-    </Modal>
+    <>
+      <Modal id={`update-source-${source.id}`} textes={textes}>
+        <FormSource
+          textes={textes}
+          actionType='update'
+          actionSource={updateSource}
+          source={source}
+          deleteSource={deleteSource}
+          sources={sources}
+          currencies={currencies}
+        />
+      </Modal>
+      {source.id === 0 ? (
+        <ActionButton
+          actionWithPayload={() =>
+            document
+              .getElementById(`update-payment-${source.id}`)
+              ?.showPopover()
+          }
+        >
+          show modal
+        </ActionButton>
+      ) : null}
+    </>
   );
 }

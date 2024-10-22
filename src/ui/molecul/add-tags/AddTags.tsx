@@ -4,11 +4,11 @@ import Colorpicker from "../../atom/colorpicker/Colorpicker";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-import { Tag } from "../../../interfaces";
+import { Tag, TextesByLanguage } from "../../../interfaces";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
 import InputText from "../../atom/input-text/InputText";
 
-interface AddTagsComponent {
+interface AddTagsComponent extends TextesByLanguage {
   tagsFromParrent?: Tag[];
   maybeTags?: Tag[];
   hoistTags?: (tags: Tag[]) => void;
@@ -16,6 +16,7 @@ interface AddTagsComponent {
 }
 
 export default function AddTags({
+  textes = {},
   tagsFromParrent = [],
   maybeTags = [],
   hoistTags = () => {},
@@ -65,7 +66,7 @@ export default function AddTags({
 
   return (
     <div className='add-tags'>
-      <Collapse collapseLevel='tags' title='tags'>
+      <Collapse collapseLevel='tags' title={textes["tags"] || "tags"}>
         <div className='input-add-tags'>
           <FlexColumnCenter>
             {!onlyMaybeTags && (
@@ -73,7 +74,7 @@ export default function AddTags({
                 <div>
                   <InputText
                     id='add-tag-value'
-                    name='tag'
+                    name={textes["tag"] || "tag"}
                     valueFromParent={value}
                     hoistValue={handleSetValue}
                   />
@@ -81,14 +82,14 @@ export default function AddTags({
                 <div>
                   <Colorpicker
                     id='add-tag-color'
-                    name='color'
+                    name={textes["color"] || "color"}
                     valueFromParent={color}
                     hoistValue={handleSetColor}
                   />
                 </div>
                 <div>
                   <ActionButton actionWithPayload={handleSetTag}>
-                    Add tag
+                    {textes["add_tag"] || "add tag"}
                   </ActionButton>
                 </div>
               </>

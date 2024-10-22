@@ -4,13 +4,15 @@ import Collapse from "../../atom/collapse/Collapse";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import "./style.css";
+import { TextesByLanguage } from "../../../interfaces";
 
-interface FormDateRangeComponent {
+interface FormDateRangeComponent extends TextesByLanguage {
   period?: { start: string; end: string };
   setPeriod?: (start: string, end: string) => void;
 }
 
 export default function FormDateRange({
+  textes = {},
   period = { start: "", end: "" },
   setPeriod = () => {},
 }: FormDateRangeComponent) {
@@ -36,18 +38,18 @@ export default function FormDateRange({
   }, [period.end]);
 
   return (
-    <div className="form-date-range">
-      <Collapse collapseLevel='menu' title='period'>
+    <div className='form-date-range'>
+      <Collapse collapseLevel='menu' title={textes["period"] || "period"}>
         <FlexColumnCenter>
           <Datepicker
             key='start'
-            name='start'
+            name={textes["start"] || "start"}
             valueFromParent={start}
             hoistValue={setStart}
           />
           <Datepicker
             key='end'
-            name='end'
+            name={textes["end"] || "end"}
             valueFromParent={end}
             hoistValue={setEnd}
           />
@@ -56,23 +58,10 @@ export default function FormDateRange({
       {start && end && (
         <div>
           <ActionButton actionWithPayload={handleResetPeriod} alert>
-            reset period
+            {textes["reset_period"] || "reset period"}
           </ActionButton>
         </div>
       )}
     </div>
   );
 }
-/*<div>
-            <div>
-              {start.split("T").map((d) => (
-                <div key={d}>{d}</div>
-              ))}
-            </div>
-            <div>===</div>
-            <div>
-              {end.split("T").map((d) => (
-                <div key={d}>{d}</div>
-              ))}
-            </div>
-          </div>*/

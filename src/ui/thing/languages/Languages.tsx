@@ -1,14 +1,16 @@
 import "./style.css";
 import Grid from "../../atom/grid/Grid";
 import Contents from "../../atom/contents/Contents";
+import { TextesByLanguage } from "../../../interfaces";
 
-interface LanguagesComponent {
+interface LanguagesComponent extends TextesByLanguage {
   currentLanguage?: string;
   setCurrentLanguage?: (defaultCurrency: string) => void;
   languages?: string[];
 }
 
 export default function Languages({
+  textes = {},
   currentLanguage = "en",
   setCurrentLanguage = () => {},
   languages = ["en", "by"],
@@ -29,7 +31,11 @@ export default function Languages({
                   onChange={() => setCurrentLanguage(l)}
                 />
               </label>
-              {l === currentLanguage ? <span>current</span> : <span></span>}
+              {l === currentLanguage ? (
+                <span>{textes["current"] || "current"}</span>
+              ) : (
+                <span></span>
+              )}
             </Contents>
           );
         })}

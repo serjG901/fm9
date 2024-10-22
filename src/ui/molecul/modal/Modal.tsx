@@ -3,34 +3,35 @@
 import { ReactNode } from "react";
 import "./style.css";
 import ActionButton from "../../atom/action-button/ActionButton";
-/*import Cross from "../../atom/cross/Cross";*/
+import { TextesByLanguage } from "../../../interfaces";
 
-interface ModalComponent {
+interface ModalComponent extends TextesByLanguage {
   id?: string;
-  //description?: string;
   children?: ReactNode;
 }
 
 export default function Modal({
+  textes = {},
   id = "modal",
-  //description = "open",
   children = "children",
 }: ModalComponent) {
-  /* const showModal = () => {
-    const modalId = document.getElementById(id);
-    modalId?.showPopover();
-  };*/
-
   const hideModal = () => {
     const modalId = document.getElementById(id);
     modalId?.hidePopover();
   };
-  //<ActionButton actionWithPayload={showModal}>{description}</ActionButton>
+
   return (
     <div>
-      <div className='modal' popover='manual' id={id} onClick={(e) => e.stopPropagation()}>
+      <div
+        className='modal'
+        popover='manual'
+        id={id}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className='hide-modal'>
-          <ActionButton actionWithPayload={hideModal}>close</ActionButton>
+          <ActionButton actionWithPayload={hideModal}>
+            {textes["close"] || "close"}
+          </ActionButton>
         </div>
         <div className='modal-content'>{children}</div>
       </div>

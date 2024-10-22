@@ -1,4 +1,4 @@
-import { Payment, Tag } from "../../../interfaces";
+import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import HighlightText from "../../atom/highlight-text/HighlightText";
@@ -6,7 +6,7 @@ import SearchedName from "../../molecul/searched-name/SearchedName";
 import UpdatePayment from "../../substance/update-payment/UpdatePayment";
 import "./style.css";
 
-interface PaymentCardComponent {
+interface PaymentCardComponent extends TextesByLanguage {
   maybeName?: string[];
   payment?: Payment;
   fromOptions?: string[];
@@ -19,6 +19,7 @@ interface PaymentCardComponent {
 }
 
 export default function PaymentCard({
+  textes = {},
   maybeName = [],
   payment = {
     id: 0,
@@ -73,6 +74,7 @@ export default function PaymentCard({
           </div>
         )}
         <UpdatePayment
+          textes={textes}
           maybeName={maybeName}
           payment={payment}
           fromOptions={fromOptions}

@@ -1,5 +1,9 @@
 .currencies {
-  label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-m);
+  label:has(input[type="radio"]) {
     display: flex;
     flex-direction: column;
     align-items: center;

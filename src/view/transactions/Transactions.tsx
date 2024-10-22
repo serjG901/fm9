@@ -15,10 +15,11 @@ import {
   TransactionsStore,
   StorePersist,
   Write,
+  TextesByLanguage,
 } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
 
-interface TransactionsComponent {
+interface TransactionsComponent extends TextesByLanguage {
   transactionsType: string;
   useTransactionsStore: UseBoundStore<
     Write<
@@ -29,6 +30,7 @@ interface TransactionsComponent {
 }
 
 export default function Transactions({
+  textes = {},
   transactionsType,
   useTransactionsStore,
 }: TransactionsComponent) {
@@ -96,10 +98,12 @@ export default function Transactions({
       <div className='transactions-view'>
         <h1>{transactionsType}</h1>
         <FormDataRange
+          textes={textes}
           period={{ start: startPeriod, end: endPeriod }}
           setPeriod={setPeriod}
         />
         <AddTransaction
+          textes={textes}
           addTransaction={addTransactionWithS}
           fromOptions={acounts}
           forOptions={acounts}
@@ -108,6 +112,7 @@ export default function Transactions({
           childrenArray={sortedTransactions.map((transaction: Transaction) => {
             const card = (
               <TransactionCard
+                textes={textes}
                 transaction={transaction}
                 updateTransaction={updateTransactionWithS}
                 deleteTransaction={deleteTransaction}
