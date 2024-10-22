@@ -4,11 +4,6 @@
   border-radius: var(--border-radius-action-element);
   border: 1px solid black;
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-  /* background-image: radial-gradient(
-    circle farthest-corner at 50% 20%,
-    rgba(151, 41, 247, 1) 0%,
-    rgba(24, 22, 39, 1) 90%
-  );*/
   color: var(--color-text-main);
   summary {
     -webkit-user-select: none;
@@ -41,27 +36,3 @@
   .collapse-content {
   }
 }
-
-.collapse[open] summary {
-  text-decoration: underline;
-}
-.collapse:not([open]) summary {
-  text-decoration: none;
-}
-
-/*
-.collapse:nth-child(1) {
-  width: 100%;
-}
-
-.collapse:nth-child(2) {
-  width: 90%;
-}
-
-.collapse:nth-child(3) {
-  width: 80%;
-}
-
-.collapse:nth-child(4) {
-  width: 70%;
-}*/
