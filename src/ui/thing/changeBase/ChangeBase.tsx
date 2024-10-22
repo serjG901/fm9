@@ -208,7 +208,7 @@ export default function LoadDb() {
               {getCurrentBase()?.name}
             </HighlightText>,
             currentBase && currentBase.name !== "default" ? (
-              <ActionButton actionWithPayload={handleDeleteBase}>
+              <ActionButton actionWithPayload={handleDeleteBase} alert>
                 Delete
               </ActionButton>
             ) : null,
@@ -248,6 +248,7 @@ export default function LoadDb() {
       ) : null}
       <FlexColumnCenter>
         <InputText
+          id={"name_for_new_base"}
           name='name for new base'
           valueFromParent={newBaseName}
           hoistValue={setNewBaseName}

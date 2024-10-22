@@ -96,7 +96,7 @@ export default function Settings() {
             <div>
               <div>items per Buys page: {itemsPerPageBuys}</div>
               <InputRange
-                id='items-per-page'
+                id='items-per-buys-page'
                 name='set items per Buys page'
                 min={10}
                 max={100}
@@ -108,7 +108,7 @@ export default function Settings() {
             <div>
               <div>items per Pays page: {itemsPerPagePays}</div>
               <InputRange
-                id='items-per-page'
+                id='items-per-pays-page'
                 name='set items per Pays page'
                 min={10}
                 max={100}

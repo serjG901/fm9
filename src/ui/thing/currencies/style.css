@@ -4,11 +4,18 @@
     flex-direction: column;
     align-items: center;
     span {
-      color: var(--color-text-label);
+      color: var(--color-text-main);
     }
     input {
       width: 100%;
       max-width: 20ch;
+      accent-color: var(--color-main-light-accent);
     }
+  }
+  label:has(input:checked) {
+    background-color: var(--color-main);
+  }
+  span {
+    color: var(--color-text-label);
   }
 }

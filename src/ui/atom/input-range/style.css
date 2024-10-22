@@ -9,6 +9,7 @@
     input {
       padding: 0;
       width: 300px;
+      accent-color: var(--color-main-light-accent);
     }
   }
 }

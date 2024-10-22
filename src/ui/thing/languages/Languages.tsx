@@ -1,6 +1,6 @@
 import "./style.css";
-import FlexWrap from "../../atom/flex-wrap/FlexWrap";
-import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
+import Grid from "../../atom/grid/Grid";
+import Contents from "../../atom/contents/Contents";
 
 interface LanguagesComponent {
   currentLanguage?: string;
@@ -15,26 +15,25 @@ export default function Languages({
 }: LanguagesComponent) {
   return (
     <div className='languages'>
-      <FlexWrap
-        childrenArray={languages.map((l) => {
+      <Grid columns={2}>
+        {languages.map((l) => {
           return (
-            <FlexColumnCenter>
-              <label htmlFor='language'>
-                {l === currentLanguage ? <span>current</span> : null}
+            <Contents key={l}>
+              <label htmlFor={l}>
+                <span>{l}</span>
                 <input
                   type='radio'
                   id={l}
                   name='language'
-                  defaultChecked={l === currentLanguage}
                   checked={l === currentLanguage}
                   onChange={() => setCurrentLanguage(l)}
                 />
               </label>
-              <span>{l}</span>
-            </FlexColumnCenter>
+              {l === currentLanguage ? <span>current</span> : <span></span>}
+            </Contents>
           );
         })}
-      />
+      </Grid>
     </div>
   );
 }

@@ -3,7 +3,8 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import InputText from "../../atom/input-text/InputText";
 import "./style.css";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-import FlexWrap from "../../atom/flex-wrap/FlexWrap";
+import Grid from "../../atom/grid/Grid";
+import Contents from "../../atom/contents/Contents";
 
 interface CurrencyComponent {
   defaultCurrency?: string;
@@ -25,35 +26,44 @@ export default function Currencies({
   const handleAddCurrency = () => {
     addCurrency(local);
   };
+
+  const handleDeleteCurrency = (c: string) => {
+    const agree = confirm(`delete currency ${c}?`);
+    if (agree) {
+      deleteCurrency(c);
+    }
+  };
+
   return (
     <div className='currencies'>
-      <FlexColumnCenter>
+      <Grid>
         {currencies.map((c) => {
           return (
-            <FlexWrap
-              childrenArray={[
-                <label htmlFor='currency'>
-                  {c === defaultCurrency ? <span>default</span> : null}
-                  <input
-                    type='radio'
-                    id={c}
-                    name='currency'
-                    defaultChecked={c === defaultCurrency}
-                    checked={c === defaultCurrency}
-                    onChange={() => setDefaultCurrency(c)}
-                  />
-                </label>,
-                <span>{c}</span>,
-                currencies.length > 1 ? (
-                  <ActionButton actionWithPayload={() => deleteCurrency(c)}>
-                    delete
-                  </ActionButton>
-                ) : null,
-              ]}
-            />
+            <Contents key={c}>
+              <label htmlFor={c}>
+                <span>{c}</span>
+                <input
+                  type='radio'
+                  id={c}
+                  name='currency'
+                  checked={c === defaultCurrency}
+                  onChange={() => setDefaultCurrency(c)}
+                />
+              </label>
+              {c === defaultCurrency ? <span>default</span> : <span></span>}
+              {currencies.length > 1 ? (
+                <ActionButton
+                  actionWithPayload={handleDeleteCurrency}
+                  payload={c}
+                  alert
+                >
+                  delete
+                </ActionButton>
+              ) : null}
+            </Contents>
           );
         })}
-      </FlexColumnCenter>
+      </Grid>
       <br />
       <FlexColumnCenter>
         <InputText

@@ -8,6 +8,7 @@ import {
   SourcesStore,
 } from "../interfaces";
 import { name as appName } from "../../package.json";
+import { defaultDB } from "./defaultState";
 
 export const useBasesStore = create<BasesStore>()(
   persist(
@@ -24,31 +25,7 @@ export const useBasesStore = create<BasesStore>()(
             const base: Base = {
               name: newBaseName,
               id: state.id,
-              db: {
-                [`${appName}-buys`]: {
-                  id: 0,
-                  payments: [],
-                  pageActive: 1,
-                  itemsPerPage: "50",
-                },
-                [`${appName}-pays`]: {
-                  id: 0,
-                  payments: [],
-                  pageActive: 1,
-                  itemsPerPage: "50",
-                },
-                [`${appName}-debets`]: {
-                  id: 0,
-                  sources: [],
-                },
-                [`${appName}-credits`]: {
-                  id: 0,
-                  sources: [],
-                },
-                [`${appName}-settings`]: {
-                  hue: "240",
-                },
-              } as {
+              db: defaultDB as {
                 [x: string]: PaymentsStore | SourcesStore | SettingsStore;
               },
             };
