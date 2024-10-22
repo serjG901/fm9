@@ -1,10 +1,12 @@
 .collapse {
+  background-color: var(--color-bg-menu);
+  border-radius: var(--border-radius-action-element);
+  border: 1px solid black;
+  box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
+  color: var(--color-text-main);
   summary {
-    background-color: var(--color-bg-menu);
-    border-radius: var(--border-radius-action-element);
-    border: 1px solid black;
-    box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-    color: var(--color-text-main);
+    box-sizing: border-box;
+    height: 3rem;
     -webkit-user-select: none;
     user-select: none;
     cursor: pointer;
@@ -30,7 +32,7 @@
     flex-wrap: wrap;
     gap: var(--gap-menu);
     opacity: 1;
-    transition: opacity 1s;
+    transition: opacity 1s 0.5s;
     @starting-style {
       opacity: 0;
     }
@@ -38,9 +40,11 @@
 }
 
 .collapse {
+  height: 3rem;
   transition: height 1s;
 }
 .collapse[open] {
+  height: min-content;
   background-color: var(--color-bg-menu);
   border-radius: var(--border-radius-action-element);
   border: 1px solid black;
