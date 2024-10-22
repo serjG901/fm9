@@ -25,14 +25,23 @@
   summary:focus-visible {
     outline: 1px solid var(--color-border-action-element-accent);
   }
-
-  > div {
+  .collapse-content {
     padding: var(--padding-menu);
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-menu);
+    opacity: 1;
+    transition: opacity 1s 1s;
+    @starting-style {
+      opacity: 0;
+    }
   }
+}
 
-  .collapse-content {
-  }
+.collapse {
+  height: auto;
+  transition: height 1s;
+}
+.collapse[open] {
+  height: min-content;
 }

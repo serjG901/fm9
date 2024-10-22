@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import "./style.css";
 
 interface CollapseComponent {
@@ -12,10 +12,15 @@ export default function Collapse({
   title = "collapse",
   children = "children",
 }: CollapseComponent) {
+  const [state, setState] = useState(0);
   return (
-    <details className='collapse' name={collapseLevel}>
+    <details
+      className='collapse'
+      name={collapseLevel}
+      onClick={() => setState((s) => s + 1)}
+    >
       <summary>{title}</summary>
-      <div className='collapse-content'>{children}</div>
+      {state % 2 ? <div className='collapse-content'>{children}</div> : null}
     </details>
   );
 }

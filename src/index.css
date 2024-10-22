@@ -67,6 +67,7 @@
   scrollbar-gutter: stable both-edges;
 
   interpolate-size: allow-keywords;
+  transition-behavior: allow-discrete;
 }
 
 @media (prefers-color-scheme: light) {
