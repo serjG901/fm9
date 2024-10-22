@@ -81,6 +81,12 @@
   }
 }
 
+@media (prefers-reduced-motion) {
+  * {
+    transition: none !important;
+  }
+}
+
 body {
   margin: 0;
   display: flex;

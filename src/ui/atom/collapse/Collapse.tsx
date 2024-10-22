@@ -15,8 +15,8 @@ export default function Collapse({
   const [state, setState] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleToggle = (e: any) => {
-    e.stopPropogation();
     setState(e.target.open);
+    e.stopPropogation();
   };
   return (
     <details className='collapse' name={collapseLevel} onToggle={handleToggle}>

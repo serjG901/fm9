@@ -29,8 +29,12 @@
 
 .statistics > div > div {
   padding: 0.5rem;
-}
-
-.statistics > div > div {
   background-color: var(--color-text-main);
+  opacity: 1;
+  transform: translate(0px, 0px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  @starting-style {
+    opacity: 0;
+    transform: translate(0px, 1.5rem);
+  }
 }
