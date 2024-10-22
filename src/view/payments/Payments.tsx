@@ -26,6 +26,7 @@ import Filter from "../../ui/substance/filter/Filter";
 import Paginate from "../../ui/substance/paginate/Paginate";
 import ToTop from "../../ui/molecul/to-top/ToTop";
 import { useSettingsStore } from "../../store/settingsStore";
+import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -238,38 +239,34 @@ export default function Payments({
     <Page>
       <div className='payments-view'>
         <h1>{paymentsType}</h1>
-        <FlexWrap
-          childrenArray={[
-            <FormDataRange
-              textes={textes}
-              key={"FormDataRange"}
-              period={{ start: startPeriod, end: endPeriod }}
-              setPeriod={setPeriod}
-            />,
-            <Filter
-              textes={textes}
-              key={"Filter"}
-              search={search}
-              setSearch={handleSetSearch}
-              filterTags={filterTags}
-              setFilterTags={handleSetFilterTags}
-              maybeTags={maybeTags}
-            />,
-            [
-              ...Object.keys(statisticsByCurrency).map((currency) => {
-                return (
-                  <Statistics
-                    textes={textes}
-                    key={currency}
-                    currency={currency}
-                    payments={statisticsByCurrency[currency]}
-                    search={search}
-                  />
-                );
-              }),
-            ],
-          ]}
-        />
+        <FlexColumnCenter>
+          <FormDataRange
+            textes={textes}
+            key={"FormDataRange"}
+            period={{ start: startPeriod, end: endPeriod }}
+            setPeriod={setPeriod}
+          />
+          <Filter
+            textes={textes}
+            key={"Filter"}
+            search={search}
+            setSearch={handleSetSearch}
+            filterTags={filterTags}
+            setFilterTags={handleSetFilterTags}
+            maybeTags={maybeTags}
+          />
+          {...Object.keys(statisticsByCurrency).map((currency) => {
+            return (
+              <Statistics
+                textes={textes}
+                key={currency}
+                currency={currency}
+                payments={statisticsByCurrency[currency]}
+                search={search}
+              />
+            );
+          })}
+        </FlexColumnCenter>
 
         {amountsByCurrency.map((pair) => (
           <div key={pair[0].toString()}>

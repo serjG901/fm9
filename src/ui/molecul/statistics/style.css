@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: 4fr 5fr 1fr;
   gap: 0.5rem;
-  color: var(--color-bg-main);
+  color: var(--color-text-statistics);
 }
 
 .statistics > div {
@@ -29,7 +29,7 @@
 
 .statistics > div > div {
   padding: 0.5rem;
-  background-color: var(--color-text-main);
+  background-color: var(--color-bg-statistics);
   opacity: 1;
   transform: translate(0px, 0px);
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;

@@ -15,9 +15,9 @@
   --color-for-action: hsl(0, 0%, 10%);
 
   /*colors*/ /*text*/
-
   --color-text-description: var(--color-neutral);
   --color-text-label: var(--color-text-description);
+  --color-text-statistics: var(--color-bg-main);
 
   --color-card-datetime: var(--color-text-description);
   --color-card-name: var(--color-text-main);
@@ -26,6 +26,7 @@
   --color-card-currency: var(--color-text-description);
   --color-card-from-for: var(--color-text-description);
   --color-card-from-arrow: var(--color-text-main);
+
   /*colors*/ /*background*/
 
   --color-bg-menu: var(--color-main);
@@ -34,6 +35,8 @@
   --color-bg-button: var(--color-for-action);
   --color-bg-label-checked: var(--color-confirm);
   --color-bg-break-line: var(--color-main-dark-accent);
+  --color-bg-statistics: var(--color-text-main);
+
   /*colors*/ /*border*/
   --color-border-action-element-accent: var(--color-main-light-accent);
   --color-border-card: var(--color-main-dark-accent);
@@ -48,6 +51,8 @@
     --color-bg-payment-card: var(--color-white);
     --color-card-currency: var(--color-main-light-accent);
     --color-text-description: var(--color-main-light-accent);
+    --color-text-statistics: var(--color-text-main);
+    --color-bg-statistics: var(--color-bg-main);
     input {
       color: var(--color-text-main);
     }
