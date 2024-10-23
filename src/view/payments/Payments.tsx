@@ -168,7 +168,7 @@ export default function Payments({
     )
     .sort((a, b) => (a.value > b.value ? 1 : -1));
 
-  const byCurrency = Object.groupBy(payments, (a) => a.currency);
+  const byCurrency = Object.groupBy(filtredPayments, (a) => a.currency);
   const amountsByCurrency = Object.keys(byCurrency).map((c) => [
     c,
     byCurrency![c]!.map((p) => p.amount),
