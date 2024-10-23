@@ -17,7 +17,7 @@
   }
 }
 
-.statistics > div:last-child {
+.statistics > div:nth-child(2) {
   color: var(--color-neutral);
   div:nth-child(2) {
     color: var(--color-bg-main);

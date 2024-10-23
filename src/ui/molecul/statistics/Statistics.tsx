@@ -129,12 +129,12 @@ export default function Statistics({
             )}
           </ActionButton>
         </div>
-        {statItems}
         <div>
           <div>{textes["all"] || "all"}</div>
           <div>{payments.length}</div>
           <div>{plus(...payments.map((p) => p.amount))}</div>
         </div>
+        {statItems}
       </div>
     </Collapse>
   );
