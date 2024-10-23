@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import "./style.css";
 
 interface CollapseComponent {
@@ -12,23 +12,37 @@ export default function Collapse({
   title = "collapse",
   children = "children",
 }: CollapseComponent) {
-  const [state, setState] = useState(false);
+  const [state, setState] = useState({});
+  const [open, setOpen] = useState(false);
+  const [height, setHeight] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleToggle = (e: any) => {
-    setState(e.target.open);
+    setState(e.target);
+    setOpen(e.target.open);
+    console.log(e.target.lastChild.getBoundingClientRect());
     e.stopPropagation();
   };
+  useEffect(() => {
+    if (open) {
+      console.log(state.lastChild.getBoundingClientRect());
+      const h = state.lastChild.getBoundingClientRect();
+      setHeight(h);
+    }
+  }, [open]);
   return (
-    <div className='collapse-wrap'>
+    <div
+      className='collapse-wrap'
+      style={{ "--height-content": height + "px" } as React.CSSProperties}
+    >
       <details
         className='collapse'
         name={collapseLevel}
         onToggle={handleToggle}
       >
         <summary>{title}</summary>
-        {state ? <div className='collapse-content'>{children}</div> : null}
+        {open ? <div className='collapse-content'>{children}</div> : null}
       </details>
-      
+      <div className='collapse-content-hide'>{children}</div>
     </div>
   );
 }

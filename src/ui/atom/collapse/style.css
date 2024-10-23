@@ -23,6 +23,7 @@
   }
   .collapse-content {
     padding: var(--padding-menu);
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-menu);
@@ -34,6 +35,10 @@
   }
 }
 .collapse-content-hide {
+  padding: var(--padding-menu);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-menu);
   visibility: hidden;
 }
 
@@ -44,8 +49,13 @@
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
   color: var(--color-text-main);
   height: 3rem;
-  transition: height 1s;
+  width: 20rem;
+  transition: height 1s, width 1s;
 }
 .collapse-wrap:has(.collapse[open]) {
-  height: calc-size(min-content, 2rem + size);
+  height: min-content;
+  width: auto;
+  .collapse-content-hide {
+    display: none;
+  }
 }
