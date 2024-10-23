@@ -56,7 +56,9 @@ export default function FormSource({
         name={textes["name"] || "name"}
         valueFromParent={sourceName}
         hoistValue={setSourceName}
-        noValidValues={sources.map((s) => s.name)}
+        noValidValues={sources
+          .filter((s) => s.id !== source.id)
+          .map((s) => s.name)}
       />
       <InputNumber
         id='source-amount'

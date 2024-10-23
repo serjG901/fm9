@@ -27,6 +27,14 @@ export const createSourcesStore = (name: string) =>
         },
 
         updateSource: (source) => {
+          if (
+            !source.name ||
+            get().sources.find(
+              (s) => s.name === source.name && s.id !== source.id
+            )
+          ) {
+            return;
+          }
           set((state) => {
             const filtredSources = state.sources.filter(
               (s) => s.id !== source.id
