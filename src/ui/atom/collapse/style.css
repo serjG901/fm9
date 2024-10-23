@@ -1,9 +1,4 @@
 .collapse {
-  background-color: var(--color-bg-menu);
-  border-radius: var(--border-radius-action-element);
-  border: 1px solid black;
-  box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
-  color: var(--color-text-main);
   summary {
     box-sizing: border-box;
     height: 3rem;
@@ -32,21 +27,25 @@
     flex-wrap: wrap;
     gap: var(--gap-menu);
     opacity: 1;
-    transition: opacity 1s 0.5s;
+    transition: opacity 1s 0.3s;
     @starting-style {
       opacity: 0;
     }
   }
 }
-
-.collapse {
-  height: 3rem;
-  transition: height 1s;
+.collapse-content-hide {
+  visibility: hidden;
 }
-.collapse[open] {
-  height: min-content;
+
+.collapse-wrap {
   background-color: var(--color-bg-menu);
   border-radius: var(--border-radius-action-element);
   border: 1px solid black;
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
+  color: var(--color-text-main);
+  height: 3rem;
+  transition: height 1s;
+}
+.collapse-wrap:has(.collapse[open]) {
+  height: calc-size(min-content, 2rem + size);
 }

@@ -56,7 +56,7 @@ export default function FormDateRange({
         </FlexColumnCenter>
       </Collapse>
       {start && end && (
-        <div>
+        <div className='reset'>
           <ActionButton actionWithPayload={handleResetPeriod} alert>
             {textes["reset_period"] || "reset period"}
           </ActionButton>

@@ -44,7 +44,7 @@ export default function Filter({
         </FlexColumnCenter>
       </Collapse>
       {search !== "" || filterTags.length !== 0 ? (
-        <div>
+        <div className="reset">
           <ActionButton actionWithPayload={resetFilter} alert>
             {textes["reset_filter"] || "reset filter"}
           </ActionButton>

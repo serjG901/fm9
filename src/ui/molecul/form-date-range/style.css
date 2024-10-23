@@ -2,7 +2,7 @@
   input {
     padding: var(--padding-s);
   }
-  > div:last-child {
+  .reset {
     padding: var(--padding-s);
   }
 }

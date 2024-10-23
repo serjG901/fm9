@@ -16,12 +16,19 @@ export default function Collapse({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleToggle = (e: any) => {
     setState(e.target.open);
-    e.stopPropagation()
+    e.stopPropagation();
   };
   return (
-    <details className='collapse' name={collapseLevel} onToggle={handleToggle}>
-      <summary>{title}</summary>
-      {state ? <div className='collapse-content'>{children}</div> : null}
-    </details>
+    <div className='collapse-wrap'>
+      <details
+        className='collapse'
+        name={collapseLevel}
+        onToggle={handleToggle}
+      >
+        <summary>{title}</summary>
+        {state ? <div className='collapse-content'>{children}</div> : null}
+      </details>
+      
+    </div>
   );
 }
