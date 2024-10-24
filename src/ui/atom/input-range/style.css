@@ -8,7 +8,8 @@
     }
     input {
       padding: 0;
-      width: 300px;
+      width: 100%;
+      min-width: 250px;
       accent-color: var(--color-main-light-accent);
     }
   }

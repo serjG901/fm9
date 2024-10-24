@@ -1,5 +1,6 @@
 .collapse {
   summary {
+    list-style: none;
     box-sizing: border-box;
     height: 3rem;
     -webkit-user-select: none;

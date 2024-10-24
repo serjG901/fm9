@@ -19,7 +19,7 @@ export default function Modal({
     const modalId = document.getElementById(id);
     modalId?.hidePopover();
   };
-
+  
   return (
     <div>
       <div
