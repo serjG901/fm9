@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useState } from "react";
+import { ReactNode, useState } from "react";
 import "./style.css";
 
 interface CollapseComponent {
@@ -12,28 +12,27 @@ export default function Collapse({
   title = "collapse",
   children = "children",
 }: CollapseComponent) {
-  const [state, setState] = useState({});
+  //const [state, setState] = useState({});
   const [open, setOpen] = useState(false);
-  const [height, setHeight] = useState(0);
+  //const [height, setHeight] = useState(0);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleToggle = (e: any) => {
-    setState(e.target);
+    // setState(e.target);
     setOpen(e.target.open);
-    console.log(e.target.lastChild.getBoundingClientRect());
+    // console.log(e.target.lastChild.getBoundingClientRect());
     e.stopPropagation();
   };
+  /*
   useEffect(() => {
     if (open) {
       console.log(state.lastChild.getBoundingClientRect());
       const h = state.lastChild.getBoundingClientRect();
       setHeight(h);
     }
-  }, [open]);
+  }, [open]);style={{ "--height-content": height + "px" } as React.CSSProperties}
+  */
   return (
-    <div
-      className='collapse-wrap'
-      style={{ "--height-content": height + "px" } as React.CSSProperties}
-    >
+    <div className='collapse-wrap'>
       <details
         className='collapse'
         name={collapseLevel}
