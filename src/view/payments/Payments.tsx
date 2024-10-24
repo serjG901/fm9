@@ -19,7 +19,7 @@ import {
   Write,
 } from "../../interfaces";
 import { StoreApi, UseBoundStore } from "zustand";
-import Statistics from "../../ui/molecul/statistics/Statistics";
+import Statistics from "../../ui/substance/statistics/Statistics";
 import plus from "../../helpers/plus";
 import { useFiltersStore } from "../../store/filtersStore";
 import Filter from "../../ui/substance/filter/Filter";

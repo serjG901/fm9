@@ -84,7 +84,7 @@ function App() {
       <Menu
         choisedOption={page}
         collapseLevel='menu'
-        title={textes["pages"] || "pages"}
+        title={<span>&#9776;</span>}
         options={Object.keys(pages)}
         actionWithPayload={handleActionMenu}
         textes={textes}

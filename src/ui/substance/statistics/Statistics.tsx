@@ -4,7 +4,7 @@ import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import HighlightText from "../../atom/highlight-text/HighlightText";
-import SearchedName from "../searched-name/SearchedName";
+import SearchedName from "../../molecul/searched-name/SearchedName";
 import "./style.css";
 
 interface StatisticsComponent extends TextesByLanguage {

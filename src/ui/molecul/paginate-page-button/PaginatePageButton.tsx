@@ -30,7 +30,6 @@ export default function PaginatePageButton({
       setIsActionStatus(3);
     }
     if (isActionStatus === 3) {
-      window.scrollTo(0, 0);
       action();
 
       timer = setTimeout(() => setIsActionStatus(4), 300);

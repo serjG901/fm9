@@ -79,6 +79,7 @@ const textes: { [key: string]: { [key: string]: string } } = {
     adding: "adding",
     exchange_rate: "exchange rate",
     reset_filter: "reset_filter",
+    menu: "menu",
   },
   by: {
     buys: "пакупкі",
@@ -156,6 +157,7 @@ const textes: { [key: string]: { [key: string]: string } } = {
     adding: "дадаем",
     exchange_rate: "абменны курс",
     reset_filter: "скінуць фільтр",
+    menu: "меню",
   },
 };
 

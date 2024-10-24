@@ -29,7 +29,7 @@ import Modal from "./molecul/modal/Modal";
 import PaginatePageButton from "./molecul/paginate-page-button/PaginatePageButton";
 import Search from "./molecul/search/Search";
 import SearchedName from "./molecul/searched-name/SearchedName";
-import Statistics from "./molecul/statistics/Statistics";
+
 import ToTop from "./molecul/to-top/ToTop";
 //substances
 import AddPayment from "./substance/add-payment/AddPayment";
@@ -37,6 +37,7 @@ import AddSource from "./substance/add-source/AddSource";
 import AddTransaction from "./substance/add-transaction/AddTransaction";
 import Filter from "./substance/filter/Filter";
 import Paginate from "./substance/paginate/Paginate";
+import Statistics from "./substance/statistics/Statistics";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";

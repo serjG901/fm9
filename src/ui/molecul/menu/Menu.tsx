@@ -4,11 +4,12 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import { TextesByLanguage } from "../../../interfaces";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
+import { ReactNode } from "react";
 
 interface MenuComponent extends TextesByLanguage {
   choisedOption?: string;
   collapseLevel?: string;
-  title?: string;
+  title?: string | ReactNode;
   options?: string[];
   actionWithPayload?: (payload: string) => void;
 }

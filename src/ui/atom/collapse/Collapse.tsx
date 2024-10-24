@@ -3,7 +3,7 @@ import "./style.css";
 
 interface CollapseComponent {
   collapseLevel?: string;
-  title?: string;
+  title?: string | ReactNode;
   children?: ReactNode;
 }
 
