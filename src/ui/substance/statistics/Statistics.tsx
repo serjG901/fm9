@@ -109,7 +109,7 @@ export default function Statistics({
             )}
           </ActionButton>
           <ActionButton actionWithPayload={handleClickSort} payload={"amounts"}>
-            {textes["amounts"] || "amounts"}
+            {textes["amount"] || "amount"}
             {typeOfSort !== "amounts" ? (
               ""
             ) : directionOfSort ? (

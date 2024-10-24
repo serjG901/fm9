@@ -1,7 +1,7 @@
 .statistics {
   text-align: left;
   display: grid;
-  grid-template-columns: calc(30% - 0.5rem) calc(40% - 0.5rem) calc(30% - 0.5rem);
+  grid-template-columns: calc(35% - 0.5rem) calc(35% - 0.5rem) calc(30% - 0.5rem);
   gap: 0.5rem;
   justify-content: center;
   color: var(--color-text-statistics);
