@@ -22,9 +22,9 @@
     outline: 1px solid var(--color-border-action-element-accent);
   }
   .collapse-content {
+    max-width: 70dvw;
     padding: var(--padding-menu);
-    display: flex;
-    justify-content: center;
+    margin-inline: auto;
     opacity: 1;
     transition: opacity 1s 0.3s;
     @starting-style {

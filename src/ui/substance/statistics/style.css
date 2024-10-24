@@ -1,5 +1,4 @@
 .statistics {
-  max-width: 70dvw;
   text-align: left;
   display: grid;
   grid-template-columns: 4fr 5fr 1fr;
