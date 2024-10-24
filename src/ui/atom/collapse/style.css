@@ -26,6 +26,8 @@
     max-width: 70dvw;
     padding: var(--padding-menu);
     margin-inline: auto;
+    display: flex;
+    justify-content: center;
     opacity: 1;
     transition: opacity 1s 0.3s;
     @starting-style {
