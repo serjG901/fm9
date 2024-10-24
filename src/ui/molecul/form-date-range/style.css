@@ -2,7 +2,4 @@
   input {
     padding: var(--padding-s);
   }
-  .reset {
-    padding: var(--padding-s);
-  }
 }

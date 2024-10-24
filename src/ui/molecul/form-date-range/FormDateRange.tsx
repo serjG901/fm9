@@ -39,29 +39,31 @@ export default function FormDateRange({
 
   return (
     <div className='form-date-range'>
-      <Collapse collapseLevel='menu' title={textes["period"] || "period"}>
-        <FlexColumnCenter>
-          <Datepicker
-            key='start'
-            name={textes["start"] || "start"}
-            valueFromParent={start}
-            hoistValue={setStart}
-          />
-          <Datepicker
-            key='end'
-            name={textes["end"] || "end"}
-            valueFromParent={end}
-            hoistValue={setEnd}
-          />
-        </FlexColumnCenter>
-      </Collapse>
-      {start && end && (
-        <div className='reset'>
-          <ActionButton actionWithPayload={handleResetPeriod} alert>
-            {textes["reset_period"] || "reset period"}
-          </ActionButton>
-        </div>
-      )}
+      <FlexColumnCenter>
+        <Collapse collapseLevel='menu' title={textes["period"] || "period"}>
+          <FlexColumnCenter>
+            <Datepicker
+              key='start'
+              name={textes["start"] || "start"}
+              valueFromParent={start}
+              hoistValue={setStart}
+            />
+            <Datepicker
+              key='end'
+              name={textes["end"] || "end"}
+              valueFromParent={end}
+              hoistValue={setEnd}
+            />
+          </FlexColumnCenter>
+        </Collapse>
+        {start && end && (
+          <div className='reset'>
+            <ActionButton actionWithPayload={handleResetPeriod} alert>
+              {textes["reset_period"] || "reset period"}
+            </ActionButton>
+          </div>
+        )}
+      </FlexColumnCenter>
     </div>
   );
 }

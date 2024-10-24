@@ -66,78 +66,80 @@ export default function AddTags({
 
   return (
     <div className='add-tags'>
-      <Collapse collapseLevel='tags' title={textes["tags"] || "tags"}>
-        <div className='input-add-tags'>
-          <FlexColumnCenter>
-            {!onlyMaybeTags && (
-              <>
-                <div>
-                  <InputText
-                    id='add-tag-value'
-                    name={textes["tag"] || "tag"}
-                    valueFromParent={value}
-                    hoistValue={handleSetValue}
-                  />
-                </div>
-                <div>
-                  <Colorpicker
-                    id='add-tag-color'
-                    name={textes["color"] || "color"}
-                    valueFromParent={color}
-                    hoistValue={handleSetColor}
-                  />
-                </div>
-                <div>
-                  <ActionButton actionWithPayload={handleSetTag}>
-                    {textes["add_tag"] || "add tag"}
-                  </ActionButton>
-                </div>
-              </>
-            )}
-
-            {maybeTags.filter(
-              (tag) =>
-                !tags.find(
-                  (t) => t.value === tag.value && t.color === tag.color
-                )
-            ).length ? (
-              <FlexWrap
-                childrenArray={maybeTags
-                  .filter(
-                    (tag) =>
-                      !tags.find(
-                        (t) => t.value === tag.value && t.color === tag.color
-                      )
-                  )
-                  .map((tag) => (
-                    <ActionButton
-                      key={tag.value + tag.color}
-                      actionWithPayload={handleAddTag}
-                      payload={{ value: tag.value, color: tag.color }}
-                      bgColor={tag.color}
-                    >
-                      {tag.value}
+      <FlexColumnCenter>
+        <Collapse collapseLevel='tags' title={textes["tags"] || "tags"}>
+          <div className='input-add-tags'>
+            <FlexColumnCenter>
+              {!onlyMaybeTags && (
+                <>
+                  <div>
+                    <InputText
+                      id='add-tag-value'
+                      name={textes["tag"] || "tag"}
+                      valueFromParent={value}
+                      hoistValue={handleSetValue}
+                    />
+                  </div>
+                  <div>
+                    <Colorpicker
+                      id='add-tag-color'
+                      name={textes["color"] || "color"}
+                      valueFromParent={color}
+                      hoistValue={handleSetColor}
+                    />
+                  </div>
+                  <div>
+                    <ActionButton actionWithPayload={handleSetTag}>
+                      {textes["add_tag"] || "add tag"}
                     </ActionButton>
-                  ))}
-              />
-            ) : null}
-          </FlexColumnCenter>
+                  </div>
+                </>
+              )}
+
+              {maybeTags.filter(
+                (tag) =>
+                  !tags.find(
+                    (t) => t.value === tag.value && t.color === tag.color
+                  )
+              ).length ? (
+                <FlexWrap
+                  childrenArray={maybeTags
+                    .filter(
+                      (tag) =>
+                        !tags.find(
+                          (t) => t.value === tag.value && t.color === tag.color
+                        )
+                    )
+                    .map((tag) => (
+                      <ActionButton
+                        key={tag.value + tag.color}
+                        actionWithPayload={handleAddTag}
+                        payload={{ value: tag.value, color: tag.color }}
+                        bgColor={tag.color}
+                      >
+                        {tag.value}
+                      </ActionButton>
+                    ))}
+                />
+              ) : null}
+            </FlexColumnCenter>
+          </div>
+        </Collapse>
+        <div className='tags-add-tags'>
+          {tags.length
+            ? tags.map((tag) => (
+                <ActionButton
+                  key={tag.value + tag.color}
+                  actionWithPayload={handleDeleteTag}
+                  payload={{ value: tag.value, color: tag.color }}
+                  bgColor={tag.color}
+                >
+                  {tag.value}
+                </ActionButton>
+              ))
+            : null}
         </div>
-      </Collapse>
-      <div className='tags-add-tags'>
-        {tags.length
-          ? tags.map((tag) => (
-              <ActionButton
-                key={tag.value + tag.color}
-                actionWithPayload={handleDeleteTag}
-                payload={{ value: tag.value, color: tag.color }}
-                bgColor={tag.color}
-              >
-                {tag.value}
-              </ActionButton>
-            ))
-          : null}
-      </div>
+      </FlexColumnCenter>
     </div>
   );
 }
