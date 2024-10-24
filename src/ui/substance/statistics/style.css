@@ -1,5 +1,4 @@
 .statistics {
-  max-width: 70dvw;
   text-align: left;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -29,6 +28,7 @@
 }
 
 .statistics > div > div {
+  max-width: 25dvw;
   padding: 0.5rem;
   background-color: var(--color-bg-statistics);
   opacity: 1;
