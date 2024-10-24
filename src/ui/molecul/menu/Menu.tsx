@@ -22,21 +22,23 @@ export default function Menu({
   textes = {},
 }: MenuComponent) {
   return (
-    <Collapse collapseLevel={collapseLevel} title={title}>
-      <FlexWrap
-        childrenArray={options.map((opt) => {
-          return (
-            <ActionButton
-              key={opt}
-              actionWithPayload={actionWithPayload}
-              payload={opt}
-              showBorder={choisedOption === opt}
-            >
-              {textes[opt] || opt}
-            </ActionButton>
-          );
-        })}
-      />
-    </Collapse>
+    <div className='menu'>
+      <Collapse collapseLevel={collapseLevel} title={title}>
+        <FlexWrap
+          childrenArray={options.map((opt) => {
+            return (
+              <ActionButton
+                key={opt}
+                actionWithPayload={actionWithPayload}
+                payload={opt}
+                showBorder={choisedOption === opt}
+              >
+                {textes[opt] || opt}
+              </ActionButton>
+            );
+          })}
+        />
+      </Collapse>
+    </div>
   );
 }
