@@ -1,7 +1,11 @@
 .statistics {
   text-align: left;
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: calc(30% - 0.5rem) calc(40% - 0.5rem) calc(30% - 0.5rem);
+=======
+  grid-template-columns: 1fr 1fr 1fr;
+>>>>>>> 696771de3148351f69c6f8cf69541914aca4639c
   gap: 0.5rem;
   justify-content: center;
   color: var(--color-text-statistics);
@@ -29,6 +33,7 @@
 }
 
 .statistics > div > div {
+  max-width: 25dvw;
   padding: 0.5rem;
   background-color: var(--color-bg-statistics);
   opacity: 1;
