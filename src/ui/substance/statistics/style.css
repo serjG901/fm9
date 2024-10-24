@@ -1,7 +1,9 @@
 .statistics {
   text-align: left;
   display: grid;
-  grid-template-columns: calc(35% - 0.5rem) calc(35% - 0.5rem) calc(30% - 0.5rem);
+  grid-template-columns: calc(35% - 0.5rem) calc(35% - 0.5rem) calc(
+      30% - 0.5rem
+    );
   gap: 0.5rem;
   justify-content: center;
   color: var(--color-text-statistics);
@@ -29,6 +31,7 @@
 }
 
 .statistics > div > div {
+  overflow-wrap: break-word;
   padding: 0.5rem;
   background-color: var(--color-bg-statistics);
   opacity: 1;
@@ -38,4 +41,7 @@
     opacity: 0;
     transform: translate(0px, 1.5rem);
   }
+}
+.statistics > div > div:nth-child(3n-2) {
+  z-index: 99;
 }
