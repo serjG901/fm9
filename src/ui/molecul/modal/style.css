@@ -19,6 +19,7 @@
     scrollbar-width: none;
     margin-block: 2rem;
     margin-inline: auto;
+    padding: 1rem;
     border-radius: 8px;
     border: 2px solid hsl(0 0 0);
     box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
