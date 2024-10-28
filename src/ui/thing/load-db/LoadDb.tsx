@@ -10,6 +10,7 @@ import { name as appName } from "../../../../package.json";
 import { useSettingsStore } from "../../../store/settingsStore";
 import { TextesByLanguage } from "../../../interfaces";
 import upperFirstLetter from "../../../helpers/upperFirstLetter";
+import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
 export default function LoadDb({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
@@ -60,7 +61,7 @@ export default function LoadDb({ textes = {} }: TextesByLanguage) {
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute(
       "download",
-      `fm9-${currentBase?.name || "default"}-${Date.now()}.fm9`
+      `fm9-${currentBase?.name || "default"}-${getDefaultDatetime()}.fm9`
     );
     aDownloadFile!.click();
   }
