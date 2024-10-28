@@ -26,6 +26,7 @@ import Filter from "../../ui/substance/filter/Filter";
 import Paginate from "../../ui/substance/paginate/Paginate";
 import ToTop from "../../ui/molecul/to-top/ToTop";
 import { useSettingsStore } from "../../store/settingsStore";
+import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -238,7 +239,7 @@ export default function Payments({
     <Page>
       <div className='payments-view'>
         <h1>{paymentsType}</h1>
-        <FlexWrap>
+        <FlexColumnCenter>
           <FormDataRange
             textes={textes}
             key={"FormDataRange"}
@@ -265,7 +266,7 @@ export default function Payments({
               />
             );
           })}
-        </FlexWrap>
+        </FlexColumnCenter>
 
         {amountsByCurrency.map((pair) => (
           <div key={pair[0].toString()}>
