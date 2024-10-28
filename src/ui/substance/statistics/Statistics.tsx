@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import plus from "../../../helpers/plus";
 import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
@@ -6,6 +6,7 @@ import Collapse from "../../atom/collapse/Collapse";
 import HighlightText from "../../atom/highlight-text/HighlightText";
 import SearchedName from "../../molecul/searched-name/SearchedName";
 import "./style.css";
+import Paginate from "../paginate/Paginate";
 
 interface StatisticsComponent extends TextesByLanguage {
   currency?: string;
@@ -19,6 +20,22 @@ export default function Statistics({
   payments = [],
   search = "",
 }: StatisticsComponent) {
+  const itemsPerPage = 20;
+
+  const [pageActive, setPageActive] = useState(1);
+  const [pages, setPages] = useState(1);
+
+  const setPreviousPage = () => {
+    if (pageActive > 1) {
+      setPageActive(pageActive - 1);
+    }
+  };
+  const setNextPage = () => {
+    if (pageActive < pages) {
+      setPageActive(pageActive + 1);
+    }
+  };
+
   const [typeOfSort, setTypeOfSort] = useState("name");
   const [directionOfSort, setDirectionOfSort] = useState(true);
   const statItems = Object.entries(Object.groupBy(payments, ({ name }) => name))
@@ -87,6 +104,10 @@ export default function Statistics({
       );
     });
 
+  useEffect(() => {
+    setPages(Math.ceil(statItems.length / itemsPerPage));
+  }, []);
+
   const handleClickSort = (type: string) => {
     setTypeOfSort(type);
     setDirectionOfSort(!directionOfSort);
@@ -96,6 +117,14 @@ export default function Statistics({
       title={`${currency} ${textes["stat"] || "stat"}`}
       collapseLevel='menu'
     >
+      <Paginate
+        dublicate
+        pageActive={pageActive}
+        pages={pages}
+        setPageActive={setPageActive}
+        setPreviousPage={setPreviousPage}
+        setNextPage={setNextPage}
+      />
       <div className='statistics'>
         <div>
           <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
@@ -134,8 +163,19 @@ export default function Statistics({
           <div>{payments.length}</div>
           <div>{plus(...payments.map((p) => p.amount))}</div>
         </div>
-        {statItems}
+
+        {statItems.slice(
+          itemsPerPage * (pageActive - 1),
+          itemsPerPage * pageActive
+        )}
       </div>
+      <Paginate
+        pageActive={pageActive}
+        pages={pages}
+        setPageActive={setPageActive}
+        setPreviousPage={setPreviousPage}
+        setNextPage={setNextPage}
+      />
     </Collapse>
   );
 }

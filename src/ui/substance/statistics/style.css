@@ -1,11 +1,10 @@
 .statistics {
   text-align: left;
   display: grid;
-  grid-template-columns: calc(35% - 0.5rem) calc(35% - 0.5rem) calc(
-      30% - 0.5rem
+  grid-template-columns: calc((100% - 1rem) / 3) calc((100% - 1rem) / 3) calc(
+      (100% - 1rem) / 3
     );
   gap: 0.5rem;
-  justify-content: center;
   color: var(--color-text-statistics);
 }
 

@@ -31,6 +31,10 @@
     @starting-style {
       opacity: 0;
     }
+    .collapse-content {
+      padding: 0;
+
+    }
   }
 } /*
 .collapse-content-hide {

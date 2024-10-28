@@ -4,7 +4,8 @@
   display: flex;
   gap: calc(var(--gap-xs) / 2);
   margin-inline: auto;
-  justify-content: flex-end;
+  margin-block: 1rem;
+  justify-content: center;
 }
 
 .rated-movies .paginate {

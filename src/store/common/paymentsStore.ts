@@ -61,7 +61,7 @@ export const createPaymentStore = (name: string) =>
           },
           setPreviousPage: () => {
             const page = get().pageActive;
-            if (page > 0) {
+            if (page > 1) {
               set({ pageActive: get().pageActive - 1 });
             }
           },

@@ -29,7 +29,7 @@ export default function Collapse({
       >
         <summary>{title}</summary>
         {open ? (
-          <div key={open ? 1 : Math.random()} className='collapse-content'>
+          <div className='collapse-content'>
             {children}
           </div>
         ) : null}
