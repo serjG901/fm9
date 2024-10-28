@@ -21,15 +21,9 @@ export default function Collapse({
   };
 
   return (
-    <div className='collapse-wrap'>
-      <details
-        className='collapse'
-        name={collapseLevel}
-        onToggle={handleToggle}
-      >
-        <summary>{title}</summary>
-        {open ? <div className='collapse-content'>{children}</div> : null}
-      </details>
-    </div>
+    <details className='collapse' name={collapseLevel} onToggle={handleToggle}>
+      <summary>{title}</summary>
+      {open ? <div className='collapse-content'>{children}</div> : null}
+    </details>
   );
 }
