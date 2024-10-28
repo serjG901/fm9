@@ -1,4 +1,4 @@
-.input-number {
+.input-numeric {
   label {
     display: flex;
     flex-direction: column;
@@ -9,7 +9,7 @@
     input {
       max-width: 20ch;
     }
-    .invalid {
+    input:user-invalid {
       border-color: var(--color-alert) !important;
       outline-color: var(--color-alert) !important;
     }

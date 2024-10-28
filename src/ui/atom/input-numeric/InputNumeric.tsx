@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
 
-interface InputNumberComponent {
+interface InputNumericComponent {
   id?: string;
   name?: string;
   valueFromParent?: string;
@@ -9,20 +9,17 @@ interface InputNumberComponent {
   numberAfterZero?: number;
 }
 
-export default function InputNumber({
-  id = "input-number",
-  name = "input-number",
+export default function InputNumeric({
+  id = "input-numeric",
+  name = "input-numeric",
   valueFromParent = "",
   hoistValue = () => {},
   numberAfterZero = 2,
-}: InputNumberComponent) {
+}: InputNumericComponent) {
   const [state, setState] = useState(valueFromParent);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const arr = e.target.value.split(".");
-    const value =
-      arr[0] +
-      (arr[1] !== undefined ? "." + arr[1].slice(0, numberAfterZero) : "");
+    const value = e.target.value;
     setState(value);
     hoistValue(value);
   };
@@ -31,24 +28,17 @@ export default function InputNumber({
     setState(valueFromParent);
   }, [valueFromParent]);
 
-  useEffect(() => {
-    if (isNaN(+state) || +state < 0) {
-      document.getElementById(id)?.classList.add("invalid");
-    } else {
-      document.getElementById(id)?.classList.remove("invalid");
-    }
-  }, [state]);
-
   return (
-    <div className='input-number'>
+    <div className='input-numeric'>
       <label htmlFor={id}>
         <span>{name}</span>
         <input
           id={id}
           name={name}
-          type='number'
-          step={0.01}
-          min={10 ** -numberAfterZero}
+          type='text'
+          inputMode="decimal"
+          pattern="[0\.]{1}[0-9]{1,2}|[0-9]*([0\.]{1}[0-9]{1,2})?"
+          min={1 / 10 ** -numberAfterZero}
           value={state}
           onChange={handleChange}
         />

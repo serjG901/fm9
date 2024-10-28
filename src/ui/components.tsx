@@ -5,12 +5,15 @@ import BreakLine from "./atom/break-line/BreakLine";
 import Checked from "./atom/checked/Checked";
 import Collapse from "./atom/collapse/Collapse";
 import Colorpicker from "./atom/colorpicker/Colorpicker";
+import Contents from "./atom/contents/Contents";
 import Cross from "./atom/cross/Cross";
 import Datepicker from "./atom/datepicker/Datepicker";
 import FlexColumnCenter from "./atom/flex-column-center/FlexColumnCenter";
 import FlexWrap from "./atom/flex-wrap/FlexWrap";
+import Grid from "./atom/grid/Grid";
 import HighlightText from "./atom/highlight-text/HighlightText";
 import InputNumber from "./atom/input-number/InputNumber";
+import InputNumeric from "./atom/input-numeric/InputNumeric";
 import InputRange from "./atom/input-range/InputRange";
 import InputText from "./atom/input-text/InputText";
 import InputWithMemory from "./atom/input-with-memory/InputWithMemory";
@@ -41,6 +44,9 @@ import Statistics from "./substance/statistics/Statistics";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";
+import ChangeBase from "./thing/changeBase/ChangeBase";
+import Currencies from "./thing/currencies/Currencies";
+import Languages from "./thing/languages/Languages";
 import LoadDb from "./thing/load-db/LoadDb";
 //things
 import PaymentCard from "./thing/payment-card/PaymentCard";
@@ -48,18 +54,22 @@ import SourceCard from "./thing/source-card/SourceCard";
 import TransactionCard from "./thing/transaction-card/TrancactionCard";
 
 const componentsArr = [
+  //atoms
   <ActionButton />,
   <ArrowFromFor />,
   <BreakLine />,
   <Checked />,
   <Collapse />,
   <Colorpicker />,
+  <Contents />,
   <Cross />,
   <Datepicker />,
   <FlexColumnCenter />,
   <FlexWrap />,
+  <Grid />,
   <HighlightText />,
   <InputNumber />,
+  <InputNumeric />,
   <InputRange />,
   <InputText />,
   <InputWithMemory />,
@@ -67,6 +77,7 @@ const componentsArr = [
   <LoadingDots />,
   <Page />,
   <ViewAndPath />,
+  //moleculs
   <AddTags />,
   <FormDataRange />,
   <FormPayment />,
@@ -77,16 +88,21 @@ const componentsArr = [
   <PaginatePageButton />,
   <Search />,
   <SearchedName />,
-  <Statistics />,
   <ToTop />,
+  //substances
   <AddPayment />,
   <AddSource />,
   <AddTransaction />,
   <Filter />,
   <Paginate />,
+  <Statistics />,
   <UpdatePayment />,
   <UpdateSource />,
   <UpdateTransaction />,
+  //things
+  <ChangeBase />,
+  <Currencies />,
+  <Languages />,
   <LoadDb />,
   <PaymentCard />,
   <SourceCard />,

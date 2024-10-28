@@ -34,12 +34,14 @@ export default function FormSource({
   );
 
   const handleActionSource = () => {
-    actionSource({
-      name: sourceName,
-      amount: sourceAmount,
-      currency: sourceCurrency,
-      id: source.id,
-    });
+    if (!(isNaN(+sourceAmount) || +sourceAmount < 0)) {
+      actionSource({
+        name: sourceName,
+        amount: sourceAmount,
+        currency: sourceCurrency,
+        id: source.id,
+      });
+    }
   };
 
   const handleDeleteSource = () => {

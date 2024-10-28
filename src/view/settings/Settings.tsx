@@ -159,9 +159,9 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
           <hr />
           <div>
             <h2>
-              {textes["change_base"]
-                ? upperFirstLetter(textes["change_base"])
-                : "Change Base"}
+              {textes["manage_base"]
+                ? upperFirstLetter(textes["manage_base"])
+                : "Manage Base"}
             </h2>
             <ChangeBase textes={textes} />
           </div>

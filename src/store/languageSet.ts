@@ -1,9 +1,4 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { LanguageStore } from "../interfaces";
-import { name as appName } from "../../package.json";
-
-const textes: { [key: string]: { [key: string]: string } } = {
+export const languageSet: { [key: string]: { [key: string]: string } } = {
   en: {
     buys: "buys",
     pays: "pays",
@@ -80,6 +75,7 @@ const textes: { [key: string]: { [key: string]: string } } = {
     exchange_rate: "exchange rate",
     reset_filter: "reset filter",
     menu: "menu",
+    manage_base: "manage_base",
   },
   by: {
     buys: "пакупкі",
@@ -158,21 +154,6 @@ const textes: { [key: string]: { [key: string]: string } } = {
     exchange_rate: "абменны курс",
     reset_filter: "скінуць фільтр",
     menu: "меню",
+    manage_base: "кіраванне базамі",
   },
 };
-
-export const useLanguageStore = create<LanguageStore>()(
-  persist(
-    (set, get) => {
-      return {
-        currentLanguage: "en",
-        languages: ["en", "by"],
-        setCurrentLanguage: (lang) => set({ currentLanguage: lang }),
-        textes: () => textes[`${get().currentLanguage}`],
-      };
-    },
-    {
-      name: `${appName}-languages`,
-    }
-  )
-);
