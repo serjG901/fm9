@@ -205,58 +205,54 @@ export default function ChangeBase({ textes = {} }: TextesByLanguage) {
   return (
     <div className='change-base'>
       {bases.length ? (
-        <FlexWrap
-          childrenArray={[
-            <div className='description'>
-              {textes["current_base"]
-                ? upperFirstLetter(textes["current_base"])
-                : "Current base"}
-              :
-            </div>,
-            <HighlightText
-              key={getCurrentBase()?.name}
-              bgColor={hslToRgb(+getStateSettings().hue, 100, 20) || ""}
-              padding
-            >
-              {getCurrentBase()?.name}
-            </HighlightText>,
-            currentBase && currentBase.name !== "default" ? (
-              <ActionButton actionWithPayload={handleDeleteBase} alert>
-                {textes["delete"] || "delete"}
-              </ActionButton>
-            ) : null,
-          ]}
-        />
+        <FlexWrap>
+          <div className='description'>
+            {textes["current_base"]
+              ? upperFirstLetter(textes["current_base"])
+              : "Current base"}
+            :
+          </div>
+          <HighlightText
+            key={getCurrentBase()?.name}
+            bgColor={hslToRgb(+getStateSettings().hue, 100, 20) || ""}
+            padding
+          >
+            {getCurrentBase()?.name}
+          </HighlightText>
+          {currentBase && currentBase.name !== "default" ? (
+            <ActionButton actionWithPayload={handleDeleteBase} alert>
+              {textes["delete"] || "delete"}
+            </ActionButton>
+          ) : null}
+        </FlexWrap>
       ) : null}
       {bases.length > 1 ? (
-        <FlexWrap
-          childrenArray={[
-            <div className='description'>
-              {textes["exist_bases"]
-                ? upperFirstLetter(textes["exist_bases"])
-                : "Exist bases"}
-              :
-            </div>,
-            ...bases
-              .filter((b) => b.name !== getCurrentBase()?.name)
-              .sort((a, b) => (a.name > b.name ? 1 : -1))
-              .map((base) => (
-                <ActionButton
-                  key={base.name}
-                  actionWithPayload={handleChangeBase}
-                  payload={base}
-                  bgColor={hslToRgb(
-                    +(base?.db[`${appName}-settings`] as SettingsStore).hue,
-                    100,
-                    20
-                  )}
-                  onDown={handleDown}
-                >
-                  {base.name}
-                </ActionButton>
-              )),
-          ]}
-        />
+        <FlexWrap>
+          <div className='description'>
+            {textes["exist_bases"]
+              ? upperFirstLetter(textes["exist_bases"])
+              : "Exist bases"}
+            :
+          </div>
+          {...bases
+            .filter((b) => b.name !== getCurrentBase()?.name)
+            .sort((a, b) => (a.name > b.name ? 1 : -1))
+            .map((base) => (
+              <ActionButton
+                key={base.name}
+                actionWithPayload={handleChangeBase}
+                payload={base}
+                bgColor={hslToRgb(
+                  +(base?.db[`${appName}-settings`] as SettingsStore).hue,
+                  100,
+                  20
+                )}
+                onDown={handleDown}
+              >
+                {base.name}
+              </ActionButton>
+            ))}
+        </FlexWrap>
       ) : null}
       {uploadStatus ? (
         <div className='load-db-upload-status'>

@@ -65,8 +65,8 @@ export default function Sources({
                       {plus(...byCurrency[currency]!.map((s) => s.amount))}
                     </span>
                   </div>
-                  <FlexWrap
-                    childrenArray={byCurrency[currency]!.sort((a, b) =>
+                  <FlexWrap>
+                    {byCurrency[currency]!.sort((a, b) =>
                       +a.amount < +b.amount ? 1 : -1
                     ).map((source: Source) => {
                       return (
@@ -81,7 +81,7 @@ export default function Sources({
                         />
                       );
                     })}
-                  ></FlexWrap>
+                  </FlexWrap>
                 </Contents>
               );
             })

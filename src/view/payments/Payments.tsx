@@ -294,7 +294,7 @@ export default function Payments({
           setNextPage={() => setNextPage(pages || 20)}
         />
 
-        <FlexWrap childrenArray={cards}></FlexWrap>
+        <FlexWrap>{cards}</FlexWrap>
       </div>
 
       <Paginate

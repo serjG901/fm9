@@ -108,8 +108,8 @@ export default function Transactions({
           fromOptions={acounts}
           forOptions={acounts}
         />
-        <FlexWrap
-          childrenArray={sortedTransactions.map((transaction: Transaction) => {
+        <FlexWrap>
+          {sortedTransactions.map((transaction: Transaction) => {
             const card = (
               <TransactionCard
                 textes={textes}
@@ -136,7 +136,7 @@ export default function Transactions({
               </>
             );
           })}
-        ></FlexWrap>
+        </FlexWrap>
       </div>
     </Page>
   );

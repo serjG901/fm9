@@ -25,8 +25,8 @@ export default function Menu({
   return (
     <div className='menu'>
       <Collapse collapseLevel={collapseLevel} title={title}>
-        <FlexWrap
-          childrenArray={options.map((opt) => {
+        <FlexWrap>
+          {options.map((opt) => {
             return (
               <ActionButton
                 key={opt}
@@ -38,7 +38,7 @@ export default function Menu({
               </ActionButton>
             );
           })}
-        />
+        </FlexWrap>
       </Collapse>
     </div>
   );

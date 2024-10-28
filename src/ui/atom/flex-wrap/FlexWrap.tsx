@@ -2,11 +2,11 @@ import "./style.css";
 import { ReactNode } from "react";
 
 interface FlexWrapComponent {
-  childrenArray?: ReactNode[];
+  children?: ReactNode;
 }
 
 export default function FlexWrap({
-  childrenArray = ["children1", "children2"],
+  children = ["children1", "children2"],
 }: FlexWrapComponent) {
-  return <div className='flex-wrap'>{...childrenArray}</div>;
+  return <div className='flex-wrap'>{children}</div>;
 }

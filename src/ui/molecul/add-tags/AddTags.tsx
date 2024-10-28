@@ -102,8 +102,8 @@ export default function AddTags({
                     (t) => t.value === tag.value && t.color === tag.color
                   )
               ).length ? (
-                <FlexWrap
-                  childrenArray={maybeTags
+                <FlexWrap>
+                  {maybeTags
                     .filter(
                       (tag) =>
                         !tags.find(
@@ -120,7 +120,7 @@ export default function AddTags({
                         {tag.value}
                       </ActionButton>
                     ))}
-                />
+                </FlexWrap>
               ) : null}
             </FlexColumnCenter>
           </div>
