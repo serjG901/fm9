@@ -1,11 +1,11 @@
 .modal {
-  width: 100vw;
-  min-height: 100lvh;
+  width: 100%;
+  min-height: 100dvh;
   overflow: hidden;
-  flex-direction: column;
-  justify-content: center;
+  padding: 0;
   cursor: auto;
   border: none;
+  left: -12px;
   .hide-modal {
     position: fixed;
     top: 50%;
@@ -17,13 +17,13 @@
     overflow-y: auto;
     max-height: 90dvh;
     width: max-content;
-    max-width: calc(90% - 4rem);
+    max-width: 80%;
     scrollbar-width: none;
     margin-block: 2rem;
     margin-inline: auto;
-    padding: var(--padding-s);
+    padding: var(--padding-m);
     border-radius: 8px;
-    border: 2px solid hsl(0 0 0);
+    border: 1px solid hsl(0 0 0);
     box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
     background-color: var(--color-bg-menu);
   }
@@ -33,6 +33,7 @@
   background-color: black;
 }
 
-.modal[open] {
-  display: flex;
+body:has([popover]:popover-open:not(dialog)) {
+  height: 100vh !important;
+  overflow: hidden !important;
 }

@@ -105,8 +105,9 @@ export default function Statistics({
     });
 
   useEffect(() => {
+    setPageActive(1);
     setPages(Math.ceil(statItems.length / itemsPerPage));
-  }, []);
+  }, [statItems.length]);
 
   const handleClickSort = (type: string) => {
     setTypeOfSort(type);
