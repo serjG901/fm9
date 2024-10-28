@@ -1,4 +1,7 @@
 .payment-card {
+  display: block;
+  font-family: inherit;
+  border: none;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   width: min-content;
@@ -167,4 +170,9 @@
   .payment-card-for {
     color: var(--color-card-from-for);
   }
+}
+
+.payment-card:focus,
+.payment-card:focus-visible {
+  filter: sepia();
 }

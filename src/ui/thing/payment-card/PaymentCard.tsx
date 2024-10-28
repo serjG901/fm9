@@ -45,7 +45,7 @@ export default function PaymentCard({
   };
 
   return (
-    <div className='payment-card' key={payment.id} onClick={showModal}>
+    <button className='payment-card' key={payment.id} onClick={showModal}>
       <FlexColumnCenter>
         <div className='payment-card-datetime'>
           {payment.datetime.split("T").map((d) => (
@@ -85,6 +85,6 @@ export default function PaymentCard({
           currencies={currencies}
         />
       </FlexColumnCenter>
-    </div>
+    </button>
   );
 }

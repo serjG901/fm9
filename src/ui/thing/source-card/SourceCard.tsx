@@ -24,7 +24,7 @@ export default function SourceCard({
     modalId?.showPopover();
   };
   return (
-    <div className='source-card' key={source.id} onClick={showModal}>
+    <button className='source-card' key={source.id} onClick={showModal}>
       <FlexColumnCenter>
         <div className='source-card-name'>{source.name}</div>
         <div className='source-card-amount'>{source.amount}</div>
@@ -38,6 +38,6 @@ export default function SourceCard({
           currencies={currencies}
         />
       </FlexColumnCenter>
-    </div>
+    </button>
   );
 }
