@@ -75,9 +75,9 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     exchange_rate: "exchange rate",
     reset_filter: "reset filter",
     menu: "menu",
-    manage_base: "manage_base",
-    update_tag: "update_tag",
-    manage_tags: "manage_tags",
+    manage_base: "manage base",
+    update_tag: "update tag",
+    manage_tags: "manage tags",
   },
   by: {
     buys: "пакупкі",
