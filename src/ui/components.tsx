@@ -44,10 +44,10 @@ import Statistics from "./substance/statistics/Statistics";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
 import UpdateSource from "./substance/update-source/UpdateSource";
 import UpdateTransaction from "./substance/update-transaction/UpdateTransaction";
-import ChangeBase from "./thing/changeBase/ChangeBase";
+import ChangeBase from "./thing/manage-base/ManageBase";
 import Currencies from "./thing/currencies/Currencies";
 import Languages from "./thing/languages/Languages";
-import LoadDb from "./thing/load-db/LoadDb";
+import LoadDb from "./thing/manage-data/ManageData";
 //things
 import PaymentCard from "./thing/payment-card/PaymentCard";
 import SourceCard from "./thing/source-card/SourceCard";

@@ -76,6 +76,8 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     reset_filter: "reset filter",
     menu: "menu",
     manage_base: "manage_base",
+    update_tag: "update_tag",
+    manage_tags: "manage_tags",
   },
   by: {
     buys: "пакупкі",
@@ -155,5 +157,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     reset_filter: "скінуць фільтр",
     menu: "меню",
     manage_base: "кіраванне базамі",
+    update_tag: "аднавіць тэг",
+    manage_tags: "кіраванне тэгамі",
   },
 };

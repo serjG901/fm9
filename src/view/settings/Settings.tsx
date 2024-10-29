@@ -2,18 +2,19 @@ import "./style.css";
 import Page from "../../ui/atom/page/Page";
 import { useSettingsStore } from "../../store/settingsStore";
 import InputRange from "../../ui/atom/input-range/InputRange";
-import LoadDb from "../../ui/thing/load-db/LoadDb";
+import ManageData from "../../ui/thing/manage-data/ManageData";
 import { useBuysStore } from "../../store/buysStore";
 import { usePaysStore } from "../../store/paysStore";
 import HighlightText from "../../ui/atom/highlight-text/HighlightText";
 import hslToRgb from "../../helpers/hslToRgb";
-import ChangeBase from "../../ui/thing/changeBase/ChangeBase";
+import ManageBase from "../../ui/thing/manage-base/ManageBase";
 import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
 import Currencies from "../../ui/thing/currencies/Currencies";
 import Languages from "../../ui/thing/languages/Languages";
 import { useLanguageStore } from "../../store/languageStore";
 import { TextesByLanguage } from "../../interfaces";
 import upperFirstLetter from "../../helpers/upperFirstLetter";
+import ManageTags from "../../ui/thing/manage-tags/ManageTags";
 
 export default function Settings({ textes = {} }: TextesByLanguage) {
   const [
@@ -159,11 +160,20 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
           <hr />
           <div>
             <h2>
+              {textes["manage_tags"]
+                ? upperFirstLetter(textes["manage_tags"])
+                : "Manage tags"}
+            </h2>
+            <ManageTags textes={textes} />
+          </div>
+          <hr />
+          <div>
+            <h2>
               {textes["manage_base"]
                 ? upperFirstLetter(textes["manage_base"])
-                : "Manage Base"}
+                : "Manage base"}
             </h2>
-            <ChangeBase textes={textes} />
+            <ManageBase textes={textes} />
           </div>
           <hr />
           <div>
@@ -172,7 +182,7 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
                 ? upperFirstLetter(textes["manage_data"])
                 : "Manage data"}
             </h2>
-            <LoadDb textes={textes} />
+            <ManageData textes={textes} />
           </div>
         </FlexColumnCenter>
       </div>

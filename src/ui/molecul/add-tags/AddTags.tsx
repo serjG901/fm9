@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import "./style.css";
-import Colorpicker from "../../atom/colorpicker/Colorpicker";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Tag, TextesByLanguage } from "../../../interfaces";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
-import InputText from "../../atom/input-text/InputText";
+import FormTag from "../form-tag/FormTag";
 
 interface AddTagsComponent extends TextesByLanguage {
   tagsFromParrent?: Tag[];
@@ -23,22 +22,14 @@ export default function AddTags({
   onlyMaybeTags = false,
 }: AddTagsComponent) {
   const [tags, setTags] = useState<Tag[]>(tagsFromParrent);
-  const [value, setValue] = useState<string>("");
-  const [color, setColor] = useState<string>("#000000");
 
-  const handleSetValue = (value: string) => {
-    setValue(value);
-  };
-
-  const handleSetColor = (color: string) => {
-    setColor(color);
-  };
-
-  const handleSetTag = () => {
-    if (tags.find((tag) => tag.value === value && tag.color === color)) {
+  const handleSetTag = (newTag: Tag) => {
+    if (
+      tags.find((t) => t.value === newTag.value && t.color === newTag.color)
+    ) {
       return;
     }
-    setTags((state) => [...state, { value, color }]);
+    setTags((state) => [...state, newTag]);
   };
 
   const handleDeleteTag = ({ value, color }: Tag) => {
@@ -71,53 +62,37 @@ export default function AddTags({
           <div className='input-add-tags'>
             <FlexColumnCenter>
               {!onlyMaybeTags && (
-                <>
-                  <div>
-                    <InputText
-                      id='add-tag-value'
-                      name={textes["tag"] || "tag"}
-                      valueFromParent={value}
-                      hoistValue={handleSetValue}
-                    />
-                  </div>
-                  <div>
-                    <Colorpicker
-                      id='add-tag-color'
-                      name={textes["color"] || "color"}
-                      valueFromParent={color}
-                      hoistValue={handleSetColor}
-                    />
-                  </div>
-                  <div>
-                    <ActionButton actionWithPayload={handleSetTag}>
-                      {textes["add_tag"] || "add tag"}
-                    </ActionButton>
-                  </div>
-                </>
+                <FormTag textes={textes} hoistTag={handleSetTag} />
               )}
-
+              <br />
               {maybeTags.filter(
-                (tag) =>
+                (maybeTag) =>
                   !tags.find(
-                    (t) => t.value === tag.value && t.color === tag.color
+                    (t) =>
+                      t.value === maybeTag.value && t.color === maybeTag.color
                   )
               ).length ? (
                 <FlexWrap>
                   {maybeTags
                     .filter(
-                      (tag) =>
+                      (maybeTag) =>
                         !tags.find(
-                          (t) => t.value === tag.value && t.color === tag.color
+                          (t) =>
+                            t.value === maybeTag.value &&
+                            t.color === maybeTag.color
                         )
                     )
-                    .map((tag) => (
+                    .map((maybeTag) => (
                       <ActionButton
-                        key={tag.value + tag.color}
+                        key={maybeTag.value + maybeTag.color}
                         actionWithPayload={handleAddTag}
-                        payload={{ value: tag.value, color: tag.color }}
-                        bgColor={tag.color}
+                        payload={{
+                          value: maybeTag.value,
+                          color: maybeTag.color,
+                        }}
+                        bgColor={maybeTag.color}
                       >
-                        {tag.value}
+                        {maybeTag.value}
                       </ActionButton>
                     ))}
                 </FlexWrap>

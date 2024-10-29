@@ -12,7 +12,7 @@ import { TextesByLanguage } from "../../../interfaces";
 import upperFirstLetter from "../../../helpers/upperFirstLetter";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
 
-export default function LoadDb({ textes = {} }: TextesByLanguage) {
+export default function ManageData({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
     state.getState,
     state.setState,

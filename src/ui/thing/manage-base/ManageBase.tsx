@@ -24,7 +24,7 @@ import HighlightText from "../../atom/highlight-text/HighlightText";
 import upperFirstLetter from "../../../helpers/upperFirstLetter";
 import Collapse from "../../atom/collapse/Collapse";
 
-export default function ChangeBase({ textes = {} }: TextesByLanguage) {
+export default function ManageBase({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
     state.getState,
     state.setState,
