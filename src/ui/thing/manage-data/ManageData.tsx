@@ -61,7 +61,7 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute(
       "download",
-      `fm9-${currentBase?.name || "default"}-${getDefaultDatetime()}.fm9`
+      `${appName}-${currentBase?.name || "default"}-${getDefaultDatetime()}.json`
     );
     aDownloadFile!.click();
   }
@@ -121,7 +121,7 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
               name='oldOpenFile'
               type='file'
               title='file'
-              accept='.fm9'
+              accept='.json'
               onChange={handleDownloadFile}
             />
           </label>
