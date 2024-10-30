@@ -20,13 +20,17 @@ export default function UpdateSource({
   sources = [],
   currencies = [],
 }: UpdateSourceComponent) {
+  const updateSourceAndCloseModal = (s: Source) => {
+    updateSource(s);
+    document.getElementById(`update-source-${source.id}`)?.hidePopover();
+  };
   return (
     <>
       <Modal id={`update-source-${source.id}`} textes={textes}>
         <FormSource
           textes={textes}
           actionType='update'
-          actionSource={updateSource}
+          actionSource={updateSourceAndCloseModal}
           source={source}
           deleteSource={deleteSource}
           sources={sources}
@@ -36,9 +40,7 @@ export default function UpdateSource({
       {source.id === 0 ? (
         <ActionButton
           actionWithPayload={() =>
-            document
-              .getElementById(`update-source-${source.id}`)
-              ?.showPopover()
+            document.getElementById(`update-source-${source.id}`)?.showPopover()
           }
         >
           show modal

@@ -60,7 +60,9 @@ export default function FormPayment({
 
   const handleActionPayment = () => {
     if (paymentName) {
-      setIsActionStatus(2);
+      if (!(isNaN(+paymentAmount) || +paymentAmount < 0)) {
+        setIsActionStatus(2);
+      }
     }
   };
 
@@ -77,17 +79,16 @@ export default function FormPayment({
       setIsActionStatus(3);
     }
     if (isActionStatus === 3) {
-      if (!(isNaN(+paymentAmount) || +paymentAmount < 0))
-        actionPayment({
-          datetime: paymentDatetime,
-          name: paymentName,
-          amount: paymentAmount,
-          currency: paymentCurrency,
-          from: paymentFrom,
-          for: paymentFor,
-          tags: paymentTags,
-          id: payment.id,
-        });
+      actionPayment({
+        datetime: paymentDatetime,
+        name: paymentName,
+        amount: paymentAmount,
+        currency: paymentCurrency,
+        from: paymentFrom,
+        for: paymentFor,
+        tags: paymentTags,
+        id: payment.id,
+      });
 
       timer = setTimeout(() => setIsActionStatus(4), 300);
     }
@@ -113,40 +114,40 @@ export default function FormPayment({
   return (
     <FlexColumnCenter>
       <Datepicker
-        id='payment-datetime'
+        id={`${actionType === "update" ? "update-" : ""}payment-datetime`}
         name={textes["datetime"] || "datetime"}
         valueFromParent={paymentDatetime}
         hoistValue={setPaymentDatetime}
       />
       <InputWithOptions
-        id='payment-name'
+        id={`${actionType === "update" ? "update-" : ""}payment-name`}
         name={textes["name"] || "name"}
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
         options={maybeName}
       />
       <InputNumber
-        id='payment-amount'
+        id={`${actionType === "update" ? "update-" : ""}payment-amount`}
         name={textes["amount"] || "amount"}
         valueFromParent={paymentAmount}
         hoistValue={setPaymentAmount}
       />
       <InputWithOptions
-        id='payment-currency'
+        id={`${actionType === "update" ? "update-" : ""}payment-currency`}
         name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
       />
       <InputWithOptions
-        id='payment-from'
+        id={`${actionType === "update" ? "update-" : ""}payment-from`}
         name={textes["from"] || "from"}
         options={fromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
       />
       <InputWithOptions
-        id='payment-for'
+        id={`${actionType === "update" ? "update-" : ""}payment-for`}
         name={textes["for"] || "for"}
         options={forOptions}
         valueFromParent={paymentFor}
