@@ -14,6 +14,7 @@ import { useSettingsStore } from "./store/settingsStore";
 const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
 import { useLanguageStore } from "./store/languageStore";
+import PWABadge from "./PWABadge";
 
 if (window.location.href.split("/").at(-1) !== "")
   window.location.replace(`/${appName}/`);
@@ -90,6 +91,7 @@ function App() {
         textes={textes}
       />
       {pages[page] || null}
+      <PWABadge />
     </div>
   );
 }

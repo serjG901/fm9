@@ -15,14 +15,22 @@
       "media": "(prefers-color-scheme: light)"
     },
     {
-      "src": "/fm9/images/b-icons-192.png",
+      "src": "/fm9/images/apple-touch-icon.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "180x180",
+      "purpose": "maskable any"
     },
     {
-      "src": "/fm9/images/b-icons-512.png",
+      "src": "/fm9/images/icons-192.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "192x192",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/fm9/images/icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable any"
     }
   ],
   "start_url": "/fm9",
