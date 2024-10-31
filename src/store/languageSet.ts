@@ -78,6 +78,31 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     manage_base: "manage base",
     update_tag: "update tag",
     manage_tags: "manage tags",
+    help: "help",
+    about_app: "about app",
+    about_app1:
+      "This is intuitive app for self manage your finance. All your data is saving in your device. This app not nedded to internet for work.",
+    about_app2:
+      "Buys means your pays (costs) for grociers, services, items and etc.",
+    about_app3:
+      "Pays means your incoming money like salary, gifts, credit money and etc.",
+    about_app4:
+      "Debets means your debet account in bank (or somewere) or your cash.",
+    about_app5:
+      "Credits means your credit acount in bank or your debts someone.",
+    about_app6: "In settings page you can:",
+    about_app7: "set main color",
+    about_app8: "change language",
+    about_app9: "set default currency and add or delete currencies",
+    about_app10:
+      "change number of view items on Buys page and Pays page (this affects the loading speed of these pages)",
+    about_app11: "manage your tags",
+    about_app12: "add new bases and to switch between bases",
+    about_app13:
+      "save your data in JSON or upload data from file (this can will be needed if you want to transfer your data to another device)",
+    need_help: "need help?",
+    need_help1:
+      "If you have advice on this app or encounter an error - send me an email:",
   },
   by: {
     buys: "пакупкі",
@@ -88,7 +113,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     delete: "выдаліць",
     deleting: "выдаляем",
     debets: "дэбет",
-    credits: "крэдзіт",
+    credits: "крэдыт",
     settings: "налады",
     from: "адкуль",
     for: "куды",
@@ -147,7 +172,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     download_data: "спампаваць данныя",
     data_uploaded: "данныя загружаны",
     upload_data: "загрузіць данныя",
-    manage_data: "Кіраванне даннымі",
+    manage_data: "кіраванне даннымі",
     components: "кампаненты",
     add_tag: "дадаць тэг",
     reset_period: "скінуць перыяд",
@@ -159,5 +184,30 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     manage_base: "кіраванне базамі",
     update_tag: "аднавіць тэг",
     manage_tags: "кіраванне тэгамі",
+    help: "дапамога",
+    about_app: "пра праграму",
+    about_app1:
+      "Гэта інтуітыўна зразумелая праграма для самастойнага кіравання сваімі фінансамі. Усе вашы даныя захоўваюцца на вашай прыладзе. Праграме не патрэбен Інтэрнэт для працы",
+    about_app2:
+      "Пакупкі азначае вашу аплату (выдаткі) за бакалейшчыкаў, паслугі, тавары і г.д.",
+    about_app3:
+      "Выплаты азначае вашы ўваходныя грошы, такія як зарплата, падарункі, крэдытныя грошы і г.д.",
+    about_app4:
+      "Дэбет азначае ваш дэбетавы рахунак у банку (ці дзе-небудзь яшчэ) або наяўныя грошы.",
+    about_app5:
+      "Крэдыты азначаюць ваш крэдытны рахунак у банку або вашы даўгі камусьці",
+    about_app6: "На старонцы налад вы можаце:",
+    about_app7: "усталяваць асноўны колер",
+    about_app8: "змяніць мову",
+    about_app9: "усталяваць стандартную валюту і дадаць або выдаліць валюты",
+    about_app10:
+      "змяніць колькасць тавараў для прагляду на старонках Пакупкі і Выплаты (гэта ўплывае на хуткасць загрузкі гэтых старонак)",
+    about_app11: "кіраваць сваімі тэгамі",
+    about_app12: "дадаць новыя базы і пераключыцца паміж базамі",
+    about_app13:
+      "захаваць свае даныя ў JSON або загрузіць даныя з файла (гэта можа спатрэбіцца, калі вы хочаце перанесці даныя на іншую прыладу)",
+    need_help: "патрабуецца дапамога?",
+    need_help1:
+      "Калі ў вас ёсць парады па гэтай праграме або вы сутыкнуліся з памылкай - дашліце мне ліст:",
   },
 };

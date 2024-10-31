@@ -68,11 +68,11 @@
   box-shadow: 1px 1px 8px rgb(0 0 0 /0.2), -1px 1px 8px rgb(0 0 0 /0.2);
   color: var(--color-text-main);
   height: 3rem;
-  width: calc-size(max-content, size - 0rem);
+  width: calc-size(max-content, size);
   transition: height 1s, width 1s;
   will-change: height, width;
 }
 .collapse[open] {
   height: min-content;
-  width: calc-size(max-content, size + 1rem);
+  width: calc-size(max-content, size + 2rem);
 }

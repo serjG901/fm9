@@ -9,7 +9,7 @@ export default function Help({ textes = {} }: TextesByLanguage) {
     <Page>
       <div className='help-view'>
         <FlexColumnCenter>
-          <h1>{textes["help"] ? upperFirstLetter(textes["shelp"]) : "Help"}</h1>
+          <h1>{textes["help"] ? upperFirstLetter(textes["help"]) : "Help"}</h1>
           <hr />
           <div>
             <h2>
@@ -18,41 +18,54 @@ export default function Help({ textes = {} }: TextesByLanguage) {
                 : "About app"}
             </h2>
             <div>
-              This is intuitive app for self manage your finance. All your data
+              {textes["about_app1"] ||
+                `This is intuitive app for self manage your finance. All your data
               is saving in your device. This app not nedded to internet for
-              work.
+              work.`}
               <ul>
                 <li>
-                  Buys means your pays (costs) for grociers, services, items and
-                  etc.
+                  {textes["about_app2"] ||
+                    `Buys means your pays (costs) for grociers, services, items and
+                  etc.`}
                 </li>
                 <li>
-                  Pays means your incoming money like salary, gifts, credit
-                  money and etc.
+                  {textes["about_app3"] ||
+                    `Pays means your incoming money like salary, gifts, credit
+                  money and etc.`}
                 </li>
                 <li>
-                  Debets means your debet account in bank (or somewere) or your
-                  cash.
+                  {textes["about_app4"] ||
+                    `Debets means your debet account in bank (or somewere) or your
+                  cash.`}
                 </li>
                 <li>
-                  Credits means your credit acount in bank or your debts
-                  someone.
+                  {textes["about_app5"] ||
+                    `Credits means your credit acount in bank or your debts
+                  someone.`}
                 </li>
               </ul>
               <ul>
-                In settings page you can:
-                <li>set main color</li>
-                <li>change language</li>
-                <li>set default currency and add or delete currencies</li>
+                {textes["about_app6"] || `In settings page you can:`}
+                <li>{textes["about_app7"] || `set main color`}</li>
+                <li>{textes["about_app8"] || `change language`}</li>
                 <li>
-                  change number of view items on Buys page and Pays page (this
-                  affects the loading speed of these pages)
+                  {textes["about_app9"] ||
+                    `set default currency and add or delete currencies`}
                 </li>
-                <li>manage your tags</li>
-                <li>add new bases and to switch between bases</li>
                 <li>
-                  save your data in JSON or upload data from file (this can will
-                  be needed if you want to transfer your data to another device)
+                  {textes["about_app10"] ||
+                    `change number of view items on Buys page and Pays page (this
+                  affects the loading speed of these pages)`}
+                </li>
+                <li>{textes["about_app11"] || `manage your tags`}</li>
+                <li>
+                  {textes["about_app12"] ||
+                    `add new bases and to switch between bases`}
+                </li>
+                <li>
+                  {textes["about_app13"] ||
+                    `save your data in JSON or upload data from file (this can will
+                  be needed if you want to transfer your data to another device)`}
                 </li>
               </ul>
             </div>
@@ -62,12 +75,13 @@ export default function Help({ textes = {} }: TextesByLanguage) {
             <h2>
               {textes["need_help"]
                 ? upperFirstLetter(textes["need_help"])
-                : "Need help"}
+                : "Need help?"}
             </h2>
             <div>
               <p>
-                If you have advice on this app or encounter an error - send me
-                an email:
+                {textes["need_help1"] ||
+                  `If you have advice on this app or encounter an error - send me
+                an email:`}
               </p>
               <a href='mailto:fm9developer@gmail.com'>fm9developer@gmail.com</a>
             </div>
