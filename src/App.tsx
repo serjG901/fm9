@@ -15,6 +15,7 @@ const API_IS_PROD = import.meta.env.VITE_API_IS_PROD;
 import { name as appName } from "../package.json";
 import { useLanguageStore } from "./store/languageStore";
 import PWABadge from "./PWABadge";
+import HelpApp from "./pages/help-app/HelpApp";
 
 if (window.location.href.split("/").at(-1) !== "")
   window.location.replace(`/${appName}/`);
@@ -55,6 +56,7 @@ function App() {
     debets: <Debets textes={textes} />,
     credits: <Credits textes={textes} />,
     settings: <SettingsApp textes={textes} />,
+    help: <HelpApp textes={textes} />,
   };
 
   if (API_IS_PROD === "0") pages = { ...pages, ui: <Ui textes={textes} /> };

@@ -1,4 +1,4 @@
-.settings-view {
+.help-view {
   opacity: 1;
   transform: translate(0px, 0px);
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;
@@ -20,6 +20,9 @@
     opacity: 1;
     transform: translate(0px, 0px);
     transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+    ul {
+      text-align: left;
+    }
     @starting-style {
       opacity: 0;
       transform: translate(0px, 1.5rem);
