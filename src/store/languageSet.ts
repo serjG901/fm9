@@ -7,7 +7,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     updating: "updating",
     delete: "delete",
     deleting: "deleting",
-    debets: "debets",
+    debets: "debits",
     credits: "credits",
     settings: "settings",
     from: "from",
@@ -88,10 +88,10 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     about_app3:
       "Pays means your incoming money like salary, gifts, credit money and etc.",
     about_app4:
-      "Debets means your debet account in bank (or somewere) or your cash.",
+      "Debits means your debet account in bank (or somewere) or your cash.",
     about_app5:
       "Credits means your credit acount in bank or your debts someone.",
-    about_app6: "In settings page you can:",
+    about_app6: "Settings allow you to:",
     about_app7: "set main color",
     about_app8: "change language",
     about_app9: "set default currency and add or delete currencies",
@@ -113,8 +113,8 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     updating: "аднаўляем",
     delete: "выдаліць",
     deleting: "выдаляем",
-    debets: "дэбет",
-    credits: "крэдыт",
+    debets: "дэбіты",
+    credits: "крэдыты",
     settings: "налады",
     from: "адкуль",
     for: "куды",
@@ -195,10 +195,10 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     about_app3:
       "Выплаты азначае вашы ўваходныя грошы, такія як зарплата, падарункі, крэдытныя грошы і г.д.",
     about_app4:
-      "Дэбет азначае ваш дэбетавы рахунак у банку (ці дзе-небудзь яшчэ) або наяўныя грошы.",
+      "Дэбіты азначае ваш дэбетавы рахунак у банку (ці дзе-небудзь яшчэ) або наяўныя грошы.",
     about_app5:
       "Крэдыты азначаюць ваш крэдытны рахунак у банку або вашы даўгі камусьці",
-    about_app6: "На старонцы налад вы можаце:",
+    about_app6: "Налады дазваляюць вам:",
     about_app7: "усталяваць асноўны колер",
     about_app8: "змяніць мову",
     about_app9: "усталяваць стандартную валюту і дадаць або выдаліць валюты",
