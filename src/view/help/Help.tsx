@@ -43,7 +43,7 @@ export default function Help({ textes = {} }: TextesByLanguage) {
                     `Credits means your credit acount in bank or your debts
                   someone.`}
                 </li>
-                <li>{textes["about_app6"] || `settings allow you to:`}
+                <li>{textes["about_app6"] || `Settings allow you to:`}
                 <ul>
                 <li>{textes["about_app7"] || `set main color`}</li>
                 <li>{textes["about_app8"] || `change language`}</li>
