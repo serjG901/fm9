@@ -78,6 +78,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     manage_base: "manage base",
     update_tag: "update tag",
     manage_tags: "manage tags",
+    stat_tags: "stat tags",
     help: "help",
     about_app: "about app",
     about_app1:
@@ -184,6 +185,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     manage_base: "кіраванне базамі",
     update_tag: "аднавіць тэг",
     manage_tags: "кіраванне тэгамі",
+    stat_tags: "статыстыка тэгаў",
     help: "дапамога",
     about_app: "пра праграму",
     about_app1:

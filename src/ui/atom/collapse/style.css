@@ -24,15 +24,12 @@
   }
   .collapse-content {
     max-width: 70dvw;
-    padding: var(--padding-menu);
+    padding: var(--padding-m);
     margin-inline: auto;
     opacity: 1;
     transition: opacity 1s 0.3s;
     @starting-style {
       opacity: 0;
-    }
-    .collapse-content {
-      padding: 0;
     }
   }
 } /*

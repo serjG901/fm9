@@ -8,10 +8,6 @@
   color: var(--color-text-statistics);
 }
 
-.statistics > div {
-  display: contents;
-}
-
 .statistics > div:first-child {
   color: var(--color-text-main);
   div:nth-child(2) {

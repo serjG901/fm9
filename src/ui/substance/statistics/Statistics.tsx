@@ -7,6 +7,7 @@ import HighlightText from "../../atom/highlight-text/HighlightText";
 import SearchedName from "../../molecul/searched-name/SearchedName";
 import "./style.css";
 import Paginate from "../paginate/Paginate";
+import Contents from "../../atom/contents/Contents";
 
 interface StatisticsComponent extends TextesByLanguage {
   currency?: string;
@@ -16,7 +17,7 @@ interface StatisticsComponent extends TextesByLanguage {
 
 export default function Statistics({
   textes = {},
-  currency,
+  currency = "",
   payments = [],
   search = "",
 }: StatisticsComponent) {
@@ -70,7 +71,7 @@ export default function Statistics({
     })
     .map(([name, payments]) => {
       return (
-        <div key={name}>
+        <Contents key={name}>
           <div>
             <SearchedName name={name} search={search} />
             <div>
@@ -100,7 +101,7 @@ export default function Statistics({
               ?.map((p) => p.amount)
               .reduce((acc, amount) => plus(acc, amount), "0")}
           </div>
-        </div>
+        </Contents>
       );
     });
 
@@ -116,7 +117,7 @@ export default function Statistics({
   return (
     <Collapse
       title={`${currency} ${textes["stat"] || "stat"}`}
-      collapseLevel='menu'
+      collapseLevel='stat'
     >
       <Paginate
         dublicate
@@ -127,7 +128,7 @@ export default function Statistics({
         setNextPage={setNextPage}
       />
       <div className='statistics'>
-        <div>
+        <Contents>
           <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
             {textes["name"] || "name"}
             {typeOfSort !== "name" ? (
@@ -158,12 +159,12 @@ export default function Statistics({
               <span>&#8595;</span>
             )}
           </ActionButton>
-        </div>
-        <div>
+        </Contents>
+        <Contents>
           <div>{textes["all"] || "all"}</div>
           <div>{payments.length}</div>
           <div>{plus(...payments.map((p) => p.amount))}</div>
-        </div>
+        </Contents>
 
         {statItems.slice(
           itemsPerPage * (pageActive - 1),

@@ -27,6 +27,9 @@ import Paginate from "../../ui/substance/paginate/Paginate";
 import ToTop from "../../ui/molecul/to-top/ToTop";
 import { useSettingsStore } from "../../store/settingsStore";
 import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter";
+import StatisticTags from "../../ui/substance/statistic-tags/StatisticTags";
+import Collapse from "../../ui/atom/collapse/Collapse";
+import Contents from "../../ui/atom/contents/Contents";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -255,17 +258,27 @@ export default function Payments({
             setFilterTags={handleSetFilterTags}
             maybeTags={maybeTags}
           />
-          {...Object.keys(statisticsByCurrency).map((currency) => {
-            return (
-              <Statistics
-                textes={textes}
-                key={currency}
-                currency={currency}
-                payments={statisticsByCurrency[currency]}
-                search={search}
-              />
-            );
-          })}
+          <Collapse title={`${textes["stat"] || "stat"}`} collapseLevel='menu'>
+            <FlexColumnCenter>
+              {...Object.keys(statisticsByCurrency).map((currency) => {
+                return (
+                  <Contents key={currency}>
+                    <Statistics
+                      textes={textes}
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                      search={search}
+                    />
+                    <StatisticTags
+                      textes={textes}
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                    />
+                  </Contents>
+                );
+              })}
+            </FlexColumnCenter>
+          </Collapse>
         </FlexColumnCenter>
 
         {amountsByCurrency.map((pair) => (
