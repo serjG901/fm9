@@ -47,7 +47,7 @@ export default function StatisticTags({
           <Contents>
             <div>
               <HighlightText bgColor={ts.tag.color} padding>
-                {ts.tag.value}:
+                {ts.tag.value}
               </HighlightText>
             </div>
             <div> {ts.sum}</div>
