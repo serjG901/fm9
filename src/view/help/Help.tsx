@@ -43,9 +43,8 @@ export default function Help({ textes = {} }: TextesByLanguage) {
                     `Credits means your credit acount in bank or your debts
                   someone.`}
                 </li>
-              </ul>
-              <ul>
-                {textes["about_app6"] || `In settings page you can:`}
+                <li>{textes["about_app6"] || `settings allow you to:`}
+                <ul>
                 <li>{textes["about_app7"] || `set main color`}</li>
                 <li>{textes["about_app8"] || `change language`}</li>
                 <li>
@@ -66,6 +65,8 @@ export default function Help({ textes = {} }: TextesByLanguage) {
                   {textes["about_app13"] ||
                     `save your data in JSON or upload data from file (this can will
                   be needed if you want to transfer your data to another device)`}
+                </li>
+              </ul>
                 </li>
               </ul>
             </div>
