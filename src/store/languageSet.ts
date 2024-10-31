@@ -88,9 +88,9 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     about_app3:
       "Pays means your incoming money like salary, gifts, credit money and etc.",
     about_app4:
-      "Debits means your debet account in bank (or somewere) or your cash.",
+      "Debits means your debits acount or your cash.",
     about_app5:
-      "Credits means your credit acount in bank or your debts someone.",
+      "Credits means your credits, installments or your debts someone.",
     about_app6: "Settings allow you to:",
     about_app7: "set main color",
     about_app8: "change language",
@@ -195,9 +195,9 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     about_app3:
       "Выплаты азначае вашы ўваходныя грошы, такія як зарплата, падарункі, крэдытныя грошы і г.д.",
     about_app4:
-      "Дэбіты азначае ваш дэбетавы рахунак у банку (ці дзе-небудзь яшчэ) або наяўныя грошы.",
+      "Дэбіты азначае вашы дэбітавы рахункі або наяўныя грошы.",
     about_app5:
-      "Крэдыты азначаюць ваш крэдытны рахунак у банку або вашы даўгі камусьці",
+      "Крэдыты азначаюць вашы крэдыты, растэрміноўкі або вашы даўгі камусьці",
     about_app6: "Налады дазваляюць вам:",
     about_app7: "усталяваць асноўны колер",
     about_app8: "змяніць мову",
