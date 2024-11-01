@@ -4,6 +4,7 @@ import { useBuysStore } from "../../../store/buysStore";
 import { usePaysStore } from "../../../store/paysStore";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
+import Contents from "../../atom/contents/Contents";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import FlexWrap from "../../atom/flex-wrap/FlexWrap";
 import FormTag from "../../molecul/form-tag/FormTag";
@@ -102,9 +103,8 @@ export default function ManageTags({ textes = {} }: TextesByLanguage) {
       >
         <FlexWrap>
           {maybeBuysTags.map((maybeTag) => (
-            <>
+            <Contents key={maybeTag.value + maybeTag.color}>
               <ActionButton
-                key={maybeTag.value + maybeTag.color}
                 actionWithPayload={handleShowModalBuysTag}
                 payload={{
                   value: maybeTag.value,
@@ -126,7 +126,7 @@ export default function ManageTags({ textes = {} }: TextesByLanguage) {
                   typeAction='update'
                 />
               </Modal>
-            </>
+            </Contents>
           ))}
         </FlexWrap>
       </Collapse>
@@ -136,9 +136,8 @@ export default function ManageTags({ textes = {} }: TextesByLanguage) {
       >
         <FlexWrap>
           {maybePaysTags.map((maybeTag) => (
-            <>
+            <Contents key={maybeTag.value + maybeTag.color}>
               <ActionButton
-                key={maybeTag.value + maybeTag.color}
                 actionWithPayload={handleShowModalPaysTag}
                 payload={{
                   value: maybeTag.value,
@@ -160,7 +159,7 @@ export default function ManageTags({ textes = {} }: TextesByLanguage) {
                   typeAction='update'
                 />
               </Modal>
-            </>
+            </Contents>
           ))}
         </FlexWrap>
       </Collapse>
