@@ -20,7 +20,7 @@ export default function Collapse({
     if (e.target.open) {
       const { y } = e.target.getBoundingClientRect();
       const scrollY = window.scrollY;
-      console.log(y, scrollY);
+      alert(`${y}, ${scrollY}`);
       if (y < 0) window.scrollTo(0, scrollY + y - 150);
     }
     e.stopPropagation();
