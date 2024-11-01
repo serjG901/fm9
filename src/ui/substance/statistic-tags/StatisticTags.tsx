@@ -44,7 +44,7 @@ export default function StatisticTags({
     >
       <div className='statistic-tags'>
         {tagsWithSum.map((ts) => (
-          <Contents>
+          <Contents key={ts.tag.value + ts.tag.color}>
             <div>
               <HighlightText bgColor={ts.tag.color} padding>
                 {ts.tag.value}
