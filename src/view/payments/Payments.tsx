@@ -191,7 +191,6 @@ export default function Payments({
     const card = (
       <PaymentCard
         textes={textes}
-        key={payment.id}
         maybeName={maybeName}
         payment={payment}
         updatePayment={updatePaymentWithS}
@@ -203,11 +202,7 @@ export default function Payments({
         currencies={currencies}
       />
     );
-    let breakLine = (
-      <BreakLine key={payment.id + Math.random()}>
-        {payment.datetime.split("T")[0]}
-      </BreakLine>
-    );
+    let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
     if (date === "") {
       date = payment.datetime.split("T")[0];
     } else {
@@ -217,10 +212,10 @@ export default function Payments({
     }
     date = payment.datetime.split("T")[0];
     return (
-      <>
+      <Contents key={payment.id}>
         {breakLine}
         {card}
-      </>
+      </Contents>
     );
   });
 
