@@ -62,9 +62,10 @@ export default function AddTags({
           <div className='input-add-tags'>
             <FlexColumnCenter>
               {!onlyMaybeTags && (
-                <FormTag textes={textes} hoistTag={handleSetTag} />
+                <Collapse title='add tag' collapseLevel='form'>
+                  <FormTag textes={textes} hoistTag={handleSetTag} />
+                </Collapse>
               )}
-              <br />
               {maybeTags.filter(
                 (maybeTag) =>
                   !tags.find(

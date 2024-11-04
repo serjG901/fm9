@@ -3,6 +3,7 @@ import "./style.css";
 import { ReactNode, useEffect } from "react";
 
 interface ActionButtonComponent {
+  refer?: null | any;
   actionWithPayload?: (payload?: any, e?: any) => void;
   payload?: any;
   children?: ReactNode;
@@ -14,6 +15,7 @@ interface ActionButtonComponent {
 }
 
 export default function ActionButton({
+  refer = null,
   actionWithPayload = () => {},
   payload = null,
   children = "children",
@@ -35,6 +37,7 @@ export default function ActionButton({
   }, [showBorder]);
   return (
     <button
+      ref={refer}
       id={`action-button${handleClick.toString() + payload}`}
       type='button'
       className='action-button'

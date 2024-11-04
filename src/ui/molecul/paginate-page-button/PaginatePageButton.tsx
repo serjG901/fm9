@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useRef, useState } from "react";
 import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
+import correctionScrollPosition from "../../../helpers/correctionScrollPosition";
 
 interface PaginatePageButtonComponent {
   dublicate?: boolean;
@@ -21,7 +23,10 @@ export default function PaginatePageButton({
   disabled = false,
 }: PaginatePageButtonComponent) {
   const [isActionStatus, setIsActionStatus] = useState(1);
-  const actionWithScroll = () => {
+
+  const button = useRef<null | any>(null);
+
+  const actionWithLoading = () => {
     setIsActionStatus(2);
   };
   useEffect(() => {
@@ -35,6 +40,7 @@ export default function PaginatePageButton({
       timer = setTimeout(() => setIsActionStatus(4), 300);
     }
     if (isActionStatus === 4) {
+      correctionScrollPosition(button.current);
       clearTimeout(timer);
       timer = setTimeout(() => setIsActionStatus(1), 2000);
     }
@@ -51,7 +57,8 @@ export default function PaginatePageButton({
       }`}
     >
       <ActionButton
-        actionWithPayload={actionWithScroll}
+        refer={button}
+        actionWithPayload={actionWithLoading}
         disabled={disabled || (!!pageActive && pageActive === pageNumber)}
         payload={
           !dublicate

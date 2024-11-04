@@ -254,16 +254,6 @@ export default function ManageBase({ textes = {} }: TextesByLanguage) {
             ))}
         </FlexWrap>
       ) : null}
-      {uploadStatus ? (
-        <div className='load-db-upload-status'>
-          <hr color='lime' />
-          <div>
-            {textes["base_changed"]
-              ? upperFirstLetter(textes["base_changed"])
-              : "Base changed"}
-          </div>
-        </div>
-      ) : null}
       <Collapse
         title={textes["add_base"] || "add base"}
         collapseLevel='settings'
@@ -284,3 +274,14 @@ export default function ManageBase({ textes = {} }: TextesByLanguage) {
     </div>
   );
 }
+/*
+      {uploadStatus ? (
+        <div className='load-db-upload-status'>
+          <hr color='lime' />
+          <div>
+            {textes["base_changed"]
+              ? upperFirstLetter(textes["base_changed"])
+              : "Base changed"}
+          </div>
+        </div>
+      ) : null}*/

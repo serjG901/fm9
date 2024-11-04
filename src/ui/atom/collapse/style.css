@@ -23,10 +23,10 @@
     outline: 2px solid var(--color-border-action-element-accent);
   }
   .collapse-content {
-    max-width: 70dvw;
+    max-width: calc(100dvw - 8rem);
     padding: var(--padding-m);
-    margin-inline: auto;
     opacity: 1;
+    margin-inline: auto;
     transition: opacity 1s 0.3s;
     @starting-style {
       opacity: 0;

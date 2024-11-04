@@ -1,5 +1,6 @@
 import { ReactNode, useState } from "react";
 import "./style.css";
+import correctionScrollPosition from "../../../helpers/correctionScrollPosition";
 
 interface CollapseComponent {
   collapseLevel?: string;
@@ -18,10 +19,7 @@ export default function Collapse({
   const handleToggle = (e: any) => {
     setOpen(e.target.open);
     if (e.target.open) {
-      const { y } = e.target.getBoundingClientRect();
-      const scrollY = window.scrollY;
-      //alert(`${y}, ${scrollY}`);
-      if (y < 0) window.scrollTo(0, scrollY + y - 150);
+      correctionScrollPosition(e.target);
     }
     e.stopPropagation();
   };
