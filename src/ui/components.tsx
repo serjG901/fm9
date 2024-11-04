@@ -29,6 +29,7 @@ import FormSource from "./molecul/form-source/FormSource";
 import FormTransaction from "./molecul/form-transaction/FormTransaction";
 import Menu from "./molecul/menu/Menu";
 import Modal from "./molecul/modal/Modal";
+import MonthStatRow from "./molecul/month-stat-row/MonthStatRow";
 import PaginatePageButton from "./molecul/paginate-page-button/PaginatePageButton";
 import Search from "./molecul/search/Search";
 import SearchedName from "./molecul/searched-name/SearchedName";
@@ -85,6 +86,7 @@ const componentsArr = [
   <FormTransaction />,
   <Menu />,
   <Modal />,
+  <MonthStatRow />,
   <PaginatePageButton />,
   <Search />,
   <SearchedName />,

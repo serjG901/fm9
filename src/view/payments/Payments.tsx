@@ -30,6 +30,7 @@ import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter"
 import StatisticTags from "../../ui/substance/statistic-tags/StatisticTags";
 import Collapse from "../../ui/atom/collapse/Collapse";
 import Contents from "../../ui/atom/contents/Contents";
+import MonthStat from "../../ui/substance/month-stat/MonthStat";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -264,10 +265,20 @@ export default function Payments({
                       payments={statisticsByCurrency[currency]}
                       search={search}
                     />
+                    <MonthStat
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                      type='name'
+                    />
                     <StatisticTags
                       textes={textes}
                       currency={currency}
                       payments={statisticsByCurrency[currency]}
+                    />
+                    <MonthStat
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                      type='tag'
                     />
                   </Contents>
                 );

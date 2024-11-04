@@ -1,0 +1,23 @@
+.mounth-stat-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  .mounth-stat-row-graf {
+    width: 100%;
+    height: 10rem;
+    display: flex;
+    align-items: flex-start;
+    > div {
+      width: calc(100% / 12);
+      height: var(--percent);
+      background-color: var(--self-color-bg, var(--color-bg-main));
+      writing-mode: vertical-rl;
+      color: color(
+        from var(--self-color-bg) srgb
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      );
+    }
+  }
+}

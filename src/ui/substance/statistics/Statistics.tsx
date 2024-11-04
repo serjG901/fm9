@@ -70,40 +70,59 @@ export default function Statistics({
       return 0;
     })
     .map(([name, payments]) => {
-      return (
-        <Contents key={name}>
-          <div>
-            <SearchedName name={name} search={search} />
-            <div>
-              {payments
-                ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
-                .reduce(
-                  (acc: Tag[], tag) =>
-                    acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
-                      ? acc
-                      : [...acc, tag],
-                  []
-                )
-                .map((tag) => (
-                  <HighlightText
-                    key={tag.value + tag.color}
-                    bgColor={tag.color}
-                    padding
-                  >
-                    {tag.value}
-                  </HighlightText>
-                ))}
-            </div>
-          </div>
-          <div>{payments?.map((p) => p.amount).join(", ")}</div>
-          <div>
-            {payments
-              ?.map((p) => p.amount)
-              .reduce((acc, amount) => plus(acc, amount), "0")}
-          </div>
-        </Contents>
-      );
+      return {
+        search,
+        name,
+        tags: payments
+          ?.reduce((acc: Tag[], p) => [...acc, ...p.tags], [])
+          .reduce(
+            (acc: Tag[], tag) =>
+              acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
+                ? acc
+                : [...acc, tag],
+            []
+          ),
+        amounts: payments?.map((p) => p.amount),
+        sum: payments
+          ?.map((p) => p.amount)
+          .reduce((acc, amount) => plus(acc, amount), "0"),
+      };
     });
+
+  const StatRow = ({
+    search = "",
+    name = "name",
+    tags = [],
+    amounts = [],
+    sum = "0",
+  }: {
+    search?: string;
+    name?: string;
+    tags?: Tag[];
+    amounts?: string[];
+    sum?: string;
+  }) => {
+    return (
+      <Contents key={name}>
+        <div>
+          <SearchedName name={name} search={search} />
+          <div>
+            {tags.map((tag) => (
+              <HighlightText
+                key={tag.value + tag.color}
+                bgColor={tag.color}
+                padding
+              >
+                {tag.value}
+              </HighlightText>
+            ))}
+          </div>
+        </div>
+        <div>{amounts.join(", ")}</div>
+        <div>{sum}</div>
+      </Contents>
+    );
+  };
 
   useEffect(() => {
     setPageActive(1);
@@ -166,10 +185,17 @@ export default function Statistics({
           <div>{plus(...payments.map((p) => p.amount))}</div>
         </Contents>
 
-        {statItems.slice(
-          itemsPerPage * (pageActive - 1),
-          itemsPerPage * pageActive
-        )}
+        {statItems
+          .slice(itemsPerPage * (pageActive - 1), itemsPerPage * pageActive)
+          .map((item) => (
+            <StatRow
+              search={search}
+              name={item.name}
+              tags={item.tags}
+              amounts={item.amounts}
+              sum={item.sum}
+            ></StatRow>
+          ))}
       </div>
       <Paginate
         pageActive={pageActive}
