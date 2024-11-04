@@ -28,6 +28,7 @@ export default function MonthStatRow({
   const max = Math.max(...data.map((d) => +d));
   return (
     <div className='mounth-stat-row'>
+      <hr />
       <div className='mounth-stat-row-title'>
         <HighlightText bgColor={color} padding>
           {title}
