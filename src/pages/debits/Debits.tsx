@@ -4,12 +4,12 @@ import Sources from "../../view/sources/Sources";
 import { TextesByLanguage } from "../../interfaces";
 import upperFirstLetter from "../../helpers/upperFirstLetter";
 
-export default function Debets({ textes = {} }: TextesByLanguage) {
+export default function Debits({ textes = {} }: TextesByLanguage) {
   return (
     <Sources
       textes={textes}
       sourcesType={
-        textes["debets"] ? upperFirstLetter(textes["debets"]) : "Debets"
+        textes["debits"] ? upperFirstLetter(textes["debits"]) : "Debits"
       }
       useSourcesStore={useDebetsStore}
     />

@@ -9,7 +9,7 @@ export const useLanguageStore = create<LanguageStore>()(
     (set, get) => {
       return {
         currentLanguage: "en",
-        languages: ["en", "by"],
+        languages: Object.keys(languageSet),
         setCurrentLanguage: (lang) => set({ currentLanguage: lang }),
         textes: () => languageSet[`${get().currentLanguage}`],
       };

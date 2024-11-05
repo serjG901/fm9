@@ -32,7 +32,7 @@ export default function Filter({
       <FlexColumnCenter>
         <Collapse title={textes["filter"] || "filter"} collapseLevel='menu'>
           <FlexColumnCenter>
-            <Search search={search} setSearch={setSearch} />
+            <Search textes={textes} search={search} setSearch={setSearch} />
             <div>
               <AddTags
                 textes={textes}

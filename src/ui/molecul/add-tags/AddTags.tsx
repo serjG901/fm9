@@ -62,7 +62,10 @@ export default function AddTags({
           <div className='input-add-tags'>
             <FlexColumnCenter>
               {!onlyMaybeTags && (
-                <Collapse title='add tag' collapseLevel='form'>
+                <Collapse
+                  title={textes["add_tag"] || "add tag"}
+                  collapseLevel='form'
+                >
                   <FormTag textes={textes} hoistTag={handleSetTag} />
                 </Collapse>
               )}
