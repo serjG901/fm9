@@ -9,7 +9,7 @@ interface SumPerMonthComponent {
 
 export default function SumPerMonth({
   amounts = [],
-  color = "#333333",
+  color = "",
 }: SumPerMonthComponent) {
   const sumPerMonth = Object.entries(
     Object.groupBy(amounts, ({ datetime }) => {

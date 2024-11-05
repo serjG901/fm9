@@ -18,7 +18,7 @@
     );
 
     color: color(
-      from var(--self-color-bg) srgb
+      from var(--self-color-bg, var(--color-bg-main)) srgb
         calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
         calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
         calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))

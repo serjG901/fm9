@@ -22,12 +22,6 @@ export default function StatRow({
 }: StatRowComponent) {
   const sortAmounts = amounts.sort((a, b) => +a.datetime - +b.datetime);
 
-  const everyAmounts = sortAmounts.map((a) => a.amount);
-
-  const EveryAmounts = ({ everyAmounts }: { everyAmounts: string[] }) => {
-    return <div>{everyAmounts.join(", ")}</div>;
-  };
-
   return (
     <Contents key={name}>
       <div>
@@ -45,10 +39,9 @@ export default function StatRow({
         </div>
       </div>
       <div>
-        <EveryAmounts everyAmounts={everyAmounts} />
+        <div className='statistic-sum'>{sum}</div>
         <SumPerMonth amounts={sortAmounts} />
       </div>
-      <div>{sum}</div>
     </Contents>
   );
 }

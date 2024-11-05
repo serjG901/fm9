@@ -40,12 +40,6 @@ export default function Statistics({
   const [directionOfSort, setDirectionOfSort] = useState(true);
   const statItems = Object.entries(Object.groupBy(payments, ({ name }) => name))
     .sort((nameA, nameB) => {
-      if (typeOfSort === "amounts") {
-        const amountsA = nameA[1]?.length || 0;
-        const amountsB = nameB[1]?.length || 0;
-        if (directionOfSort) return amountsA - amountsB;
-        return amountsB - amountsA;
-      }
       if (typeOfSort === "sum") {
         const amountsA =
           nameA[1]
@@ -125,16 +119,6 @@ export default function Statistics({
               <span>&#8595;</span>
             )}
           </ActionButton>
-          <ActionButton actionWithPayload={handleClickSort} payload={"amounts"}>
-            {textes["amount"] || "amount"}
-            {typeOfSort !== "amounts" ? (
-              ""
-            ) : directionOfSort ? (
-              <span>&#8593;</span>
-            ) : (
-              <span>&#8595;</span>
-            )}
-          </ActionButton>
           <ActionButton actionWithPayload={handleClickSort} payload={"sum"}>
             {textes["sum"] || "sum"}
             {typeOfSort !== "sum" ? (
@@ -148,7 +132,6 @@ export default function Statistics({
         </Contents>
         <Contents>
           <div>{textes["all"] || "all"}</div>
-          <div>{payments.length}</div>
           <div>{plus(...payments.map((p) => p.amount))}</div>
         </Contents>
 

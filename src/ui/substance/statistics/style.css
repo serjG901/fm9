@@ -1,27 +1,11 @@
 .statistics {
   text-align: left;
   display: grid;
-  grid-template-columns: calc((100% - 1rem) / 3) calc((100% - 1rem) / 3) calc(
-      (100% - 1rem) / 3
-    );
+  grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   color: var(--color-text-statistics);
-}
-
-.statistics > div:first-child {
-  color: var(--color-text-main);
-  div:nth-child(2) {
+  .statistic-sum {
     text-align: center;
-  }
-}
-
-.statistics > div:nth-child(2) {
-  color: var(--color-neutral);
-  div:nth-child(2) {
-    color: var(--color-bg-main);
-  }
-  div:nth-child(3) {
-    color: var(--color-bg-main);
   }
 }
 
@@ -38,6 +22,6 @@
     transform: translate(0px, 1.5rem);
   }
 }
-.statistics > div > div:nth-child(3n-2) {
+.statistics > div > div:nth-child(2n-1) {
   z-index: 99;
 }
