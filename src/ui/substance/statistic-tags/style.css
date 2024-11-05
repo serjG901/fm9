@@ -4,10 +4,9 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.5rem;
   color: var(--color-text-statistics);
-}
-
-.statistic-tags > div div:nth-child(2) {
-  text-align: center;
+  .statistic-tags-sum {
+    text-align: center;
+  }
 }
 
 .statistic-tags > div > div {

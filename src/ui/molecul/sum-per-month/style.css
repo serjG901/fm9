@@ -1,0 +1,27 @@
+.sum-per-month {
+  display: grid;
+  grid-template-columns: 5ch calc(100% - 6ch);
+  .sum-per-month-month {
+    text-align: right;
+  }
+  .sum-per-month-graf {
+    padding-left: 1ch;
+    text-align: left;
+    overflow-wrap: normal;
+    width: 100%;
+    background-image: linear-gradient(
+      to right,
+      var(--self-color-bg, var(--color-bg-main)),
+      var(--self-color-bg, var(--color-bg-main)) var(--percent),
+      var(--color-neutral) calc(10% + var(--percent)),
+      var(--color-transporent) 100%
+    );
+
+    color: color(
+      from var(--self-color-bg) srgb
+        calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+        calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+        calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+    );
+  }
+}

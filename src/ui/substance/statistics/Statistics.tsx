@@ -3,11 +3,10 @@ import plus from "../../../helpers/plus";
 import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Collapse from "../../atom/collapse/Collapse";
-import HighlightText from "../../atom/highlight-text/HighlightText";
-import SearchedName from "../../molecul/searched-name/SearchedName";
 import "./style.css";
 import Paginate from "../paginate/Paginate";
 import Contents from "../../atom/contents/Contents";
+import StatRow from "../../molecul/stat-row/StatRow";
 
 interface StatisticsComponent extends TextesByLanguage {
   currency?: string;
@@ -82,47 +81,15 @@ export default function Statistics({
                 : [...acc, tag],
             []
           ),
-        amounts: payments?.map((p) => p.amount),
+        amounts: payments?.map((p) => ({
+          amount: p.amount,
+          datetime: p.datetime,
+        })),
         sum: payments
           ?.map((p) => p.amount)
           .reduce((acc, amount) => plus(acc, amount), "0"),
       };
     });
-
-  const StatRow = ({
-    search = "",
-    name = "name",
-    tags = [],
-    amounts = [],
-    sum = "0",
-  }: {
-    search?: string;
-    name?: string;
-    tags?: Tag[];
-    amounts?: string[];
-    sum?: string;
-  }) => {
-    return (
-      <Contents key={name}>
-        <div>
-          <SearchedName name={name} search={search} />
-          <div>
-            {tags.map((tag) => (
-              <HighlightText
-                key={tag.value + tag.color}
-                bgColor={tag.color}
-                padding
-              >
-                {tag.value}
-              </HighlightText>
-            ))}
-          </div>
-        </div>
-        <div>{amounts.join(", ")}</div>
-        <div>{sum}</div>
-      </Contents>
-    );
-  };
 
   useEffect(() => {
     setPageActive(1);
@@ -194,7 +161,7 @@ export default function Statistics({
               tags={item.tags}
               amounts={item.amounts}
               sum={item.sum}
-            ></StatRow>
+            />
           ))}
       </div>
       <Paginate

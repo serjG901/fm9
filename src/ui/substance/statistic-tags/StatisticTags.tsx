@@ -3,6 +3,7 @@ import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import Collapse from "../../atom/collapse/Collapse";
 import Contents from "../../atom/contents/Contents";
 import HighlightText from "../../atom/highlight-text/HighlightText";
+import SumPerMonth from "../../molecul/sum-per-month/SumPerMonth";
 import "./style.css";
 interface StatisticTagsComponent extends TextesByLanguage {
   currency?: string;
@@ -26,14 +27,20 @@ export default function StatisticTags({
 
   const tagsWithSum = tags
     .map((tag) => {
-      const sum = payments.reduce(
-        (acc, p) =>
-          p.tags.find((t) => t.value + t.color === tag.value + tag.color)
-            ? plus(acc, p.amount)
-            : acc,
-        "0"
+      const p = payments.filter((p) =>
+        p.tags.find((t) => t.value + t.color === tag.value + tag.color)
       );
-      return { tag, sum };
+      const amounts = p.map((p) => ({
+        amount: p.amount,
+        datetime: p.datetime,
+      }));
+      const sum = amounts.reduce((acc, a) => plus(acc, a.amount), "0");
+
+      return {
+        tag,
+        amounts,
+        sum,
+      };
     })
     .sort((a, b) => +b.sum - +a.sum);
 
@@ -50,7 +57,10 @@ export default function StatisticTags({
                 {ts.tag.value}
               </HighlightText>
             </div>
-            <div> {ts.sum}</div>
+            <div>
+              <div className="statistic-tags-sum">{ts.sum}</div>
+              <SumPerMonth color={ts.tag.color} amounts={ts.amounts} />
+            </div>
           </Contents>
         ))}
       </div>
