@@ -92,3 +92,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+.error {
+  align-content: center;
+  height: 90dvh;
+}
