@@ -16,6 +16,7 @@ export const useLanguageStore = create<LanguageStore>()(
     },
     {
       name: `${appName}-languages`,
+      version: 1,
     }
   )
 );
