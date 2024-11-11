@@ -37,7 +37,7 @@
   "background_color": "#008080",
   "display": "standalone",
   "scope": "/fm9",
-  "description": "Intuitive self financial management",
+  "description": "Intuitive app for self manage your finance",
   "screenshots": [
     {
       "src": "/fm9/images/screenshot1.png",
