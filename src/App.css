@@ -52,7 +52,7 @@
     --color-card-currency: var(--color-main-light-accent);
     --color-text-description: var(--color-main-light-accent);
     --color-text-statistics: var(--color-text-main);
-    --color-bg-statistics: var(--color-bg-main);
+    --color-bg-statistics: hsl(0, 0%, 95%);
     input {
       color: var(--color-text-main);
     }

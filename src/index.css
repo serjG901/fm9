@@ -64,7 +64,7 @@
 
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
 
   interpolate-size: allow-keywords;
   transition-behavior: allow-discrete;
