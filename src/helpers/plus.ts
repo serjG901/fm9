@@ -1,4 +1,4 @@
-export default function plus(...args: string[]) {
+/*export default function plus(...args: string[]) {
   const pairs = args.map((a) =>
     a
       .split(".")
@@ -31,12 +31,12 @@ export default function plus(...args: string[]) {
   const result = fractional ? integer + "." + fractionalString : integer + "";
 
   return result;
+}*/
+
+export default function plus(...args: string[]) {
+  return "" + Math.round(args.reduce((acc, a) => acc + +a, 0) * 100) / 100;
 }
 /*
-function plus2(...args: string[]) {
-  return args.reduce((acc, a) => acc + +a, 0);
-}
-
 console.log(plus("5.47", "22.33", "33.09", "0.04"));
 console.log(plus2("5.47", "22.33", "33.09", "0.04"));
 
