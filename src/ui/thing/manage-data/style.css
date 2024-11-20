@@ -35,5 +35,8 @@
     span {
       color: var(--color-text-label);
     }
+    input {
+      width: -webkit-fill-available;
+    }
   }
 }
