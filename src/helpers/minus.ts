@@ -1,4 +1,4 @@
-export default function minus(...args: string[]) {
+/*export default function minus(...args: string[]) {
   const pairs = args.map((a) =>
     a
       .split(".")
@@ -45,11 +45,13 @@ export default function minus(...args: string[]) {
     : integer + "." + fractionalString;
   return result;
 }
-/*
-function minus2(...args: string[]) {
-  return Math.round(+args.reduce((acc, a) => +acc - +a) * 100) / 100;
+*/
+export default function minus(...args: string[]) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-ignore
+  return "" + Math.round(+args.reduce((acc, a) => +acc - +a) * 100) / 100;
 }
-
+/*
 console.log(minus("5.47", "22.33", "33.09", "0.04"));
 console.log(minus2("5.47", "22.33", "33.09", "0.04"));
 
