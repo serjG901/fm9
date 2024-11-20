@@ -47,7 +47,7 @@ export default function minus(...args: string[]) {
 }
 /*
 function minus2(...args: string[]) {
-  return args.reduce((acc, a) => acc - +a, 0) + 2 * +args[0];
+  return Math.round(+args.reduce((acc, a) => +acc - +a) * 100) / 100;
 }
 
 console.log(minus("5.47", "22.33", "33.09", "0.04"));
