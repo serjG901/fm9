@@ -2,7 +2,13 @@ export default function plus(...args: string[]) {
   const pairs = args.map((a) =>
     a
       .split(".")
-      .map((a, i) => (i === 0 ? +a : a.length === 1 ? +(a + "0") : +a))
+      .map((a, i, arr) =>
+        i === 0
+          ? +a
+          : a.length === 1
+          ? +((arr[0][0] === "-" ? "-" : "") + (a + "0"))
+          : +((arr[0][0] === "-" ? "-" : "") + a)
+      )
   );
 
   let [integer, fractional] = pairs.reduce(
