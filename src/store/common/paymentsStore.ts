@@ -17,7 +17,6 @@ export const createPaymentStore = (name: string) =>
           addPayment: (newPayment) => {
             set((state) => {
               const payment = { ...newPayment, id: state.id };
-              console.log(payment.from);
               return {
                 payments: [...state.payments, payment],
                 id: state.id + 1,
