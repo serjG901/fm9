@@ -30,7 +30,6 @@ export const updatePaymentWithSource =
           oldFindedFromSources.amount,
           oldPayment.amount
         );
-        console.log(newAmountSource);
         const newSource: Source = {
           ...oldFindedFromSources,
           amount: newAmountSource,
