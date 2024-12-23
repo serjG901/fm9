@@ -5,7 +5,7 @@ import { name as appName } from "../../package.json";
 
 export const useFiltersStore = create<FiltersStore>()(
   persist(
-    (set, get) => {
+    (set) => {
       return {
         search: "",
         setSearch: (search) => set({ search }),
@@ -14,8 +14,8 @@ export const useFiltersStore = create<FiltersStore>()(
           set({ filterTags });
         },
         isSearchBySource: false,
-        setIsSearchBySource: (value) => {
-          set({ isSearchBySource: value || !get().isSearchBySource });
+        setIsSearchBySource: (isSearchBySource) => {
+          set({ isSearchBySource });
         },
       };
     },
