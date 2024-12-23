@@ -1,5 +1,6 @@
 import { Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
+import Checked from "../../atom/checked/Checked";
 import Collapse from "../../atom/collapse/Collapse";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import AddTags from "../../molecul/add-tags/AddTags";
@@ -8,10 +9,12 @@ import "./style.css";
 
 interface FilterComponent extends TextesByLanguage {
   search?: string;
-  setSearch?: (earch: string) => void;
+  setSearch?: (search: string) => void;
   filterTags?: Tag[];
   setFilterTags?: (filterTags: Tag[]) => void;
   maybeTags?: Tag[];
+  isSearchBySource?: boolean;
+  setIsSearchBySource?: (value: boolean) => void;
 }
 
 export default function Filter({
@@ -21,10 +24,13 @@ export default function Filter({
   filterTags = [],
   setFilterTags = () => {},
   maybeTags = [],
+  isSearchBySource = false,
+  setIsSearchBySource = () => {},
 }: FilterComponent) {
   const resetFilter = () => {
     setSearch("");
     setFilterTags([]);
+    setIsSearchBySource(false);
   };
 
   return (
@@ -32,7 +38,12 @@ export default function Filter({
       <FlexColumnCenter>
         <Collapse title={textes["filter"] || "filter"} collapseLevel='menu'>
           <FlexColumnCenter>
-            <Search textes={textes} search={search} setSearch={setSearch} />
+            <Search textes={textes} search={search} setSearch={setSearch} />{" "}
+            <Checked
+              name='search by sources'
+              valueFromParent={isSearchBySource}
+              hoistValue={setIsSearchBySource}
+            />
             <div>
               <AddTags
                 textes={textes}
