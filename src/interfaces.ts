@@ -113,7 +113,7 @@ export interface FiltersStore {
   filterTags: Tag[];
   setFilterTags: (filterTags: Tag[]) => void;
   isSearchBySource: boolean;
-  setIsSearchBySource: (value?: boolean) => void;
+  setIsSearchBySource: (isSearchBySource: boolean) => void;
 }
 
 export interface SettingsStore {
