@@ -91,14 +91,21 @@ export default function Payments({
     state.setPeriod,
   ]);
 
-  const [search, setSearch, filterTags, setFilterTags] = useFiltersStore(
-    (state) => [
-      state.search,
-      state.setSearch,
-      state.filterTags,
-      state.setFilterTags,
-    ]
-  );
+  const [
+    search,
+    setSearch,
+    filterTags,
+    setFilterTags,
+    isSearchBySource,
+    setIsSearchBySource,
+  ] = useFiltersStore((state) => [
+    state.search,
+    state.setSearch,
+    state.filterTags,
+    state.setFilterTags,
+    state.isSearchBySource,
+    state.setIsSearchBySource,
+  ]);
 
   const [defaultCurrency, currencies] = useSettingsStore((state) => [
     state.defaultCurrency,
@@ -123,7 +130,9 @@ export default function Payments({
 
   const filtredPaymentsBySearch = !search
     ? filtredPaymentsByPeriod
-    : filtredPaymentsByPeriod.filter((p: Payment) => p.name.includes(search));
+    : filtredPaymentsByPeriod.filter((p: Payment) =>
+        isSearchBySource ? p.from.includes(search) : p.name.includes(search)
+      );
 
   const filtredPayments = !filterTags.length
     ? filtredPaymentsBySearch
@@ -200,6 +209,7 @@ export default function Payments({
         maybeTags={maybeTags}
         search={search}
         currencies={currencies}
+        isSearchBySource={isSearchBySource}
       />
     );
     let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
@@ -252,6 +262,8 @@ export default function Payments({
             filterTags={filterTags}
             setFilterTags={handleSetFilterTags}
             maybeTags={maybeTags}
+            isSearchBySource={isSearchBySource}
+            setIsSearchBySource={setIsSearchBySource}
           />
           <Collapse title={`${textes["stat"] || "stat"}`} collapseLevel='menu'>
             <FlexColumnCenter>
