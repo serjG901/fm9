@@ -16,6 +16,7 @@ interface PaymentCardComponent extends TextesByLanguage {
   maybeTags?: Tag[];
   search?: string;
   currencies?: string[];
+  isSearchBySource?: boolean;
 }
 
 export default function PaymentCard({
@@ -38,6 +39,7 @@ export default function PaymentCard({
   maybeTags = [],
   search = "",
   currencies = [],
+  isSearchBySource = false,
 }: PaymentCardComponent) {
   const showModal = () => {
     const modalId = document.getElementById(`update-payment-${payment.id}`);
@@ -54,7 +56,11 @@ export default function PaymentCard({
         </div>
         <div>
           <div className='payment-card-name'>
-            <SearchedName name={payment.name} search={search} />
+            {isSearchBySource ? (
+              payment.name
+            ) : (
+              <SearchedName name={payment.name} search={search} />
+            )}
           </div>
           <div className='payment-card-amount'>{payment.amount}</div>
           <div className='payment-card-currency'>{payment.currency}</div>
@@ -68,7 +74,13 @@ export default function PaymentCard({
         </div>
         {payment.from && payment.for && (
           <div className='payment-card-from-for'>
-            <div className='payment-card-from'>{payment.from}</div>
+            <div className='payment-card-from'>
+              {isSearchBySource ? (
+                <SearchedName name={payment.from} search={search} />
+              ) : (
+                payment.from
+              )}
+            </div>
             <ArrowFromFor />
             <div className='payment-card-for'>{payment.for}</div>
           </div>
