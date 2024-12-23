@@ -24,7 +24,7 @@
     outline: 2px solid var(--color-border-action-element-accent);
   }
   .collapse-content {
-    max-width: calc(100dvw - 8rem);
+    max-width: calc(80dvw - 2rem);
     padding: var(--padding-m);
     opacity: 1;
     margin-inline: auto;
