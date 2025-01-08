@@ -38,7 +38,7 @@ export default function Filter({
       <FlexColumnCenter>
         <Collapse title={textes["filter"] || "filter"} collapseLevel='menu'>
           <FlexColumnCenter>
-            <Search textes={textes} search={search} setSearch={setSearch} />{" "}
+            <Search textes={textes} search={search} setSearch={setSearch} />
             <Checked
               name={textes["search_by_sources"] || "search by sources"}
               valueFromParent={isSearchBySource}
