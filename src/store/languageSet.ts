@@ -104,7 +104,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "need help?",
     need_help1:
       "If you have advice on this app or encounter an error - send me an email:",
-    search_by_sources: "search_by_sources",
+    search_by_sources: "search by sources",
   },
   be: {
     buys: "пакупкі",
