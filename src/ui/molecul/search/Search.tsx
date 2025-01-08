@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Cross from "../../atom/cross/Cross";
 import InputText from "../../atom/input-text/InputText";
@@ -17,12 +17,18 @@ export default function Search({
 }: SearchComponent) {
   const [state, setState] = useState(search);
 
+  const timer = useRef(0);
+
   const handleClearSearch = () => {
     setState("");
   };
 
   useEffect(() => {
-    if (state !== search) setSearch(state);
+    clearTimeout(timer.current);
+    if (state !== search) {
+      const timerId = setTimeout(() => setSearch(state), 300);
+      timer.current = timerId;
+    }
   }, [state]);
 
   useEffect(() => {
