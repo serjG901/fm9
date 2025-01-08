@@ -104,6 +104,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "need help?",
     need_help1:
       "If you have advice on this app or encounter an error - send me an email:",
+    search_by_sources: "search_by_sources",
   },
   be: {
     buys: "пакупкі",
@@ -210,6 +211,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "патрабуецца дапамога?",
     need_help1:
       "Калі ў вас ёсць парады па гэтай праграме або вы сутыкнуліся з памылкай - дашліце мне ліст:",
+    search_by_sources: "пошук па крыніцах",
   },
   uk: {
     buys: "покупки",
@@ -316,6 +318,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "потрібна допомога?",
     need_help1:
       "Якщо у вас є поради щодо цього додатку або ви зіткнулися з помилкою - надішліть мені електронний лист",
+    search_by_sources: "пошук за джерелами",
   },
   zh: {
     buys: "购买",
@@ -417,6 +420,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
       "将您的数据保存为JSON格式或从文件中上传数据（如果您想将数据转移到另一台设备上，这可能会需要）",
     need_help: "需要帮助？",
     need_help1: "如果您对这个应用有建议或遇到错误，请发送电子邮件给我：",
+    search_by_sources: "按来源搜索",
   },
   ja: {
     buys: "購入",
@@ -522,6 +526,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "助けが必要ですか？",
     need_help1:
       "このアプリに関するアドバイスやエラーが発生した場合は、メールを送信してください：",
+    search_by_sources: "ソースから探す",
   },
   ru: {
     buys: "покупки",
@@ -627,5 +632,6 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "нужна помощь?",
     need_help1:
       "Если у вас есть советы по этому приложению или вы столкнулись с ошибкой - отправьте мне электронное письмо",
+    search_by_sources: "поиск по источникам",
   },
 };
