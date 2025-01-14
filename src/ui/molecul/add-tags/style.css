@@ -10,6 +10,7 @@
   .tags-add-tags {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--gap-s);
     padding: var(--padding-s);
   }
