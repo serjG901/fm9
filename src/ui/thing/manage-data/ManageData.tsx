@@ -61,7 +61,9 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute(
       "download",
-      `${appName}-${currentBase?.name || "default"}-${getDefaultDatetime()}.json`
+      `${appName}-${
+        currentBase?.name || "default"
+      }-${getDefaultDatetime()}.json`
     );
     aDownloadFile!.click();
   }
@@ -96,7 +98,9 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
       <div>
         <ActionButton actionWithPayload={saveAsLegacy}>
           {textes["download_data"] || "download data"}{" "}
-          {currentBase && currentBase.name}
+          <span className='load-db-base-name'>
+            {currentBase && currentBase.name}
+          </span>
         </ActionButton>
         <a id='aDownloadFile' download></a>
       </div>
@@ -114,8 +118,15 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
         <div className='input-file'>
           <label htmlFor='oldOpenFile'>
             <span>
-              {textes["upload_data"] || "upload data"}
-              {currentBase && ` ${textes["for"] || "for"} ${currentBase.name}`}
+              {textes["upload_data"] || "upload data"}{" "}
+              {currentBase && (
+                <>
+                  <span>{textes["for"] || "for"}</span>{" "}
+                  <span className='input-file-base-name'>
+                    {currentBase.name}
+                  </span>
+                </>
+              )}
             </span>
             <input
               name='oldOpenFile'
