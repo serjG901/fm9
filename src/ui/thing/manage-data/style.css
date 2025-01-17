@@ -3,6 +3,9 @@
   flex-direction: column;
   align-items: center;
   gap: var(--gap-m);
+  .load-db-base-name {
+    color: var(--color-text-main);
+  }
 }
 
 .load-db-upload-status {
@@ -34,6 +37,9 @@
     align-items: center;
     span {
       color: var(--color-text-label);
+      .input-file-base-name {
+        color: var(--color-main-light-accent);
+      }
     }
     input {
       width: -webkit-fill-available;
