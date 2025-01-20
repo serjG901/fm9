@@ -5,23 +5,23 @@ export const defaultDB: {
   [x: string]: PaymentsStore | SourcesStore | SettingsStore;
 } = {
   [`${appName}-buys`]: {
-    id: 0,
+    id: 1,
     payments: [],
     pageActive: 1,
     itemsPerPage: "50",
   },
   [`${appName}-pays`]: {
-    id: 0,
+    id: 1,
     payments: [],
     pageActive: 1,
     itemsPerPage: "50",
   },
   [`${appName}-debets`]: {
-    id: 0,
+    id: 1,
     sources: [],
   },
   [`${appName}-credits`]: {
-    id: 0,
+    id: 1,
     sources: [],
   },
   [`${appName}-settings`]: {
