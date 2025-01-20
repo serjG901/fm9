@@ -17,7 +17,9 @@ import { useLanguageStore } from "./store/languageStore";
 import PWABadge from "./PWABadge";
 import HelpApp from "./pages/help-app/HelpApp";
 
-if (window.location.href.split("/").at(-1) !== "")
+const lastHref = window.location.href.split("/").at(-1);
+
+if (lastHref !== "" && lastHref !== "assetlinks.json")
   window.location.replace(`/${appName}/`);
 
 function App() {
