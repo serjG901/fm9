@@ -4,14 +4,10 @@ import App from "./App.tsx";
 import "./index.css";
 import ErrorBoundary from "./ErrorBoundary.tsx";
 
-const lastHref = window.location.href.split("/").at(-1);
-console.log(lastHref);
-if (lastHref !== "" && lastHref !== "assetlinks.json") {
-  createRoot(document.getElementById("root")!).render(
-    <StrictMode>
-      <ErrorBoundary>
-        <App />
-      </ErrorBoundary>
-    </StrictMode>
-  );
-}
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </StrictMode>
+);
