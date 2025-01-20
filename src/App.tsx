@@ -19,9 +19,8 @@ import HelpApp from "./pages/help-app/HelpApp";
 
 const lastHref = window.location.href.split("/").at(-1);
 console.log(lastHref);
-if (lastHref === "assetlinks.json")
-  window.location.replace(`/${appName}/.well-known/assetlinks.json`);
-else if (lastHref !== "") window.location.replace(`/${appName}/`);
+if (lastHref !== "" && lastHref !== "assetlinks.json")
+  window.location.replace(`/${appName}/`);
 
 function App() {
   const pageHref = (window.location.href.split("/").at(-1) as string) || "buys";
