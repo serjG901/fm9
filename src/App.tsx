@@ -18,7 +18,7 @@ import PWABadge from "./PWABadge";
 import HelpApp from "./pages/help-app/HelpApp";
 
 const lastHref = window.location.href.split("/").at(-1);
-
+console.log(lastHref);
 if (lastHref !== "" && lastHref !== ".well-known")
   window.location.replace(`/${appName}/`);
 
