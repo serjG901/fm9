@@ -1,4 +1,5 @@
 //atoms
+import { JSX } from "react";
 import ActionButton from "./atom/action-button/ActionButton";
 import ArrowFromFor from "./atom/arrow-from-for/ArrowFromFor";
 import BreakLine from "./atom/break-line/BreakLine";
