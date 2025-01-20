@@ -19,7 +19,7 @@ import HelpApp from "./pages/help-app/HelpApp";
 
 const lastHref = window.location.href.split("/").at(-1);
 
-if (lastHref !== "" && lastHref !== "assetlinks.json")
+if (lastHref !== "" && lastHref !== ".well-known")
   window.location.replace(`/${appName}/`);
 
 function App() {
