@@ -477,5 +477,11 @@
         "application/json": [".json"]
       }
     }
-  ]
+  ],
+  "theme_color": "#000000",
+  "id": "9",
+  "lang": "en",
+  "orientation": "any",
+  "display_override": ["standalone", "window-controls-overlay"],
+  "categories": ["business", "finance", "lifestyle", "productivity"]
 }
