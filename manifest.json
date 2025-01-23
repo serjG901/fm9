@@ -451,10 +451,10 @@
       "sizes": "1024x1024"
     }
   ],
-  "start_url": "/fm9",
+  "start_url": "/fm9/",
   "background_color": "#008080",
   "display": "standalone",
-  "scope": "/fm9",
+  "scope": "/fm9/",
   "description": "Intuitive app for self manage your finance",
   "screenshots": [
     {
