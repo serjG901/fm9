@@ -4,23 +4,28 @@
   "icons": [
     {
       "src": "/fm9/images/windows11/SmallTile.scale-100.png",
-      "sizes": "71x71"
+      "sizes": "71x71",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SmallTile.scale-125.png",
-      "sizes": "89x89"
+      "sizes": "89x89",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SmallTile.scale-150.png",
-      "sizes": "107x107"
+      "sizes": "107x107",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SmallTile.scale-200.png",
-      "sizes": "142x142"
+      "sizes": "142x142",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SmallTile.scale-400.png",
-      "sizes": "284x284"
+      "sizes": "284x284",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/Square150x150Logo.scale-100.png",
@@ -74,23 +79,28 @@
     },
     {
       "src": "/fm9/images/windows11/LargeTile.scale-100.png",
-      "sizes": "310x310"
+      "sizes": "310x310",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/LargeTile.scale-125.png",
-      "sizes": "388x388"
+      "sizes": "388x388",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/LargeTile.scale-150.png",
-      "sizes": "465x465"
+      "sizes": "465x465",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/LargeTile.scale-200.png",
-      "sizes": "620x620"
+      "sizes": "620x620",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/LargeTile.scale-400.png",
-      "sizes": "1240x1240"
+      "sizes": "1240x1240",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/Square44x44Logo.scale-100.png",
@@ -144,23 +154,28 @@
     },
     {
       "src": "/fm9/images/windows11/SplashScreen.scale-100.png",
-      "sizes": "620x300"
+      "sizes": "620x300",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SplashScreen.scale-125.png",
-      "sizes": "775x375"
+      "sizes": "775x375",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SplashScreen.scale-150.png",
-      "sizes": "930x450"
+      "sizes": "930x450",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SplashScreen.scale-200.png",
-      "sizes": "1240x600"
+      "sizes": "1240x600",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/SplashScreen.scale-400.png",
-      "sizes": "2480x1200"
+      "sizes": "2480x1200",
+      "purpose": "maskable"
     },
     {
       "src": "/fm9/images/windows11/Square44x44Logo.targetsize-16.png",
