@@ -122,7 +122,7 @@ export default function Payments({
   let date = "";
 
   const filtredPaymentsByPeriod =
-    startPeriod && endPeriod
+    startPeriod && endPeriod && startPeriod < endPeriod
       ? payments.filter(
           (p: Payment) => p.datetime >= startPeriod && p.datetime <= endPeriod
         )
