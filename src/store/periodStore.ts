@@ -9,7 +9,7 @@ export const usePeriodStore = create<PeriodStore>()(
       start: "",
       end: "",
       setPeriod: (start, end) => {
-        if (start < end) set({ start, end });
+        if (start <= end) set({ start, end });
       },
     }),
     {
