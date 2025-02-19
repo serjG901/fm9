@@ -23,7 +23,7 @@ if (lastHref !== "" && lastHref !== "assetlinks.json")
   window.location.replace(`/${appName}/`);
 
 function App() {
-  const pageHref = (window.location.href.split("/").at(-1) as string) || "buys";
+  const pageHref = (window.location.href.split("/").at(-1) as string) || "settings";
 
   const Buys = React.lazy(() => import("./pages/buys/Buys"));
   const Pays = React.lazy(() => import("./pages/pays/Pays"));
