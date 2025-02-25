@@ -15,7 +15,7 @@
       to right,
       var(--self-color-bg, var(--color-bg-main)),
       var(--self-color-bg, var(--color-bg-main)) var(--percent),
-      var(--color-neutral) calc(10% + var(--percent)),
+      var(--color-neutral) var(--percent),
       var(--color-transporent) 100%
     );
 
