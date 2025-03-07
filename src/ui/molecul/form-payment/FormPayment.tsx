@@ -161,7 +161,7 @@ export default function FormPayment({
           maybeTags={maybeTags}
         />
       </div>
-
+      <br />
       {isActionStatus === 2 || isActionStatus === 3 ? (
         <ActionButton>
           <LoadingDots>
