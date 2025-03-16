@@ -130,10 +130,13 @@ export default function Statistics({
             )}
           </ActionButton>
         </Contents>
-        <Contents>
-          <div>{textes["all"] || "all"}</div>
-          <div>{plus(...payments.map((p) => p.amount))}</div>
-        </Contents>
+
+        <StatRow
+          search={search}
+          name={textes["all"] || "all"}
+          amounts={payments}
+          sum={plus(...payments.map((p) => p.amount))}
+        />
 
         {statItems
           .slice(itemsPerPage * (pageActive - 1), itemsPerPage * pageActive)
