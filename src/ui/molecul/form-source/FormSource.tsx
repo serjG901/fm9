@@ -37,7 +37,7 @@ export default function FormSource({
     if (!(isNaN(+sourceAmount) || +sourceAmount < 0)) {
       actionSource({
         name: sourceName,
-        amount: sourceAmount,
+        amount: sourceAmount || '0',
         currency: sourceCurrency,
         id: source.id,
       });
