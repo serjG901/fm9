@@ -76,17 +76,23 @@ export default function FormPayment({
   };
 
   const handleFocusLeaveForName = () => {
-    setPaymentTags(
-      payments
-        ?.reduce((acc: Tag[], p) => p.name === paymentName ? [...acc, ...p.tags] : acc, [])
-        .reduce(
-          (acc: Tag[], tag) =>
-            acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
-              ? acc
-              : [...acc, tag],
-          []
-        )
-    );
+    if (payments.length) {
+      setPaymentTags(
+        payments
+          ?.reduce(
+            (acc: Tag[], p) =>
+              p.name === paymentName ? [...acc, ...p.tags] : acc,
+            []
+          )
+          .reduce(
+            (acc: Tag[], tag) =>
+              acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
+                ? acc
+                : [...acc, tag],
+            []
+          )
+      );
+    }
   };
 
   useEffect(() => {
