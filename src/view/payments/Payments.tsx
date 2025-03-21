@@ -142,7 +142,7 @@ export default function Payments({
               (ft) => ft.value + ft.color === tag.value + tag.color
             )
           )
-          .find((b) => b)
+          .filter((b) => b).length === filterTags.length
       );
 
   const sortedPayments = filtredPayments.sort((p1: Payment, p2: Payment) =>
