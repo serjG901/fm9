@@ -62,7 +62,7 @@ export default function FormPayment({
 
   const handleActionPayment = () => {
     if (paymentName) {
-      if (!(isNaN(+paymentAmount) || +paymentAmount < 0)) {
+      if (!(isNaN(+paymentAmount) || +paymentAmount <= 0)) {
         setIsActionStatus(2);
       }
     }
