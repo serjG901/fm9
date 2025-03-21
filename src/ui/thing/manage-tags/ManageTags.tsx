@@ -109,12 +109,8 @@ export default function ManageTags({
   return (
     <FlexColumnCenter>
       <Checked
-        id={"autoAddTags"}
-        name={
-          textes["autoAddTags"]
-            ? upperFirstLetter(textes["Auto Add Tags"])
-            : "Auto Add Tags"
-        }
+        id={"auto-add-tags"}
+        name={textes["auto_add_tags"] || "Auto add tags"}
         valueFromParent={autoAddTags}
         hoistValue={setAutoAddTags}
       />
