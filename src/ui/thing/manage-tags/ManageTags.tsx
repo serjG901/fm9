@@ -3,6 +3,7 @@ import { Tag, TextesByLanguage } from "../../../interfaces";
 import { useBuysStore } from "../../../store/buysStore";
 import { usePaysStore } from "../../../store/paysStore";
 import ActionButton from "../../atom/action-button/ActionButton";
+import Checked from "../../atom/checked/Checked";
 import Collapse from "../../atom/collapse/Collapse";
 import Contents from "../../atom/contents/Contents";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
@@ -11,7 +12,17 @@ import FormTag from "../../molecul/form-tag/FormTag";
 import Modal from "../../molecul/modal/Modal";
 import "./style.css";
 
-export default function ManageTags({ textes = {} }: TextesByLanguage) {
+interface ManageTagsComponent extends TextesByLanguage {
+  currentLanguage?: string;
+  autoAddTags?: boolean;
+  setAutoAddTags?: (autoAddTags: boolean) => void;
+}
+
+export default function ManageTags({
+  textes = {},
+  autoAddTags,
+  setAutoAddTags,
+}: ManageTagsComponent) {
   const [buys, updateBuys] = useBuysStore((state) => [
     state.payments,
     state.updatePayment,
@@ -97,6 +108,16 @@ export default function ManageTags({ textes = {} }: TextesByLanguage) {
 
   return (
     <FlexColumnCenter>
+      <Checked
+        id={"autoAddTags"}
+        name={
+          textes["autoAddTags"]
+            ? upperFirstLetter(textes["Auto Add Tags"])
+            : "Auto Add Tags"
+        }
+        valueFromParent={autoAddTags}
+        hoistValue={setAutoAddTags}
+      />
       <Collapse
         title={textes["buys"] ? upperFirstLetter(textes["buys"]) : "Buys"}
         collapseLevel='settings'

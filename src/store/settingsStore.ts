@@ -29,6 +29,8 @@ export const useSettingsStore = create<SettingsStore>()(
               get().setDefaultCurrency(get().currencies[0]);
           }
         },
+        autoAddTags: false,
+        setAutoAddTags: (autoAddTags) => set({ autoAddTags }),
       };
     },
     {

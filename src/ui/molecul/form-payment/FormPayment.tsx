@@ -21,6 +21,7 @@ interface FormPaymentComponent extends TextesByLanguage {
   maybeTags?: Tag[];
   defaultCurrency?: string;
   currencies?: string[];
+  payments?: Payment[];
 }
 
 export default function FormPayment({
@@ -44,6 +45,7 @@ export default function FormPayment({
   maybeTags = [],
   defaultCurrency = "",
   currencies = [],
+  payments = [],
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
@@ -71,6 +73,20 @@ export default function FormPayment({
     if (agree) {
       setIsDeleteStatus(2);
     }
+  };
+
+  const handleFocusLeaveForName = () => {
+    setPaymentTags(
+      payments
+        ?.reduce((acc: Tag[], p) => p.name === paymentName ? [...acc, ...p.tags] : acc, [])
+        .reduce(
+          (acc: Tag[], tag) =>
+            acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
+              ? acc
+              : [...acc, tag],
+          []
+        )
+    );
   };
 
   useEffect(() => {
@@ -125,6 +141,7 @@ export default function FormPayment({
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
         options={maybeName}
+        handleFocusLeave={handleFocusLeaveForName}
       />
       <InputNumber
         id={`${actionType === "update" ? "update-" : ""}payment-amount`}

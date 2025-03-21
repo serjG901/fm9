@@ -27,5 +27,6 @@ export const defaultDB: {
   [`${appName}-settings`]: {
     hue: '190',
     defaultCurrency: "USD",
+    onAutoAddTags: false,
   },
 };

@@ -25,6 +25,8 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
     currencies,
     addCurrency,
     deleteCurrency,
+    autoAddTags,
+    setAutoAddTags,
   ] = useSettingsStore((state) => [
     state.hue,
     state.setHue,
@@ -33,6 +35,8 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
     state.currencies,
     state.addCurrency,
     state.deleteCurrency,
+    state.autoAddTags,
+    state.setAutoAddTags,
   ]);
   const [itemsPerPageBuys, setItemsPerPageBuys] = useBuysStore((state) => [
     state.itemsPerPage,
@@ -164,7 +168,11 @@ export default function Settings({ textes = {} }: TextesByLanguage) {
                 ? upperFirstLetter(textes["manage_tags"])
                 : "Manage tags"}
             </h2>
-            <ManageTags textes={textes} />
+            <ManageTags
+              textes={textes}
+              autoAddTags={autoAddTags}
+              setAutoAddTags={setAutoAddTags}
+            />
           </div>
           <hr />
           <div>

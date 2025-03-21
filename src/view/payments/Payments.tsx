@@ -107,10 +107,9 @@ export default function Payments({
     state.setIsSearchBySource,
   ]);
 
-  const [defaultCurrency, currencies] = useSettingsStore((state) => [
-    state.defaultCurrency,
-    state.currencies,
-  ]);
+  const [defaultCurrency, currencies, autoAddTags] = useSettingsStore(
+    (state) => [state.defaultCurrency, state.currencies, state.autoAddTags]
+  );
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -303,6 +302,7 @@ export default function Payments({
           maybeTags={maybeTags}
           defaultCurrency={defaultCurrency}
           currencies={currencies}
+          payments={autoAddTags ? payments : []}
         />
         <br />
         <Paginate

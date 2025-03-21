@@ -126,6 +126,8 @@ export interface SettingsStore {
   currencies: string[];
   addCurrency: (currency: string) => void;
   deleteCurrency: (currency: string) => void;
+  autoAddTags: boolean;
+  setAutoAddTags: (autoAddTags: boolean) => void;
 }
 
 export interface LanguageStore {

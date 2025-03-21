@@ -11,6 +11,7 @@ interface AddPaymentComponent extends TextesByLanguage {
   maybeTags?: Tag[];
   defaultCurrency?: string;
   currencies?: string[];
+  payments?: Payment[];
 }
 
 export default function AddPayment({
@@ -22,6 +23,7 @@ export default function AddPayment({
   maybeTags = [],
   defaultCurrency = "",
   currencies = [],
+  payments = [],
 }: AddPaymentComponent) {
   return (
     <div className='add-payment'>
@@ -36,6 +38,7 @@ export default function AddPayment({
           maybeTags={maybeTags}
           defaultCurrency={defaultCurrency}
           currencies={currencies}
+          payments={payments}
         />
       </Collapse>
     </div>
