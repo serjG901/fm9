@@ -5,12 +5,14 @@ import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import InputText from "../../atom/input-text/InputText";
 import "./style.css";
 import { Tag, TextesByLanguage } from "../../../interfaces";
+import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
 interface FormTagComponent extends TextesByLanguage {
   hoistTag?: (newTag: Tag, oldTag?: Tag) => void;
   valueFromParent?: string;
   colorFromParent?: string;
-  typeAction?: "add" | "update";
+  actionType?: "add" | "update";
+  deleteTag?: (tag: Tag) => void;
 }
 
 export default function FormTag({
@@ -18,10 +20,14 @@ export default function FormTag({
   hoistTag = () => {},
   valueFromParent = "",
   colorFromParent = "#000000",
-  typeAction = "add",
+  actionType = "add",
+  deleteTag = () => {},
 }: FormTagComponent) {
   const [value, setValue] = useState<string>(valueFromParent);
   const [color, setColor] = useState<string>(colorFromParent);
+
+  const [isActionStatus, setIsActionStatus] = useState(1);
+  const [isDeleteStatus, setIsDeleteStatus] = useState(1);
 
   const handleSetValue = (value: string) => {
     setValue(value);
@@ -33,9 +39,14 @@ export default function FormTag({
 
   const handleSetTag = () => {
     if (valueFromParent + colorFromParent !== value + color) {
-      const oldTag = { value: valueFromParent, color: colorFromParent };
-      const newTag = { value, color };
-      hoistTag(newTag, oldTag);
+      setIsActionStatus(2);
+    }
+  };
+
+  const handleDeleteTag = () => {
+    const agree = confirm(`${textes["delete"]}?`);
+    if (agree) {
+      setIsDeleteStatus(2);
     }
   };
 
@@ -47,11 +58,42 @@ export default function FormTag({
     if (color !== colorFromParent) setColor(colorFromParent);
   }, [colorFromParent]);
 
+  useEffect(() => {
+    let timer = 0;
+    if (isActionStatus === 2) {
+      setIsActionStatus(3);
+    }
+    if (isActionStatus === 3) {
+      const oldTag = { value: valueFromParent, color: colorFromParent };
+      const newTag = { value, color };
+      hoistTag(newTag, oldTag);
+
+      timer = setTimeout(() => setIsActionStatus(4), 300);
+    }
+    if (isActionStatus === 4) {
+      clearTimeout(timer);
+      timer = setTimeout(() => setIsActionStatus(1), 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isActionStatus]);
+
+  useEffect(() => {
+    if (isDeleteStatus === 2) {
+      setIsDeleteStatus(3);
+    }
+    if (isDeleteStatus === 3) {
+      const tag = { value: valueFromParent, color: colorFromParent };
+      deleteTag(tag);
+    }
+  }, [isDeleteStatus]);
+
   return (
     <FlexColumnCenter>
       <div>
         <InputText
-          id='add-tag-value'
+          id={`add-tag-value-${valueFromParent + colorFromParent}`}
           name={textes["name"] || "name"}
           valueFromParent={value}
           hoistValue={handleSetValue}
@@ -59,19 +101,46 @@ export default function FormTag({
       </div>
       <div>
         <Colorpicker
-          id='add-tag-color'
+          id={`add-tag-color-${valueFromParent + colorFromParent}`}
           name={textes["color"] || "color"}
           valueFromParent={color}
           hoistValue={handleSetColor}
         />
       </div>
       <div>
-        <ActionButton actionWithPayload={handleSetTag}>
-          {typeAction === "update"
-            ? textes["update_tag"] || "update tag"
-            : textes["add_tag"] || "add tag"}
-        </ActionButton>
+        {isActionStatus === 2 || isActionStatus === 3 ? (
+          <ActionButton>
+            <LoadingDots>
+              {actionType === "update"
+                ? textes["updating"] || "updating"
+                : textes["adding"] || "adding"}
+            </LoadingDots>
+          </ActionButton>
+        ) : isActionStatus === 4 ? (
+          <ActionButton>
+            <div>{textes["done"] || "done"}</div>
+          </ActionButton>
+        ) : (
+          <ActionButton actionWithPayload={handleSetTag}>
+            {textes[actionType] || actionType}
+          </ActionButton>
+        )}
       </div>
+
+      {actionType === "update" && (
+        <div>
+          <br />
+          {isDeleteStatus === 2 ? (
+            <ActionButton alert>
+              <LoadingDots>{textes["deleting"] || "deleting"}</LoadingDots>
+            </ActionButton>
+          ) : (
+            <ActionButton actionWithPayload={handleDeleteTag} alert>
+              {textes["delete"] || "delete"}
+            </ActionButton>
+          )}
+        </div>
+      )}
     </FlexColumnCenter>
   );
 }

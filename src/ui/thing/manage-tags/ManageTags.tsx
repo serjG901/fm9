@@ -106,6 +106,46 @@ export default function ManageTags({
     }
   };
 
+  const deleteBuyTag = (tag?: Tag) => {
+    if (tag) {
+    buys.forEach((payment) => {
+      const needUpdate = payment.tags.find(
+        (t) => t.value + t.color === tag.value + tag.color
+      );
+      if (!needUpdate) return;
+      const filtredTags = payment.tags.filter(
+        (t) => t.value + t.color !== tag.value + tag.color
+      );
+      const newPayment = { ...payment, tags: filtredTags };
+      updateBuys(newPayment);
+    });
+    const modalId = document.getElementById(
+      `update-tag-buy-${tag.value + tag.color}`
+    );
+    modalId?.hidePopover();
+  }
+  };
+
+  const deletePayTag = (tag?: Tag) => {
+    if (tag) {
+    pays.forEach((payment) => {
+      const needUpdate = payment.tags.find(
+        (t) => t.value + t.color === tag.value + tag.color
+      );
+      if (!needUpdate) return;
+      const filtredTags = payment.tags.filter(
+        (t) => t.value + t.color !== tag.value + tag.color
+      );
+      const newPayment = { ...payment, tags: filtredTags };
+      updatePays(newPayment);
+    });
+    const modalId = document.getElementById(
+      `update-tag-pay-${tag.value + tag.color}`
+    );
+    modalId?.hidePopover();
+  }
+  };
+
   return (
     <FlexColumnCenter>
       <Checked
@@ -140,7 +180,8 @@ export default function ManageTags({
                   valueFromParent={maybeTag.value}
                   colorFromParent={maybeTag.color}
                   hoistTag={updateBuyTag}
-                  typeAction='update'
+                  actionType='update'
+                  deleteTag={deleteBuyTag}
                 />
               </Modal>
             </Contents>
@@ -173,7 +214,8 @@ export default function ManageTags({
                   valueFromParent={maybeTag.value}
                   colorFromParent={maybeTag.color}
                   hoistTag={updatePayTag}
-                  typeAction='update'
+                  actionType='update'
+                  deleteTag={deletePayTag}
                 />
               </Modal>
             </Contents>
