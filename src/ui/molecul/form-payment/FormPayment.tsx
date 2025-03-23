@@ -136,13 +136,13 @@ export default function FormPayment({
   return (
     <FlexColumnCenter>
       <Datepicker
-        id={`${actionType === "update" ? "update-" : ""}payment-datetime`}
+        id={`${actionType === "update" ? "update-" : ""}payment-datetime-${payment.id}`}
         name={textes["datetime"] || "datetime"}
         valueFromParent={paymentDatetime}
         hoistValue={setPaymentDatetime}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-name`}
+        id={`${actionType === "update" ? "update-" : ""}payment-name-${payment.id}`}
         name={textes["name"] || "name"}
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
@@ -150,27 +150,27 @@ export default function FormPayment({
         handleFocusLeave={handleFocusLeaveForName}
       />
       <InputNumber
-        id={`${actionType === "update" ? "update-" : ""}payment-amount`}
+        id={`${actionType === "update" ? "update-" : ""}payment-amount-${payment.id}`}
         name={textes["amount"] || "amount"}
         valueFromParent={paymentAmount}
         hoistValue={setPaymentAmount}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-currency`}
+        id={`${actionType === "update" ? "update-" : ""}payment-currency-${payment.id}`}
         name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-from`}
+        id={`${actionType === "update" ? "update-" : ""}payment-from-${payment.id}`}
         name={textes["from"] || "from"}
         options={fromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-for`}
+        id={`${actionType === "update" ? "update-" : ""}payment-for-${payment.id}`}
         name={textes["for"] || "for"}
         options={forOptions}
         valueFromParent={paymentFor}
