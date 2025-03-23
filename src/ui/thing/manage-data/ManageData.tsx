@@ -129,6 +129,7 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
               )}
             </span>
             <input
+              id='oldOpenFile'
               name='oldOpenFile'
               type='file'
               title='file'
