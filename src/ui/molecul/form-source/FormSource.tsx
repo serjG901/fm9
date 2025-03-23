@@ -54,7 +54,7 @@ export default function FormSource({
   return (
     <FlexColumnCenter>
       <InputText
-        id={`${actionType === "update" ? "update-" : ""}source-name`}
+        id={`${actionType === "update" ? "update-" : ""}source-name-${source.id}`}
         name={textes["name"] || "name"}
         valueFromParent={sourceName}
         hoistValue={setSourceName}
@@ -63,13 +63,13 @@ export default function FormSource({
           .map((s) => s.name)}
       />
       <InputNumber
-        id={`${actionType === "update" ? "update-" : ""}source-amount`}
+        id={`${actionType === "update" ? "update-" : ""}source-amount-${source.id}`}
         name={textes["amount"] || "amount"}
         valueFromParent={sourceAmount}
         hoistValue={setSourceAmount}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}source-currency`}
+        id={`${actionType === "update" ? "update-" : ""}source-currency-${source.id}`}
         name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={sourceCurrency}
