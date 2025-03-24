@@ -131,7 +131,9 @@ export default function Payments({
   const filtredPaymentsBySearch = !search
     ? filtredPaymentsByPeriod
     : filtredPaymentsByPeriod.filter((p: Payment) =>
-        isSearchBySource ? p.from.includes(search) : p.name.includes(search)
+        isSearchBySource
+          ? p.from.includes(search) || p.for.includes(search)
+          : p.name.includes(search)
       );
 
   const filtredPayments = !filterTags.length
@@ -282,19 +284,19 @@ export default function Payments({
                       currency={currency}
                       payments={statisticsByCurrency[currency]}
                     />
-                     <StatisticSources
+                    <StatisticSources
                       textes={textes}
                       currency={currency}
                       payments={statisticsByCurrency[currency]}
                       search={search}
-                      sourceType="from"
+                      sourceType='from'
                     />
                     <StatisticSources
                       textes={textes}
                       currency={currency}
                       payments={statisticsByCurrency[currency]}
                       search={search}
-                      sourceType="for"
+                      sourceType='for'
                     />
                   </Contents>
                 );

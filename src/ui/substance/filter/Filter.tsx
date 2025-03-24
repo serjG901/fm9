@@ -40,7 +40,7 @@ export default function Filter({
           <FlexColumnCenter>
             <Search textes={textes} search={search} setSearch={setSearch} />
             <Checked
-              name={textes["search_by_sources"] || "search by sources"}
+              name={textes["search_by_from_or_for"] || "search by from or for"}
               valueFromParent={isSearchBySource}
               hoistValue={setIsSearchBySource}
             />

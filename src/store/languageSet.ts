@@ -105,8 +105,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "If you have advice on this app or encounter an error - send me an email:",
     search_by_sources: "search by sources",
-    search_by_from: "search by FROM",
-    search_by_for: "search by FOR",
+    search_by_from_or_for: "Search by from or for",
     auto_add_tags: "Auto add tags",
   },
   be: {
@@ -215,6 +214,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Калі ў вас ёсць парады па гэтай праграме або вы сутыкнуліся з памылкай - дашліце мне ліст:",
     search_by_sources: "пошук па крыніцах",
+    search_by_from_or_for: "Пошук па адкуль або куды",
     auto_add_tags: "Аўтаматычна дадаваць тэгі",
   },
   uk: {
@@ -323,6 +323,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Якщо у вас є поради щодо цього додатку або ви зіткнулися з помилкою - надішліть мені електронний лист",
     search_by_sources: "пошук за джерелами",
+    search_by_from_or_for: "Пошук за від або для",
     auto_add_tags: "Автоматичне додавання тегів",
   },
   zh: {
@@ -426,6 +427,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help: "需要帮助？",
     need_help1: "如果您对这个应用有建议或遇到错误，请发送电子邮件给我：",
     search_by_sources: "按来源搜索",
+    search_by_from_or_for: "按“发件人”或“收件人”搜索",
     auto_add_tags: "自动添加标签",
   },
   ja: {
@@ -533,6 +535,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "このアプリに関するアドバイスやエラーが発生した場合は、メールを送信してください：",
     search_by_sources: "ソースから探す",
+    search_by_from_or_for: "送信者」または「受信者」で検索",
     auto_add_tags: "自動タグ追加",
   },
   ru: {
@@ -640,6 +643,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Если у вас есть советы по этому приложению или вы столкнулись с ошибкой - отправьте мне электронное письмо",
     search_by_sources: "поиск по источникам",
+    search_by_from_or_for: "Поиск по от или для",
     auto_add_tags: "Автоматически добавлять тэги",
   },
 };

@@ -82,7 +82,13 @@ export default function PaymentCard({
               )}
             </div>
             <ArrowFromFor />
-            <div className='payment-card-for'>{payment.for}</div>
+            <div className='payment-card-for'>
+              {isSearchBySource ? (
+                <SearchedName name={payment.for} search={search} />
+              ) : (
+                payment.for
+              )}
+            </div>
           </div>
         )}
         <UpdatePayment
