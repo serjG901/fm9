@@ -105,7 +105,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "If you have advice on this app or encounter an error - send me an email:",
     search_by_sources: "search by sources",
-    search_by_from_or_for: "Search by from or for",
+    search_by_from_or_for: "search by from or for",
     auto_add_tags: "Auto add tags",
   },
   be: {
@@ -214,7 +214,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Калі ў вас ёсць парады па гэтай праграме або вы сутыкнуліся з памылкай - дашліце мне ліст:",
     search_by_sources: "пошук па крыніцах",
-    search_by_from_or_for: "Пошук па адкуль або куды",
+    search_by_from_or_for: "пошук па адкуль або куды",
     auto_add_tags: "Аўтаматычна дадаваць тэгі",
   },
   uk: {
@@ -323,7 +323,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Якщо у вас є поради щодо цього додатку або ви зіткнулися з помилкою - надішліть мені електронний лист",
     search_by_sources: "пошук за джерелами",
-    search_by_from_or_for: "Пошук за від або для",
+    search_by_from_or_for: "пошук за від або для",
     auto_add_tags: "Автоматичне додавання тегів",
   },
   zh: {
@@ -643,7 +643,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "Если у вас есть советы по этому приложению или вы столкнулись с ошибкой - отправьте мне электронное письмо",
     search_by_sources: "поиск по источникам",
-    search_by_from_or_for: "Поиск по от или для",
+    search_by_from_or_for: "поиск по от или для",
     auto_add_tags: "Автоматически добавлять тэги",
   },
 };
