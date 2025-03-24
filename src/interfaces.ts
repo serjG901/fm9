@@ -1,6 +1,11 @@
 import { PersistOptions } from "zustand/middleware";
 
-export interface NewSource {
+interface KeyString {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  [key: string]: any;
+}
+
+export interface NewSource extends KeyString {
   name: string;
   amount: string;
   currency: string;
@@ -22,7 +27,7 @@ export interface SourcesStore {
   getSources: () => Source[];
 }
 
-interface NewPayment {
+interface NewPayment extends KeyString {
   datetime: string;
   name: string;
   amount: string;

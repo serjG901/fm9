@@ -30,6 +30,7 @@ import FlexColumnCenter from "../../ui/atom/flex-column-center/FlexColumnCenter"
 import StatisticTags from "../../ui/substance/statistic-tags/StatisticTags";
 import Collapse from "../../ui/atom/collapse/Collapse";
 import Contents from "../../ui/atom/contents/Contents";
+import StatisticSources from "../../ui/substance/statistic-sources/StatisticSources";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -135,14 +136,15 @@ export default function Payments({
 
   const filtredPayments = !filterTags.length
     ? filtredPaymentsBySearch
-    : filtredPaymentsBySearch.filter((p) =>
-        p.tags
-          .map((tag) =>
-            filterTags.find(
-              (ft) => ft.value + ft.color === tag.value + tag.color
+    : filtredPaymentsBySearch.filter(
+        (p) =>
+          p.tags
+            .map((tag) =>
+              filterTags.find(
+                (ft) => ft.value + ft.color === tag.value + tag.color
+              )
             )
-          )
-          .filter((b) => b).length === filterTags.length
+            .filter((b) => b).length === filterTags.length
       );
 
   const sortedPayments = filtredPayments.sort((p1: Payment, p2: Payment) =>
@@ -279,6 +281,20 @@ export default function Payments({
                       textes={textes}
                       currency={currency}
                       payments={statisticsByCurrency[currency]}
+                    />
+                     <StatisticSources
+                      textes={textes}
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                      search={search}
+                      sourceType="from"
+                    />
+                    <StatisticSources
+                      textes={textes}
+                      currency={currency}
+                      payments={statisticsByCurrency[currency]}
+                      search={search}
+                      sourceType="for"
                     />
                   </Contents>
                 );

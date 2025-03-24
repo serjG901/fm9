@@ -8,18 +8,20 @@ import Paginate from "../paginate/Paginate";
 import Contents from "../../atom/contents/Contents";
 import StatRow from "../../molecul/stat-row/StatRow";
 
-interface StatisticsComponent extends TextesByLanguage {
+interface StatisticSourcesComponent extends TextesByLanguage {
   currency?: string;
   payments?: Payment[];
   search?: string;
+  sourceType?: string;
 }
 
-export default function Statistics({
+export default function StatisticSources({
   textes = {},
   currency = "",
   payments = [],
   search = "",
-}: StatisticsComponent) {
+  sourceType = "for",
+}: StatisticSourcesComponent) {
   const itemsPerPage = 20;
 
   const [pageActive, setPageActive] = useState(1);
@@ -38,7 +40,9 @@ export default function Statistics({
 
   const [typeOfSort, setTypeOfSort] = useState("name");
   const [directionOfSort, setDirectionOfSort] = useState(true);
-  const statItems = Object.entries(Object.groupBy(payments, ({ name }) => name))
+  const statItems = Object.entries(
+    Object.groupBy(payments, (p) => p[sourceType])
+  )
     .sort((nameA, nameB) => {
       if (typeOfSort === "sum") {
         const amountsA =
@@ -95,7 +99,10 @@ export default function Statistics({
     setDirectionOfSort(!directionOfSort);
   };
   return (
-    <Collapse title={currency} collapseLevel='stat'>
+    <Collapse
+      title={`${currency} ${textes[sourceType] || sourceType}`}
+      collapseLevel='stat'
+    >
       <Paginate
         dublicate
         pageActive={pageActive}
@@ -104,7 +111,7 @@ export default function Statistics({
         setPreviousPage={setPreviousPage}
         setNextPage={setNextPage}
       />
-      <div className='statistics'>
+      <div className='statistic-sources'>
         <Contents>
           <ActionButton actionWithPayload={handleClickSort} payload={"name"}>
             {textes["name"] || "name"}

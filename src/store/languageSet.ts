@@ -105,6 +105,8 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     need_help1:
       "If you have advice on this app or encounter an error - send me an email:",
     search_by_sources: "search by sources",
+    search_by_from: "search by FROM",
+    search_by_for: "search by FOR",
     auto_add_tags: "Auto add tags",
   },
   be: {

@@ -46,7 +46,7 @@ export default function StatisticTags({
 
   return (
     <Collapse
-      title={`${currency} ${textes["stat_tags"] || "stat tags"}`}
+      title={`${currency} ${textes["tags"] || "tags"}`}
       collapseLevel='stat'
     >
       <div className='statistic-tags'>
@@ -58,7 +58,7 @@ export default function StatisticTags({
               </HighlightText>
             </div>
             <div>
-              <div className="statistic-tags-sum">{ts.sum}</div>
+              <div className='statistic-tags-sum'>{ts.sum}</div>
               <SumPerMonth color={ts.tag.color} amounts={ts.amounts} />
             </div>
           </Contents>
