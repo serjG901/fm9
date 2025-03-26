@@ -9,6 +9,7 @@ export interface NewSource extends KeyString {
   name: string;
   amount: string;
   currency: string;
+  hue: string;
 }
 
 export interface Source extends NewSource {

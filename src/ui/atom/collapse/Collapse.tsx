@@ -6,12 +6,14 @@ interface CollapseComponent {
   collapseLevel?: string;
   title?: string | ReactNode;
   children?: ReactNode;
+  setHueByDefault?: () => void;
 }
 
 export default function Collapse({
   collapseLevel = "collapse",
   title = "collapse",
   children = "children",
+  setHueByDefault = () => {},
 }: CollapseComponent) {
   const [open, setOpen] = useState(false);
 
@@ -20,7 +22,10 @@ export default function Collapse({
     setOpen(e.target.open);
     if (e.target.open) {
       correctionScrollPosition(e.target);
+    } else {
+      setHueByDefault();
     }
+
     e.stopPropagation();
   };
 

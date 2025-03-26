@@ -1,3 +1,60 @@
 .contents {
   display: contents;
 }
+
+.app .contents {
+  --color-main: hsl(var(--hue-self, var(--hue)), 100%, var(--light));
+  --color-main-light-accent: hsl(var(--hue-self, var(--hue)), 100%, 70%);
+  --color-main-dark-accent: hsl(var(--hue-self, var(--hue)), 60%, 10%);
+  --color-neutral: var(--color-gray);
+  --color-for-action: hsl(0, 0%, 10%);
+
+  /*colors*/ /*text*/
+  --color-text-description: var(--color-neutral);
+  --color-text-label: var(--color-text-description);
+  --color-text-statistics: var(--color-bg-main);
+
+  --color-card-datetime: var(--color-text-description);
+  --color-card-name: var(--color-text-main);
+  --color-payment-card-name: var(--color-bg-main);
+  --color-card-amount: var(--color-attention);
+  --color-card-currency: var(--color-text-description);
+  --color-card-from-for: var(--color-text-description);
+  --color-card-from-arrow: var(--color-text-main);
+
+  /*colors*/ /*background*/
+
+  --color-bg-menu: var(--color-main);
+  --color-bg-card: var(--color-main);
+  --color-bg-payment-card: var(--color-text-main);
+  --color-bg-button: var(--color-for-action);
+  --color-bg-label-checked: var(--color-confirm);
+  --color-bg-break-line: var(--color-main-dark-accent);
+  --color-bg-statistics: var(--color-text-main);
+
+  /*colors*/ /*border*/
+  --color-border-action-element-accent: var(--color-main-light-accent);
+  --color-border-card: var(--color-main-dark-accent);
+}
+
+@media (prefers-color-scheme: light) {
+  .app .contents {
+    --color-main-light-accent: hsl(var(--hue-self, var(--hue)), 100%, 30%);
+    --color-main-dark-accent: hsl(var(--hue-self, var(--hue)), 60%, 90%);
+    --color-for-action: hsl(0, 0%, 100%);
+    --color-payment-card-name: var(--color-text-main);
+    --color-bg-payment-card: var(--color-white);
+    --color-card-currency: var(--color-main-light-accent);
+    --color-text-description: var(--color-main-light-accent);
+    --color-text-statistics: var(--color-text-main);
+    --color-bg-statistics: hsl(0, 0%, 95%);
+    input {
+      color: var(--color-text-main);
+    }
+  }
+}
+/*
+.app .contents:has(.collapse:not([open])) {
+  --hue-self: var(--hue) !important;
+}
+*/

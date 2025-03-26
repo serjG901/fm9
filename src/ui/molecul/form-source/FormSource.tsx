@@ -1,11 +1,12 @@
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputText from "../../atom/input-text/InputText";
 import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Source, TextesByLanguage } from "../../../interfaces";
+import InputRange from "../../atom/input-range/InputRange";
 
 interface FormSourceComponent extends TextesByLanguage {
   actionType?: string;
@@ -15,32 +16,41 @@ interface FormSourceComponent extends TextesByLanguage {
   sources?: Source[];
   defaultCurrency?: string;
   currencies?: string[];
+  defaultHue?: string;
+  setHueSelf?: (hueSelf: string) => void;
 }
 
 export default function FormSource({
   textes = {},
   actionType = "action",
   actionSource = () => {},
-  source = { id: 0, name: "", amount: "", currency: "" },
+  source = { id: 0, name: "", amount: "", currency: "", hue: "" },
   deleteSource = () => {},
   sources = [],
   defaultCurrency = "",
   currencies = [],
+  defaultHue = "",
+  setHueSelf = () => {},
 }: FormSourceComponent) {
   const [sourceName, setSourceName] = useState(source.name);
   const [sourceAmount, setSourceAmount] = useState(source.amount);
   const [sourceCurrency, setSourceCurrency] = useState(
     source.id === 0 ? defaultCurrency : source.currency
   );
+  const [sourceHue, setSourceHue] = useState(
+    source.id === 0 ? defaultHue : source.hue || defaultHue
+  );
 
   const handleActionSource = () => {
     if (!(isNaN(+sourceAmount) || +sourceAmount < 0)) {
       actionSource({
         name: sourceName,
-        amount: sourceAmount || '0',
+        amount: sourceAmount || "0",
         currency: sourceCurrency,
+        hue: sourceHue,
         id: source.id,
       });
+      setSourceHue(defaultHue);
     }
   };
 
@@ -51,10 +61,16 @@ export default function FormSource({
     }
   };
 
+  useEffect(() => {
+    setHueSelf(sourceHue);
+  }, [sourceHue]);
+
   return (
     <FlexColumnCenter>
       <InputText
-        id={`${actionType === "update" ? "update-" : ""}source-name-${source.id}`}
+        id={`${actionType === "update" ? "update-" : ""}source-name-${
+          source.id
+        }`}
         name={textes["name"] || "name"}
         valueFromParent={sourceName}
         hoistValue={setSourceName}
@@ -63,18 +79,36 @@ export default function FormSource({
           .map((s) => s.name)}
       />
       <InputNumber
-        id={`${actionType === "update" ? "update-" : ""}source-amount-${source.id}`}
+        id={`${actionType === "update" ? "update-" : ""}source-amount-${
+          source.id
+        }`}
         name={textes["amount"] || "amount"}
         valueFromParent={sourceAmount}
         hoistValue={setSourceAmount}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}source-currency-${source.id}`}
+        id={`${actionType === "update" ? "update-" : ""}source-currency-${
+          source.id
+        }`}
         name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={sourceCurrency}
         hoistValue={setSourceCurrency}
       />
+      <div>
+        <InputRange
+          id={`${actionType === "update" ? "update-" : ""}source-hue-${
+            source.id
+          }`}
+          name={textes["color"] || "color"}
+          min={0}
+          max={360}
+          valueFromParent={sourceHue}
+          hoistValue={setSourceHue}
+          onlySelfChange={true}
+        />
+      </div>
+      <br />
       <ActionButton actionWithPayload={handleActionSource}>
         {textes[actionType] || actionType}
       </ActionButton>

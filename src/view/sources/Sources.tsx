@@ -36,9 +36,10 @@ export default function Sources({
       state.getSources,
     ]);
 
-  const [defaultCurrency, currencies] = useSettingsStore((state) => [
+  const [defaultCurrency, currencies, hue] = useSettingsStore((state) => [
     state.defaultCurrency,
     state.currencies,
+    state.hue,
   ]);
 
   const byCurrency = Object.groupBy(sources, (a) => a.currency);
@@ -54,6 +55,7 @@ export default function Sources({
           sources={getSources()}
           defaultCurrency={defaultCurrency}
           currencies={currencies}
+          defaultHue={hue}
         />
         {byCurrency
           ? Object.keys(byCurrency).map((currency) => {
@@ -78,6 +80,7 @@ export default function Sources({
                           deleteSource={deleteSource}
                           sources={getSources()}
                           currencies={currencies}
+                          defaultHue={hue}
                         />
                       );
                     })}

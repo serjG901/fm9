@@ -9,6 +9,7 @@ interface InputRangeComponent {
   min?: number;
   max?: number;
   step?: number;
+  onlySelfChange?: boolean;
 }
 
 export default function InputRange({
@@ -33,7 +34,9 @@ export default function InputRange({
   }, [valueFromParent]);
 
   return (
-    <div className='input-range'>
+    <div
+      className='input-range'
+    >
       <label htmlFor={id}>
         <span>{name}</span>
         <input
