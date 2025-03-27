@@ -15,7 +15,14 @@ interface SourceCardComponent extends TextesByLanguage {
 
 export default function SourceCard({
   textes = {},
-  source = { id: 0, name: "source", amount: "0", currency: "", hue: "" },
+  source = {
+    id: 0,
+    name: "source",
+    amount: "0",
+    currency: "",
+    hue: "",
+    alwaysOnTop: false,
+  },
   updateSource = () => {},
   deleteSource = () => {},
   sources = [],
