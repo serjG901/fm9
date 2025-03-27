@@ -10,5 +10,13 @@
   }
   label:has(input[data-checked="true"]) {
     background-color: var(--color-main-light-accent);
+    span {
+      color: color(
+        from var(--color-main-light-accent) srgb
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      );
+    }
   }
 }
