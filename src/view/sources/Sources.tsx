@@ -58,36 +58,47 @@ export default function Sources({
           defaultHue={hue}
         />
         {byCurrency
-          ? Object.keys(byCurrency).map((currency) => {
-              return (
-                <Contents key={currency}>
-                  <div>
-                    {currency}:{" "}
-                    <span className='sum'>
-                      {plus(...byCurrency[currency]!.map((s) => s.amount))}
-                    </span>
-                  </div>
-                  <FlexWrap>
-                    {byCurrency[currency]!.sort((a, b) =>
-                      +a.amount < +b.amount ? 1 : -1
-                    ).map((source: Source) => {
-                      return (
-                        <SourceCard
-                          textes={textes}
-                          key={source.id}
-                          source={source}
-                          updateSource={updateSource}
-                          deleteSource={deleteSource}
-                          sources={getSources()}
-                          currencies={currencies}
-                          defaultHue={hue}
-                        />
-                      );
-                    })}
-                  </FlexWrap>
-                </Contents>
-              );
-            })
+          ? Object.keys(byCurrency)
+              .sort(
+                (a, b) =>
+                  +plus(...byCurrency[b]!.map((s) => s.amount)) -
+                  +plus(...byCurrency[a]!.map((s) => s.amount))
+              )
+              .map((currency) => {
+                return (
+                  <Contents key={currency}>
+                    <div>
+                      {currency}:{" "}
+                      <span className='sum'>
+                        {plus(...byCurrency[currency]!.map((s) => s.amount))}
+                      </span>
+                    </div>
+                    <FlexWrap>
+                      {byCurrency[currency]!.sort((a, b) =>
+                        Boolean(a.alwaysOnTop) < Boolean(b.alwaysOnTop)
+                          ? 1
+                          : Boolean(a.alwaysOnTop) === Boolean(b.alwaysOnTop) &&
+                            +b.amount - +a.amount
+                          ? 1
+                          : -1
+                      ).map((source: Source) => {
+                        return (
+                          <SourceCard
+                            textes={textes}
+                            key={source.id}
+                            source={source}
+                            updateSource={updateSource}
+                            deleteSource={deleteSource}
+                            sources={getSources()}
+                            currencies={currencies}
+                            defaultHue={hue}
+                          />
+                        );
+                      })}
+                    </FlexWrap>
+                  </Contents>
+                );
+              })
           : null}
       </div>
     </Page>

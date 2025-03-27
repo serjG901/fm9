@@ -107,6 +107,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "search by sources",
     search_by_from_or_for: "search by from or for",
     auto_add_tags: "Auto add tags",
+    always_on_top: "always on top",
   },
   be: {
     buys: "пакупкі",
@@ -216,6 +217,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "пошук па крыніцах",
     search_by_from_or_for: "пошук па адкуль або куды",
     auto_add_tags: "Аўтаматычна дадаваць тэгі",
+    always_on_top: "заўсёды наверсе",
   },
   uk: {
     buys: "покупки",
@@ -325,6 +327,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "пошук за джерелами",
     search_by_from_or_for: "пошук за від або для",
     auto_add_tags: "Автоматичне додавання тегів",
+    always_on_top: "завжди зверху",
   },
   zh: {
     buys: "购买",
@@ -429,6 +432,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "按来源搜索",
     search_by_from_or_for: "按“发件人”或“收件人”搜索",
     auto_add_tags: "自动添加标签",
+    always_on_top: "始终置顶",
   },
   ja: {
     buys: "購入",
@@ -537,6 +541,7 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "ソースから探す",
     search_by_from_or_for: "送信者」または「受信者」で検索",
     auto_add_tags: "自動タグ追加",
+    always_on_top: "常に最前面に表示",
   },
   ru: {
     buys: "покупки",
@@ -645,5 +650,6 @@ export const languageSet: { [key: string]: { [key: string]: string } } = {
     search_by_sources: "поиск по источникам",
     search_by_from_or_for: "поиск по от или для",
     auto_add_tags: "Автоматически добавлять тэги",
+    always_on_top: "всегда сверху",
   },
 };

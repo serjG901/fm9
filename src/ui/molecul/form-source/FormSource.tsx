@@ -7,6 +7,7 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import { Source, TextesByLanguage } from "../../../interfaces";
 import InputRange from "../../atom/input-range/InputRange";
+import Checked from "../../atom/checked/Checked";
 
 interface FormSourceComponent extends TextesByLanguage {
   actionType?: string;
@@ -24,7 +25,14 @@ export default function FormSource({
   textes = {},
   actionType = "action",
   actionSource = () => {},
-  source = { id: 0, name: "", amount: "", currency: "", hue: "" },
+  source = {
+    id: 0,
+    name: "",
+    amount: "",
+    currency: "",
+    hue: "",
+    alwaysOnTop: false,
+  },
   deleteSource = () => {},
   sources = [],
   defaultCurrency = "",
@@ -40,6 +48,9 @@ export default function FormSource({
   const [sourceHue, setSourceHue] = useState(
     source.id === 0 ? defaultHue : source.hue || defaultHue
   );
+  const [sourceAlwaysOnTop, setSourceAlwaysOnTop] = useState(
+    source.alwaysOnTop
+  );
 
   const handleActionSource = () => {
     if (!(isNaN(+sourceAmount) || +sourceAmount < 0)) {
@@ -48,6 +59,7 @@ export default function FormSource({
         amount: sourceAmount || "0",
         currency: sourceCurrency,
         hue: sourceHue,
+        alwaysOnTop: sourceAlwaysOnTop,
         id: source.id,
       });
       setSourceHue(defaultHue);
@@ -95,19 +107,26 @@ export default function FormSource({
         valueFromParent={sourceCurrency}
         hoistValue={setSourceCurrency}
       />
-      <div>
-        <InputRange
-          id={`${actionType === "update" ? "update-" : ""}source-hue-${
-            source.id
-          }`}
-          name={textes["color"] || "color"}
-          min={0}
-          max={360}
-          valueFromParent={sourceHue}
-          hoistValue={setSourceHue}
-          onlySelfChange={true}
-        />
-      </div>
+
+      <InputRange
+        id={`${actionType === "update" ? "update-" : ""}source-hue-${
+          source.id
+        }`}
+        name={textes["color"] || "color"}
+        min={0}
+        max={360}
+        valueFromParent={sourceHue}
+        hoistValue={setSourceHue}
+        onlySelfChange={true}
+      />
+      <Checked
+        id={`${actionType === "update" ? "update-" : ""}source-always-on-top-${
+          source.id
+        }`}
+        name={textes["always_on_top"] || "always on top"}
+        valueFromParent={Boolean(sourceAlwaysOnTop)}
+        hoistValue={setSourceAlwaysOnTop}
+      />
       <br />
       <ActionButton actionWithPayload={handleActionSource}>
         {textes[actionType] || actionType}

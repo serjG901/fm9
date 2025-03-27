@@ -18,7 +18,14 @@ interface UpdateSourceComponent extends TextesByLanguage {
 export default function UpdateSource({
   textes = {},
   updateSource = () => {},
-  source = { id: 0, name: "", amount: "", currency: "", hue: "" },
+  source = {
+    id: 0,
+    name: "",
+    amount: "",
+    currency: "",
+    hue: "",
+    alwaysOnTop: false,
+  },
   deleteSource = () => {},
   sources = [],
   currencies = [],

@@ -10,6 +10,7 @@ export interface NewSource extends KeyString {
   amount: string;
   currency: string;
   hue: string;
+  alwaysOnTop: boolean;
 }
 
 export interface Source extends NewSource {
