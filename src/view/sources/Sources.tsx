@@ -74,27 +74,30 @@ export default function Sources({
                       </span>
                     </div>
                     <FlexWrap>
-                      {byCurrency[currency]!.sort((a, b) =>
-                        Boolean(a.alwaysOnTop) < Boolean(b.alwaysOnTop)
-                          ? 1
-                          : Boolean(a.alwaysOnTop) === Boolean(b.alwaysOnTop) &&
-                            +b.amount - +a.amount
-                          ? 1
-                          : -1
-                      ).map((source: Source) => {
-                        return (
-                          <SourceCard
-                            textes={textes}
-                            key={source.id}
-                            source={source}
-                            updateSource={updateSource}
-                            deleteSource={deleteSource}
-                            sources={getSources()}
-                            currencies={currencies}
-                            defaultHue={hue}
-                          />
-                        );
-                      })}
+                      {byCurrency[currency]!.reduce(
+                        (acc: Source[][], a) => (
+                          a.alwaysOnTop ? acc[0].push(a) : acc[1].push(a), acc
+                        ),
+                        [[], []]
+                      )
+                        .map((s) =>
+                          s.sort((a, b) => (+a.amount < +b.amount ? 1 : -1))
+                        )
+                        .flat()
+                        .map((source: Source) => {
+                          return (
+                            <SourceCard
+                              textes={textes}
+                              key={source.id}
+                              source={source}
+                              updateSource={updateSource}
+                              deleteSource={deleteSource}
+                              sources={getSources()}
+                              currencies={currencies}
+                              defaultHue={hue}
+                            />
+                          );
+                        })}
                     </FlexWrap>
                   </Contents>
                 );
