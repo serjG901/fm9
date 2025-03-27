@@ -1,4 +1,4 @@
-import { Source, TextesByLanguage } from "../../../interfaces";
+import { defaultSource, Source, TextesByLanguage } from "../../../interfaces";
 import Contents from "../../atom/contents/Contents";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import UpdateSource from "../../substance/update-source/UpdateSource";
@@ -15,14 +15,7 @@ interface SourceCardComponent extends TextesByLanguage {
 
 export default function SourceCard({
   textes = {},
-  source = {
-    id: 0,
-    name: "source",
-    amount: "0",
-    currency: "",
-    hue: "",
-    alwaysOnTop: false,
-  },
+  source = defaultSource,
   updateSource = () => {},
   deleteSource = () => {},
   sources = [],

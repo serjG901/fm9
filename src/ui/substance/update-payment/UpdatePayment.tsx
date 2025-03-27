@@ -1,8 +1,7 @@
 import "./style.css";
 import Modal from "../../molecul/modal/Modal";
 import FormPayment from "../../molecul/form-payment/FormPayment";
-import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
-import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import { defaultPayment, Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 
 interface UpdatePaymentComponent extends TextesByLanguage {
@@ -20,16 +19,7 @@ export default function UpdatePayment({
   textes = {},
   maybeName = [],
   updatePayment = () => {},
-  payment = {
-    id: 0,
-    datetime: getDefaultDatetime(),
-    name: "",
-    amount: "",
-    currency: "BYN",
-    from: "",
-    for: "",
-    tags: [],
-  },
+  payment = defaultPayment,
   fromOptions = [],
   forOptions = [],
   deletePayment = () => {},

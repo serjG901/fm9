@@ -2,7 +2,7 @@ import "./style.css";
 import { useState } from "react";
 import FormSource from "../../molecul/form-source/FormSource";
 import Modal from "../../molecul/modal/Modal";
-import { Source, TextesByLanguage } from "../../../interfaces";
+import { defaultSource, Source, TextesByLanguage } from "../../../interfaces";
 import ActionButton from "../../atom/action-button/ActionButton";
 import Contents from "../../atom/contents/Contents";
 
@@ -18,14 +18,7 @@ interface UpdateSourceComponent extends TextesByLanguage {
 export default function UpdateSource({
   textes = {},
   updateSource = () => {},
-  source = {
-    id: 0,
-    name: "",
-    amount: "",
-    currency: "",
-    hue: "",
-    alwaysOnTop: false,
-  },
+  source = defaultSource,
   deleteSource = () => {},
   sources = [],
   currencies = [],

@@ -5,7 +5,7 @@ import InputNumber from "../../atom/input-number/InputNumber";
 import InputWithOptions from "../../atom/input-with-options/InputWithOptions";
 import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
-import { Source, TextesByLanguage } from "../../../interfaces";
+import { defaultSource, Source, TextesByLanguage } from "../../../interfaces";
 import InputRange from "../../atom/input-range/InputRange";
 import Checked from "../../atom/checked/Checked";
 
@@ -25,14 +25,7 @@ export default function FormSource({
   textes = {},
   actionType = "action",
   actionSource = () => {},
-  source = {
-    id: 0,
-    name: "",
-    amount: "",
-    currency: "",
-    hue: "",
-    alwaysOnTop: false,
-  },
+  source = defaultSource,
   deleteSource = () => {},
   sources = [],
   defaultCurrency = "",

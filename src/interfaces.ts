@@ -1,4 +1,5 @@
 import { PersistOptions } from "zustand/middleware";
+import getDefaultDatetime from "./helpers/getDefaultDatetime";
 
 interface KeyString {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -16,6 +17,15 @@ export interface NewSource extends KeyString {
 export interface Source extends NewSource {
   id: number;
 }
+
+export const defaultSource: Source = {
+  id: 0,
+  name: "source",
+  amount: "0",
+  currency: "",
+  hue: "",
+  alwaysOnTop: false,
+};
 
 export interface SourcesStore {
   getState: () => SourcesStore;
@@ -42,6 +52,17 @@ interface NewPayment extends KeyString {
 export interface Payment extends NewPayment {
   id: number;
 }
+
+export const defaultPayment = {
+    id: 0,
+    datetime: getDefaultDatetime(),
+    name: "",
+    amount: "",
+    currency: "",
+    from: "",
+    for: "",
+    tags: [],
+  }
 
 export interface PaymentsStore {
   getState: () => PaymentsStore;

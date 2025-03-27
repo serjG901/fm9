@@ -1,4 +1,4 @@
-import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
+import { defaultPayment, Payment, Tag, TextesByLanguage } from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import HighlightText from "../../atom/highlight-text/HighlightText";
@@ -22,16 +22,7 @@ interface PaymentCardComponent extends TextesByLanguage {
 export default function PaymentCard({
   textes = {},
   maybeName = [],
-  payment = {
-    id: 0,
-    datetime: "2024-09-24",
-    name: "payment",
-    amount: "0",
-    currency: "BYN",
-    from: "",
-    for: "",
-    tags: [],
-  },
+  payment = defaultPayment,
   fromOptions = [],
   forOptions = [],
   updatePayment = () => {},

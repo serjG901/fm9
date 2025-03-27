@@ -6,8 +6,12 @@ import ActionButton from "../../atom/action-button/ActionButton";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import Datepicker from "../../atom/datepicker/Datepicker";
 import AddTags from "../add-tags/AddTags";
-import { Payment, Tag, TextesByLanguage } from "../../../interfaces";
-import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import {
+  defaultPayment,
+  Payment,
+  Tag,
+  TextesByLanguage,
+} from "../../../interfaces";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
 
 interface FormPaymentComponent extends TextesByLanguage {
@@ -29,16 +33,7 @@ export default function FormPayment({
   maybeName = [],
   actionType = "action",
   actionPayment = () => {},
-  payment = {
-    id: 0,
-    datetime: getDefaultDatetime(),
-    name: "",
-    amount: "",
-    currency: "",
-    from: "",
-    for: "",
-    tags: [],
-  },
+  payment = defaultPayment,
   fromOptions = [],
   forOptions = [],
   deletePayment = () => {},
@@ -136,13 +131,17 @@ export default function FormPayment({
   return (
     <FlexColumnCenter>
       <Datepicker
-        id={`${actionType === "update" ? "update-" : ""}payment-datetime-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-datetime-${
+          payment.id
+        }`}
         name={textes["datetime"] || "datetime"}
         valueFromParent={paymentDatetime}
         hoistValue={setPaymentDatetime}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-name-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-name-${
+          payment.id
+        }`}
         name={textes["name"] || "name"}
         valueFromParent={paymentName}
         hoistValue={setPaymentName}
@@ -150,27 +149,35 @@ export default function FormPayment({
         handleFocusLeave={handleFocusLeaveForName}
       />
       <InputNumber
-        id={`${actionType === "update" ? "update-" : ""}payment-amount-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-amount-${
+          payment.id
+        }`}
         name={textes["amount"] || "amount"}
         valueFromParent={paymentAmount}
         hoistValue={setPaymentAmount}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-currency-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-currency-${
+          payment.id
+        }`}
         name={textes["currency"] || "currency"}
         options={currencies}
         valueFromParent={paymentCurrency}
         hoistValue={setPaymentCurrency}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-from-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-from-${
+          payment.id
+        }`}
         name={textes["from"] || "from"}
         options={fromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-for-${payment.id}`}
+        id={`${actionType === "update" ? "update-" : ""}payment-for-${
+          payment.id
+        }`}
         name={textes["for"] || "for"}
         options={forOptions}
         valueFromParent={paymentFor}
