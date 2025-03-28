@@ -14,6 +14,7 @@ import {
 import { StoreApi, UseBoundStore } from "zustand";
 import { useSettingsStore } from "../../store/settingsStore";
 import Contents from "../../ui/atom/contents/Contents";
+import { sortDescByAmountAndPriority } from "../../helpers/sortDescByAmountAndPriority";
 
 interface SourcesComponent extends TextesByLanguage {
   sourcesType: string;
@@ -74,30 +75,26 @@ export default function Sources({
                       </span>
                     </div>
                     <FlexWrap>
-                      {byCurrency[currency]!.reduce(
-                        (acc: Source[][], a) => (
-                          a.alwaysOnTop ? acc[0].push(a) : acc[1].push(a), acc
-                        ),
-                        [[], []]
-                      )
-                        .map((s) =>
-                          s.sort((a, b) => (+a.amount < +b.amount ? 1 : -1))
-                        )
-                        .flat()
-                        .map((source: Source) => {
-                          return (
-                            <SourceCard
-                              textes={textes}
-                              key={source.id}
-                              source={source}
-                              updateSource={updateSource}
-                              deleteSource={deleteSource}
-                              sources={getSources()}
-                              currencies={currencies}
-                              defaultHue={hue}
-                            />
-                          );
-                        })}
+                      {(
+                        sortDescByAmountAndPriority(
+                          byCurrency[currency]!,
+                          "amount",
+                          "alwaysOnTop"
+                        ) as Source[]
+                      ).map((source: Source) => {
+                        return (
+                          <SourceCard
+                            textes={textes}
+                            key={source.id}
+                            source={source}
+                            updateSource={updateSource}
+                            deleteSource={deleteSource}
+                            sources={getSources()}
+                            currencies={currencies}
+                            defaultHue={hue}
+                          />
+                        );
+                      })}
                     </FlexWrap>
                   </Contents>
                 );

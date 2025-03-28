@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { Source, SourcesStore } from "../../interfaces";
 import { name as appName } from "../../../package.json";
+import { sortDescByAmountAndPriority } from "../../helpers/sortDescByAmountAndPriority";
 
 export const createSourcesStore = (name: string) =>
   create<SourcesStore>()(
@@ -51,16 +52,13 @@ export const createSourcesStore = (name: string) =>
           });
         },
         getSourcesName: () =>
-          get()
-            .sources.reduce(
-              (acc: Source[][], a) => (
-                a.alwaysOnTop ? acc[0].push(a) : acc[1].push(a), acc
-              ),
-              [[], []]
-            )
-            .map((s) => s.sort((a, b) => (+a.amount < +b.amount ? 1 : -1)))
-            .flat()
-            .map((s) => s.name),
+          (
+            sortDescByAmountAndPriority(
+              get().sources,
+              "amount",
+              "alwaysOnTop"
+            ) as Source[]
+          ).map((s) => s.name),
         getSources: () => get().sources,
       }),
       {
