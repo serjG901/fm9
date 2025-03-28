@@ -13,6 +13,8 @@ interface UpdatePaymentComponent extends TextesByLanguage {
   deletePayment?: (payment: Payment) => void;
   maybeTags?: Tag[];
   currencies?: string[];
+  checkDebetCurrency?: (sourceName: string) => string | undefined;
+  checkCreditCurrency?: (sourceName: string) => string | undefined;
 }
 
 export default function UpdatePayment({
@@ -25,6 +27,8 @@ export default function UpdatePayment({
   deletePayment = () => {},
   maybeTags = [],
   currencies = [],
+  checkDebetCurrency = () => undefined,
+  checkCreditCurrency = () => undefined,
 }: UpdatePaymentComponent) {
   return (
     <>
@@ -40,6 +44,8 @@ export default function UpdatePayment({
           forOptions={forOptions}
           maybeTags={maybeTags}
           currencies={currencies}
+          checkDebetCurrency={checkDebetCurrency}
+          checkCreditCurrency={checkCreditCurrency}
         />
       </Modal>
       {payment.id === 0 ? (

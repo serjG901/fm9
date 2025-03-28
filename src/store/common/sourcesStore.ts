@@ -60,6 +60,8 @@ export const createSourcesStore = (name: string) =>
             ) as Source[]
           ).map((s) => s.name),
         getSources: () => get().sources,
+        checkSourceCurrency: (sourceName: string) =>
+          get().sources.find((s) => s.name === sourceName)?.currency,
       }),
       {
         name: `${appName}-${name}`,

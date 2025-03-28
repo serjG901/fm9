@@ -69,22 +69,27 @@ export default function Payments({
     state.setPreviousPage,
     state.setNextPage,
   ]);
-  const [getDebetsName, debets, updateDebet, getDebets] = useDebetsStore(
-    (state) => [
+  const [getDebetsName, debets, updateDebet, getDebets, checkDebetCurrency] =
+    useDebetsStore((state) => [
       state.getSourcesName,
       state.sources,
       state.updateSource,
       state.getSources,
-    ]
-  );
-  const [getCreditsName, credits, updateCredit, getCredits] = useCreditsStore(
-    (state) => [
-      state.getSourcesName,
-      state.sources,
-      state.updateSource,
-      state.getSources,
-    ]
-  );
+      state.checkSourceCurrency,
+    ]);
+  const [
+    getCreditsName,
+    credits,
+    updateCredit,
+    getCredits,
+    checkCreditCurrency,
+  ] = useCreditsStore((state) => [
+    state.getSourcesName,
+    state.sources,
+    state.updateSource,
+    state.getSources,
+    state.checkSourceCurrency,
+  ]);
 
   const [startPeriod, endPeriod, setPeriod] = usePeriodStore((state) => [
     state.start,
@@ -213,6 +218,8 @@ export default function Payments({
         search={search}
         currencies={currencies}
         isSearchBySource={isSearchBySource}
+        checkDebetCurrency={checkDebetCurrency}
+        checkCreditCurrency={checkCreditCurrency}
       />
     );
     let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
@@ -321,6 +328,8 @@ export default function Payments({
           defaultCurrency={defaultCurrency}
           currencies={currencies}
           payments={autoAddTags ? payments : []}
+          checkDebetCurrency={checkDebetCurrency}
+          checkCreditCurrency={checkCreditCurrency}
         />
         <br />
         <Paginate

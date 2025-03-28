@@ -17,6 +17,8 @@ interface PaymentCardComponent extends TextesByLanguage {
   search?: string;
   currencies?: string[];
   isSearchBySource?: boolean;
+  checkDebetCurrency?: (sourceName: string) => string | undefined;
+  checkCreditCurrency?: (sourceName: string) => string | undefined;
 }
 
 export default function PaymentCard({
@@ -31,6 +33,8 @@ export default function PaymentCard({
   search = "",
   currencies = [],
   isSearchBySource = false,
+  checkDebetCurrency = () => undefined,
+  checkCreditCurrency = () => undefined,
 }: PaymentCardComponent) {
   const showModal = () => {
     const modalId = document.getElementById(`update-payment-${payment.id}`);
@@ -92,6 +96,8 @@ export default function PaymentCard({
           deletePayment={deletePayment}
           maybeTags={maybeTags}
           currencies={currencies}
+          checkDebetCurrency={checkDebetCurrency}
+          checkCreditCurrency={checkCreditCurrency}
         />
       </FlexColumnCenter>
     </button>

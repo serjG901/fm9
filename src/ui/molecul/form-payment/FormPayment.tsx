@@ -26,6 +26,8 @@ interface FormPaymentComponent extends TextesByLanguage {
   defaultCurrency?: string;
   currencies?: string[];
   payments?: Payment[];
+  checkDebetCurrency?: (sourceName: string) => string | undefined;
+  checkCreditCurrency?: (sourceName: string) => string | undefined;
 }
 
 export default function FormPayment({
@@ -41,6 +43,8 @@ export default function FormPayment({
   defaultCurrency = "",
   currencies = [],
   payments = [],
+  checkDebetCurrency = () => undefined,
+  checkCreditCurrency = () => undefined,
 }: FormPaymentComponent) {
   const [paymentDatetime, setPaymentDatetime] = useState(payment.datetime);
   const [paymentName, setPaymentName] = useState(payment.name);
@@ -128,6 +132,15 @@ export default function FormPayment({
     }
   }, [isDeleteStatus]);
 
+  useEffect(() => {
+    const currencyDebet = checkDebetCurrency(paymentFrom);
+    const currencyCredit = checkCreditCurrency(paymentFrom);
+    if (currencyDebet || currencyCredit)
+      setPaymentCurrency(
+        (currencyDebet as string) || (currencyCredit as string)
+      );
+  }, [paymentFrom]);
+
   return (
     <FlexColumnCenter>
       <Datepicker
@@ -157,15 +170,6 @@ export default function FormPayment({
         hoistValue={setPaymentAmount}
       />
       <InputWithOptions
-        id={`${actionType === "update" ? "update-" : ""}payment-currency-${
-          payment.id
-        }`}
-        name={textes["currency"] || "currency"}
-        options={currencies}
-        valueFromParent={paymentCurrency}
-        hoistValue={setPaymentCurrency}
-      />
-      <InputWithOptions
         id={`${actionType === "update" ? "update-" : ""}payment-from-${
           payment.id
         }`}
@@ -173,6 +177,15 @@ export default function FormPayment({
         options={fromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
+      />
+      <InputWithOptions
+        id={`${actionType === "update" ? "update-" : ""}payment-currency-${
+          payment.id
+        }`}
+        name={textes["currency"] || "currency"}
+        options={currencies}
+        valueFromParent={paymentCurrency}
+        hoistValue={setPaymentCurrency}
       />
       <InputWithOptions
         id={`${actionType === "update" ? "update-" : ""}payment-for-${
@@ -209,7 +222,6 @@ export default function FormPayment({
           {textes[actionType] || actionType}
         </ActionButton>
       )}
-
       {actionType === "update" && (
         <>
           <br />

@@ -12,6 +12,8 @@ interface AddPaymentComponent extends TextesByLanguage {
   defaultCurrency?: string;
   currencies?: string[];
   payments?: Payment[];
+  checkDebetCurrency?: (sourceName: string) => string | undefined;
+  checkCreditCurrency?: (sourceName: string) => string | undefined;
 }
 
 export default function AddPayment({
@@ -24,6 +26,8 @@ export default function AddPayment({
   defaultCurrency = "",
   currencies = [],
   payments = [],
+  checkDebetCurrency = () => undefined,
+  checkCreditCurrency = () => undefined,
 }: AddPaymentComponent) {
   return (
     <div className='add-payment'>
@@ -39,6 +43,8 @@ export default function AddPayment({
           defaultCurrency={defaultCurrency}
           currencies={currencies}
           payments={payments}
+          checkDebetCurrency={checkDebetCurrency}
+          checkCreditCurrency={checkCreditCurrency}
         />
       </Collapse>
     </div>

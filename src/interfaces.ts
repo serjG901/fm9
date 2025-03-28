@@ -37,6 +37,7 @@ export interface SourcesStore {
   deleteSource: (source: Source) => void;
   getSourcesName: () => string[];
   getSources: () => Source[];
+  checkSourceCurrency: (sourceName: string) => string | undefined;
 }
 
 interface NewPayment extends KeyString {
@@ -54,15 +55,15 @@ export interface Payment extends NewPayment {
 }
 
 export const defaultPayment = {
-    id: 0,
-    datetime: getDefaultDatetime(),
-    name: "",
-    amount: "",
-    currency: "",
-    from: "",
-    for: "",
-    tags: [],
-  }
+  id: 0,
+  datetime: getDefaultDatetime(),
+  name: "",
+  amount: "",
+  currency: "",
+  from: "",
+  for: "",
+  tags: [],
+};
 
 export interface PaymentsStore {
   getState: () => PaymentsStore;
