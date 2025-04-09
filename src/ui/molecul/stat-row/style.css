@@ -1,0 +1,4 @@
+.stat-row-tags {
+    display: flex;
+    flex-wrap: wrap;
+}

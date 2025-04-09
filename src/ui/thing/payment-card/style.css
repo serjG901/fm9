@@ -158,6 +158,10 @@
   .payment-card-currency {
     color: var(--color-card-currency);
   }
+  .payment-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .payment-card-from-for {
     display: flex;
     align-items: center;

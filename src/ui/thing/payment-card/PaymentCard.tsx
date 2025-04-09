@@ -60,7 +60,7 @@ export default function PaymentCard({
           <div className='payment-card-amount'>{payment.amount}</div>
           <div className='payment-card-currency'>{payment.currency}</div>
         </div>
-        <div>
+        <div className='payment-card-tags'>
           {payment.tags.map((t) => (
             <HighlightText key={t.value + t.color} bgColor={t.color} padding>
               {t.value}

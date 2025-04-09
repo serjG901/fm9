@@ -26,7 +26,7 @@ export default function StatRow({
     <Contents key={name}>
       <div>
         <SearchedName name={name} search={search} />
-        <div>
+        <div className="stat-row-tags">
           {tags.map((tag) => (
             <HighlightText
               key={tag.value + tag.color}
