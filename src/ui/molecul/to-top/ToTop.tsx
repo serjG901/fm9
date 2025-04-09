@@ -7,7 +7,7 @@ export default function ToTop() {
   };
   return (
     <div className='to-top'>
-      <ActionButton actionWithPayload={toTop}>⮝</ActionButton>
+      <ActionButton actionWithPayload={toTop}>&#8896;</ActionButton>
     </div>
   );
 }
