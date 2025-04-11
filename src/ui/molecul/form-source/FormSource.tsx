@@ -41,6 +41,9 @@ export default function FormSource({
   const [sourceHue, setSourceHue] = useState(
     source.id === 0 ? defaultHue : source.hue || defaultHue
   );
+  const [sourceHueAsDefault, setSourceHueAsDefault] = useState(
+    Boolean(source.hueAsDefault)
+  );
   const [sourceAlwaysOnTop, setSourceAlwaysOnTop] = useState(
     source.alwaysOnTop
   );
@@ -51,7 +54,8 @@ export default function FormSource({
         name: sourceName,
         amount: sourceAmount || "0",
         currency: sourceCurrency,
-        hue: sourceHue,
+        hue: sourceHueAsDefault ? defaultHue : sourceHue,
+        hueAsDefault: sourceHueAsDefault,
         alwaysOnTop: sourceAlwaysOnTop,
         id: source.id,
       });
@@ -69,6 +73,13 @@ export default function FormSource({
   useEffect(() => {
     setHueSelf(sourceHue);
   }, [sourceHue]);
+
+  useEffect(() => {
+    if (sourceHueAsDefault) {
+      setSourceHue(defaultHue);
+      setHueSelf(defaultHue);
+    } else setSourceHue(source.hue || defaultHue);
+  }, [sourceHueAsDefault]);
 
   return (
     <FlexColumnCenter>
@@ -100,18 +111,27 @@ export default function FormSource({
         valueFromParent={sourceCurrency}
         hoistValue={setSourceCurrency}
       />
-
-      <InputRange
-        id={`${actionType === "update" ? "update-" : ""}source-hue-${
+      <Checked
+        id={`${actionType === "update" ? "update-" : ""}source-hue-as-default-${
           source.id
         }`}
-        name={textes["color"] || "color"}
-        min={0}
-        max={360}
-        valueFromParent={sourceHue}
-        hoistValue={setSourceHue}
-        onlySelfChange={true}
+        name={`${textes["color"] || "color"} ${textes["default"] || "default"}`}
+        valueFromParent={sourceHueAsDefault}
+        hoistValue={setSourceHueAsDefault}
       />
+      {!sourceHueAsDefault && (
+        <InputRange
+          id={`${actionType === "update" ? "update-" : ""}source-hue-${
+            source.id
+          }`}
+          name={textes["color"] || "color"}
+          min={0}
+          max={360}
+          valueFromParent={sourceHue}
+          hoistValue={setSourceHue}
+          onlySelfChange={true}
+        />
+      )}
       <Checked
         id={`${actionType === "update" ? "update-" : ""}source-always-on-top-${
           source.id
