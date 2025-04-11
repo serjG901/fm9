@@ -11,6 +11,7 @@ export interface NewSource extends KeyString {
   amount: string;
   currency: string;
   hue: string;
+  hueAsDefault: boolean;
   alwaysOnTop: boolean;
 }
 
@@ -20,10 +21,11 @@ export interface Source extends NewSource {
 
 export const defaultSource: Source = {
   id: 0,
-  name: "source",
-  amount: "0",
+  name: "",
+  amount: "",
   currency: "",
   hue: "",
+  hueAsDefault: true,
   alwaysOnTop: false,
 };
 
