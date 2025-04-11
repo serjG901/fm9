@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { defaultSource, Source, TextesByLanguage } from "../../../interfaces";
 import Contents from "../../atom/contents/Contents";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
@@ -22,12 +23,20 @@ export default function SourceCard({
   currencies = [],
   defaultHue = "",
 }: SourceCardComponent) {
+  const [isShow, setIsShow] = useState(false);
   const showModal = () => {
     const modalId = document.getElementById(`update-source-${source.id}`);
     modalId?.showPopover();
+    setIsShow(true);
   };
   return (
-    <Contents style={{ "--hue-self": source.hue } as React.CSSProperties}>
+    <Contents
+      style={
+        {
+          "--hue-self": source.hueAsDefault ? defaultHue : source.hue,
+        } as React.CSSProperties
+      }
+    >
       <button className='source-card' key={source.id} onClick={showModal}>
         <FlexColumnCenter>
           <div className='source-card-name'>{source.name}</div>
@@ -41,6 +50,8 @@ export default function SourceCard({
             sources={sources}
             currencies={currencies}
             defaultHue={defaultHue}
+            isShow={isShow}
+            setIsShow={setIsShow}
           />
         </FlexColumnCenter>
       </button>
