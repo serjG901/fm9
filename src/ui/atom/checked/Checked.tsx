@@ -18,7 +18,6 @@ export default function Checked({
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.checked;
-    console.log(e.target.checked);
     setState(value);
     hoistValue(value);
   };
