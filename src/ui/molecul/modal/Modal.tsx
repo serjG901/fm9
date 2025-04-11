@@ -8,18 +8,15 @@ import { TextesByLanguage } from "../../../interfaces";
 interface ModalComponent extends TextesByLanguage {
   id?: string;
   children?: ReactNode;
+  hideModal?: (isShow: boolean) => void;
 }
 
 export default function Modal({
   textes = {},
   id = "modal",
   children = "children",
+  hideModal = () => {},
 }: ModalComponent) {
-  const hideModal = () => {
-    const modalId = document.getElementById(id);
-    modalId?.hidePopover();
-  };
-  
   return (
     <div>
       <div
