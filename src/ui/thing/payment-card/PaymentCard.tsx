@@ -1,4 +1,10 @@
-import { defaultPayment, Payment, Tag, TextesByLanguage } from "../../../interfaces";
+import { useState } from "react";
+import {
+  defaultPayment,
+  Payment,
+  Tag,
+  TextesByLanguage,
+} from "../../../interfaces";
 import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import FlexColumnCenter from "../../atom/flex-column-center/FlexColumnCenter";
 import HighlightText from "../../atom/highlight-text/HighlightText";
@@ -36,9 +42,11 @@ export default function PaymentCard({
   checkDebetCurrency = () => undefined,
   checkCreditCurrency = () => undefined,
 }: PaymentCardComponent) {
+  const [isShow, setIsShow] = useState(false);
   const showModal = () => {
     const modalId = document.getElementById(`update-payment-${payment.id}`);
     modalId?.showPopover();
+    setIsShow(true);
   };
 
   return (
@@ -98,6 +106,8 @@ export default function PaymentCard({
           currencies={currencies}
           checkDebetCurrency={checkDebetCurrency}
           checkCreditCurrency={checkCreditCurrency}
+          isShow={isShow}
+          setIsShow={setIsShow}
         />
       </FlexColumnCenter>
     </button>
