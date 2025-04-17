@@ -44,6 +44,7 @@ import AddTransaction from "./substance/add-transaction/AddTransaction";
 import Filter from "./substance/filter/Filter";
 import MonthStat from "./substance/month-stat/MonthStat";
 import Paginate from "./substance/paginate/Paginate";
+import StatisticSources from "./substance/statistic-sources/StatisticSources";
 import StatisticTags from "./substance/statistic-tags/StatisticTags";
 import Statistics from "./substance/statistics/Statistics";
 import UpdatePayment from "./substance/update-payment/UpdatePayment";
@@ -56,6 +57,7 @@ import ManageBase from "./thing/manage-base/ManageBase";
 import ManageData from "./thing/manage-data/ManageData";
 import ManageTags from "./thing/manage-tags/ManageTags";
 import PaymentCard from "./thing/payment-card/PaymentCard";
+import PaymentCardSimple from "./thing/payment-card-simple/PaymentCardSimple";
 import SourceCard from "./thing/source-card/SourceCard";
 import TransactionCard from "./thing/transaction-card/TrancactionCard";
 
@@ -105,6 +107,7 @@ const componentsArr = [
   <Filter />,
   <MonthStat />,
   <Paginate />,
+  <StatisticSources />,
   <StatisticTags />,
   <Statistics />,
   <UpdatePayment />,
@@ -117,6 +120,7 @@ const componentsArr = [
   <ManageData />,
   <ManageTags />,
   <PaymentCard />,
+  <PaymentCardSimple />,
   <SourceCard />,
   <TransactionCard />,
 ];
