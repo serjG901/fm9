@@ -20,7 +20,8 @@
   --font-size-action-element: 1rem;
   --padding-action-element: 0.6rem 1.2rem;
   --border-action-element: 1px solid var(--color-transporent);
-
+  
+  --gap-xxs: 0.125rem;
   --gap-xs: 0.25rem;
   --gap-s: 0.5rem;
   --gap-m: 1rem;
