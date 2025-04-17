@@ -9,12 +9,14 @@ export const defaultDB: {
     payments: [],
     pageActive: 1,
     itemsPerPage: "50",
+    isSimpleCard: false,
   },
   [`${appName}-pays`]: {
     id: 1,
     payments: [],
     pageActive: 1,
     itemsPerPage: "50",
+    isSimpleCard: false,
   },
   [`${appName}-debets`]: {
     id: 1,
@@ -28,6 +30,5 @@ export const defaultDB: {
     hue: "190",
     defaultCurrency: "USD",
     onAutoAddTags: false,
-    isSimpleCard: false,
   },
 };
