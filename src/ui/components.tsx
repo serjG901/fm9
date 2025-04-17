@@ -24,6 +24,7 @@ import Page from "./atom/page/Page";
 import ViewAndPath from "./atom/view-and-path/ViewAndPath";
 //moleculs
 import AddTags from "./molecul/add-tags/AddTags";
+import ButtonWithLoading from "./molecul/buttonWithLoading/ButtonWithLoading";
 import FormDataRange from "./molecul/form-date-range/FormDateRange";
 import FormPayment from "./molecul/form-payment/FormPayment";
 import FormSource from "./molecul/form-source/FormSource";
@@ -87,6 +88,7 @@ const componentsArr = [
   <ViewAndPath />,
   //moleculs
   <AddTags />,
+  <ButtonWithLoading />,
   <FormDataRange />,
   <FormPayment />,
   <FormSource />,
