@@ -6,14 +6,12 @@
 
 .payment-card-simple {
   opacity: 1;
-  transform: translate(0px, 0px);
   transition: gap 1s ease-in-out, opacity 1s ease-in-out,
-    transform 1s ease-in-out, margin 1s ease-in-out;
-  margin-bottom: 0;
+    margin 1s ease-in-out;
+  margin-top: 0;
   @starting-style {
-    opacity: 0;
-    transform: translate(0px, 1.5rem);
-    margin-bottom: 0.5rem;
+    opacity: 0.5;
+    margin-top: 0.5rem;
   }
 }
 
@@ -28,7 +26,6 @@
   min-height: 2rem;
   color: var(--color-payment-card-name);
   background-color: var(--color-bg-payment-card);
-  opacity: 1;
   gap: var(--gap-card);
 
   .payment-card-simple-datetime {
