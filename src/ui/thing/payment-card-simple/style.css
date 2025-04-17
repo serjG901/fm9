@@ -1,6 +1,10 @@
 .flex-wrap:has(.payment-card-simple) {
   justify-content: flex-start;
   gap: var(--gap-xxs);
+  transition: gap 1s ease-in-out;
+  @starting-style {
+    gap: var(--gap-s);
+  }
 }
 
 .payment-card-simple {
@@ -19,11 +23,11 @@
   gap: var(--gap-card);
 
   .payment-card-simple-datetime {
-    max-width: 10%;
+    max-width: calc(10% - var(--gap-card));
     color: var(--color-card-datetime);
   }
   .payment-card-simple-name {
-    min-width: 20%;
+    min-width: calc(30% - var(--gap-card));
     overflow-x: hidden;
     position: relative;
     /*color: var(--color-card-name);*/
@@ -31,8 +35,8 @@
   div:has(.payment-card-simple-amount) {
     display: flex;
     justify-content: flex-end;
-    gap: var(--gap-s);
-    min-width: 15%;
+    gap: var(--gap-xs);
+    min-width: calc(25% - var(--gap-card));
   }
   .payment-card-simple-amount {
     font-weight: bold;
@@ -42,7 +46,7 @@
     color: var(--color-card-currency);
   }
   .payment-card-simple-tags {
-    min-width: 20%;
+    min-width: calc(20% - var(--gap-card));
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
@@ -51,6 +55,7 @@
     position: relative;
   }
   .payment-card-simple-from-for {
+    min-width: calc(15% - var(--gap-card));
     display: flex;
     align-items: center;
     font-size: 0.7rem;
@@ -69,6 +74,10 @@
 .payment-card-simple:focus,
 .payment-card-simple:focus-visible {
   filter: sepia();
+}
+
+.payment-card-simple > div:last-child {
+  margin-left: calc(-1 * var(--gap-card));
 }
 
 div:not(:has(.overflow-bg)) {

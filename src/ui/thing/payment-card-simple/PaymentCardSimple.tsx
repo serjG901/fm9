@@ -5,7 +5,6 @@ import {
   Tag,
   TextesByLanguage,
 } from "../../../interfaces";
-import ArrowFromFor from "../../atom/arrow-from-for/ArrowFromFor";
 import HighlightText from "../../atom/highlight-text/HighlightText";
 import SearchedName from "../../molecul/searched-name/SearchedName";
 import UpdatePayment from "../../substance/update-payment/UpdatePayment";
@@ -77,21 +76,13 @@ export default function PaymentCardSimple({
         ))}
         <div className='overflow-bg'></div>
       </div>
-      {payment.from && payment.for && (
+      {payment.from && (
         <div className='payment-card-simple-from-for'>
           <div className='payment-card-simple-from'>
             {isSearchBySource ? (
               <SearchedName name={payment.from} search={search} />
             ) : (
               payment.from
-            )}
-          </div>
-          <ArrowFromFor />
-          <div className='payment-card-simple-for'>
-            {isSearchBySource ? (
-              <SearchedName name={payment.for} search={search} />
-            ) : (
-              payment.for
             )}
           </div>
           <div className='overflow-bg'></div>
