@@ -356,7 +356,7 @@ export default function Payments({
         />
         <div className='switch-card-simple'>
           <ActionButton actionWithPayload={setIsSimpleCard}>
-            {isSimpleCard ? <span>&#9776;</span> : <span>&#8983;</span>}
+            {isSimpleCard ? <span>&#8983;</span> : <span>&#9776;</span>}
           </ActionButton>
         </div>
 
