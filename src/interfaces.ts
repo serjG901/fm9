@@ -159,6 +159,8 @@ export interface SettingsStore {
   deleteCurrency: (currency: string) => void;
   autoAddTags: boolean;
   setAutoAddTags: (autoAddTags: boolean) => void;
+  isSimpleCard: boolean;
+  setIsSimpleCard: () => void;
 }
 
 export interface LanguageStore {

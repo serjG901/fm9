@@ -25,8 +25,9 @@ export const defaultDB: {
     sources: [],
   },
   [`${appName}-settings`]: {
-    hue: '190',
+    hue: "190",
     defaultCurrency: "USD",
     onAutoAddTags: false,
+    isSimpleCard: false,
   },
 };
