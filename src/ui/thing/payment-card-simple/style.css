@@ -10,13 +10,12 @@
 .payment-card-simple {
   display: flex;
   align-items: center;
-  overflow-x: hidden;
   font-family: inherit;
   border: none;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   width: 100%;
-  height: min-content;
+  min-height: 2rem;
   color: var(--color-payment-card-name);
   background-color: var(--color-bg-payment-card);
   opacity: 1;
@@ -50,7 +49,6 @@
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
-    gap: var(--gap-xxs);
     overflow-x: hidden;
     position: relative;
   }
