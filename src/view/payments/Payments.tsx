@@ -32,7 +32,8 @@ import StatisticTags from "../../ui/substance/statistic-tags/StatisticTags";
 import Collapse from "../../ui/atom/collapse/Collapse";
 import Contents from "../../ui/atom/contents/Contents";
 import StatisticSources from "../../ui/substance/statistic-sources/StatisticSources";
-import ActionButton from "../../ui/atom/action-button/ActionButton";
+import { useState } from "react";
+import ButtonWithLoading from "../../ui/molecul/buttonWithLoading/ButtonWithLoading";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -115,19 +116,17 @@ export default function Payments({
     state.setIsSearchBySource,
   ]);
 
-  const [
-    defaultCurrency,
-    currencies,
-    autoAddTags,
-    isSimpleCard,
-    setIsSimpleCard,
-  ] = useSettingsStore((state) => [
-    state.defaultCurrency,
-    state.currencies,
-    state.autoAddTags,
-    state.isSimpleCard,
-    state.setIsSimpleCard,
-  ]);
+  const [defaultCurrency, currencies, autoAddTags] = useSettingsStore(
+    (state) => [
+      state.defaultCurrency,
+      state.currencies,
+      state.autoAddTags,
+      state.isSimpleCard,
+      state.setIsSimpleCard,
+    ]
+  );
+
+  const [isSimpleCard, setIsSimpleCard] = useState(false);
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -355,9 +354,9 @@ export default function Payments({
           setNextPage={() => setNextPage(pages || 20)}
         />
         <div className='switch-card-simple'>
-          <ActionButton actionWithPayload={setIsSimpleCard}>
+          <ButtonWithLoading action={() => setIsSimpleCard(!isSimpleCard)}>
             {isSimpleCard ? <span>&#8983;</span> : <span>&#9776;</span>}
-          </ActionButton>
+          </ButtonWithLoading>
         </div>
 
         <FlexWrap>{cards}</FlexWrap>
