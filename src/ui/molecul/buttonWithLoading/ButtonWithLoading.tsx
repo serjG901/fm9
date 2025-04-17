@@ -3,7 +3,6 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 import ActionButton from "../../atom/action-button/ActionButton";
 import "./style.css";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
-import correctionScrollPosition from "../../../helpers/correctionScrollPosition";
 
 interface ButtonWithLoadingComponent {
   children?: ReactNode;
@@ -34,7 +33,6 @@ export default function ButtonWithLoading({
       timer = setTimeout(() => setIsActionStatus(4), 300);
     }
     if (isActionStatus === 4) {
-      correctionScrollPosition(button.current);
       clearTimeout(timer);
       timer = setTimeout(() => setIsActionStatus(1), 2000);
     }

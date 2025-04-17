@@ -84,6 +84,9 @@ export interface PaymentsStore {
   setPageActive: (page: number) => void;
   setPreviousPage: () => void;
   setNextPage: (total: number) => void;
+
+  isSimpleCard: boolean ;
+  setIsSimpleCard: () => void;
 }
 
 export interface PeriodStore {
@@ -159,8 +162,6 @@ export interface SettingsStore {
   deleteCurrency: (currency: string) => void;
   autoAddTags: boolean;
   setAutoAddTags: (autoAddTags: boolean) => void;
-  isSimpleCard: boolean;
-  setIsSimpleCard: () => void;
 }
 
 export interface LanguageStore {

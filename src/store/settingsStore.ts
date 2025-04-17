@@ -31,8 +31,6 @@ export const useSettingsStore = create<SettingsStore>()(
         },
         autoAddTags: false,
         setAutoAddTags: (autoAddTags) => set({ autoAddTags }),
-        isSimpleCard: false,
-        setIsSimpleCard: () => set({ isSimpleCard: !get().isSimpleCard }),
       };
     },
     {

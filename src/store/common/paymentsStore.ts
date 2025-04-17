@@ -70,6 +70,9 @@ export const createPaymentStore = (name: string) =>
               set({ pageActive: get().pageActive + 1 });
             }
           },
+          
+          isSimpleCard: false,
+          setIsSimpleCard: () => set({ isSimpleCard: !get().isSimpleCard }),
         };
       },
 

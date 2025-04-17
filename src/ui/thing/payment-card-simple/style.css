@@ -1,9 +1,19 @@
 .flex-wrap:has(.payment-card-simple) {
-  justify-content: flex-start;
+
   gap: var(--gap-xxs);
-  transition: gap 1s ease-in-out;
+
+}
+
+.payment-card-simple {
+  opacity: 1;
+  transform: translate(0px, 0px);
+  transition: gap 1s ease-in-out, opacity 1s ease-in-out,
+    transform 1s ease-in-out, margin 1s ease-in-out;
+  margin-bottom: 0;
   @starting-style {
-    gap: var(--gap-s);
+    opacity: 0;
+    transform: translate(0px, 1.5rem);
+    margin-bottom: 0.5rem;
   }
 }
 
