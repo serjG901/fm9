@@ -14,4 +14,7 @@
     font-weight: bold;
     color: var(--color-card-amount);
   }
+  .switch-card-simple {
+    align-self: end;
+  }
 }

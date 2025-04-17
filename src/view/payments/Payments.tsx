@@ -2,6 +2,7 @@ import "./style.css";
 import Page from "../../ui/atom/page/Page";
 import AddPayment from "../../ui/substance/add-payment/AddPayment";
 import PaymentCard from "../../ui/thing/payment-card/PaymentCard";
+import PaymentCardSimple from "../../ui/thing/payment-card-simple/PaymentCardSimple";
 import FlexWrap from "../../ui/atom/flex-wrap/FlexWrap";
 import { useDebetsStore } from "../../store/debetsStore";
 import { useCreditsStore } from "../../store/creditsStore";
@@ -31,6 +32,7 @@ import StatisticTags from "../../ui/substance/statistic-tags/StatisticTags";
 import Collapse from "../../ui/atom/collapse/Collapse";
 import Contents from "../../ui/atom/contents/Contents";
 import StatisticSources from "../../ui/substance/statistic-sources/StatisticSources";
+import ActionButton from "../../ui/atom/action-button/ActionButton";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -113,9 +115,19 @@ export default function Payments({
     state.setIsSearchBySource,
   ]);
 
-  const [defaultCurrency, currencies, autoAddTags] = useSettingsStore(
-    (state) => [state.defaultCurrency, state.currencies, state.autoAddTags]
-  );
+  const [
+    defaultCurrency,
+    currencies,
+    autoAddTags,
+    isSimpleCard,
+    setIsSimpleCard,
+  ] = useSettingsStore((state) => [
+    state.defaultCurrency,
+    state.currencies,
+    state.autoAddTags,
+    state.isSimpleCard,
+    state.setIsSimpleCard,
+  ]);
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -204,9 +216,11 @@ export default function Payments({
     pageActive * +itemsPerPage
   );
 
+  const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
+
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
-      <PaymentCard
+      <Card
         textes={textes}
         maybeName={maybeName}
         payment={payment}
@@ -340,6 +354,11 @@ export default function Payments({
           setPreviousPage={setPreviousPage}
           setNextPage={() => setNextPage(pages || 20)}
         />
+        <div className='switch-card-simple'>
+          <ActionButton actionWithPayload={setIsSimpleCard}>
+            {isSimpleCard ? <span>&#9776;</span> : <span>&#8983;</span>}
+          </ActionButton>
+        </div>
 
         <FlexWrap>{cards}</FlexWrap>
       </div>
