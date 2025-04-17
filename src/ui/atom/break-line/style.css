@@ -2,4 +2,5 @@
   width: 100%;
   background-color: var(--color-bg-break-line);
   text-align: left;
+  padding-inline-start: var(--padding-xs);
 }
