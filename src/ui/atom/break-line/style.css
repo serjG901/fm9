@@ -1,4 +1,5 @@
 .break-line {
   width: 100%;
   background-color: var(--color-bg-break-line);
+  text-align: left;
 }
