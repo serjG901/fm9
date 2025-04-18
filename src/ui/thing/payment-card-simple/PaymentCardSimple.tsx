@@ -76,13 +76,21 @@ export default function PaymentCardSimple({
         ))}
         <div className='overflow-bg'></div>
       </div>
-      {payment.from && (
+      {payment.from && payment.for && (
         <div className='payment-card-simple-from-for'>
           <div className='payment-card-simple-from'>
             {isSearchBySource ? (
               <SearchedName name={payment.from} search={search} />
             ) : (
               payment.from
+            )}
+          </div>
+          <hr/>
+          <div className='payment-card-simple-for'>
+            {isSearchBySource ? (
+              <SearchedName name={payment.for} search={search} />
+            ) : (
+              payment.for
             )}
           </div>
           <div className='overflow-bg'></div>

@@ -1,13 +1,10 @@
 .flex-wrap:has(.payment-card-simple) {
-
   gap: var(--gap-xxs);
-
 }
 
 .payment-card-simple {
   opacity: 1;
-  transition: gap 1s ease-in-out, opacity 1s ease-in-out,
-    margin 1s ease-in-out;
+  transition: gap 1s ease-in-out, opacity 1s ease-in-out, margin 1s ease-in-out;
   margin-top: 0;
   @starting-style {
     opacity: 0.5;
@@ -62,9 +59,9 @@
   .payment-card-simple-from-for {
     min-width: calc(15% - var(--gap-card));
     display: flex;
+    flex-direction: column;
     align-items: center;
     font-size: 0.7rem;
-    gap: var(--gap-xs);
     overflow-x: hidden;
     position: relative;
   }
@@ -73,6 +70,16 @@
   }
   .payment-card-simple-for {
     color: var(--color-card-from-for);
+  }
+  hr {
+    width: 100%;
+    opacity: 1;
+    transition: opacity 1s ease-in-out, width 1s ease-in-out;
+    transition-delay: 1s;
+    @starting-style {
+      width: 0%;
+      opacity: 0;
+    }
   }
 }
 
