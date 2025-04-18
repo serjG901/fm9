@@ -60,7 +60,7 @@
     min-width: calc(15% - var(--gap-card));
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     font-size: 0.7rem;
     overflow-x: hidden;
     position: relative;
