@@ -8,12 +8,14 @@ interface ButtonWithLoadingComponent {
   children?: ReactNode;
   action?: (totalPages?: number) => void;
   disabled?: boolean;
+  bgColor?: string;
 }
 
 export default function ButtonWithLoading({
   children = "action",
   action = () => {},
   disabled = false,
+  bgColor = "",
 }: ButtonWithLoadingComponent) {
   const [isActionStatus, setIsActionStatus] = useState(1);
 
@@ -45,6 +47,7 @@ export default function ButtonWithLoading({
       refer={button}
       actionWithPayload={actionWithLoading}
       disabled={disabled || isActionStatus === 2 || isActionStatus === 3}
+      bgColor={bgColor}
     >
       {isActionStatus === 2 || isActionStatus === 3 ? (
         <LoadingDots>{children}</LoadingDots>

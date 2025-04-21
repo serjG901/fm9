@@ -16,5 +16,7 @@
   }
   .switch-card-simple {
     align-self: end;
+    display: flex;
+    gap: var(--gap-m);
   }
 }

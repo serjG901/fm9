@@ -46,3 +46,7 @@
   display: inline-block;
   width: 2ch;
 }
+
+.highlight-text[data-simple="simple"] {
+  background: var(--self-color-bg);
+}

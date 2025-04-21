@@ -85,8 +85,10 @@ export interface PaymentsStore {
   setPreviousPage: () => void;
   setNextPage: (total: number) => void;
 
-  isSimpleCard: boolean ;
+  isSimpleCard: boolean;
   setIsSimpleCard: () => void;
+  isColoredCard: boolean;
+  setIsColoredCard: () => void;
 }
 
 export interface PeriodStore {

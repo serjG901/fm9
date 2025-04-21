@@ -60,6 +60,8 @@ export default function Payments({
     setNextPage,
     isSimpleCard,
     setIsSimpleCard,
+    isColoredCard,
+    setIsColoredCard,
   ] = usePaymentsStore((state: PaymentsStore) => [
     state.payments,
     state.addPayment,
@@ -74,6 +76,8 @@ export default function Payments({
     state.setNextPage,
     state.isSimpleCard,
     state.setIsSimpleCard,
+    state.isColoredCard,
+    state.setIsColoredCard,
   ]);
   const [getDebetsName, debets, updateDebet, getDebets, checkDebetCurrency] =
     useDebetsStore((state) => [
@@ -119,15 +123,9 @@ export default function Payments({
     state.setIsSearchBySource,
   ]);
 
-  const [
-    defaultCurrency,
-    currencies,
-    autoAddTags,
-  ] = useSettingsStore((state) => [
-    state.defaultCurrency,
-    state.currencies,
-    state.autoAddTags,
-  ]);
+  const [defaultCurrency, currencies, autoAddTags] = useSettingsStore(
+    (state) => [state.defaultCurrency, state.currencies, state.autoAddTags]
+  );
 
   const fromOptions = Array.from(
     new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
@@ -234,6 +232,7 @@ export default function Payments({
         isSearchBySource={isSearchBySource}
         checkDebetCurrency={checkDebetCurrency}
         checkCreditCurrency={checkCreditCurrency}
+        colored={isColoredCard}
       />
     );
     let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
@@ -355,7 +354,17 @@ export default function Payments({
           setNextPage={() => setNextPage(pages || 20)}
         />
         <div className='switch-card-simple'>
-          <ButtonWithLoading action={() =>setIsSimpleCard()}>
+          <ButtonWithLoading
+            action={() => setIsColoredCard()}
+            bgColor={
+              isColoredCard
+                ? "var(--color-bg-payment-card)"
+                : "var(--color-bg-card)"
+            }
+          >
+            <span>&#9680;</span>
+          </ButtonWithLoading>
+          <ButtonWithLoading action={() => setIsSimpleCard()}>
             {isSimpleCard ? <span>&#8983;</span> : <span>&#9776;</span>}
           </ButtonWithLoading>
         </div>

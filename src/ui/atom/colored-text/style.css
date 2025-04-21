@@ -1,0 +1,24 @@
+.colored-text {
+  white-space: nowrap;
+  color: var(--self-color);
+  background: color(
+    from var(--self-color) srgb
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+  );
+  background-blend-mode: color-burn;
+}
+.colored-text[data-bold="bold"] {
+  font-weight: bold;
+}
+.colored-text[data-padding="padding"]::before {
+  content: " ";
+  display: inline-block;
+  width: 1ch;
+}
+.colored-text[data-padding="padding"]::after {
+  content: " ";
+  display: inline-block;
+  width: 1ch;
+}

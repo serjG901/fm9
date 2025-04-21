@@ -5,6 +5,7 @@ import ArrowFromFor from "./atom/arrow-from-for/ArrowFromFor";
 import BreakLine from "./atom/break-line/BreakLine";
 import Checked from "./atom/checked/Checked";
 import Collapse from "./atom/collapse/Collapse";
+import ColoredText from "./atom/colored-text/ColoredText";
 import Colorpicker from "./atom/colorpicker/Colorpicker";
 import Contents from "./atom/contents/Contents";
 import Cross from "./atom/cross/Cross";
@@ -69,6 +70,7 @@ const componentsArr = [
   <BreakLine />,
   <Checked />,
   <Collapse />,
+  <ColoredText />,
   <Colorpicker />,
   <Contents />,
   <Cross />,

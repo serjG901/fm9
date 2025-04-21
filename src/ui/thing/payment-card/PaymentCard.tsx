@@ -25,6 +25,7 @@ interface PaymentCardComponent extends TextesByLanguage {
   isSearchBySource?: boolean;
   checkDebetCurrency?: (sourceName: string) => string | undefined;
   checkCreditCurrency?: (sourceName: string) => string | undefined;
+  colored?: boolean;
 }
 
 export default function PaymentCard({
@@ -41,6 +42,7 @@ export default function PaymentCard({
   isSearchBySource = false,
   checkDebetCurrency = () => undefined,
   checkCreditCurrency = () => undefined,
+  colored = false,
 }: PaymentCardComponent) {
   const [isShow, setIsShow] = useState(false);
   const showModal = () => {
@@ -50,7 +52,12 @@ export default function PaymentCard({
   };
 
   return (
-    <button className='payment-card' key={payment.id} onClick={showModal}>
+    <button
+      className='payment-card'
+      key={payment.id}
+      onClick={showModal}
+      data-colored={colored ? "colored" : ""}
+    >
       <FlexColumnCenter>
         <div className='payment-card-datetime'>
           {payment.datetime.split("T").map((d) => (
@@ -70,7 +77,12 @@ export default function PaymentCard({
         </div>
         <div className='payment-card-tags'>
           {payment.tags.map((t) => (
-            <HighlightText key={t.value + t.color} bgColor={t.color} padding>
+            <HighlightText
+              key={t.value + t.color}
+              bgColor={t.color}
+              padding
+              simple={colored}
+            >
               {t.value}
             </HighlightText>
           ))}
