@@ -4,7 +4,7 @@
 
 .payment-card-simple {
   opacity: 1;
-  transition: gap 1s ease-in-out, opacity 1s ease-in-out, margin 1s ease-in-out;
+  transition: opacity 1s ease-in-out, margin 1s ease-in-out;
   margin-top: 0;
   @starting-style {
     opacity: 0.5;
