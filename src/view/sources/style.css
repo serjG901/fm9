@@ -10,6 +10,9 @@
     opacity: 0;
     transform: translate(0px, 1.5rem);
   }
+  div:has(.sum) {
+    margin: 2rem 0 0.5rem 0;
+  }
   .sum {
     font-weight: bold;
     color: var(--color-card-amount);
