@@ -28,12 +28,12 @@
   outline: 2px solid var(--color-border-action-element-accent);
 }
 
-.action-button[data-alert="alert"] {
-  color: var(--color-alert);
-}
-
 .action-button[data-attention="attention"] {
   color: var(--color-attention);
+}
+
+.action-button[data-alert="alert"] {
+  color: var(--color-alert);
 }
 
 .action-button:disabled {
