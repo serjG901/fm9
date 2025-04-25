@@ -26,7 +26,7 @@ export default function Modal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className='hide-modal'>
-          <ActionButton actionWithPayload={hideModal} alert>
+          <ActionButton actionWithPayload={hideModal} attention>
             {textes["close"] || "close"}
           </ActionButton>
         </div>
