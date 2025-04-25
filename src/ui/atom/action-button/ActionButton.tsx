@@ -8,6 +8,7 @@ interface ActionButtonComponent {
   payload?: any;
   children?: ReactNode;
   alert?: boolean;
+  attention?: boolean;
   bgColor?: string;
   disabled?: boolean;
   onDown?: () => void;
@@ -20,6 +21,7 @@ export default function ActionButton({
   payload = null,
   children = "children",
   alert = false,
+  attention = false,
   bgColor = "",
   disabled = false,
   onDown = () => {},
@@ -43,6 +45,7 @@ export default function ActionButton({
       className='action-button'
       onClick={handleClick}
       data-alert={alert ? "alert" : ""}
+      data-attention={attention ? "attention" : ""}
       style={{ ["--self-color-bg"]: bgColor } as React.CSSProperties}
       disabled={disabled}
       onMouseDown={onDown}
