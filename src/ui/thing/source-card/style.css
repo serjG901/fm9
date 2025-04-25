@@ -3,6 +3,7 @@
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   width: min-content;
+  min-width: 16ch;
   height: min-content;
   padding: var(--padding-card);
   border-radius: var(--border-radius-card);
