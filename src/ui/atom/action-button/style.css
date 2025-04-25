@@ -32,6 +32,10 @@
   color: var(--color-alert);
 }
 
+.action-button[data-attention="attention"] {
+  color: var(--color-attention);
+}
+
 .action-button:disabled {
   cursor: auto;
 }
