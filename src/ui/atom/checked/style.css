@@ -19,4 +19,8 @@
       );
     }
   }
+  label:has(input:focus),
+  label:has(input:focus-visible) {
+    outline: 6px double var(--color-border-action-element-accent);
+  }
 }

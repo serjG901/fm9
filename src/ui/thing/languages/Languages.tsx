@@ -21,7 +21,21 @@ export default function Languages({
         {languages.map((l) => {
           return (
             <Contents key={l}>
-              <label htmlFor={l}>
+              <label
+                htmlFor={l}
+                tabIndex={0}
+                onKeyDown={(e) =>
+                  e.code === "Space" &&
+                  (e.preventDefault(), e.stopPropagation())
+                }
+                onKeyUp={(e) => (
+                  console.log(e),
+                  e.code === "Space" &&
+                    (e.preventDefault(),
+                    e.stopPropagation(),
+                    setCurrentLanguage(l))
+                )}
+              >
                 <span>{l}</span>
                 <input
                   type='radio'
