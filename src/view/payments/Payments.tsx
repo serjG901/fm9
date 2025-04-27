@@ -215,7 +215,7 @@ export default function Payments({
   );
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
-
+let amountsOfDay = [];
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <Card
@@ -235,15 +235,16 @@ export default function Payments({
         colored={isColoredCard}
       />
     );
-    let breakLine = <BreakLine>{payment.datetime.split("T")[0]}</BreakLine>;
-    if (date === "") {
-      date = payment.datetime.split("T")[0];
+    let breakLine = <BreakLine>{payment.datetime.split("T")[0]} - {plus(...amountsOfDay)}</BreakLine>;
+  
+    if (date === payment.datetime.split("T")[0]) {
+      breakLine = <></>;
+      amountsOfDay.push(payment.amount);
     } else {
-      if (date === payment.datetime.split("T")[0]) {
-        breakLine = <></>;
-      }
+      amountsOfDay = [];
+      date = payment.datetime.split("T")[0];
+      amountsOfDay.push(payment.amount);
     }
-    date = payment.datetime.split("T")[0];
     return (
       <Contents key={payment.id}>
         {breakLine}
