@@ -217,8 +217,7 @@ export default function Payments({
   );
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
-let amountsOfDay: string[] = [];
-  let breakLine: ReactNode;
+
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <Card
@@ -238,15 +237,12 @@ let amountsOfDay: string[] = [];
         colored={isColoredCard}
       />
     );
-    
+    let breakLine: ReactNode;
     if (date === payment.datetime.split("T")[0]) {
       breakLine = <></>;
-      amountsOfDay.push(payment.amount);
     } else {
-      amountsOfDay = [];
       date = payment.datetime.split("T")[0];
-      breakLine = <BreakLine>{date} - {plus(...amountsOfDay)}</BreakLine>;
-      amountsOfDay.push(payment.amount);
+      breakLine = <BreakLine>{date}</BreakLine>;
     }
        return (
       <Contents key={payment.id}>
