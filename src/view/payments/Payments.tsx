@@ -243,10 +243,10 @@ let amountsOfDay: string[] = [];
     } else {
       amountsOfDay = [];
       date = payment.datetime.split("T")[0];
+      breakLine = <BreakLine>{date} - {plus(...amountsOfDay)}</BreakLine>;
       amountsOfDay.push(payment.amount);
     }
-    breakLine = <BreakLine>{date} - {plus(...amountsOfDay)}</BreakLine>;
-    return (
+       return (
       <Contents key={payment.id}>
         {breakLine}
         {card}
