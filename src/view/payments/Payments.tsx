@@ -1,4 +1,6 @@
 import "./style.css";
+import { ReactNode } from "react";
+
 import Page from "../../ui/atom/page/Page";
 import AddPayment from "../../ui/substance/add-payment/AddPayment";
 import PaymentCard from "../../ui/thing/payment-card/PaymentCard";
@@ -216,7 +218,7 @@ export default function Payments({
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
 let amountsOfDay: string[] = [];
-  let breakLine: React.Node;
+  let breakLine: ReactNode;
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <Card
