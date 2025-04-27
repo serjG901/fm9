@@ -215,7 +215,7 @@ export default function Payments({
   );
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
-let amountsOfDay = [];
+let amountsOfDay: string[] = [];
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <Card
