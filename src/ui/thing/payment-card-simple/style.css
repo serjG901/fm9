@@ -4,11 +4,11 @@
 
 .payment-card-simple {
   opacity: 1;
-  transition: opacity 1s ease-in-out, margin 1s ease-in-out;
-  margin-top: 0;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  transform: translateY(0);
   @starting-style {
     opacity: 0.5;
-    margin-top: 0.5rem;
+    transform: translateY(0.5rem);
   }
 }
 
