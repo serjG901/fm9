@@ -1,5 +1,9 @@
 .flex-wrap:has(.payment-card-simple) {
   gap: var(--gap-xxs);
+  transition: gap 1s ease-in-out;
+  @starting-style {
+    gap: var(--gap-xs);
+  }
 }
 
 .payment-card-simple {
@@ -7,8 +11,8 @@
   transition: opacity 1s ease-in-out, transform 1s ease-in-out;
   transform: translateY(0);
   @starting-style {
-    opacity: 0.5;
-    transform: translateY(0.5rem);
+    opacity: .5;
+    transform: translateY(.5rem);
   }
 }
 

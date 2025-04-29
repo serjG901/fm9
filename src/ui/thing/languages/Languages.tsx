@@ -24,17 +24,11 @@ export default function Languages({
               <label
                 htmlFor={l}
                 tabIndex={0}
-                onKeyDown={(e) =>
+                onKeyDown={(e) => e.code === "Space" && e.preventDefault()}
+                onKeyUp={(e) =>
                   e.code === "Space" &&
-                  (e.preventDefault(), e.stopPropagation())
+                  (e.preventDefault(), setCurrentLanguage(l))
                 }
-                onKeyUp={(e) => (
-                  console.log(e),
-                  e.code === "Space" &&
-                    (e.preventDefault(),
-                    e.stopPropagation(),
-                    setCurrentLanguage(l))
-                )}
               >
                 <span>{l}</span>
                 <input

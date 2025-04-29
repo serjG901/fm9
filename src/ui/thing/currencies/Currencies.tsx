@@ -48,17 +48,11 @@ export default function Currencies({
               <label
                 htmlFor={c}
                 tabIndex={0}
-                onKeyDown={(e) =>
+                onKeyDown={(e) => e.code === "Space" && e.preventDefault()}
+                onKeyUp={(e) =>
                   e.code === "Space" &&
-                  (e.preventDefault(), e.stopPropagation())
+                  (e.preventDefault(), setDefaultCurrency(c))
                 }
-                onKeyUp={(e) => (
-                  console.log(e),
-                  e.code === "Space" &&
-                    (e.preventDefault(),
-                    e.stopPropagation(),
-                    setDefaultCurrency(c))
-                )}
               >
                 <span>{c}</span>
                 <input
