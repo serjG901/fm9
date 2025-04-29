@@ -7,6 +7,7 @@ import Grid from "../../atom/grid/Grid";
 import Contents from "../../atom/contents/Contents";
 import { TextesByLanguage } from "../../../interfaces";
 import Collapse from "../../atom/collapse/Collapse";
+import InputRadio from "../../atom/input-radio/InputRadio";
 
 interface CurrencyComponent extends TextesByLanguage {
   defaultCurrency?: string;
@@ -45,29 +46,15 @@ export default function Currencies({
         {currencies.map((c) => {
           return (
             <Contents key={c}>
-              <label
-                htmlFor={c}
-                tabIndex={0}
-                onKeyDown={(e) => e.code === "Space" && e.preventDefault()}
-                onKeyUp={(e) =>
-                  e.code === "Space" &&
-                  (e.preventDefault(), setDefaultCurrency(c))
-                }
-              >
-                <span>{c}</span>
-                <input
-                  type='radio'
-                  id={c}
-                  name='currency'
-                  checked={c === defaultCurrency}
-                  onChange={() => setDefaultCurrency(c)}
-                />
-              </label>
-              {c === defaultCurrency ? (
-                <span>{textes["default"] || "default"}</span>
-              ) : (
-                <span></span>
-              )}
+              <InputRadio
+                id={c}
+                name="currencies"
+                setValue={setDefaultCurrency}
+                defaultValue={defaultCurrency}
+              />
+              <span>
+                {c === defaultCurrency ? textes["default"] || "default" : ""}
+              </span>
               {currencies.length > 1 ? (
                 <ActionButton
                   actionWithPayload={handleDeleteCurrency}

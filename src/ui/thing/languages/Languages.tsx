@@ -2,6 +2,7 @@ import "./style.css";
 import Grid from "../../atom/grid/Grid";
 import Contents from "../../atom/contents/Contents";
 import { TextesByLanguage } from "../../../interfaces";
+import InputRadio from "../../atom/input-radio/InputRadio";
 
 interface LanguagesComponent extends TextesByLanguage {
   currentLanguage?: string;
@@ -21,29 +22,15 @@ export default function Languages({
         {languages.map((l) => {
           return (
             <Contents key={l}>
-              <label
-                htmlFor={l}
-                tabIndex={0}
-                onKeyDown={(e) => e.code === "Space" && e.preventDefault()}
-                onKeyUp={(e) =>
-                  e.code === "Space" &&
-                  (e.preventDefault(), setCurrentLanguage(l))
-                }
-              >
-                <span>{l}</span>
-                <input
-                  type='radio'
-                  id={l}
-                  name='language'
-                  checked={l === currentLanguage}
-                  onChange={() => setCurrentLanguage(l)}
-                />
-              </label>
-              {l === currentLanguage ? (
-                <span>{textes["current"] || "current"}</span>
-              ) : (
-                <span></span>
-              )}
+              <InputRadio
+                id={l}
+                name='languages'
+                setValue={setCurrentLanguage}
+                defaultValue={currentLanguage}
+              />
+              <span>
+                {l === currentLanguage ? textes["current"] || "current" : ""}
+              </span>
             </Contents>
           );
         })}

@@ -16,6 +16,7 @@ import Grid from "./atom/grid/Grid";
 import HighlightText from "./atom/highlight-text/HighlightText";
 import InputNumber from "./atom/input-number/InputNumber";
 import InputNumeric from "./atom/input-numeric/InputNumeric";
+import InputRadio from "./atom/input-radio/InputRadio";
 import InputRange from "./atom/input-range/InputRange";
 import InputText from "./atom/input-text/InputText";
 import InputWithMemory from "./atom/input-with-memory/InputWithMemory";
@@ -81,6 +82,7 @@ const componentsArr = [
   <HighlightText />,
   <InputNumber />,
   <InputNumeric />,
+  <InputRadio />,
   <InputRange />,
   <InputText />,
   <InputWithMemory />,
