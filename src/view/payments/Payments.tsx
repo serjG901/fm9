@@ -1,6 +1,4 @@
 import "./style.css";
-import { ReactNode } from "react";
-
 import Page from "../../ui/atom/page/Page";
 import AddPayment from "../../ui/substance/add-payment/AddPayment";
 import PaymentCard from "../../ui/thing/payment-card/PaymentCard";
@@ -35,6 +33,7 @@ import Collapse from "../../ui/atom/collapse/Collapse";
 import Contents from "../../ui/atom/contents/Contents";
 import StatisticSources from "../../ui/substance/statistic-sources/StatisticSources";
 import ButtonWithLoading from "../../ui/molecul/buttonWithLoading/ButtonWithLoading";
+import filtredPaymentsBySort from "../../helpers/filtredPaymentsBySort";
 
 interface PaymentsComponent extends TextesByLanguage {
   paymentsType: string;
@@ -136,40 +135,6 @@ export default function Payments({
     new Set([...getDebetsName(), ...getCreditsName(), ...getForOptions()])
   );
 
-  let date = "";
-
-  const filtredPaymentsByPeriod =
-    startPeriod && endPeriod && startPeriod <= endPeriod
-      ? payments.filter(
-          (p: Payment) => p.datetime >= startPeriod && p.datetime <= endPeriod
-        )
-      : payments;
-
-  const filtredPaymentsBySearch = !search
-    ? filtredPaymentsByPeriod
-    : filtredPaymentsByPeriod.filter((p: Payment) =>
-        isSearchBySource
-          ? p.from.includes(search) || p.for.includes(search)
-          : p.name.includes(search)
-      );
-
-  const filtredPayments = !filterTags.length
-    ? filtredPaymentsBySearch
-    : filtredPaymentsBySearch.filter(
-        (p) =>
-          p.tags
-            .map((tag) =>
-              filterTags.find(
-                (ft) => ft.value + ft.color === tag.value + tag.color
-              )
-            )
-            .filter((b) => b).length === filterTags.length
-      );
-
-  const sortedPayments = filtredPayments.sort((p1: Payment, p2: Payment) =>
-    p1.datetime > p2.datetime ? -1 : 1
-  );
-
   const addPaymentWithS = addPaymentWithSource(
     debets,
     credits,
@@ -200,6 +165,15 @@ export default function Payments({
     )
     .sort((a, b) => (a.value > b.value ? 1 : -1));
 
+  const filtredPayments = filtredPaymentsBySort(
+    payments,
+    startPeriod,
+    endPeriod,
+    search,
+    isSearchBySource,
+    filterTags
+  );
+
   const byCurrency = Object.groupBy(filtredPayments, (a) => a.currency);
   const amountsByCurrency = Object.keys(byCurrency).map((c) => [
     c,
@@ -210,14 +184,34 @@ export default function Payments({
     (a, b) => (a > b ? 1 : -1)
   );
 
-  const pages = Math.ceil(sortedPayments.length / +itemsPerPage);
-  const sortedPaymentsByPage = sortedPayments.slice(
+  const pages = Math.ceil(filtredPayments.length / +itemsPerPage);
+
+  const sortedPaymentsByPage = filtredPayments.slice(
     (pageActive - 1) * +itemsPerPage,
     pageActive * +itemsPerPage
   );
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
 
+  const reduceCards: { payments: Payment[]; date: string; summ: string }[] =
+    sortedPaymentsByPage.reduce(
+      (
+        acc: { payments: Payment[]; date: string; summ: string }[],
+        a: Payment,
+        i
+      ) => {
+        const nextDate = a.datetime.split("T")[0];
+        if (i === 0) return [{ payments: [a], date: nextDate, summ: a.amount }];
+        if (acc.at(-1)?.date !== nextDate)
+          return [...acc, { payments: [a], date: nextDate, summ: a.amount }];
+        acc.at(-1)!.payments.push(a);
+        acc.at(-1)!.summ = plus(acc.at(-1)!.summ, a.amount);
+        return acc;
+      },
+      []
+    );
+  /*  
+  let date = "";
   const cards = sortedPaymentsByPage.map((payment: Payment) => {
     const card = (
       <Card
@@ -244,14 +238,14 @@ export default function Payments({
       date = payment.datetime.split("T")[0];
       breakLine = <BreakLine>{date}</BreakLine>;
     }
-       return (
+    return (
       <Contents key={payment.id}>
         {breakLine}
         {card}
       </Contents>
     );
   });
-
+*/
   const handleSetSearch = (search: string) => {
     setSearch(search);
     setPageActive(1);
@@ -262,7 +256,7 @@ export default function Payments({
   };
 
   const statisticsByCurrency = Object.groupBy(
-    sortedPayments,
+    filtredPayments,
     ({ currency }) => currency
   );
 
@@ -369,7 +363,38 @@ export default function Payments({
           </ButtonWithLoading>
         </div>
 
-        <FlexWrap>{cards}</FlexWrap>
+        <FlexWrap>
+          {reduceCards.map((obj) => {
+            return (
+              <Contents>
+                <BreakLine>
+                  <div className='break-line-date'>{obj.date}</div>
+                  <div className='break-line-summ'>{obj.summ}</div>
+                </BreakLine>
+                {obj.payments.map((payment) => {
+                  return (
+                    <Card
+                      textes={textes}
+                      maybeName={maybeName}
+                      payment={payment}
+                      updatePayment={updatePaymentWithS}
+                      deletePayment={deletePayment}
+                      fromOptions={fromOptions}
+                      forOptions={forOptions}
+                      maybeTags={maybeTags}
+                      search={search}
+                      currencies={currencies}
+                      isSearchBySource={isSearchBySource}
+                      checkDebetCurrency={checkDebetCurrency}
+                      checkCreditCurrency={checkCreditCurrency}
+                      colored={isColoredCard}
+                    />
+                  );
+                })}
+              </Contents>
+            );
+          })}
+        </FlexWrap>
       </div>
 
       <Paginate
@@ -380,7 +405,7 @@ export default function Payments({
         setNextPage={(pages) => setNextPage(pages || 20)}
       />
 
-      {cards.length > +itemsPerPage / 2 ? <ToTop /> : null}
+      {sortedPaymentsByPage.length > +itemsPerPage / 2 ? <ToTop /> : null}
     </Page>
   );
 }
