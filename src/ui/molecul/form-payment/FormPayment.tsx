@@ -13,6 +13,9 @@ import {
   TextesByLanguage,
 } from "../../../interfaces";
 import LoadingDots from "../../atom/loading-dots/LoadingDots";
+import maxCountStringItems from "../../../helpers/maxCountStringItems";
+import getTagsFromForByPaymentName from "../../../helpers/getTagsFromForByPaymentName";
+import getUniqTags from "../../../helpers/getUniqTags";
 
 interface FormPaymentComponent extends TextesByLanguage {
   maybeName?: string[];
@@ -79,39 +82,22 @@ export default function FormPayment({
   const handleFocusLeaveForName = () => {
     if (paymentName) {
       if (payments.length) {
-        const [tags, fors] = payments.reduce(
-          (acc: [Tag[], string[]], p) =>
-            p.name === paymentName
-              ? [
-                  [...acc[0], ...p.tags],
-                  [...acc[1], p.for],
-                ]
-              : acc,
-          [[], []]
+        const [tags, froms, fors] = getTagsFromForByPaymentName(
+          paymentName,
+          payments
         );
         if (autoAddTags && tags.length) {
-          const uniqTags = tags.reduce(
-            (acc: Tag[], tag) =>
-              acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
-                ? acc
-                : [...acc, tag],
-            []
-          );
+          const uniqTags = getUniqTags(tags);
           setPaymentTags(uniqTags);
         }
 
+        if (!paymentFrom && froms.length) {
+          const fromWithMaxCount = maxCountStringItems(froms);
+          if (fromWithMaxCount) setPaymentFrom(fromWithMaxCount);
+        }
         if (!paymentFor && fors.length) {
-          const statFor = fors.reduce(
-            (acc: { [key: string]: number }, p) => (
-              acc[p] ? (acc[p] += 1) : (acc[p] = 1), acc
-            ),
-            {}
-          );
-          const forWithMaxPaying = Object.keys(statFor).reduce(
-            (acc, k) => (statFor[k] > +acc[1] ? [k, statFor[k]] : acc),
-            ["", 0]
-          );
-          if (forWithMaxPaying[0]) setPaymentFor(forWithMaxPaying[0] + "");
+          const forWithMaxCount = maxCountStringItems(fors);
+          if (forWithMaxCount) setPaymentFor(forWithMaxCount);
         }
       }
     } else {
@@ -158,8 +144,10 @@ export default function FormPayment({
   }, [isDeleteStatus]);
 
   useEffect(() => {
+    console.log(paymentFrom);
     const currencyDebet = checkDebetCurrency(paymentFrom);
     const currencyCredit = checkCreditCurrency(paymentFrom);
+    console.log(currencyDebet, currencyCredit);
     if (currencyDebet || currencyCredit)
       setPaymentCurrency(
         (currencyDebet as string) || (currencyCredit as string)
