@@ -7,7 +7,7 @@
       color: var(--color-text-label);
     }
     input {
-      max-width: 20ch;
+      max-width: 16ch;
     }
     .invalid {
       border-color: var(--color-alert) !important;
