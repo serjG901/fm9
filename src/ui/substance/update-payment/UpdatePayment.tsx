@@ -22,6 +22,8 @@ interface UpdatePaymentComponent extends TextesByLanguage {
   checkCreditCurrency?: (sourceName: string) => string | undefined;
   isShow?: boolean;
   setIsShow?: (isShow: boolean) => void;
+  payments?: Payment[];
+  autoAddTags?: boolean;
 }
 
 export default function UpdatePayment({
@@ -38,6 +40,8 @@ export default function UpdatePayment({
   checkCreditCurrency = () => undefined,
   isShow = false,
   setIsShow = () => {},
+  payments = [],
+  autoAddTags = false,
 }: UpdatePaymentComponent) {
   const updatePaymentAndCloseModal = (p: Payment) => {
     updatePayment(p);
@@ -70,6 +74,8 @@ export default function UpdatePayment({
             currencies={currencies}
             checkDebetCurrency={checkDebetCurrency}
             checkCreditCurrency={checkCreditCurrency}
+            payments={payments}
+            autoAddTags={autoAddTags}
           />
         ) : null}
       </Modal>

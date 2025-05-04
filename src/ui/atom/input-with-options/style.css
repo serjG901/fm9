@@ -1,4 +1,7 @@
 .input-with-options {
+  display: flex;
+  position: relative;
+  align-items: end;
   label {
     display: flex;
     flex-direction: column;
@@ -10,5 +13,11 @@
       width: 100%;
       max-width: 20ch;
     }
+  }
+  .input-with-options-clear {
+    position: absolute;
+    bottom: 0.2rem;
+    right: 0.2rem;
+    scale: 0.8;
   }
 }

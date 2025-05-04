@@ -29,6 +29,9 @@ export default function Search({
       const timerId = setTimeout(() => setSearch(state), 300);
       timer.current = timerId;
     }
+    return () => {
+      clearTimeout(timer.current);
+    };
   }, [state]);
 
   useEffect(() => {

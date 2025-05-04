@@ -24,6 +24,8 @@ interface PaymentCardSimpleComponent extends TextesByLanguage {
   checkDebetCurrency?: (sourceName: string) => string | undefined;
   checkCreditCurrency?: (sourceName: string) => string | undefined;
   colored?: boolean;
+  payments?: Payment[];
+  autoAddTags?: boolean;
 }
 
 export default function PaymentCardSimple({
@@ -41,6 +43,8 @@ export default function PaymentCardSimple({
   checkDebetCurrency = () => undefined,
   checkCreditCurrency = () => undefined,
   colored = false,
+  payments = [],
+  autoAddTags = false,
 }: PaymentCardSimpleComponent) {
   const [isShow, setIsShow] = useState(false);
   const showModal = () => {
@@ -113,6 +117,8 @@ export default function PaymentCardSimple({
         checkCreditCurrency={checkCreditCurrency}
         isShow={isShow}
         setIsShow={setIsShow}
+        payments={payments}
+        autoAddTags={autoAddTags}
       />
     </button>
   );

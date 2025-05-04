@@ -334,7 +334,8 @@ export default function Payments({
           maybeTags={maybeTags}
           defaultCurrency={defaultCurrency}
           currencies={currencies}
-          payments={autoAddTags ? payments : []}
+          payments={payments}
+          autoAddTags={autoAddTags}
           checkDebetCurrency={checkDebetCurrency}
           checkCreditCurrency={checkCreditCurrency}
         />
@@ -364,9 +365,9 @@ export default function Payments({
         </div>
 
         <FlexWrap>
-          {reduceCards.map((obj) => {
+          {reduceCards.map((obj, i) => {
             return (
-              <Contents>
+              <Contents key={i}>
                 <BreakLine>
                   <div className='break-line-date'>{obj.date}</div>
                   <div className='break-line-summ'>{obj.summ}</div>
@@ -374,6 +375,7 @@ export default function Payments({
                 {obj.payments.map((payment) => {
                   return (
                     <Card
+                      key={payment.id}
                       textes={textes}
                       maybeName={maybeName}
                       payment={payment}
@@ -388,6 +390,8 @@ export default function Payments({
                       checkDebetCurrency={checkDebetCurrency}
                       checkCreditCurrency={checkCreditCurrency}
                       colored={isColoredCard}
+                      payments={payments}
+                      autoAddTags={autoAddTags}
                     />
                   );
                 })}

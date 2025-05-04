@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./style.css";
+import Cross from "../cross/Cross";
+import ActionButton from "../action-button/ActionButton";
 
 interface InputWithOptionsComponent {
   options?: string[];
@@ -24,6 +26,11 @@ export default function InputWithOptions({
     const value = e.target.value;
     setState(value);
     hoistValue(value);
+  };
+
+  const handleClearInput = () => {
+    setState("");
+    hoistValue("");
   };
 
   useEffect(() => {
@@ -55,6 +62,13 @@ export default function InputWithOptions({
             })}
           </datalist>
         ) : null}
+        {state && (
+          <div className='input-with-options-clear'>
+            <ActionButton actionWithPayload={handleClearInput} alert>
+              <Cross />
+            </ActionButton>
+          </div>
+        )}
       </label>
     </div>
   );

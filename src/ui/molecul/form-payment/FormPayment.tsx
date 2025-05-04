@@ -26,6 +26,7 @@ interface FormPaymentComponent extends TextesByLanguage {
   defaultCurrency?: string;
   currencies?: string[];
   payments?: Payment[];
+  autoAddTags?: boolean;
   checkDebetCurrency?: (sourceName: string) => string | undefined;
   checkCreditCurrency?: (sourceName: string) => string | undefined;
 }
@@ -43,6 +44,7 @@ export default function FormPayment({
   defaultCurrency = "",
   currencies = [],
   payments = [],
+  autoAddTags = false,
   checkDebetCurrency = () => undefined,
   checkCreditCurrency = () => undefined,
 }: FormPaymentComponent) {
@@ -75,22 +77,45 @@ export default function FormPayment({
   };
 
   const handleFocusLeaveForName = () => {
-    if (payments.length) {
-      setPaymentTags(
-        payments
-          ?.reduce(
-            (acc: Tag[], p) =>
-              p.name === paymentName ? [...acc, ...p.tags] : acc,
-            []
-          )
-          .reduce(
+    if (paymentName) {
+      if (payments.length) {
+        const [tags, fors] = payments.reduce(
+          (acc: [Tag[], string[]], p) =>
+            p.name === paymentName
+              ? [
+                  [...acc[0], ...p.tags],
+                  [...acc[1], p.for],
+                ]
+              : acc,
+          [[], []]
+        );
+        if (autoAddTags && tags.length) {
+          const uniqTags = tags.reduce(
             (acc: Tag[], tag) =>
               acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
                 ? acc
                 : [...acc, tag],
             []
-          )
-      );
+          );
+          setPaymentTags(uniqTags);
+        }
+
+        if (!paymentFor && fors.length) {
+          const statFor = fors.reduce(
+            (acc: { [key: string]: number }, p) => (
+              acc[p] ? (acc[p] += 1) : (acc[p] = 1), acc
+            ),
+            {}
+          );
+          const forWithMaxPaying = Object.keys(statFor).reduce(
+            (acc, k) => (statFor[k] > +acc[1] ? [k, statFor[k]] : acc),
+            ["", 0]
+          );
+          if (forWithMaxPaying[0]) setPaymentFor(forWithMaxPaying[0] + "");
+        }
+      }
+    } else {
+      setPaymentTags([]);
     }
   };
 
