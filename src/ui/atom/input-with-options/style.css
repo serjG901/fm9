@@ -11,7 +11,8 @@
     }
     input {
       width: 100%;
-      max-width: 20ch;
+      max-width:18ch;
+      padding-right: 4ch;
     }
   }
   .input-with-options-clear {
