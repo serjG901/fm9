@@ -11,8 +11,11 @@
   .break-line-sum {
     text-align: right;
     color: var(--color-card-amount);
-    span {
+    > span {
       margin-left: 1rem;
+      span {
+        color: var(--color-text-currency);
+      }
     }
   }
 }
