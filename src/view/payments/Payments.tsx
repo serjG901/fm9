@@ -193,19 +193,19 @@ export default function Payments({
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
 
-  const reduceCards: { payments: Payment[]; date: string; summ: {[key: string]: string} }[] =
+  const reduceCards: { payments: Payment[]; date: string; sum: {[key: string]: string} }[] =
     sortedPaymentsByPage.reduce(
       (
-        acc: { payments: Payment[]; date: string; summ: { [key: string]: string} }[],
+        acc: { payments: Payment[]; date: string; sum: { [key: string]: string} }[],
         a: Payment,
         i
       ) => {
         const nextDate = a.datetime.split("T")[0];
-        if (i === 0) return [{ payments: [a], date: nextDate, summ: {[a.currency]: a.amount} }];
+        if (i === 0) return [{ payments: [a], date: nextDate, sum: {[a.currency]: a.amount} }];
         if (acc.at(-1)?.date !== nextDate)
-          return [...acc, { payments: [a], date: nextDate, summ: {[a.currency]: a.amount} }];
+          return [...acc, { payments: [a], date: nextDate, sum: {[a.currency]: a.amount} }];
         acc.at(-1)!.payments.push(a);
-        acc.at(-1)!.summ[a.currency] = plus(acc.at(-1)!.summ[a.currency], a.amount);
+        acc.at(-1)!.sum[a.currency] = plus(acc.at(-1)!.sum[a.currency], a.amount);
         return acc;
       },
       []
@@ -370,7 +370,7 @@ export default function Payments({
               <Contents key={i}>
                 <BreakLine>
                   <div className='break-line-date'>{obj.date}</div>
-                  <div className='break-line-summ'>{Object.keys(obj.summ).map((k) => <span>{obj.sum[k]+k}</span>)}</div>
+                  <div className='break-line-sum'>{Object.keys(obj.sum).map((k) => <span>{obj.sum[k]+k}</span>)}</div>
                 </BreakLine>
                 {obj.payments.map((payment) => {
                   return (
