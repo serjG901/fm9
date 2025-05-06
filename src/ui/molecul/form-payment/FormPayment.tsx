@@ -64,6 +64,9 @@ export default function FormPayment({
   const [isActionStatus, setIsActionStatus] = useState(1);
   const [isDeleteStatus, setIsDeleteStatus] = useState(1);
 
+  const [localFromOptions, setLocalFromOptions] = useState(fromOptions);
+  const [localForOptions, setLocalForOptions] = useState(forOptions);
+  
   const handleActionPayment = () => {
     if (paymentName) {
       if (!(isNaN(+paymentAmount) || +paymentAmount <= 0)) {
@@ -92,10 +95,12 @@ export default function FormPayment({
         }
 
         if (!paymentFrom && froms.length) {
+          setLocalFromOptions(Array.from(new Set([...froms, ...fromOptions])));
           const fromWithMaxCount = maxCountStringItems(froms);
           if (fromWithMaxCount) setPaymentFrom(fromWithMaxCount);
         }
         if (!paymentFor && fors.length) {
+          setLocalForOptions(Array.from(new Set([...fors, ...forOptions])));
           const forWithMaxCount = maxCountStringItems(fors);
           if (forWithMaxCount) setPaymentFor(forWithMaxCount);
         }
@@ -187,7 +192,7 @@ export default function FormPayment({
           payment.id
         }`}
         name={textes["from"] || "from"}
-        options={fromOptions}
+        options={localFromOptions}
         valueFromParent={paymentFrom}
         hoistValue={setPaymentFrom}
       />
@@ -205,7 +210,7 @@ export default function FormPayment({
           payment.id
         }`}
         name={textes["for"] || "for"}
-        options={forOptions}
+        options={localForOptions}
         valueFromParent={paymentFor}
         hoistValue={setPaymentFor}
       />
