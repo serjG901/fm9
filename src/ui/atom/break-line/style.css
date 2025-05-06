@@ -3,15 +3,14 @@
   background-color: var(--color-bg-break-line);
   padding-inline: var(--padding-xs);
   display: flex;
-  justify-content: space-around;
   div {
     text-align: left;
   }
   div:nth-child(1) {
-    self-align: flex-start;
+    justify-self: flex-start;
   }
   div:nth-child(2) {
-    self-align: flex-end;
+    justify-self: flex-end;
   }
   .break-line-sum {
     text-align: right;
