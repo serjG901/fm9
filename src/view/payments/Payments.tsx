@@ -205,7 +205,7 @@ export default function Payments({
         if (acc.at(-1)?.date !== nextDate)
           return [...acc, { payments: [a], date: nextDate, sum: {[a.currency]: a.amount} }];
         acc.at(-1)!.payments.push(a);
-        acc.at(-1)!.sum[a.currency] = plus(acc.at(-1)!.sum[a.currency], a.amount);
+        acc.at(-1)!.sum[a.currency] = plus(acc.at(-1)!.sum[a.currency] || '0', a.amount);
         return acc;
       },
       []
