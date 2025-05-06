@@ -8,8 +8,11 @@
     width: 50%;
     text-align: left;
   }
-  .break-line-summ {
+  .break-line-sum {
     text-align: right;
     color: var(--color-card-amount);
+    span {
+      margin-left: 1rem;
+    }
   }
 }
