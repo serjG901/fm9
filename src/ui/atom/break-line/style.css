@@ -14,7 +14,7 @@
     > span {
       margin-left: 1rem;
       span {
-        color: var(--color-text-currency);
+        color: var(--color-card-currency);
       }
     }
   }
