@@ -1,5 +1,5 @@
-export default function getDefaultDatetime() {
-  return new Date(Date.now())
+export default function getDefaultDatetime(timestamp = Date.now()) {
+  return new Date(timestamp)
     .toLocaleDateString("ru-RU", {
       year: "numeric",
       month: "numeric",
