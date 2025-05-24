@@ -68,7 +68,7 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
     aDownloadFile!.click();
   }
 
-  const handleDownloadFile = async (e: ChangeEvent<HTMLInputElement>) => {
+  const handleUploadFile = async (e: ChangeEvent<HTMLInputElement>) => {
     handleClick();
     const file = e.target.files![0];
     const contents = await file.text();
@@ -134,7 +134,7 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
               type='file'
               title='file'
               accept='.json'
-              onChange={handleDownloadFile}
+              onChange={handleUploadFile}
             />
           </label>
         </div>
