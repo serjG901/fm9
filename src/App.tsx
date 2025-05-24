@@ -16,6 +16,7 @@ import { name as appName } from "../package.json";
 import { useLanguageStore } from "./store/languageStore";
 import PWABadge from "./PWABadge";
 import HelpApp from "./pages/help-app/HelpApp";
+import BackupData from "./ui/thing/backup-data/BackupData";
 
 const lastHref = window.location.href.split("/").at(-1);
 
@@ -86,6 +87,7 @@ function App() {
 
   return (
     <div className='app' style={{ "--hue": hue } as React.CSSProperties}>
+      <BackupData />
       <Menu
         choisedOption={page}
         collapseLevel='menu'

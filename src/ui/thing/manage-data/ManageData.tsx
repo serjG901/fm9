@@ -11,6 +11,8 @@ import { useSettingsStore } from "../../../store/settingsStore";
 import { TextesByLanguage } from "../../../interfaces";
 import upperFirstLetter from "../../../helpers/upperFirstLetter";
 import getDefaultDatetime from "../../../helpers/getDefaultDatetime";
+import InputRange from "../../atom/input-range/InputRange";
+import Checked from "../../atom/checked/Checked";
 
 export default function ManageData({ textes = {} }: TextesByLanguage) {
   const [getStateBuys, setStateBuys] = useBuysStore((state) => [
@@ -29,9 +31,20 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
     state.getState,
     state.setState,
   ]);
-  const [getStateSettings, setStateSettings] = useSettingsStore((state) => [
+  const [
+    getStateSettings,
+    setStateSettings,
+    autoBackup,
+    setAutoBackup,
+    backupWhenStart,
+    setBackupWhenStart,
+  ] = useSettingsStore((state) => [
     state.getState,
     state.setState,
+    state.autoBackup,
+    state.setAutoBackup,
+    state.backupWhenStart,
+    state.setBackupWhenStart,
   ]);
 
   const [currentBase] = useBasesStore((state) => [state.currentBase]);
@@ -95,6 +108,37 @@ export default function ManageData({ textes = {} }: TextesByLanguage) {
 
   return (
     <div className='load-db'>
+      <div>
+        <Checked
+          valueFromParent={backupWhenStart}
+          hoistValue={setBackupWhenStart}
+          name={
+            textes["set_auto_backup_when_start"] ||
+            "auto backup data when start app"
+          }
+        />
+      </div>
+      <div>
+        <InputRange
+          id='change-autobackup'
+          name={
+            textes["change_auto_backup_timer"] ||
+            "change auto backup data timer"
+          }
+          min={0}
+          max={120}
+          step={10}
+          valueFromParent={autoBackup}
+          hoistValue={setAutoBackup}
+        />
+        <div>
+          {textes["auto_backup_timeout"] || "auto backup timeout"}:{" "}
+          {autoBackup !== "0"
+            ? `${autoBackup} ${textes["minutes"] || "minutes"}`
+            : textes["not"] || "not"}
+        </div>
+      </div>
+
       <div>
         <ActionButton actionWithPayload={saveAsLegacy}>
           {textes["download_data"] || "download data"}{" "}

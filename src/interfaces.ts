@@ -164,6 +164,10 @@ export interface SettingsStore {
   deleteCurrency: (currency: string) => void;
   autoAddTags: boolean;
   setAutoAddTags: (autoAddTags: boolean) => void;
+  autoBackup: string;
+  setAutoBackup: (autoBackup: string) => void;
+  backupWhenStart: boolean;
+  setBackupWhenStart: (backupWhenStart: boolean) => void;
 }
 
 export interface LanguageStore {

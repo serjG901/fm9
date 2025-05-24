@@ -31,6 +31,10 @@ export const useSettingsStore = create<SettingsStore>()(
         },
         autoAddTags: false,
         setAutoAddTags: (autoAddTags) => set({ autoAddTags }),
+        autoBackup: "0",
+        setAutoBackup: (autoBackup) => set({ autoBackup }),
+        backupWhenStart: false,
+        setBackupWhenStart: (backupWhenStart) => set({ backupWhenStart }),
       };
     },
     {
