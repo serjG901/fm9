@@ -73,4 +73,7 @@
 .collapse[open] {
   height: min-content;
   width: calc-size(max-content, size + 2rem);
+  > summary {
+    background-color: hsl(0 100 100/0.1);
+  }
 }
