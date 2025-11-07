@@ -567,6 +567,21 @@
       "src": "/fm9/images/ios/1024.png",
       "sizes": "1024x1024",
       "purpose": "maskable"
+    },
+    {
+      "src": "/fm9/images/icons-192.png",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/fm9/images/icons-512.png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/fm9/images/icons-1024.png",
+      "sizes": "1024x1024",
+      "purpose": "maskable"
     }
   ],
   "start_url": "/fm9/",
