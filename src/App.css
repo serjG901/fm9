@@ -81,3 +81,8 @@ input:focus,
 input:focus-visible {
   outline: 1px solid var(--color-border-action-element-accent);
 }
+
+.version {
+  position: absolute;
+  color: var(--color-text-description);
+}

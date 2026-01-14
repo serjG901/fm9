@@ -87,6 +87,7 @@ function App() {
 
   return (
     <div className='app' style={{ "--hue": hue } as React.CSSProperties}>
+      <div className="version">v1.1</div>
       <BackupData />
       <Menu
         choisedOption={page}
