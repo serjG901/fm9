@@ -193,59 +193,40 @@ export default function Payments({
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
 
-  const reduceCards: { payments: Payment[]; date: string; sum: {[key: string]: string} }[] =
-    sortedPaymentsByPage.reduce(
-      (
-        acc: { payments: Payment[]; date: string; sum: { [key: string]: string} }[],
-        a: Payment,
-        i
-      ) => {
-        const nextDate = a.datetime.split("T")[0];
-        if (i === 0) return [{ payments: [a], date: nextDate, sum: {[a.currency]: a.amount} }];
-        if (acc.at(-1)?.date !== nextDate)
-          return [...acc, { payments: [a], date: nextDate, sum: {[a.currency]: a.amount} }];
-        acc.at(-1)!.payments.push(a);
-        acc.at(-1)!.sum[a.currency] = plus(acc.at(-1)!.sum[a.currency] || '0', a.amount);
-        return acc;
-      },
-      []
-    );
-  /*  
-  let date = "";
-  const cards = sortedPaymentsByPage.map((payment: Payment) => {
-    const card = (
-      <Card
-        textes={textes}
-        maybeName={maybeName}
-        payment={payment}
-        updatePayment={updatePaymentWithS}
-        deletePayment={deletePayment}
-        fromOptions={fromOptions}
-        forOptions={forOptions}
-        maybeTags={maybeTags}
-        search={search}
-        currencies={currencies}
-        isSearchBySource={isSearchBySource}
-        checkDebetCurrency={checkDebetCurrency}
-        checkCreditCurrency={checkCreditCurrency}
-        colored={isColoredCard}
-      />
-    );
-    let breakLine: ReactNode;
-    if (date === payment.datetime.split("T")[0]) {
-      breakLine = <></>;
-    } else {
-      date = payment.datetime.split("T")[0];
-      breakLine = <BreakLine>{date}</BreakLine>;
-    }
-    return (
-      <Contents key={payment.id}>
-        {breakLine}
-        {card}
-      </Contents>
-    );
-  });
-*/
+  const reduceCards: {
+    payments: Payment[];
+    date: string;
+    sum: { [key: string]: string };
+  }[] = sortedPaymentsByPage.reduce(
+    (
+      acc: {
+        payments: Payment[];
+        date: string;
+        sum: { [key: string]: string };
+      }[],
+      a: Payment,
+      i
+    ) => {
+      const nextDate = a.datetime.split("T")[0];
+      if (i === 0)
+        return [
+          { payments: [a], date: nextDate, sum: { [a.currency]: a.amount } },
+        ];
+      if (acc.at(-1)?.date !== nextDate)
+        return [
+          ...acc,
+          { payments: [a], date: nextDate, sum: { [a.currency]: a.amount } },
+        ];
+      acc.at(-1)!.payments.push(a);
+      acc.at(-1)!.sum[a.currency] = plus(
+        acc.at(-1)!.sum[a.currency] || "0",
+        a.amount
+      );
+      return acc;
+    },
+    []
+  );
+
   const handleSetSearch = (search: string) => {
     setSearch(search);
     setPageActive(1);
@@ -262,66 +243,71 @@ export default function Payments({
 
   return (
     <Page>
-      <div className='payments-view'>
+      <div className="payments-view">
         <h1>{paymentsType}</h1>
-        <FlexColumnCenter>
-          <FormDataRange
-            textes={textes}
-            key={"FormDataRange"}
-            period={{ start: startPeriod, end: endPeriod }}
-            setPeriod={setPeriod}
-          />
-          <Filter
-            textes={textes}
-            key={"Filter"}
-            search={search}
-            setSearch={handleSetSearch}
-            filterTags={filterTags}
-            setFilterTags={handleSetFilterTags}
-            maybeTags={maybeTags}
-            isSearchBySource={isSearchBySource}
-            setIsSearchBySource={setIsSearchBySource}
-          />
-          <Collapse title={`${textes["stat"] || "stat"}`} collapseLevel='menu'>
-            <FlexColumnCenter>
-              {...Object.keys(statisticsByCurrency).map((currency) => {
-                return (
-                  <Contents key={currency}>
-                    <Statistics
-                      textes={textes}
-                      currency={currency}
-                      payments={statisticsByCurrency[currency]}
-                      search={search}
-                    />
-                    <StatisticTags
-                      textes={textes}
-                      currency={currency}
-                      payments={statisticsByCurrency[currency]}
-                    />
-                    <StatisticSources
-                      textes={textes}
-                      currency={currency}
-                      payments={statisticsByCurrency[currency]}
-                      search={search}
-                      sourceType='from'
-                    />
-                    <StatisticSources
-                      textes={textes}
-                      currency={currency}
-                      payments={statisticsByCurrency[currency]}
-                      search={search}
-                      sourceType='for'
-                    />
-                  </Contents>
-                );
-              })}
-            </FlexColumnCenter>
-          </Collapse>
-        </FlexColumnCenter>
+        {!!filtredPayments.length && (
+          <FlexColumnCenter>
+            <FormDataRange
+              textes={textes}
+              key={"FormDataRange"}
+              period={{ start: startPeriod, end: endPeriod }}
+              setPeriod={setPeriod}
+            />
+            <Filter
+              textes={textes}
+              key={"Filter"}
+              search={search}
+              setSearch={handleSetSearch}
+              filterTags={filterTags}
+              setFilterTags={handleSetFilterTags}
+              maybeTags={maybeTags}
+              isSearchBySource={isSearchBySource}
+              setIsSearchBySource={setIsSearchBySource}
+            />
+            <Collapse
+              title={`${textes["stat"] || "stat"}`}
+              collapseLevel="menu"
+            >
+              <FlexColumnCenter>
+                {...Object.keys(statisticsByCurrency).map((currency) => {
+                  return (
+                    <Contents key={currency}>
+                      <Statistics
+                        textes={textes}
+                        currency={currency}
+                        payments={statisticsByCurrency[currency]}
+                        search={search}
+                      />
+                      <StatisticTags
+                        textes={textes}
+                        currency={currency}
+                        payments={statisticsByCurrency[currency]}
+                      />
+                      <StatisticSources
+                        textes={textes}
+                        currency={currency}
+                        payments={statisticsByCurrency[currency]}
+                        search={search}
+                        sourceType="from"
+                      />
+                      <StatisticSources
+                        textes={textes}
+                        currency={currency}
+                        payments={statisticsByCurrency[currency]}
+                        search={search}
+                        sourceType="for"
+                      />
+                    </Contents>
+                  );
+                })}
+              </FlexColumnCenter>
+            </Collapse>
+          </FlexColumnCenter>
+        )}
 
         {amountsByCurrency.map((pair) => (
           <div key={pair[0].toString()}>
-            {pair[0]}: <span className='sum'>{plus(...pair[1])}</span>
+            {pair[0]}: <span className="sum">{plus(...pair[1])}</span>
           </div>
         ))}
 
@@ -348,7 +334,7 @@ export default function Payments({
           setPreviousPage={setPreviousPage}
           setNextPage={() => setNextPage(pages || 20)}
         />
-        <div className='switch-card-simple'>
+        <div className="switch-card-simple">
           <ButtonWithLoading
             action={() => setIsColoredCard()}
             bgColor={
@@ -369,8 +355,14 @@ export default function Payments({
             return (
               <Contents key={i}>
                 <BreakLine>
-                  <div className='break-line-date'>{obj.date}</div>
-                  <div className='break-line-sum'>{Object.keys(obj.sum).map((k) => <span key={k}>{obj.sum[k]} <span>{k}</span></span>)}</div>
+                  <div className="break-line-date">{obj.date}</div>
+                  <div className="break-line-sum">
+                    {Object.keys(obj.sum).map((k) => (
+                      <span key={k}>
+                        {obj.sum[k]} <span>{k}</span>
+                      </span>
+                    ))}
+                  </div>
                 </BreakLine>
                 {obj.payments.map((payment) => {
                   return (
