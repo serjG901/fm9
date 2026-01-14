@@ -1,12 +1,28 @@
 import { Tag } from "../interfaces";
 
-export default function getUniqTags(tags: Tag[]) {
+export default function getUniqTags(tags: Tag[], smart?: boolean) {
   const uniqTags = tags.reduce(
-    (acc: Tag[], tag) =>
-      acc.find((t) => JSON.stringify(t) === JSON.stringify(tag))
-        ? acc
-        : [...acc, tag],
-    []
+    (acc: Map<string, { value: Tag; count: number }>, tag) => {
+      const key = JSON.stringify(tag);
+      const count = acc.get(key)?.count || 0;
+      acc.set(key, { value: tag, count: count + 1 });
+      return acc;
+    },
+    new Map()
   );
-  return uniqTags;
+
+  const sortedTags = [...uniqTags]
+    .map((v) => ({ tag: v[1].value, count: v[1].count }))
+    .toSorted((a, b) => b.count - a.count);
+
+  let withSmart = sortedTags;
+
+  if (smart) {
+    const index = sortedTags.findIndex((v, i, arr) =>
+      i ? 2 * v.count < arr[i - 1].count : false
+    );
+    withSmart = sortedTags.slice(0, index);
+  }
+
+  return withSmart.map((v) => v.tag);
 }

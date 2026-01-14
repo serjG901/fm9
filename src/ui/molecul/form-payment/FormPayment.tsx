@@ -66,7 +66,7 @@ export default function FormPayment({
 
   const [localFromOptions, setLocalFromOptions] = useState(fromOptions);
   const [localForOptions, setLocalForOptions] = useState(forOptions);
-  
+
   const handleActionPayment = () => {
     if (paymentName) {
       if (!(isNaN(+paymentAmount) || +paymentAmount <= 0)) {
@@ -90,7 +90,7 @@ export default function FormPayment({
           payments
         );
         if (autoAddTags && tags.length) {
-          const uniqTags = getUniqTags(tags);
+          const uniqTags = getUniqTags(tags, true);
           setPaymentTags(uniqTags);
         }
 
@@ -149,10 +149,8 @@ export default function FormPayment({
   }, [isDeleteStatus]);
 
   useEffect(() => {
-    console.log(paymentFrom);
     const currencyDebet = checkDebetCurrency(paymentFrom);
     const currencyCredit = checkCreditCurrency(paymentFrom);
-    console.log(currencyDebet, currencyCredit);
     if (currencyDebet || currencyCredit)
       setPaymentCurrency(
         (currencyDebet as string) || (currencyCredit as string)
