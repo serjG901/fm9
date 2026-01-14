@@ -370,7 +370,7 @@ export default function Payments({
               <Contents key={i}>
                 <BreakLine>
                   <div className='break-line-date'>{obj.date}</div>
-                  <div className='break-line-sum'>{Object.keys(obj.sum).map((k) => <span>{obj.sum[k]} <span>{k}</span></span>)}</div>
+                  <div className='break-line-sum'>{Object.keys(obj.sum).map((k) => <span key={k}>{obj.sum[k]} <span>{k}</span></span>)}</div>
                 </BreakLine>
                 {obj.payments.map((payment) => {
                   return (
