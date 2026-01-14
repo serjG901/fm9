@@ -1,5 +1,7 @@
 import { Tag } from "../interfaces";
 
+const smartSensitivity = 3;
+
 export default function getUniqTags(tags: Tag[], smart?: boolean) {
   const uniqTags = tags.reduce(
     (acc: Map<string, { value: Tag; count: number }>, tag) => {
@@ -19,7 +21,7 @@ export default function getUniqTags(tags: Tag[], smart?: boolean) {
 
   if (smart) {
     const index = sortedTags.findIndex((v, i, arr) =>
-      i ? 2 * v.count < arr[i - 1].count : false
+      i ? smartSensitivity * v.count < arr[i - 1].count : false
     );
     if (index > 0) {
       withSmart = sortedTags.slice(0, index);
