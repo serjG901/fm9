@@ -21,7 +21,9 @@ export default function getUniqTags(tags: Tag[], smart?: boolean) {
     const index = sortedTags.findIndex((v, i, arr) =>
       i ? 2 * v.count < arr[i - 1].count : false
     );
-    withSmart = sortedTags.slice(0, index);
+    if (index > 0) {
+      withSmart = sortedTags.slice(0, index);
+    }
   }
 
   return withSmart.map((v) => v.tag);
