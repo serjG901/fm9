@@ -125,14 +125,14 @@ export default function Payments({
   ]);
 
   const [defaultCurrency, currencies, autoAddTags] = useSettingsStore(
-    (state) => [state.defaultCurrency, state.currencies, state.autoAddTags]
+    (state) => [state.defaultCurrency, state.currencies, state.autoAddTags],
   );
 
   const fromOptions = Array.from(
-    new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()])
+    new Set([...getDebetsName(), ...getCreditsName(), ...getFromOptions()]),
   );
   const forOptions = Array.from(
-    new Set([...getDebetsName(), ...getCreditsName(), ...getForOptions()])
+    new Set([...getDebetsName(), ...getCreditsName(), ...getForOptions()]),
   );
 
   const addPaymentWithS = addPaymentWithSource(
@@ -140,7 +140,7 @@ export default function Payments({
     credits,
     updateDebet,
     updateCredit,
-    addPayment
+    addPayment,
   );
 
   const updatePaymentWithS = updatePaymentWithSource(
@@ -151,7 +151,7 @@ export default function Payments({
     updateDebet,
     updateCredit,
     getDebets,
-    getCredits
+    getCredits,
   );
 
   const maybeTags = payments
@@ -161,7 +161,7 @@ export default function Payments({
         acc.find((t) => t.value + t.color === tag.value + tag.color)
           ? acc
           : [...acc, tag],
-      []
+      [],
     )
     .sort((a, b) => (a.value > b.value ? 1 : -1));
 
@@ -171,7 +171,7 @@ export default function Payments({
     endPeriod,
     search,
     isSearchBySource,
-    filterTags
+    filterTags,
   );
 
   const byCurrency = Object.groupBy(filtredPayments, (a) => a.currency);
@@ -181,14 +181,14 @@ export default function Payments({
   ]);
 
   const maybeName = Array.from(new Set(payments.map((p) => p.name))).sort(
-    (a, b) => (a > b ? 1 : -1)
+    (a, b) => (a > b ? 1 : -1),
   );
 
   const pages = Math.ceil(filtredPayments.length / +itemsPerPage);
 
   const sortedPaymentsByPage = filtredPayments.slice(
     (pageActive - 1) * +itemsPerPage,
-    pageActive * +itemsPerPage
+    pageActive * +itemsPerPage,
   );
 
   const Card = isSimpleCard ? PaymentCardSimple : PaymentCard;
@@ -205,7 +205,7 @@ export default function Payments({
         sum: { [key: string]: string };
       }[],
       a: Payment,
-      i
+      i,
     ) => {
       const nextDate = a.datetime.split("T")[0];
       if (i === 0)
@@ -220,11 +220,11 @@ export default function Payments({
       acc.at(-1)!.payments.push(a);
       acc.at(-1)!.sum[a.currency] = plus(
         acc.at(-1)!.sum[a.currency] || "0",
-        a.amount
+        a.amount,
       );
       return acc;
     },
-    []
+    [],
   );
 
   const handleSetSearch = (search: string) => {
@@ -238,7 +238,7 @@ export default function Payments({
 
   const statisticsByCurrency = Object.groupBy(
     filtredPayments,
-    ({ currency }) => currency
+    ({ currency }) => currency,
   );
 
   return (
@@ -311,7 +311,7 @@ export default function Payments({
             {pair[0]}: <span className="sum">{plus(...pair[1])}</span>
           </div>
         ))}
-
+        <br />
         <AddPayment
           textes={textes}
           maybeName={maybeName}
