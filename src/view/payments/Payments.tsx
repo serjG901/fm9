@@ -245,25 +245,26 @@ export default function Payments({
     <Page>
       <div className="payments-view">
         <h1>{paymentsType}</h1>
-        {!!filtredPayments.length && (
-          <FlexColumnCenter>
-            <FormDataRange
-              textes={textes}
-              key={"FormDataRange"}
-              period={{ start: startPeriod, end: endPeriod }}
-              setPeriod={setPeriod}
-            />
-            <Filter
-              textes={textes}
-              key={"Filter"}
-              search={search}
-              setSearch={handleSetSearch}
-              filterTags={filterTags}
-              setFilterTags={handleSetFilterTags}
-              maybeTags={maybeTags}
-              isSearchBySource={isSearchBySource}
-              setIsSearchBySource={setIsSearchBySource}
-            />
+
+        <FlexColumnCenter>
+          <FormDataRange
+            textes={textes}
+            key={"FormDataRange"}
+            period={{ start: startPeriod, end: endPeriod }}
+            setPeriod={setPeriod}
+          />
+          <Filter
+            textes={textes}
+            key={"Filter"}
+            search={search}
+            setSearch={handleSetSearch}
+            filterTags={filterTags}
+            setFilterTags={handleSetFilterTags}
+            maybeTags={maybeTags}
+            isSearchBySource={isSearchBySource}
+            setIsSearchBySource={setIsSearchBySource}
+          />
+          {!!filtredPayments.length && (
             <Collapse
               title={`${textes["stat"] || "stat"}`}
               collapseLevel="menu"
@@ -302,8 +303,8 @@ export default function Payments({
                 })}
               </FlexColumnCenter>
             </Collapse>
-          </FlexColumnCenter>
-        )}
+          )}
+        </FlexColumnCenter>
 
         {amountsByCurrency.map((pair) => (
           <div key={pair[0].toString()}>
